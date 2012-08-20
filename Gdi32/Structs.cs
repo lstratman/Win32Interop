@@ -7,23 +7,6 @@ using System.Text;
 namespace Win32Interop.Structs
 {
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagRECT
-    {
-
-        /// LONG->int
-        public int left;
-
-        /// LONG->int
-        public int top;
-
-        /// LONG->int
-        public int right;
-
-        /// LONG->int
-        public int bottom;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
     public struct tagENHMETARECORD
     {
 
@@ -81,17 +64,6 @@ namespace Win32Interop.Structs
 
         /// FLOAT->float
         public float eDy;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct Point
-    {
-
-        /// LONG->int
-        public int x;
-
-        /// LONG->int
-        public int y;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -613,182 +585,6 @@ namespace Win32Interop.Structs
         public uint fwType;
     }
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-    public struct DEVMODEW
-    {
-
-        /// WCHAR[32]
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
-        public string dmDeviceName;
-
-        /// WORD->unsigned short
-        public ushort dmSpecVersion;
-
-        /// WORD->unsigned short
-        public ushort dmDriverVersion;
-
-        /// WORD->unsigned short
-        public ushort dmSize;
-
-        /// WORD->unsigned short
-        public ushort dmDriverExtra;
-
-        /// DWORD->unsigned int
-        public uint dmFields;
-
-        /// Anonymous_7a7460d9_d99f_4e9a_9ebb_cdd10c08463d
-        public PAGE_DATA Union1;
-
-        /// short
-        public short dmColor;
-
-        /// short
-        public short dmDuplex;
-
-        /// short
-        public short dmYResolution;
-
-        /// short
-        public short dmTTOption;
-
-        /// short
-        public short dmCollate;
-
-        /// WCHAR[32]
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
-        public string dmFormName;
-
-        /// WORD->unsigned short
-        public ushort dmLogPixels;
-
-        /// DWORD->unsigned int
-        public uint dmBitsPerPel;
-
-        /// DWORD->unsigned int
-        public uint dmPelsWidth;
-
-        /// DWORD->unsigned int
-        public uint dmPelsHeight;
-
-        /// Anonymous_084dbe97_5806_4c28_a299_ed6037f61d90
-        public DISPLAY_DATA DisplayData;
-
-        /// DWORD->unsigned int
-        public uint dmDisplayFrequency;
-
-        /// DWORD->unsigned int
-        public uint dmICMMethod;
-
-        /// DWORD->unsigned int
-        public uint dmICMIntent;
-
-        /// DWORD->unsigned int
-        public uint dmMediaType;
-
-        /// DWORD->unsigned int
-        public uint dmDitherType;
-
-        /// DWORD->unsigned int
-        public uint dmReserved1;
-
-        /// DWORD->unsigned int
-        public uint dmReserved2;
-
-        /// DWORD->unsigned int
-        public uint dmPanningWidth;
-
-        /// DWORD->unsigned int
-        public uint dmPanningHeight;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct DEVMODEA
-    {
-
-        /// BYTE[32]
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
-        public byte[] dmDeviceName;
-
-        /// WORD->unsigned short
-        public ushort dmSpecVersion;
-
-        /// WORD->unsigned short
-        public ushort dmDriverVersion;
-
-        /// WORD->unsigned short
-        public ushort dmSize;
-
-        /// WORD->unsigned short
-        public ushort dmDriverExtra;
-
-        /// DWORD->unsigned int
-        public uint dmFields;
-
-        /// Anonymous_2338c0fc_03a3_4514_b536_fb9bb5df14c5
-        public PAGE_DATA Union1;
-
-        /// short
-        public short dmColor;
-
-        /// short
-        public short dmDuplex;
-
-        /// short
-        public short dmYResolution;
-
-        /// short
-        public short dmTTOption;
-
-        /// short
-        public short dmCollate;
-
-        /// BYTE[32]
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
-        public byte[] dmFormName;
-
-        /// WORD->unsigned short
-        public ushort dmLogPixels;
-
-        /// DWORD->unsigned int
-        public uint dmBitsPerPel;
-
-        /// DWORD->unsigned int
-        public uint dmPelsWidth;
-
-        /// DWORD->unsigned int
-        public uint dmPelsHeight;
-
-        /// Anonymous_7557e508_845c_4777_b9f2_a1496c1c7b21
-        public DISPLAY_DATA DisplayData;
-
-        /// DWORD->unsigned int
-        public uint dmDisplayFrequency;
-
-        /// DWORD->unsigned int
-        public uint dmICMMethod;
-
-        /// DWORD->unsigned int
-        public uint dmICMIntent;
-
-        /// DWORD->unsigned int
-        public uint dmMediaType;
-
-        /// DWORD->unsigned int
-        public uint dmDitherType;
-
-        /// DWORD->unsigned int
-        public uint dmReserved1;
-
-        /// DWORD->unsigned int
-        public uint dmReserved2;
-
-        /// DWORD->unsigned int
-        public uint dmPanningWidth;
-
-        /// DWORD->unsigned int
-        public uint dmPanningHeight;
-    }
-
     [StructLayout(LayoutKind.Sequential)]
     public struct OUTLINETEXTMETRICW
     {
@@ -1081,17 +877,6 @@ namespace Win32Interop.Structs
 
         /// FLOAT->float
         public float abcfC;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct tagSIZE
-    {
-
-        /// LONG->int
-        public int cx;
-
-        /// LONG->int
-        public int cy;
     }
 
     [StructLayout(LayoutKind.Sequential)]
