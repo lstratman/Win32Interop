@@ -1013,7 +1013,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "UpdateLayeredWindow")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool UpdateLayeredWindow(
-            [In] IntPtr hWnd, [In] IntPtr hdcDst, [In] IntPtr pptDst, [In] IntPtr psize, [In] IntPtr hdcSrc, [In] IntPtr pptSrc, uint crKey, [In] IntPtr pblend,
+            [In] IntPtr hWnd, [In] IntPtr hdcDst, ref Point pptDst, ref SIZE psize, [In] IntPtr hdcSrc, ref Point pptSrc, uint crKey, ref BLENDFUNCTION pblend,
             uint dwFlags);
 
         /// Return Type: BOOL->int
