@@ -7,7 +7,7 @@ using System.Text;
 namespace Win32Interop.Structs
 {
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagENHMETARECORD
+    public struct ENHMETARECORD
     {
 
         /// DWORD->unsigned int
@@ -22,29 +22,29 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagENUMLOGFONTEXDVW
+    public struct ENUMLOGFONTEXDVW
     {
 
         /// ENUMLOGFONTEXW->tagENUMLOGFONTEXW
-        public tagENUMLOGFONTEXW elfEnumLogfontEx;
+        public ENUMLOGFONTEXW elfEnumLogfontEx;
 
         /// DESIGNVECTOR->tagDESIGNVECTOR
-        public tagDESIGNVECTOR elfDesignVector;
+        public DESIGNVECTOR elfDesignVector;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagENUMLOGFONTEXDVA
+    public struct ENUMLOGFONTEXDVA
     {
 
         /// ENUMLOGFONTEXA->tagENUMLOGFONTEXA
-        public tagENUMLOGFONTEXA elfEnumLogfontEx;
+        public ENUMLOGFONTEXA elfEnumLogfontEx;
 
         /// DESIGNVECTOR->tagDESIGNVECTOR
-        public tagDESIGNVECTOR elfDesignVector;
+        public DESIGNVECTOR elfDesignVector;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagXFORM
+    public struct XFORM
     {
 
         /// FLOAT->float
@@ -67,7 +67,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagBITMAP
+    public struct BITMAP
     {
 
         /// LONG->int
@@ -93,7 +93,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-    public struct tagLOGFONTW
+    public struct LOGFONTW
     {
 
         /// LONG->int
@@ -141,7 +141,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct tagLOGFONTA
+    public struct LOGFONTA
     {
 
         /// LONG->int
@@ -189,7 +189,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagLOGBRUSH
+    public struct LOGBRUSH
     {
 
         /// UINT->unsigned int
@@ -203,7 +203,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagMETAFILEPICT
+    public struct METAFILEPICT
     {
 
         /// LONG->int
@@ -220,7 +220,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagCOLORADJUSTMENT
+    public struct COLORADJUSTMENT
     {
 
         /// WORD->unsigned short
@@ -261,7 +261,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagPALETTEENTRY
+    public struct PALETTEENTRY
     {
 
         /// BYTE->unsigned char
@@ -278,19 +278,19 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagBITMAPINFO
+    public struct BITMAPINFO
     {
 
         /// BITMAPINFOHEADER->tagBITMAPINFOHEADER
-        public tagBITMAPINFOHEADER bmiHeader;
+        public BITMAPINFOHEADER bmiHeader;
 
         /// RGBQUAD[1]
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 1, ArraySubType = UnmanagedType.Struct)]
-        public tagRGBQUAD[] bmiColors;
+        public RGBQUAD[] bmiColors;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagLOGPEN
+    public struct LOGPEN
     {
 
         /// UINT->unsigned int
@@ -304,7 +304,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagPIXELFORMATDESCRIPTOR
+    public struct PIXELFORMATDESCRIPTOR
     {
 
         /// WORD->unsigned short
@@ -387,7 +387,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagRGBQUAD
+    public struct RGBQUAD
     {
 
         /// BYTE->unsigned char
@@ -433,7 +433,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagBITMAPINFOHEADER
+    public struct BITMAPINFOHEADER
     {
 
         /// DWORD->unsigned int
@@ -471,7 +471,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagLOGPALETTE
+    public struct LOGPALETTE
     {
 
         /// WORD->unsigned short
@@ -482,11 +482,11 @@ namespace Win32Interop.Structs
 
         /// PALETTEENTRY[1]
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 1, ArraySubType = UnmanagedType.Struct)]
-        public tagPALETTEENTRY[] palPalEntry;
+        public PALETTEENTRY[] palPalEntry;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagPOLYTEXTW
+    public struct POLYTEXTW
     {
 
         /// int
@@ -506,14 +506,14 @@ namespace Win32Interop.Structs
         public uint uiFlags;
 
         /// RECT->tagRECT
-        public tagRECT rcl;
+        public RECT rcl;
 
         /// int*
         public IntPtr pdx;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagPOLYTEXTA
+    public struct POLYTEXTA
     {
 
         /// int
@@ -533,7 +533,7 @@ namespace Win32Interop.Structs
         public uint uiFlags;
 
         /// RECT->tagRECT
-        public tagRECT rcl;
+        public RECT rcl;
 
         /// int*
         public IntPtr pdx;
@@ -593,13 +593,13 @@ namespace Win32Interop.Structs
         public uint otmSize;
 
         /// TEXTMETRICW->tagTEXTMETRICW
-        public tagTEXTMETRICW otmTextMetrics;
+        public TEXTMETRICW otmTextMetrics;
 
         /// BYTE->unsigned char
         public byte otmFiller;
 
         /// PANOSE->tagPANOSE
-        public tagPANOSE otmPanoseNumber;
+        public PANOSE otmPanoseNumber;
 
         /// UINT->unsigned int
         public uint otmfsSelection;
@@ -635,7 +635,7 @@ namespace Win32Interop.Structs
         public uint otmsXHeight;
 
         /// RECT->tagRECT
-        public tagRECT otmrcFontBox;
+        public RECT otmrcFontBox;
 
         /// int
         public int otmMacAscent;
@@ -698,13 +698,13 @@ namespace Win32Interop.Structs
         public uint otmSize;
 
         /// TEXTMETRICA->tagTEXTMETRICA
-        public tagTEXTMETRICA otmTextMetrics;
+        public TEXTMETRICA otmTextMetrics;
 
         /// BYTE->unsigned char
         public byte otmFiller;
 
         /// PANOSE->tagPANOSE
-        public tagPANOSE otmPanoseNumber;
+        public PANOSE otmPanoseNumber;
 
         /// UINT->unsigned int
         public uint otmfsSelection;
@@ -740,7 +740,7 @@ namespace Win32Interop.Structs
         public uint otmsXHeight;
 
         /// RECT->tagRECT
-        public tagRECT otmrcFontBox;
+        public RECT otmrcFontBox;
 
         /// int
         public int otmMacAscent;
@@ -796,7 +796,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagGCP_RESULTSW
+    public struct GCP_RESULTSW
     {
 
         /// DWORD->unsigned int
@@ -831,7 +831,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagGCP_RESULTSA
+    public struct GCP_RESULTSA
     {
 
         /// DWORD->unsigned int
@@ -880,7 +880,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagHANDLETABLE
+    public struct HANDLETABLE
     {
 
         /// HGDIOBJ[1]
@@ -889,7 +889,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagCHARSETINFO
+    public struct CHARSETINFO
     {
 
         /// UINT->unsigned int
@@ -899,11 +899,11 @@ namespace Win32Interop.Structs
         public uint ciACP;
 
         /// FONTSIGNATURE->tagFONTSIGNATURE
-        public tagFONTSIGNATURE fs;
+        public FONTSIGNATURE fs;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagGLYPHSET
+    public struct GLYPHSET
     {
 
         /// DWORD->unsigned int
@@ -920,11 +920,11 @@ namespace Win32Interop.Structs
 
         /// WCRANGE[1]
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 1, ArraySubType = UnmanagedType.Struct)]
-        public tagWCRANGE[] ranges;
+        public WCRANGE[] ranges;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagENHMETAHEADER
+    public struct ENHMETAHEADER
     {
 
         /// DWORD->unsigned int
@@ -967,10 +967,10 @@ namespace Win32Interop.Structs
         public uint nPalEntries;
 
         /// SIZEL->SIZE->tagSIZE
-        public tagSIZE szlDevice;
+        public SIZE szlDevice;
 
         /// SIZEL->SIZE->tagSIZE
-        public tagSIZE szlMillimeters;
+        public SIZE szlMillimeters;
 
         /// DWORD->unsigned int
         public uint cbPixelFormat;
@@ -982,11 +982,11 @@ namespace Win32Interop.Structs
         public uint bOpenGL;
 
         /// SIZEL->SIZE->tagSIZE
-        public tagSIZE szlMicrometers;
+        public SIZE szlMicrometers;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagMETARECORD
+    public struct METARECORD
     {
 
         /// DWORD->unsigned int
@@ -1001,7 +1001,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagFONTSIGNATURE
+    public struct FONTSIGNATURE
     {
 
         /// DWORD[4]
@@ -1028,7 +1028,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-    public struct tagLOGCOLORSPACEW
+    public struct LOGCOLORSPACEW
     {
 
         /// DWORD->unsigned int
@@ -1047,7 +1047,7 @@ namespace Win32Interop.Structs
         public int lcsIntent;
 
         /// CIEXYZTRIPLE->tagICEXYZTRIPLE
-        public tagICEXYZTRIPLE lcsEndpoints;
+        public ICEXYZTRIPLE lcsEndpoints;
 
         /// DWORD->unsigned int
         public uint lcsGammaRed;
@@ -1064,7 +1064,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct tagLOGCOLORSPACEA
+    public struct LOGCOLORSPACEA
     {
 
         /// DWORD->unsigned int
@@ -1083,7 +1083,7 @@ namespace Win32Interop.Structs
         public int lcsIntent;
 
         /// CIEXYZTRIPLE->tagICEXYZTRIPLE
-        public tagICEXYZTRIPLE lcsEndpoints;
+        public ICEXYZTRIPLE lcsEndpoints;
 
         /// DWORD->unsigned int
         public uint lcsGammaRed;
@@ -1114,7 +1114,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagKERNINGPAIR
+    public struct KERNINGPAIR
     {
 
         /// WORD->unsigned short
@@ -1147,142 +1147,12 @@ namespace Win32Interop.Structs
         public short gmCellIncY;
     }
 
-    [StructLayout(LayoutKind.Sequential)]
-    public struct tagTEXTMETRICW
-    {
-
-        /// LONG->int
-        public int tmHeight;
-
-        /// LONG->int
-        public int tmAscent;
-
-        /// LONG->int
-        public int tmDescent;
-
-        /// LONG->int
-        public int tmInternalLeading;
-
-        /// LONG->int
-        public int tmExternalLeading;
-
-        /// LONG->int
-        public int tmAveCharWidth;
-
-        /// LONG->int
-        public int tmMaxCharWidth;
-
-        /// LONG->int
-        public int tmWeight;
-
-        /// LONG->int
-        public int tmOverhang;
-
-        /// LONG->int
-        public int tmDigitizedAspectX;
-
-        /// LONG->int
-        public int tmDigitizedAspectY;
-
-        /// WCHAR->wchar_t->unsigned short
-        public ushort tmFirstChar;
-
-        /// WCHAR->wchar_t->unsigned short
-        public ushort tmLastChar;
-
-        /// WCHAR->wchar_t->unsigned short
-        public ushort tmDefaultChar;
-
-        /// WCHAR->wchar_t->unsigned short
-        public ushort tmBreakChar;
-
-        /// BYTE->unsigned char
-        public byte tmItalic;
-
-        /// BYTE->unsigned char
-        public byte tmUnderlined;
-
-        /// BYTE->unsigned char
-        public byte tmStruckOut;
-
-        /// BYTE->unsigned char
-        public byte tmPitchAndFamily;
-
-        /// BYTE->unsigned char
-        public byte tmCharSet;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct tagTEXTMETRICA
-    {
-
-        /// LONG->int
-        public int tmHeight;
-
-        /// LONG->int
-        public int tmAscent;
-
-        /// LONG->int
-        public int tmDescent;
-
-        /// LONG->int
-        public int tmInternalLeading;
-
-        /// LONG->int
-        public int tmExternalLeading;
-
-        /// LONG->int
-        public int tmAveCharWidth;
-
-        /// LONG->int
-        public int tmMaxCharWidth;
-
-        /// LONG->int
-        public int tmWeight;
-
-        /// LONG->int
-        public int tmOverhang;
-
-        /// LONG->int
-        public int tmDigitizedAspectX;
-
-        /// LONG->int
-        public int tmDigitizedAspectY;
-
-        /// BYTE->unsigned char
-        public byte tmFirstChar;
-
-        /// BYTE->unsigned char
-        public byte tmLastChar;
-
-        /// BYTE->unsigned char
-        public byte tmDefaultChar;
-
-        /// BYTE->unsigned char
-        public byte tmBreakChar;
-
-        /// BYTE->unsigned char
-        public byte tmItalic;
-
-        /// BYTE->unsigned char
-        public byte tmUnderlined;
-
-        /// BYTE->unsigned char
-        public byte tmStruckOut;
-
-        /// BYTE->unsigned char
-        public byte tmPitchAndFamily;
-
-        /// BYTE->unsigned char
-        public byte tmCharSet;
-    }
-
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-    public struct tagENUMLOGFONTEXW
+    public struct ENUMLOGFONTEXW
     {
 
         /// LOGFONTW->tagLOGFONTW
-        public tagLOGFONTW elfLogFont;
+        public LOGFONTW elfLogFont;
 
         /// WCHAR[64]
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
@@ -1298,7 +1168,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagDESIGNVECTOR
+    public struct DESIGNVECTOR
     {
 
         /// DWORD->unsigned int
@@ -1313,11 +1183,11 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagENUMLOGFONTEXA
+    public struct ENUMLOGFONTEXA
     {
 
         /// LOGFONTA->tagLOGFONTA
-        public tagLOGFONTA elfLogFont;
+        public LOGFONTA elfLogFont;
 
         /// BYTE[64]
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64, ArraySubType = UnmanagedType.I1)]
@@ -1360,11 +1230,11 @@ namespace Win32Interop.Structs
         public uint nRgnSize;
 
         /// RECT->tagRECT
-        public tagRECT rcBound;
+        public RECT rcBound;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagPANOSE
+    public struct PANOSE
     {
 
         /// BYTE->unsigned char
@@ -1416,21 +1286,21 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagICEXYZTRIPLE
+    public struct ICEXYZTRIPLE
     {
 
         /// CIEXYZ->tagCIEXYZ
-        public tagCIEXYZ ciexyzRed;
+        public CIEXYZ ciexyzRed;
 
         /// CIEXYZ->tagCIEXYZ
-        public tagCIEXYZ ciexyzGreen;
+        public CIEXYZ ciexyzGreen;
 
         /// CIEXYZ->tagCIEXYZ
-        public tagCIEXYZ ciexyzBlue;
+        public CIEXYZ ciexyzBlue;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagWCRANGE
+    public struct WCRANGE
     {
 
         /// WCHAR->wchar_t->unsigned short
@@ -1441,7 +1311,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagCIEXYZ
+    public struct CIEXYZ
     {
 
         /// FXPT2DOT30->int
@@ -1452,5 +1322,25 @@ namespace Win32Interop.Structs
 
         /// FXPT2DOT30->int
         public int ciexyzZ;
+    }
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    public struct LOGFONT
+    {
+        public int lfHeight;
+        public int lfWidth;
+        public int lfEscapement;
+        public int lfOrientation;
+        public int lfWeight;
+        public byte lfItalic;
+        public byte lfUnderline;
+        public byte lfStrikeOut;
+        public byte lfCharSet;
+        public byte lfOutPrecision;
+        public byte lfClipPrecision;
+        public byte lfQuality;
+        public byte lfPitchAndFamily;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+        public string lfFaceName;
     }
 }

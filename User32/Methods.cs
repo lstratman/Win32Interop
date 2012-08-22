@@ -24,7 +24,7 @@ namespace Win32Interop.Methods
     /// Return Type: void
     ///lpHelpInfo: LPHELPINFO->tagHELPINFO*
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void MSGBOXCALLBACK(ref tagHELPINFO lpHelpInfo);
+    public delegate void MSGBOXCALLBACK(ref HELPINFO lpHelpInfo);
 
     /// Return Type: INT_PTR->int
     ///param0: HWND->HWND__*
@@ -48,7 +48,7 @@ namespace Win32Interop.Methods
     ///param2: LPRECT->tagRECT*
     ///param3: LPARAM->LONG_PTR->int
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int MONITORENUMPROC(IntPtr param0, IntPtr param1, ref tagRECT param2, IntPtr param3);
+    public delegate int MONITORENUMPROC(IntPtr param0, IntPtr param1, ref RECT param2, IntPtr param3);
 
     /// Return Type: BOOL->int
     ///param0: HWND->HWND__*
@@ -451,7 +451,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "RegisterRawInputDevices")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool RegisterRawInputDevices(
-            [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 1)] tagRAWINPUTDEVICE[] pRawInputDevices, uint uiNumDevices,
+            [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 1)] RAWINPUTDEVICE[] pRawInputDevices, uint uiNumDevices,
             uint cbSize);
 
         /// Return Type: BOOL->int
@@ -543,14 +543,14 @@ namespace Win32Interop.Methods
         ///cAccel: int
         [DllImport("user32.dll", EntryPoint = "CreateAcceleratorTableW")]
         public static extern IntPtr CreateAcceleratorTableW(
-            [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 1)] tagACCEL[] paccel, int cAccel);
+            [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 1)] ACCEL[] paccel, int cAccel);
 
         /// Return Type: HACCEL->HACCEL__*
         ///paccel: LPACCEL->tagACCEL*
         ///cAccel: int
         [DllImport("user32.dll", EntryPoint = "CreateAcceleratorTableA")]
         public static extern IntPtr CreateAcceleratorTableA(
-            [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 1)] tagACCEL[] paccel, int cAccel);
+            [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 1)] ACCEL[] paccel, int cAccel);
 
         /// Return Type: int
         ///flags: DWORD->unsigned int
@@ -714,14 +714,14 @@ namespace Win32Interop.Methods
         ///hAccTable: HACCEL->HACCEL__*
         ///lpMsg: LPMSG->tagMSG*
         [DllImport("user32.dll", EntryPoint = "TranslateAcceleratorW")]
-        public static extern int TranslateAcceleratorW([In] IntPtr hWnd, [In] IntPtr hAccTable, [In] ref tagMSG lpMsg);
+        public static extern int TranslateAcceleratorW([In] IntPtr hWnd, [In] IntPtr hAccTable, [In] ref MSG lpMsg);
 
         /// Return Type: int
         ///hWnd: HWND->HWND__*
         ///hAccTable: HACCEL->HACCEL__*
         ///lpMsg: LPMSG->tagMSG*
         [DllImport("user32.dll", EntryPoint = "TranslateAcceleratorA")]
-        public static extern int TranslateAcceleratorA([In] IntPtr hWnd, [In] IntPtr hAccTable, [In] ref tagMSG lpMsg);
+        public static extern int TranslateAcceleratorA([In] IntPtr hWnd, [In] IntPtr hAccTable, [In] ref MSG lpMsg);
 
         /// Return Type: BOOL->int
         ///uiAction: UINT->unsigned int
@@ -816,7 +816,7 @@ namespace Win32Interop.Methods
         ///lpMsg: LPMSG->tagMSG*
         [DllImport("user32.dll", EntryPoint = "TranslateMDISysAccel")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool TranslateMDISysAccel([In] IntPtr hWndClient, [In] ref tagMSG lpMsg);
+        public static extern bool TranslateMDISysAccel([In] IntPtr hWndClient, [In] ref MSG lpMsg);
 
         /// Return Type: BOOL->int
         ///param0: HMENU->HMENU__*
@@ -916,7 +916,7 @@ namespace Win32Interop.Methods
         ///nBufPoints: int
         ///resolution: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "GetMouseMovePointsEx")]
-        public static extern int GetMouseMovePointsEx(uint cbSize, [In] ref tagMOUSEMOVEPOINT lppt, IntPtr lpptBuf, int nBufPoints, uint resolution);
+        public static extern int GetMouseMovePointsEx(uint cbSize, [In] ref MOUSEMOVEPOINT lppt, IntPtr lpptBuf, int nBufPoints, uint resolution);
 
         /// Return Type: DWORD->unsigned int
         ///param0: HMENU->HMENU__*
@@ -1103,12 +1103,12 @@ namespace Win32Interop.Methods
         /// Return Type: int
         ///lpmbp: MSGBOXPARAMSW*
         [DllImport("user32.dll", EntryPoint = "MessageBoxIndirectW")]
-        public static extern int MessageBoxIndirectW([In] ref tagMSGBOXPARAMSW lpmbp);
+        public static extern int MessageBoxIndirectW([In] ref MSGBOXPARAMSW lpmbp);
 
         /// Return Type: int
         ///lpmbp: MSGBOXPARAMSA*
         [DllImport("user32.dll", EntryPoint = "MessageBoxIndirectA")]
-        public static extern int MessageBoxIndirectA([In] ref tagMSGBOXPARAMSA lpmbp);
+        public static extern int MessageBoxIndirectA([In] ref MSGBOXPARAMSA lpmbp);
 
         /// Return Type: HKL->HKL__*
         ///pwszKLID: LPCWSTR->WCHAR*
@@ -1269,7 +1269,7 @@ namespace Win32Interop.Methods
         ///lpwndpl: WINDOWPLACEMENT*
         [DllImport("user32.dll", EntryPoint = "SetWindowPlacement")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetWindowPlacement([In] IntPtr hWnd, [In] ref tagWINDOWPLACEMENT lpwndpl);
+        public static extern bool SetWindowPlacement([In] IntPtr hWnd, [In] ref WINDOWPLACEMENT lpwndpl);
 
         /// Return Type: BOOL->int
         ///hMenu: HMENU->HMENU__*
@@ -1372,7 +1372,7 @@ namespace Win32Interop.Methods
         ///lpwndpl: WINDOWPLACEMENT*
         [DllImport("user32.dll", EntryPoint = "GetWindowPlacement")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetWindowPlacement([In] IntPtr hWnd, ref tagWINDOWPLACEMENT lpwndpl);
+        public static extern bool GetWindowPlacement([In] IntPtr hWnd, ref WINDOWPLACEMENT lpwndpl);
 
         /// Return Type: UINT->unsigned int
         ///hMenu: HMENU->HMENU__*
@@ -1462,7 +1462,7 @@ namespace Win32Interop.Methods
         ///dwExStyle: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "AdjustWindowRectEx")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool AdjustWindowRectEx(ref tagRECT lpRect, uint dwStyle, [MarshalAs(UnmanagedType.Bool)] bool bMenu, uint dwExStyle);
+        public static extern bool AdjustWindowRectEx(ref RECT lpRect, uint dwStyle, [MarshalAs(UnmanagedType.Bool)] bool bMenu, uint dwExStyle);
 
         /// Return Type: BOOL->int
         ///nCode: int
@@ -1576,7 +1576,7 @@ namespace Win32Interop.Methods
         ///lprcTo: RECT*
         [DllImport("user32.dll", EntryPoint = "DrawAnimatedRects")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DrawAnimatedRects([In] IntPtr hwnd, int idAni, [In] ref tagRECT lprcFrom, [In] ref tagRECT lprcTo);
+        public static extern bool DrawAnimatedRects([In] IntPtr hwnd, int idAni, [In] ref RECT lprcFrom, [In] ref RECT lprcTo);
 
         /// Return Type: BOOL->int
         ///hData: HDDEDATA->HDDEDATA__*
@@ -1637,7 +1637,7 @@ namespace Win32Interop.Methods
         ///lpMsg: MSG*
         [DllImport("user32.dll", EntryPoint = "TranslateMessage")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool TranslateMessage([In] ref tagMSG lpMsg);
+        public static extern bool TranslateMessage([In] ref MSG lpMsg);
 
         /// Return Type: BOOL->int
         ///param0: HMENU->HMENU__*
@@ -1664,7 +1664,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "SetMenuItemInfoW")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SetMenuItemInfoW(
-            [In] IntPtr hmenu, uint item, [MarshalAs(UnmanagedType.Bool)] bool fByPositon, [In] ref tagMENUITEMINFOW lpmii);
+            [In] IntPtr hmenu, uint item, [MarshalAs(UnmanagedType.Bool)] bool fByPositon, [In] ref MENUITEMINFOW lpmii);
 
         /// Return Type: BOOL->int
         ///hmenu: HMENU->HMENU__*
@@ -1674,7 +1674,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "SetMenuItemInfoA")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SetMenuItemInfoA(
-            [In] IntPtr hmenu, uint item, [MarshalAs(UnmanagedType.Bool)] bool fByPositon, [In] ref tagMENUITEMINFOA lpmii);
+            [In] IntPtr hmenu, uint item, [MarshalAs(UnmanagedType.Bool)] bool fByPositon, [In] ref MENUITEMINFOA lpmii);
 
         /// Return Type: BOOL->int
         ///lpKeyState: LPBYTE->BYTE*
@@ -1691,12 +1691,12 @@ namespace Win32Interop.Methods
         /// Return Type: ATOM->WORD->unsigned short
         ///param0: WNDCLASSEXW*
         [DllImport("user32.dll", EntryPoint = "RegisterClassExW")]
-        public static extern ushort RegisterClassExW([In] ref tagWNDCLASSEXW param0);
+        public static extern ushort RegisterClassExW([In] ref WNDCLASSEXW param0);
 
         /// Return Type: ATOM->WORD->unsigned short
         ///param0: WNDCLASSEXA*
         [DllImport("user32.dll", EntryPoint = "RegisterClassExA")]
-        public static extern ushort RegisterClassExA([In] ref tagWNDCLASSEXA param0);
+        public static extern ushort RegisterClassExA([In] ref WNDCLASSEXA param0);
 
         /// Return Type: HDESK->HDESK__*
         ///dwFlags: DWORD->unsigned int
@@ -1736,14 +1736,14 @@ namespace Win32Interop.Methods
         ///lpMsg: LPMSG->tagMSG*
         [DllImport("user32.dll", EntryPoint = "IsDialogMessageW")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool IsDialogMessageW([In] IntPtr hDlg, [In] ref tagMSG lpMsg);
+        public static extern bool IsDialogMessageW([In] IntPtr hDlg, [In] ref MSG lpMsg);
 
         /// Return Type: BOOL->int
         ///hDlg: HWND->HWND__*
         ///lpMsg: LPMSG->tagMSG*
         [DllImport("user32.dll", EntryPoint = "IsDialogMessageA")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool IsDialogMessageA([In] IntPtr hDlg, [In] ref tagMSG lpMsg);
+        public static extern bool IsDialogMessageA([In] IntPtr hDlg, [In] ref MSG lpMsg);
 
         /// Return Type: HDESK->HDESK__*
         ///dwThreadId: DWORD->unsigned int
@@ -1766,7 +1766,7 @@ namespace Win32Interop.Methods
         ///psbi: PSCROLLBARINFO->tagSCROLLBARINFO*
         [DllImport("user32.dll", EntryPoint = "GetScrollBarInfo")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetScrollBarInfo([In] IntPtr hwnd, int idObject, ref tagSCROLLBARINFO psbi);
+        public static extern bool GetScrollBarInfo([In] IntPtr hwnd, int idObject, ref SCROLLBARINFO psbi);
 
         /// Return Type: BOOL->int
         ///hmenu: HMENU->HMENU__*
@@ -1775,7 +1775,7 @@ namespace Win32Interop.Methods
         ///lpmii: LPMENUITEMINFOW->tagMENUITEMINFOW*
         [DllImport("user32.dll", EntryPoint = "GetMenuItemInfoW")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetMenuItemInfoW([In] IntPtr hmenu, uint item, [MarshalAs(UnmanagedType.Bool)] bool fByPosition, ref tagMENUITEMINFOW lpmii);
+        public static extern bool GetMenuItemInfoW([In] IntPtr hmenu, uint item, [MarshalAs(UnmanagedType.Bool)] bool fByPosition, ref MENUITEMINFOW lpmii);
 
         /// Return Type: BOOL->int
         ///hmenu: HMENU->HMENU__*
@@ -1784,7 +1784,7 @@ namespace Win32Interop.Methods
         ///lpmii: LPMENUITEMINFOA->tagMENUITEMINFOA*
         [DllImport("user32.dll", EntryPoint = "GetMenuItemInfoA")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetMenuItemInfoA([In] IntPtr hmenu, uint item, [MarshalAs(UnmanagedType.Bool)] bool fByPosition, ref tagMENUITEMINFOA lpmii);
+        public static extern bool GetMenuItemInfoA([In] IntPtr hmenu, uint item, [MarshalAs(UnmanagedType.Bool)] bool fByPosition, ref MENUITEMINFOA lpmii);
 
         /// Return Type: int
         ///hMenu: HMENU->HMENU__*
@@ -1795,7 +1795,7 @@ namespace Win32Interop.Methods
         ///plii: PLASTINPUTINFO->tagLASTINPUTINFO*
         [DllImport("user32.dll", EntryPoint = "GetLastInputInfo")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetLastInputInfo([Out] out tagLASTINPUTINFO plii);
+        public static extern bool GetLastInputInfo([Out] out LASTINPUTINFO plii);
 
         /// Return Type: BOOL->int
         ///lpKeyState: PBYTE->BYTE*
@@ -1808,7 +1808,7 @@ namespace Win32Interop.Methods
         ///pgui: PGUITHREADINFO->tagGUITHREADINFO*
         [DllImport("user32.dll", EntryPoint = "GetGUIThreadInfo")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetGUIThreadInfo(uint idThread, ref tagGUITHREADINFO pgui);
+        public static extern bool GetGUIThreadInfo(uint idThread, ref GUITHREADINFO pgui);
 
         /// Return Type: HWND->HWND__*
         [DllImport("user32.dll", EntryPoint = "GetDesktopWindow")]
@@ -1845,19 +1845,19 @@ namespace Win32Interop.Methods
         ///param3: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "DrawFrameControl")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DrawFrameControl([In] IntPtr param0, ref tagRECT param1, uint param2, uint param3);
+        public static extern bool DrawFrameControl([In] IntPtr param0, ref RECT param1, uint param2, uint param3);
 
         /// Return Type: LRESULT->LONG_PTR->int
         ///lpMsg: MSG*
         [DllImport("user32.dll", EntryPoint = "DispatchMessageW")]
         [return: MarshalAs(UnmanagedType.SysInt)]
-        public static extern int DispatchMessageW([In] ref tagMSG lpMsg);
+        public static extern int DispatchMessageW([In] ref MSG lpMsg);
 
         /// Return Type: LRESULT->LONG_PTR->int
         ///lpMsg: MSG*
         [DllImport("user32.dll", EntryPoint = "DispatchMessageA")]
         [return: MarshalAs(UnmanagedType.SysInt)]
-        public static extern int DispatchMessageA([In] ref tagMSG lpMsg);
+        public static extern int DispatchMessageA([In] ref MSG lpMsg);
 
         /// Return Type: LRESULT->LONG_PTR->int
         ///hWnd: HWND->HWND__*
@@ -1892,7 +1892,7 @@ namespace Win32Interop.Methods
         ///idTransaction: DWORD->unsigned int
         ///pConvInfo: PCONVINFO->CONVINFO*
         [DllImport("user32.dll", EntryPoint = "DdeQueryConvInfo")]
-        public static extern uint DdeQueryConvInfo(IntPtr hConv, uint idTransaction, ref tagCONVINFO pConvInfo);
+        public static extern uint DdeQueryConvInfo(IntPtr hConv, uint idTransaction, ref CONVINFO pConvInfo);
 
         /// Return Type: HWND->HWND__*
         ///lpClassName: LPCWSTR->WCHAR*
@@ -1947,7 +1947,7 @@ namespace Win32Interop.Methods
         ///bMenu: BOOL->int
         [DllImport("user32.dll", EntryPoint = "AdjustWindowRect")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool AdjustWindowRect(ref tagRECT lpRect, uint dwStyle, [MarshalAs(UnmanagedType.Bool)] bool bMenu);
+        public static extern bool AdjustWindowRect(ref RECT lpRect, uint dwStyle, [MarshalAs(UnmanagedType.Bool)] bool bMenu);
 
         /// Return Type: HWND->HWND__*
         ///Point: POINT->tagPOINT
@@ -1967,7 +1967,7 @@ namespace Win32Interop.Methods
         ///lpEventTrack: LPTRACKMOUSEEVENT->tagTRACKMOUSEEVENT*
         [DllImport("user32.dll", EntryPoint = "TrackMouseEvent")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool TrackMouseEvent(ref tagTRACKMOUSEEVENT lpEventTrack);
+        public static extern bool TrackMouseEvent(ref TRACKMOUSEEVENT lpEventTrack);
 
         /// Return Type: BOOL->int
         ///fSwap: BOOL->int
@@ -2056,7 +2056,7 @@ namespace Win32Interop.Methods
         ///lprc: LPCRECT->RECT*
         ///dwFlags: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "MonitorFromRect")]
-        public static extern IntPtr MonitorFromRect([In] ref tagRECT lprc, uint dwFlags);
+        public static extern IntPtr MonitorFromRect([In] ref RECT lprc, uint dwFlags);
 
         /// Return Type: int
         ///hWndFrom: HWND->HWND__*
@@ -2103,7 +2103,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "InsertMenuItemW")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool InsertMenuItemW(
-            [In] IntPtr hmenu, uint item, [MarshalAs(UnmanagedType.Bool)] bool fByPosition, [In] ref tagMENUITEMINFOW lpmi);
+            [In] IntPtr hmenu, uint item, [MarshalAs(UnmanagedType.Bool)] bool fByPosition, [In] ref MENUITEMINFOW lpmi);
 
         /// Return Type: BOOL->int
         ///hmenu: HMENU->HMENU__*
@@ -2113,7 +2113,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "InsertMenuItemA")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool InsertMenuItemA(
-            [In] IntPtr hmenu, uint item, [MarshalAs(UnmanagedType.Bool)] bool fByPosition, [In] ref tagMENUITEMINFOA lpmi);
+            [In] IntPtr hmenu, uint item, [MarshalAs(UnmanagedType.Bool)] bool fByPosition, [In] ref MENUITEMINFOA lpmi);
 
         /// Return Type: DWORD->unsigned int
         ///lpReserved: LPVOID->void*
@@ -2124,14 +2124,14 @@ namespace Win32Interop.Methods
         ///hWnd: HWND->HWND__*
         ///lprc: LPRECT->tagRECT*
         [DllImport("user32.dll", EntryPoint = "GetWindowRgnBox")]
-        public static extern int GetWindowRgnBox([In] IntPtr hWnd, [Out] out tagRECT lprc);
+        public static extern int GetWindowRgnBox([In] IntPtr hWnd, [Out] out RECT lprc);
 
         /// Return Type: BOOL->int
         ///hwnd: HWND->HWND__*
         ///pti: PTITLEBARINFO->tagTITLEBARINFO*
         [DllImport("user32.dll", EntryPoint = "GetTitleBarInfo")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetTitleBarInfo([In] IntPtr hwnd, ref tagTITLEBARINFO pti);
+        public static extern bool GetTitleBarInfo([In] IntPtr hwnd, ref TITLEBARINFO pti);
 
         /// Return Type: UINT->unsigned int
         ///hRawInput: HRAWINPUT->HRAWINPUT__*
@@ -2147,14 +2147,14 @@ namespace Win32Interop.Methods
         ///lpmi: LPMONITORINFO->tagMONITORINFO*
         [DllImport("user32.dll", EntryPoint = "GetMonitorInfoW")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetMonitorInfoW([In] IntPtr hMonitor, ref tagMONITORINFO lpmi);
+        public static extern bool GetMonitorInfoW([In] IntPtr hMonitor, ref MONITORINFO lpmi);
 
         /// Return Type: BOOL->int
         ///hMonitor: HMONITOR->HMONITOR__*
         ///lpmi: LPMONITORINFO->tagMONITORINFO*
         [DllImport("user32.dll", EntryPoint = "GetMonitorInfoA")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetMonitorInfoA([In] IntPtr hMonitor, ref tagMONITORINFO lpmi);
+        public static extern bool GetMonitorInfoA([In] IntPtr hMonitor, ref MONITORINFO lpmi);
 
         /// Return Type: BOOL->int
         ///hWnd: HWND->HWND__*
@@ -2163,7 +2163,7 @@ namespace Win32Interop.Methods
         ///lprcItem: LPRECT->tagRECT*
         [DllImport("user32.dll", EntryPoint = "GetMenuItemRect")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetMenuItemRect([In] IntPtr hWnd, [In] IntPtr hMenu, uint uItem, [Out] out tagRECT lprcItem);
+        public static extern bool GetMenuItemRect([In] IntPtr hWnd, [In] IntPtr hMenu, uint uItem, [Out] out RECT lprcItem);
 
         /// Return Type: int
         ///lParam: LONG->int
@@ -2211,7 +2211,7 @@ namespace Win32Interop.Methods
         ///pcbi: PCOMBOBOXINFO->tagCOMBOBOXINFO*
         [DllImport("user32.dll", EntryPoint = "GetComboBoxInfo")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetComboBoxInfo([In] IntPtr hwndCombo, ref tagCOMBOBOXINFO pcbi);
+        public static extern bool GetComboBoxInfo([In] IntPtr hwndCombo, ref COMBOBOXINFO pcbi);
 
         /// Return Type: BOOL->int
         ///hInstance: HINSTANCE->HINSTANCE__*
@@ -2220,7 +2220,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "GetClassInfoExW")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetClassInfoExW(
-            [In] IntPtr hInstance, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszClass, [Out] out tagWNDCLASSEXW lpwcx);
+            [In] IntPtr hInstance, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszClass, [Out] out WNDCLASSEXW lpwcx);
 
         /// Return Type: BOOL->int
         ///hInstance: HINSTANCE->HINSTANCE__*
@@ -2228,7 +2228,7 @@ namespace Win32Interop.Methods
         ///lpwcx: LPWNDCLASSEXA->tagWNDCLASSEXA*
         [DllImport("user32.dll", EntryPoint = "GetClassInfoExA")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetClassInfoExA([In] IntPtr hInstance, [In] [MarshalAs(UnmanagedType.LPStr)] string lpszClass, [Out] out tagWNDCLASSEXA lpwcx);
+        public static extern bool GetClassInfoExA([In] IntPtr hInstance, [In] [MarshalAs(UnmanagedType.LPStr)] string lpszClass, [Out] out WNDCLASSEXA lpwcx);
 
         /// Return Type: HWND->HWND__*
         [DllImport("user32.dll", EntryPoint = "GetActiveWindow")]
@@ -2529,12 +2529,12 @@ namespace Win32Interop.Methods
         /// Return Type: ATOM->WORD->unsigned short
         ///lpWndClass: WNDCLASSW*
         [DllImport("user32.dll", EntryPoint = "RegisterClassW")]
-        public static extern ushort RegisterClassW([In] ref tagWNDCLASSW lpWndClass);
+        public static extern ushort RegisterClassW([In] ref WNDCLASSW lpWndClass);
 
         /// Return Type: ATOM->WORD->unsigned short
         ///lpWndClass: WNDCLASSA*
         [DllImport("user32.dll", EntryPoint = "RegisterClassA")]
-        public static extern ushort RegisterClassA([In] ref tagWNDCLASSA lpWndClass);
+        public static extern ushort RegisterClassA([In] ref WNDCLASSA lpWndClass);
 
         /// Return Type: BOOL->int
         ///lpszSrc: LPCSTR->CHAR*
@@ -2666,7 +2666,7 @@ namespace Win32Interop.Methods
         ///pmbi: PMENUBARINFO->tagMENUBARINFO*
         [DllImport("user32.dll", EntryPoint = "GetMenuBarInfo")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetMenuBarInfo([In] IntPtr hwnd, int idObject, int idItem, ref tagMENUBARINFO pmbi);
+        public static extern bool GetMenuBarInfo([In] IntPtr hwnd, int idObject, int idItem, ref MENUBARINFO pmbi);
 
         /// Return Type: DWORD->unsigned int
         ///hwnd: HWND->HWND__*
@@ -2682,7 +2682,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "GetAltTabInfoW")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetAltTabInfoW(
-            [In] IntPtr hwnd, int iItem, ref tagALTTABINFO pati, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszItemText, uint cchItemText);
+            [In] IntPtr hwnd, int iItem, ref ALTTABINFO pati, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszItemText, uint cchItemText);
 
         /// Return Type: BOOL->int
         ///hwnd: HWND->HWND__*
@@ -2693,7 +2693,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "GetAltTabInfoA")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetAltTabInfoA(
-            [In] IntPtr hwnd, int iItem, ref tagALTTABINFO pati, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder pszItemText, uint cchItemText);
+            [In] IntPtr hwnd, int iItem, ref ALTTABINFO pati, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder pszItemText, uint cchItemText);
 
         /// Return Type: BOOL->int
         ///hMenu: HMENU->HMENU__*
@@ -2772,7 +2772,7 @@ namespace Win32Interop.Methods
         ///hConvList: HCONVLIST->HCONVLIST__*
         ///pCC: PCONVCONTEXT->CONVCONTEXT*
         [DllImport("user32.dll", EntryPoint = "DdeConnectList")]
-        public static extern IntPtr DdeConnectList(uint idInst, IntPtr hszService, IntPtr hszTopic, IntPtr hConvList, ref tagCONVCONTEXT pCC);
+        public static extern IntPtr DdeConnectList(uint idInst, IntPtr hszService, IntPtr hszTopic, IntPtr hConvList, ref CONVCONTEXT pCC);
 
         /// Return Type: HDESK->HDESK__*
         ///lpszDesktop: LPCWSTR->WCHAR*
@@ -2884,14 +2884,14 @@ namespace Win32Interop.Methods
         ///nCode: int
         [DllImport("user32.dll", EntryPoint = "CallMsgFilterW")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CallMsgFilterW([In] ref tagMSG lpMsg, int nCode);
+        public static extern bool CallMsgFilterW([In] ref MSG lpMsg, int nCode);
 
         /// Return Type: BOOL->int
         ///lpMsg: LPMSG->tagMSG*
         ///nCode: int
         [DllImport("user32.dll", EntryPoint = "CallMsgFilterA")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CallMsgFilterA([In] ref tagMSG lpMsg, int nCode);
+        public static extern bool CallMsgFilterA([In] ref MSG lpMsg, int nCode);
 
         /// Return Type: BOOL->int
         ///hDesktop: HDESK->HDESK__*
@@ -2920,7 +2920,7 @@ namespace Win32Interop.Methods
         ///lpsi: LPCSCROLLINFO->SCROLLINFO*
         ///redraw: BOOL->int
         [DllImport("user32.dll", EntryPoint = "SetScrollInfo")]
-        public static extern int SetScrollInfo([In] IntPtr hwnd, int nBar, [In] ref tagSCROLLINFO lpsi, [MarshalAs(UnmanagedType.Bool)] bool redraw);
+        public static extern int SetScrollInfo([In] IntPtr hwnd, int nBar, [In] ref SCROLLINFO lpsi, [MarshalAs(UnmanagedType.Bool)] bool redraw);
 
         /// Return Type: BOOL->int
         ///hDlg: HWND->HWND__*
@@ -2986,7 +2986,7 @@ namespace Win32Interop.Methods
         ///lpRect: LPRECT->tagRECT*
         [DllImport("user32.dll", EntryPoint = "MapDialogRect")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool MapDialogRect([In] IntPtr hDlg, ref tagRECT lpRect);
+        public static extern bool MapDialogRect([In] IntPtr hDlg, ref RECT lpRect);
 
         /// Return Type: BOOL->int
         ///hWnd: HWND->HWND__*
@@ -3002,7 +3002,7 @@ namespace Win32Interop.Methods
         ///lprcSrc2: RECT*
         [DllImport("user32.dll", EntryPoint = "IntersectRect")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool IntersectRect([Out] out tagRECT lprcDst, [In] ref tagRECT lprcSrc1, [In] ref tagRECT lprcSrc2);
+        public static extern bool IntersectRect([Out] out RECT lprcDst, [In] ref RECT lprcSrc1, [In] ref RECT lprcSrc2);
 
         /// Return Type: BOOL->int
         [DllImport("user32.dll", EntryPoint = "InSendMessage")]
@@ -3020,14 +3020,14 @@ namespace Win32Interop.Methods
         ///lpRect: LPRECT->tagRECT*
         [DllImport("user32.dll", EntryPoint = "GetWindowRect")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetWindowRect([In] IntPtr hWnd, [Out] out tagRECT lpRect);
+        public static extern bool GetWindowRect([In] IntPtr hWnd, [Out] out RECT lpRect);
 
         /// Return Type: BOOL->int
         ///hwnd: HWND->HWND__*
         ///pwi: PWINDOWINFO->tagWINDOWINFO*
         [DllImport("user32.dll", EntryPoint = "GetWindowInfo")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetWindowInfo([In] IntPtr hwnd, ref tagWINDOWINFO pwi);
+        public static extern bool GetWindowInfo([In] IntPtr hwnd, ref WINDOWINFO pwi);
 
         /// Return Type: BOOL->int
         ///hWnd: HWND->HWND__*
@@ -3049,7 +3049,7 @@ namespace Win32Interop.Methods
         ///lpsi: LPSCROLLINFO->tagSCROLLINFO*
         [DllImport("user32.dll", EntryPoint = "GetScrollInfo")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetScrollInfo([In] IntPtr hwnd, int nBar, ref tagSCROLLINFO lpsi);
+        public static extern bool GetScrollInfo([In] IntPtr hwnd, int nBar, ref SCROLLINFO lpsi);
 
         /// Return Type: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "GetMessagePos")]
@@ -3082,20 +3082,20 @@ namespace Win32Interop.Methods
         ///pci: PCURSORINFO->tagCURSORINFO*
         [DllImport("user32.dll", EntryPoint = "GetCursorInfo")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetCursorInfo(ref tagCURSORINFO pci);
+        public static extern bool GetCursorInfo(ref CURSORINFO pci);
 
         /// Return Type: BOOL->int
         ///lpRect: LPRECT->tagRECT*
         [DllImport("user32.dll", EntryPoint = "GetClipCursor")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetClipCursor([Out] out tagRECT lpRect);
+        public static extern bool GetClipCursor([Out] out RECT lpRect);
 
         /// Return Type: BOOL->int
         ///hWnd: HWND->HWND__*
         ///lpRect: LPRECT->tagRECT*
         [DllImport("user32.dll", EntryPoint = "GetClientRect")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetClientRect([In] IntPtr hWnd, [Out] out tagRECT lpRect);
+        public static extern bool GetClientRect([In] IntPtr hWnd, [Out] out RECT lpRect);
 
         /// Return Type: int
         ///hWnd: HWND->HWND__*
@@ -3130,7 +3130,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "GetClassInfoW")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetClassInfoW(
-            [In] IntPtr hInstance, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpClassName, [Out] out tagWNDCLASSW lpWndClass);
+            [In] IntPtr hInstance, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpClassName, [Out] out WNDCLASSW lpWndClass);
 
         /// Return Type: BOOL->int
         ///hInstance: HINSTANCE->HINSTANCE__*
@@ -3139,7 +3139,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "GetClassInfoA")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetClassInfoA(
-            [In] IntPtr hInstance, [In] [MarshalAs(UnmanagedType.LPStr)] string lpClassName, [Out] out tagWNDCLASSA lpWndClass);
+            [In] IntPtr hInstance, [In] [MarshalAs(UnmanagedType.LPStr)] string lpClassName, [Out] out WNDCLASSA lpWndClass);
 
         /// Return Type: BOOL->int
         ///msg: UINT->unsigned int
@@ -3202,7 +3202,7 @@ namespace Win32Interop.Methods
         ///lprc: RECT*
         [DllImport("user32.dll", EntryPoint = "DrawFocusRect")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DrawFocusRect([In] IntPtr hDC, [In] ref tagRECT lprc);
+        public static extern bool DrawFocusRect([In] IntPtr hDC, [In] ref RECT lprc);
 
         /// Return Type: BOOL->int
         ///hWnd: HWND->HWND__*
@@ -3309,7 +3309,7 @@ namespace Win32Interop.Methods
         ///lprcSrc2: RECT*
         [DllImport("user32.dll", EntryPoint = "SubtractRect")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SubtractRect([Out] out tagRECT lprcDst, [In] ref tagRECT lprcSrc1, [In] ref tagRECT lprcSrc2);
+        public static extern bool SubtractRect([Out] out RECT lprcDst, [In] ref RECT lprcSrc1, [In] ref RECT lprcSrc2);
 
         /// Return Type: int
         ///hWnd: HWND->HWND__*
@@ -3352,7 +3352,7 @@ namespace Win32Interop.Methods
         ///lprc: LPRECT->tagRECT*
         [DllImport("user32.dll", EntryPoint = "SetRectEmpty")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetRectEmpty([Out] out tagRECT lprc);
+        public static extern bool SetRectEmpty([Out] out RECT lprc);
 
         /// Return Type: BOOL->int
         ///X: int
@@ -3441,7 +3441,7 @@ namespace Win32Interop.Methods
         ///wRemoveMsg: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "PeekMessageW")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool PeekMessageW([Out] out tagMSG lpMsg, [In] IntPtr hWnd, uint wMsgFilterMin, uint wMsgFilterMax, uint wRemoveMsg);
+        public static extern bool PeekMessageW([Out] out MSG lpMsg, [In] IntPtr hWnd, uint wMsgFilterMin, uint wMsgFilterMax, uint wRemoveMsg);
 
         /// Return Type: BOOL->int
         ///lpMsg: LPMSG->tagMSG*
@@ -3451,7 +3451,7 @@ namespace Win32Interop.Methods
         ///wRemoveMsg: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "PeekMessageA")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool PeekMessageA([Out] out tagMSG lpMsg, [In] IntPtr hWnd, uint wMsgFilterMin, uint wMsgFilterMax, uint wRemoveMsg);
+        public static extern bool PeekMessageA([Out] out MSG lpMsg, [In] IntPtr hWnd, uint wMsgFilterMin, uint wMsgFilterMax, uint wRemoveMsg);
 
         /// Return Type: BOOL->int
         ///hdc: HDC->HDC__*
@@ -3649,7 +3649,7 @@ namespace Win32Interop.Methods
         ///param1: LPCMENUINFO->MENUINFO*
         [DllImport("user32.dll", EntryPoint = "SetMenuInfo")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetMenuInfo([In] IntPtr param0, [In] ref tagMENUINFO param1);
+        public static extern bool SetMenuInfo([In] IntPtr param0, [In] ref MENUINFO param1);
 
         /// Return Type: BOOL->int
         ///X: int
@@ -3787,7 +3787,7 @@ namespace Win32Interop.Methods
         ///lprc: RECT*
         [DllImport("user32.dll", EntryPoint = "IsRectEmpty")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool IsRectEmpty([In] ref tagRECT lprc);
+        public static extern bool IsRectEmpty([In] ref RECT lprc);
 
         /// Return Type: BOOL->int
         ///bConvert: BOOL->int
@@ -3825,7 +3825,7 @@ namespace Win32Interop.Methods
         ///dy: int
         [DllImport("user32.dll", EntryPoint = "InflateRect")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool InflateRect(ref tagRECT lprc, int dx, int dy);
+        public static extern bool InflateRect(ref RECT lprc, int dx, int dy);
 
         /// Return Type: BOOL->int
         ///hDC: HDC->HDC__*
@@ -3876,7 +3876,7 @@ namespace Win32Interop.Methods
         ///wMsgFilterMax: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "GetMessageW")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetMessageW([Out] out tagMSG lpMsg, [In] IntPtr hWnd, uint wMsgFilterMin, uint wMsgFilterMax);
+        public static extern bool GetMessageW([Out] out MSG lpMsg, [In] IntPtr hWnd, uint wMsgFilterMin, uint wMsgFilterMax);
 
         /// Return Type: BOOL->int
         ///lpMsg: LPMSG->tagMSG*
@@ -3885,14 +3885,14 @@ namespace Win32Interop.Methods
         ///wMsgFilterMax: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "GetMessageA")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetMessageA([Out] out tagMSG lpMsg, [In] IntPtr hWnd, uint wMsgFilterMin, uint wMsgFilterMax);
+        public static extern bool GetMessageA([Out] out MSG lpMsg, [In] IntPtr hWnd, uint wMsgFilterMin, uint wMsgFilterMax);
 
         /// Return Type: BOOL->int
         ///param0: HMENU->HMENU__*
         ///param1: LPMENUINFO->tagMENUINFO*
         [DllImport("user32.dll", EntryPoint = "GetMenuInfo")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetMenuInfo([In] IntPtr param0, ref tagMENUINFO param1);
+        public static extern bool GetMenuInfo([In] IntPtr param0, ref MENUINFO param1);
 
         /// Return Type: SHORT->short
         ///nVirtKey: int
@@ -3955,7 +3955,7 @@ namespace Win32Interop.Methods
         ///lpdtp: LPDRAWTEXTPARAMS->tagDRAWTEXTPARAMS*
         [DllImport("user32.dll", EntryPoint = "DrawTextExW")]
         public static extern int DrawTextExW(
-            [In] IntPtr hdc, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpchText, int cchText, ref tagRECT lprc, uint format, [In] IntPtr lpdtp);
+            [In] IntPtr hdc, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpchText, int cchText, ref RECT lprc, uint format, [In] IntPtr lpdtp);
 
         /// Return Type: int
         ///hdc: HDC->HDC__*
@@ -3966,7 +3966,7 @@ namespace Win32Interop.Methods
         ///lpdtp: LPDRAWTEXTPARAMS->tagDRAWTEXTPARAMS*
         [DllImport("user32.dll", EntryPoint = "DrawTextExA")]
         public static extern int DrawTextExA(
-            [In] IntPtr hdc, [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpchText, int cchText, ref tagRECT lprc, uint format, [In] IntPtr lpdtp);
+            [In] IntPtr hdc, [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpchText, int cchText, ref RECT lprc, uint format, [In] IntPtr lpdtp);
 
         /// Return Type: BOOL->int
         ///hWnd: HWND->HWND__*
@@ -3981,7 +3981,7 @@ namespace Win32Interop.Methods
         ///flags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "DrawCaption")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DrawCaption([In] IntPtr hwnd, [In] IntPtr hdc, [In] ref tagRECT lprect, uint flags);
+        public static extern bool DrawCaption([In] IntPtr hwnd, [In] IntPtr hdc, [In] ref RECT lprect, uint flags);
 
         /// Return Type: int
         ///hDlg: HWND->HWND__*
@@ -4166,7 +4166,7 @@ namespace Win32Interop.Methods
         ///dy: int
         [DllImport("user32.dll", EntryPoint = "OffsetRect")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool OffsetRect(ref tagRECT lprc, int dx, int dy);
+        public static extern bool OffsetRect(ref RECT lprc, int dx, int dy);
 
         /// Return Type: BOOL->int
         ///lpszSrc: LPCSTR->CHAR*
@@ -4224,7 +4224,7 @@ namespace Win32Interop.Methods
         ///lprc: RECT*
         [DllImport("user32.dll", EntryPoint = "InvertRect")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool InvertRect([In] IntPtr hDC, [In] ref tagRECT lprc);
+        public static extern bool InvertRect([In] IntPtr hDC, [In] ref RECT lprc);
 
         /// Return Type: HMENU->HMENU__*
         ///hMenu: HMENU->HMENU__*
@@ -4341,7 +4341,7 @@ namespace Win32Interop.Methods
         ///hszTopic: HSZ->HSZ__*
         ///pCC: PCONVCONTEXT->CONVCONTEXT*
         [DllImport("user32.dll", EntryPoint = "DdeConnect")]
-        public static extern IntPtr DdeConnect(uint idInst, IntPtr hszService, IntPtr hszTopic, ref tagCONVCONTEXT pCC);
+        public static extern IntPtr DdeConnect(uint idInst, IntPtr hszService, IntPtr hszTopic, ref CONVCONTEXT pCC);
 
         /// Return Type: HDDEDATA->HDDEDATA__*
         ///hData: HDDEDATA->HDDEDATA__*
@@ -4416,7 +4416,7 @@ namespace Win32Interop.Methods
         ///hWnd: HWND->HWND__*
         ///lpPaint: LPPAINTSTRUCT->tagPAINTSTRUCT*
         [DllImport("user32.dll", EntryPoint = "BeginPaint")]
-        public static extern IntPtr BeginPaint([In] IntPtr hWnd, [Out] out tagPAINTSTRUCT lpPaint);
+        public static extern IntPtr BeginPaint([In] IntPtr hWnd, [Out] out PAINTSTRUCT lpPaint);
 
         /// Return Type: BOOL->int
         ///lprcDst: LPRECT->tagRECT*
@@ -4424,7 +4424,7 @@ namespace Win32Interop.Methods
         ///lprcSrc2: RECT*
         [DllImport("user32.dll", EntryPoint = "UnionRect")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool UnionRect([Out] out tagRECT lprcDst, [In] ref tagRECT lprcSrc1, [In] ref tagRECT lprcSrc2);
+        public static extern bool UnionRect([Out] out RECT lprcDst, [In] ref RECT lprcSrc1, [In] ref RECT lprcSrc2);
 
         /// Return Type: int
         ///wVirtKey: UINT->unsigned int
@@ -4470,7 +4470,7 @@ namespace Win32Interop.Methods
         ///cbSize: int
         [DllImport("user32.dll", EntryPoint = "SendInput")]
         public static extern uint SendInput(
-            uint cInputs, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 0)] tagINPUT[] pInputs, int cbSize);
+            uint cInputs, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 0)] INPUT[] pInputs, int cbSize);
 
         /// Return Type: int
         ///hWnd: HWND->HWND__*
@@ -4535,14 +4535,14 @@ namespace Win32Interop.Methods
         ///lprc: RECT*
         ///hbr: HBRUSH->HBRUSH__*
         [DllImport("user32.dll", EntryPoint = "FrameRect")]
-        public static extern int FrameRect([In] IntPtr hDC, [In] ref tagRECT lprc, [In] IntPtr hbr);
+        public static extern int FrameRect([In] IntPtr hDC, [In] ref RECT lprc, [In] IntPtr hbr);
 
         /// Return Type: BOOL->int
         ///lprc1: RECT*
         ///lprc2: RECT*
         [DllImport("user32.dll", EntryPoint = "EqualRect")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EqualRect([In] ref tagRECT lprc1, [In] ref tagRECT lprc2);
+        public static extern bool EqualRect([In] ref RECT lprc1, [In] ref RECT lprc2);
 
         /// Return Type: BOOL->int
         ///hDlg: HWND->HWND__*
@@ -4559,7 +4559,7 @@ namespace Win32Interop.Methods
         ///format: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "DrawTextW")]
         public static extern int DrawTextW(
-            [In] IntPtr hdc, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpchText, int cchText, ref tagRECT lprc, uint format);
+            [In] IntPtr hdc, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpchText, int cchText, ref RECT lprc, uint format);
 
         /// Return Type: int
         ///hdc: HDC->HDC__*
@@ -4568,7 +4568,7 @@ namespace Win32Interop.Methods
         ///lprc: LPRECT->tagRECT*
         ///format: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "DrawTextA")]
-        public static extern int DrawTextA([In] IntPtr hdc, [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpchText, int cchText, ref tagRECT lprc, uint format);
+        public static extern int DrawTextA([In] IntPtr hdc, [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpchText, int cchText, ref RECT lprc, uint format);
 
         /// Return Type: HANDLE->void*
         ///h: HANDLE->void*
@@ -4672,7 +4672,7 @@ namespace Win32Interop.Methods
         ///pt: POINT->tagPOINT
         [DllImport("user32.dll", EntryPoint = "PtInRect")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool PtInRect([In] ref tagRECT lprc, Point pt);
+        public static extern bool PtInRect([In] ref RECT lprc, Point pt);
 
         /// Return Type: BOOL->int
         ///hWnd: HWND->HWND__*
@@ -4719,14 +4719,14 @@ namespace Win32Interop.Methods
         ///lprc: RECT*
         ///hbr: HBRUSH->HBRUSH__*
         [DllImport("user32.dll", EntryPoint = "FillRect")]
-        public static extern int FillRect([In] IntPtr hDC, [In] ref tagRECT lprc, [In] IntPtr hbr);
+        public static extern int FillRect([In] IntPtr hDC, [In] ref RECT lprc, [In] IntPtr hbr);
 
         /// Return Type: BOOL->int
         ///hWnd: HWND->HWND__*
         ///lpPaint: PAINTSTRUCT*
         [DllImport("user32.dll", EntryPoint = "EndPaint")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EndPaint([In] IntPtr hWnd, [In] ref tagPAINTSTRUCT lpPaint);
+        public static extern bool EndPaint([In] IntPtr hWnd, [In] ref PAINTSTRUCT lpPaint);
 
         /// Return Type: BOOL->int
         ///hDC: HDC->HDC__*
@@ -4744,14 +4744,14 @@ namespace Win32Interop.Methods
         ///grfFlags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "DrawEdge")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DrawEdge([In] IntPtr hdc, ref tagRECT qrc, uint edge, uint grfFlags);
+        public static extern bool DrawEdge([In] IntPtr hdc, ref RECT qrc, uint edge, uint grfFlags);
 
         /// Return Type: BOOL->int
         ///lprcDst: LPRECT->tagRECT*
         ///lprcSrc: RECT*
         [DllImport("user32.dll", EntryPoint = "CopyRect")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CopyRect([Out] out tagRECT lprcDst, [In] ref tagRECT lprcSrc);
+        public static extern bool CopyRect([Out] out RECT lprcDst, [In] ref RECT lprcSrc);
 
         /// Return Type: HICON->HICON__*
         ///hIcon: HICON->HICON__*
@@ -4780,7 +4780,7 @@ namespace Win32Interop.Methods
         ///yBottom: int
         [DllImport("user32.dll", EntryPoint = "SetRect")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetRect([Out] out tagRECT lprc, int xLeft, int yTop, int xRight, int yBottom);
+        public static extern bool SetRect([Out] out RECT lprc, int xLeft, int yTop, int xRight, int yBottom);
 
         /// Return Type: BOOL->int
         ///hWnd: HWND->HWND__*

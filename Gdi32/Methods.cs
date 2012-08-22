@@ -29,7 +29,7 @@ namespace Win32Interop.Methods
     ///hHandles: int
     ///data: LPARAM->LONG_PTR->int
     [UnmanagedFunctionPointerAttribute(CallingConvention.StdCall)]
-    public delegate int ENHMFENUMPROC([InAttribute] IntPtr hdc, [InAttribute] IntPtr lpht, [InAttribute] ref tagENHMETARECORD lpmr, int hHandles, [InAttribute] IntPtr data);
+    public delegate int ENHMFENUMPROC([InAttribute] IntPtr hdc, [InAttribute] IntPtr lpht, [InAttribute] ref ENHMETARECORD lpmr, int hHandles, [InAttribute] IntPtr data);
 
     /// Return Type: BOOL->int
     ///param0: HDC->HDC__*
@@ -44,7 +44,7 @@ namespace Win32Interop.Methods
     ///nObj: int
     ///param: LPARAM->LONG_PTR->int
     [UnmanagedFunctionPointerAttribute(CallingConvention.StdCall)]
-    public delegate int MFENUMPROC([InAttribute] IntPtr hdc, [InAttribute] IntPtr lpht, [InAttribute] ref tagMETARECORD lpMR, int nObj, [InAttribute] IntPtr param);
+    public delegate int MFENUMPROC([InAttribute] IntPtr hdc, [InAttribute] IntPtr lpht, [InAttribute] ref METARECORD lpMR, int nObj, [InAttribute] IntPtr param);
 
     /// Return Type: int
     ///param0: LPVOID->void*
@@ -65,7 +65,7 @@ namespace Win32Interop.Methods
     ///param2: DWORD->unsigned int
     ///param3: LPARAM->LONG_PTR->int
     [UnmanagedFunctionPointerAttribute(CallingConvention.StdCall)]
-    public delegate int OLDFONTENUMPROCW(ref tagLOGFONTW param0, ref tagTEXTMETRICW param1, uint param2, IntPtr param3);
+    public delegate int OLDFONTENUMPROCW(ref LOGFONTW param0, ref TEXTMETRICW param1, uint param2, IntPtr param3);
 
     /// Return Type: int
     ///param0: LOGFONTA*
@@ -73,7 +73,7 @@ namespace Win32Interop.Methods
     ///param2: DWORD->unsigned int
     ///param3: LPARAM->LONG_PTR->int
     [UnmanagedFunctionPointerAttribute(CallingConvention.StdCall)]
-    public delegate int OLDFONTENUMPROCA(ref tagLOGFONTA param0, ref tagTEXTMETRICA param1, uint param2, IntPtr param3);
+    public delegate int OLDFONTENUMPROCA(ref LOGFONTA param0, ref TEXTMETRICA param1, uint param2, IntPtr param3);
 
     public class Gdi32
     {
@@ -125,7 +125,7 @@ namespace Win32Interop.Methods
         /// Return Type: HRGN->HRGN__*
         ///lprect: RECT*
         [DllImportAttribute("gdi32.dll", EntryPoint = "CreateEllipticRgnIndirect")]
-        public static extern IntPtr CreateEllipticRgnIndirect([InAttribute] ref tagRECT lprect);
+        public static extern IntPtr CreateEllipticRgnIndirect([InAttribute] ref RECT lprect);
 
 
         /// Return Type: BOOL->int
@@ -190,7 +190,7 @@ namespace Win32Interop.Methods
         ///lpResults: LPGCP_RESULTSW->tagGCP_RESULTSW*
         ///dwFlags: DWORD->unsigned int
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetCharacterPlacementW")]
-        public static extern uint GetCharacterPlacementW([InAttribute] IntPtr hdc, [InAttribute] [MarshalAsAttribute(UnmanagedType.LPWStr)] string lpString, int nCount, int nMexExtent, ref tagGCP_RESULTSW lpResults, uint dwFlags);
+        public static extern uint GetCharacterPlacementW([InAttribute] IntPtr hdc, [InAttribute] [MarshalAsAttribute(UnmanagedType.LPWStr)] string lpString, int nCount, int nMexExtent, ref GCP_RESULTSW lpResults, uint dwFlags);
 
 
         /// Return Type: DWORD->unsigned int
@@ -201,7 +201,7 @@ namespace Win32Interop.Methods
         ///lpResults: LPGCP_RESULTSA->tagGCP_RESULTSA*
         ///dwFlags: DWORD->unsigned int
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetCharacterPlacementA")]
-        public static extern uint GetCharacterPlacementA([InAttribute] IntPtr hdc, [InAttribute] [MarshalAsAttribute(UnmanagedType.LPStr)] string lpString, int nCount, int nMexExtent, ref tagGCP_RESULTSA lpResults, uint dwFlags);
+        public static extern uint GetCharacterPlacementA([InAttribute] IntPtr hdc, [InAttribute] [MarshalAsAttribute(UnmanagedType.LPStr)] string lpString, int nCount, int nMexExtent, ref GCP_RESULTSA lpResults, uint dwFlags);
 
 
         /// Return Type: BOOL->int
@@ -229,7 +229,7 @@ namespace Win32Interop.Methods
         ///lpsize: LPSIZE->tagSIZE*
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetAspectRatioFilterEx")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool GetAspectRatioFilterEx([InAttribute] IntPtr hdc, [OutAttribute] out tagSIZE lpsize);
+        public static extern bool GetAspectRatioFilterEx([InAttribute] IntPtr hdc, [OutAttribute] out SIZE lpsize);
 
 
         /// Return Type: HBITMAP->HBITMAP__*
@@ -272,7 +272,7 @@ namespace Win32Interop.Methods
         ///cht: UINT->unsigned int
         [DllImportAttribute("gdi32.dll", EntryPoint = "PlayEnhMetaFileRecord")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool PlayEnhMetaFileRecord([InAttribute] IntPtr hdc, [MarshalAsAttribute(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 3)] tagHANDLETABLE[] pht, [InAttribute] ref tagENHMETARECORD pmr, uint cht);
+        public static extern bool PlayEnhMetaFileRecord([InAttribute] IntPtr hdc, [MarshalAsAttribute(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 3)] HANDLETABLE[] pht, [InAttribute] ref ENHMETARECORD pmr, uint cht);
 
 
         /// Return Type: BOOL->int
@@ -282,7 +282,7 @@ namespace Win32Interop.Methods
         ///psizl: LPSIZE->tagSIZE*
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetTextExtentPoint32W")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool GetTextExtentPoint32W([InAttribute] IntPtr hdc, [InAttribute] [MarshalAsAttribute(UnmanagedType.LPWStr)] string lpString, int c, [OutAttribute] out tagSIZE psizl);
+        public static extern bool GetTextExtentPoint32W([InAttribute] IntPtr hdc, [InAttribute] [MarshalAsAttribute(UnmanagedType.LPWStr)] string lpString, int c, [OutAttribute] out SIZE psizl);
 
 
         /// Return Type: BOOL->int
@@ -292,7 +292,7 @@ namespace Win32Interop.Methods
         ///psizl: LPSIZE->tagSIZE*
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetTextExtentPoint32A")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool GetTextExtentPoint32A([InAttribute] IntPtr hdc, [InAttribute] [MarshalAsAttribute(UnmanagedType.LPStr)] string lpString, int c, [OutAttribute] out tagSIZE psizl);
+        public static extern bool GetTextExtentPoint32A([InAttribute] IntPtr hdc, [InAttribute] [MarshalAsAttribute(UnmanagedType.LPStr)] string lpString, int c, [OutAttribute] out SIZE psizl);
 
 
         /// Return Type: BOOL->int
@@ -305,7 +305,7 @@ namespace Win32Interop.Methods
         ///lpSize: LPSIZE->tagSIZE*
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetTextExtentExPointW")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool GetTextExtentExPointW([InAttribute] IntPtr hdc, [InAttribute] [MarshalAsAttribute(UnmanagedType.LPWStr)] string lpszString, int cchString, int nMaxExtent, IntPtr lpnFit, IntPtr lpnDx, [OutAttribute] out tagSIZE lpSize);
+        public static extern bool GetTextExtentExPointW([InAttribute] IntPtr hdc, [InAttribute] [MarshalAsAttribute(UnmanagedType.LPWStr)] string lpszString, int cchString, int nMaxExtent, IntPtr lpnFit, IntPtr lpnDx, [OutAttribute] out SIZE lpSize);
 
 
         /// Return Type: BOOL->int
@@ -318,7 +318,7 @@ namespace Win32Interop.Methods
         ///lpSize: LPSIZE->tagSIZE*
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetTextExtentExPointI")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool GetTextExtentExPointI([InAttribute] IntPtr hdc, [MarshalAsAttribute(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U2, SizeParamIndex = 2)] ushort[] lpwszString, int cwchString, int nMaxExtent, IntPtr lpnFit, IntPtr lpnDx, [OutAttribute] out tagSIZE lpSize);
+        public static extern bool GetTextExtentExPointI([InAttribute] IntPtr hdc, [MarshalAsAttribute(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U2, SizeParamIndex = 2)] ushort[] lpwszString, int cwchString, int nMaxExtent, IntPtr lpnFit, IntPtr lpnDx, [OutAttribute] out SIZE lpSize);
 
 
         /// Return Type: BOOL->int
@@ -331,7 +331,7 @@ namespace Win32Interop.Methods
         ///lpSize: LPSIZE->tagSIZE*
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetTextExtentExPointA")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool GetTextExtentExPointA([InAttribute] IntPtr hdc, [InAttribute] [MarshalAsAttribute(UnmanagedType.LPStr)] string lpszString, int cchString, int nMaxExtent, IntPtr lpnFit, IntPtr lpnDx, [OutAttribute] out tagSIZE lpSize);
+        public static extern bool GetTextExtentExPointA([InAttribute] IntPtr hdc, [InAttribute] [MarshalAsAttribute(UnmanagedType.LPStr)] string lpszString, int cchString, int nMaxExtent, IntPtr lpnFit, IntPtr lpnDx, [OutAttribute] out SIZE lpSize);
 
 
         /// Return Type: int
@@ -343,7 +343,7 @@ namespace Win32Interop.Methods
         /// Return Type: HRGN->HRGN__*
         ///lprect: RECT*
         [DllImportAttribute("gdi32.dll", EntryPoint = "CreateRectRgnIndirect")]
-        public static extern IntPtr CreateRectRgnIndirect([InAttribute] ref tagRECT lprect);
+        public static extern IntPtr CreateRectRgnIndirect([InAttribute] ref RECT lprect);
 
 
         /// Return Type: HPALETTE->HPALETTE__*
@@ -355,13 +355,13 @@ namespace Win32Interop.Methods
         /// Return Type: HFONT->HFONT__*
         ///param0: ENUMLOGFONTEXDVW*
         [DllImportAttribute("gdi32.dll", EntryPoint = "CreateFontIndirectExW")]
-        public static extern IntPtr CreateFontIndirectExW([InAttribute] ref tagENUMLOGFONTEXDVW param0);
+        public static extern IntPtr CreateFontIndirectExW([InAttribute] ref ENUMLOGFONTEXDVW param0);
 
 
         /// Return Type: HFONT->HFONT__*
         ///param0: ENUMLOGFONTEXDVA*
         [DllImportAttribute("gdi32.dll", EntryPoint = "CreateFontIndirectExA")]
-        public static extern IntPtr CreateFontIndirectExA([InAttribute] ref tagENUMLOGFONTEXDVA param0);
+        public static extern IntPtr CreateFontIndirectExA([InAttribute] ref ENUMLOGFONTEXDVA param0);
 
 
         /// Return Type: HBRUSH->HBRUSH__*
@@ -377,7 +377,7 @@ namespace Win32Interop.Methods
         ///dwFlags: DWORD->unsigned int
         [DllImportAttribute("gdi32.dll", EntryPoint = "TranslateCharsetInfo")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool TranslateCharsetInfo(ref uint lpSrc, [OutAttribute] out tagCHARSETINFO lpCs, uint dwFlags);
+        public static extern bool TranslateCharsetInfo(ref uint lpSrc, [OutAttribute] out CHARSETINFO lpCs, uint dwFlags);
 
 
         /// Return Type: BOOL->int
@@ -436,7 +436,7 @@ namespace Win32Interop.Methods
         ///lpsize: LPSIZE->tagSIZE*
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetBitmapDimensionEx")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool GetBitmapDimensionEx([InAttribute] IntPtr hbit, [OutAttribute] out tagSIZE lpsize);
+        public static extern bool GetBitmapDimensionEx([InAttribute] IntPtr hbit, [OutAttribute] out SIZE lpsize);
 
 
         /// Return Type: HRGN->HRGN__*
@@ -451,7 +451,7 @@ namespace Win32Interop.Methods
         /// Return Type: HBITMAP->HBITMAP__*
         ///pbm: BITMAP*
         [DllImportAttribute("gdi32.dll", EntryPoint = "CreateBitmapIndirect")]
-        public static extern IntPtr CreateBitmapIndirect([InAttribute] ref tagBITMAP pbm);
+        public static extern IntPtr CreateBitmapIndirect([InAttribute] ref BITMAP pbm);
 
 
         /// Return Type: HANDLE->void*
@@ -501,7 +501,7 @@ namespace Win32Interop.Methods
         ///lpsz: LPSIZE->tagSIZE*
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetTextExtentPointW")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool GetTextExtentPointW([InAttribute] IntPtr hdc, [InAttribute] [MarshalAsAttribute(UnmanagedType.LPWStr)] string lpString, int c, [OutAttribute] out tagSIZE lpsz);
+        public static extern bool GetTextExtentPointW([InAttribute] IntPtr hdc, [InAttribute] [MarshalAsAttribute(UnmanagedType.LPWStr)] string lpString, int c, [OutAttribute] out SIZE lpsz);
 
 
         /// Return Type: BOOL->int
@@ -511,7 +511,7 @@ namespace Win32Interop.Methods
         ///psize: LPSIZE->tagSIZE*
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetTextExtentPointI")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool GetTextExtentPointI([InAttribute] IntPtr hdc, [MarshalAsAttribute(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U2, SizeParamIndex = 2)] ushort[] pgiIn, int cgi, [OutAttribute] out tagSIZE psize);
+        public static extern bool GetTextExtentPointI([InAttribute] IntPtr hdc, [MarshalAsAttribute(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U2, SizeParamIndex = 2)] ushort[] pgiIn, int cgi, [OutAttribute] out SIZE psize);
 
 
         /// Return Type: BOOL->int
@@ -521,7 +521,7 @@ namespace Win32Interop.Methods
         ///lpsz: LPSIZE->tagSIZE*
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetTextExtentPointA")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool GetTextExtentPointA([InAttribute] IntPtr hdc, [InAttribute] [MarshalAsAttribute(UnmanagedType.LPStr)] string lpString, int c, [OutAttribute] out tagSIZE lpsz);
+        public static extern bool GetTextExtentPointA([InAttribute] IntPtr hdc, [InAttribute] [MarshalAsAttribute(UnmanagedType.LPStr)] string lpString, int c, [OutAttribute] out SIZE lpsz);
 
 
         /// Return Type: UINT->unsigned int
@@ -543,7 +543,7 @@ namespace Win32Interop.Methods
         ///lParam: LPARAM->LONG_PTR->int
         ///dwFlags: DWORD->unsigned int
         [DllImportAttribute("gdi32.dll", EntryPoint = "EnumFontFamiliesExW")]
-        public static extern int EnumFontFamiliesExW([InAttribute] IntPtr hdc, [InAttribute] ref tagLOGFONTW lpLogfont, OLDFONTENUMPROCW lpProc, [MarshalAsAttribute(UnmanagedType.SysInt)] int lParam, uint dwFlags);
+        public static extern int EnumFontFamiliesExW([InAttribute] IntPtr hdc, [InAttribute] ref LOGFONTW lpLogfont, OLDFONTENUMPROCW lpProc, [MarshalAsAttribute(UnmanagedType.SysInt)] int lParam, uint dwFlags);
 
 
         /// Return Type: int
@@ -553,7 +553,7 @@ namespace Win32Interop.Methods
         ///lParam: LPARAM->LONG_PTR->int
         ///dwFlags: DWORD->unsigned int
         [DllImportAttribute("gdi32.dll", EntryPoint = "EnumFontFamiliesExA")]
-        public static extern int EnumFontFamiliesExA([InAttribute] IntPtr hdc, [InAttribute] ref tagLOGFONTA lpLogfont, OLDFONTENUMPROCA lpProc, [MarshalAsAttribute(UnmanagedType.SysInt)] int lParam, uint dwFlags);
+        public static extern int EnumFontFamiliesExA([InAttribute] IntPtr hdc, [InAttribute] ref LOGFONTA lpLogfont, OLDFONTENUMPROCA lpProc, [MarshalAsAttribute(UnmanagedType.SysInt)] int lParam, uint dwFlags);
 
 
         /// Return Type: int
@@ -568,19 +568,19 @@ namespace Win32Interop.Methods
         /// Return Type: HFONT->HFONT__*
         ///lplf: LOGFONTW*
         [DllImportAttribute("gdi32.dll", EntryPoint = "CreateFontIndirectW")]
-        public static extern IntPtr CreateFontIndirectW([InAttribute] ref tagLOGFONTW lplf);
+        public static extern IntPtr CreateFontIndirectW([InAttribute] ref LOGFONTW lplf);
 
 
         /// Return Type: HFONT->HFONT__*
         ///lplf: LOGFONTA*
         [DllImportAttribute("gdi32.dll", EntryPoint = "CreateFontIndirectA")]
-        public static extern IntPtr CreateFontIndirectA([InAttribute] ref tagLOGFONTA lplf);
+        public static extern IntPtr CreateFontIndirectA([InAttribute] ref LOGFONTA lplf);
 
 
         /// Return Type: HBRUSH->HBRUSH__*
         ///plbrush: LOGBRUSH*
         [DllImportAttribute("gdi32.dll", EntryPoint = "CreateBrushIndirect")]
-        public static extern IntPtr CreateBrushIndirect([InAttribute] ref tagLOGBRUSH plbrush);
+        public static extern IntPtr CreateBrushIndirect([InAttribute] ref LOGBRUSH plbrush);
 
 
         /// Return Type: BOOL->int
@@ -622,7 +622,7 @@ namespace Win32Interop.Methods
         ///lpca: COLORADJUSTMENT*
         [DllImportAttribute("gdi32.dll", EntryPoint = "SetColorAdjustment")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool SetColorAdjustment([InAttribute] IntPtr hdc, [InAttribute] ref tagCOLORADJUSTMENT lpca);
+        public static extern bool SetColorAdjustment([InAttribute] IntPtr hdc, [InAttribute] ref COLORADJUSTMENT lpca);
 
 
         /// Return Type: BOOL->int
@@ -644,7 +644,7 @@ namespace Win32Interop.Methods
         ///noObjs: UINT->unsigned int
         [DllImportAttribute("gdi32.dll", EntryPoint = "PlayMetaFileRecord")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool PlayMetaFileRecord([InAttribute] IntPtr hdc, [MarshalAsAttribute(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 3)] tagHANDLETABLE[] lpHandleTable, [InAttribute] ref tagMETARECORD lpMR, uint noObjs);
+        public static extern bool PlayMetaFileRecord([InAttribute] IntPtr hdc, [MarshalAsAttribute(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 3)] HANDLETABLE[] lpHandleTable, [InAttribute] ref METARECORD lpMR, uint noObjs);
 
 
         /// Return Type: UINT->unsigned int
@@ -686,7 +686,7 @@ namespace Win32Interop.Methods
         ///lpca: LPCOLORADJUSTMENT->tagCOLORADJUSTMENT*
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetColorAdjustment")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool GetColorAdjustment([InAttribute] IntPtr hdc, [OutAttribute] out tagCOLORADJUSTMENT lpca);
+        public static extern bool GetColorAdjustment([InAttribute] IntPtr hdc, [OutAttribute] out COLORADJUSTMENT lpca);
 
 
         /// Return Type: BOOL->int
@@ -797,7 +797,7 @@ namespace Win32Interop.Methods
         ///lpxf: XFORM*
         [DllImportAttribute("gdi32.dll", EntryPoint = "SetWorldTransform")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool SetWorldTransform([InAttribute] IntPtr hdc, [InAttribute] ref tagXFORM lpxf);
+        public static extern bool SetWorldTransform([InAttribute] IntPtr hdc, [InAttribute] ref XFORM lpxf);
 
 
         /// Return Type: int
@@ -813,7 +813,7 @@ namespace Win32Interop.Methods
         ///cEntries: UINT->unsigned int
         ///pPalEntries: PALETTEENTRY*
         [DllImportAttribute("gdi32.dll", EntryPoint = "SetPaletteEntries")]
-        public static extern uint SetPaletteEntries([InAttribute] IntPtr hpal, uint iStart, uint cEntries, [MarshalAsAttribute(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 2)] tagPALETTEENTRY[] pPalEntries);
+        public static extern uint SetPaletteEntries([InAttribute] IntPtr hpal, uint iStart, uint cEntries, [MarshalAsAttribute(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 2)] PALETTEENTRY[] pPalEntries);
 
 
         /// Return Type: HMETAFILE->HMETAFILE__*
@@ -837,7 +837,7 @@ namespace Win32Interop.Methods
         ///lpbmi: BITMAPINFO*
         ///ColorUse: UINT->unsigned int
         [DllImportAttribute("gdi32.dll", EntryPoint = "SetDIBitsToDevice")]
-        public static extern int SetDIBitsToDevice([InAttribute] IntPtr hdc, int xDest, int yDest, uint w, uint h, int xSrc, int ySrc, uint StartScan, uint cLines, [InAttribute] IntPtr lpvBits, [InAttribute] ref tagBITMAPINFO lpbmi, uint ColorUse);
+        public static extern int SetDIBitsToDevice([InAttribute] IntPtr hdc, int xDest, int yDest, uint w, uint h, int xSrc, int ySrc, uint StartScan, uint cLines, [InAttribute] IntPtr lpvBits, [InAttribute] ref BITMAPINFO lpbmi, uint ColorUse);
 
 
         /// Return Type: BOOL->int
@@ -865,7 +865,7 @@ namespace Win32Interop.Methods
         ///lpxf: LPXFORM->tagXFORM*
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetWorldTransform")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool GetWorldTransform([InAttribute] IntPtr hdc, [OutAttribute] out tagXFORM lpxf);
+        public static extern bool GetWorldTransform([InAttribute] IntPtr hdc, [OutAttribute] out XFORM lpxf);
 
 
         /// Return Type: int
@@ -976,7 +976,7 @@ namespace Win32Interop.Methods
         /// Return Type: HPEN->HPEN__*
         ///plpen: LOGPEN*
         [DllImportAttribute("gdi32.dll", EntryPoint = "CreatePenIndirect")]
-        public static extern IntPtr CreatePenIndirect([InAttribute] ref tagLOGPEN plpen);
+        public static extern IntPtr CreatePenIndirect([InAttribute] ref LOGPEN plpen);
 
 
         /// Return Type: HRGN->HRGN__*
@@ -991,20 +991,20 @@ namespace Win32Interop.Methods
         /// Return Type: HCOLORSPACE->HCOLORSPACE__*
         ///lplcs: LPLOGCOLORSPACEW->tagLOGCOLORSPACEW*
         [DllImportAttribute("gdi32.dll", EntryPoint = "CreateColorSpaceW")]
-        public static extern IntPtr CreateColorSpaceW([InAttribute] ref tagLOGCOLORSPACEW lplcs);
+        public static extern IntPtr CreateColorSpaceW([InAttribute] ref LOGCOLORSPACEW lplcs);
 
 
         /// Return Type: HCOLORSPACE->HCOLORSPACE__*
         ///lplcs: LPLOGCOLORSPACEA->tagLOGCOLORSPACEA*
         [DllImportAttribute("gdi32.dll", EntryPoint = "CreateColorSpaceA")]
-        public static extern IntPtr CreateColorSpaceA([InAttribute] ref tagLOGCOLORSPACEA lplcs);
+        public static extern IntPtr CreateColorSpaceA([InAttribute] ref LOGCOLORSPACEA lplcs);
 
 
         /// Return Type: int
         ///hdc: HDC->HDC__*
         ///ppfd: PIXELFORMATDESCRIPTOR*
         [DllImportAttribute("gdi32.dll", EntryPoint = "ChoosePixelFormat")]
-        public static extern int ChoosePixelFormat([InAttribute] IntPtr hdc, [InAttribute] ref tagPIXELFORMATDESCRIPTOR ppfd);
+        public static extern int ChoosePixelFormat([InAttribute] IntPtr hdc, [InAttribute] ref PIXELFORMATDESCRIPTOR ppfd);
 
 
         /// Return Type: BOOL->int
@@ -1053,7 +1053,7 @@ namespace Win32Interop.Methods
         ///cEntries: UINT->unsigned int
         ///prgbq: RGBQUAD*
         [DllImportAttribute("gdi32.dll", EntryPoint = "SetDIBColorTable")]
-        public static extern uint SetDIBColorTable([InAttribute] IntPtr hdc, uint iStart, uint cEntries, [MarshalAsAttribute(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 2)] tagRGBQUAD[] prgbq);
+        public static extern uint SetDIBColorTable([InAttribute] IntPtr hdc, uint iStart, uint cEntries, [MarshalAsAttribute(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 2)] RGBQUAD[] prgbq);
 
 
         /// Return Type: BOOL->int
@@ -1081,7 +1081,7 @@ namespace Win32Interop.Methods
         ///lpsize: LPSIZE->tagSIZE*
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetViewportExtEx")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool GetViewportExtEx([InAttribute] IntPtr hdc, [OutAttribute] out tagSIZE lpsize);
+        public static extern bool GetViewportExtEx([InAttribute] IntPtr hdc, [OutAttribute] out SIZE lpsize);
 
 
         /// Return Type: DWORD->unsigned int
@@ -1231,7 +1231,7 @@ namespace Win32Interop.Methods
         ///hSection: HANDLE->void*
         ///offset: DWORD->unsigned int
         [DllImportAttribute("gdi32.dll", EntryPoint = "CreateDIBSection")]
-        public static extern IntPtr CreateDIBSection([InAttribute] IntPtr hdc, [InAttribute] ref tagBITMAPINFO lpbmi, uint usage, ref IntPtr ppvBits, [InAttribute] IntPtr hSection, uint offset);
+        public static extern IntPtr CreateDIBSection([InAttribute] IntPtr hdc, [InAttribute] ref BITMAPINFO lpbmi, uint usage, ref IntPtr ppvBits, [InAttribute] IntPtr hSection, uint offset);
 
 
         /// Return Type: HENHMETAFILE->HENHMETAFILE__*
@@ -1254,7 +1254,7 @@ namespace Win32Interop.Methods
         ///lpxf2: XFORM*
         [DllImportAttribute("gdi32.dll", EntryPoint = "CombineTransform")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool CombineTransform([OutAttribute] out tagXFORM lpxfOut, [InAttribute] ref tagXFORM lpxf1, [InAttribute] ref tagXFORM lpxf2);
+        public static extern bool CombineTransform([OutAttribute] out XFORM lpxfOut, [InAttribute] ref XFORM lpxf1, [InAttribute] ref XFORM lpxf2);
 
 
         /// Return Type: HENHMETAFILE->HENHMETAFILE__*
@@ -1316,7 +1316,7 @@ namespace Win32Interop.Methods
         ///lprect: RECT*
         [DllImportAttribute("gdi32.dll", EntryPoint = "PlayEnhMetaFile")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool PlayEnhMetaFile([InAttribute] IntPtr hdc, [InAttribute] IntPtr hmf, [InAttribute] ref tagRECT lprect);
+        public static extern bool PlayEnhMetaFile([InAttribute] IntPtr hdc, [InAttribute] IntPtr hmf, [InAttribute] ref RECT lprect);
 
 
         /// Return Type: BOOL->int
@@ -1324,7 +1324,7 @@ namespace Win32Interop.Methods
         ///lptm: LPTEXTMETRICW->tagTEXTMETRICW*
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetTextMetricsW")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool GetTextMetricsW([InAttribute] IntPtr hdc, [OutAttribute] out tagTEXTMETRICW lptm);
+        public static extern bool GetTextMetricsW([InAttribute] IntPtr hdc, [OutAttribute] out TEXTMETRICW lptm);
 
 
         /// Return Type: BOOL->int
@@ -1332,7 +1332,7 @@ namespace Win32Interop.Methods
         ///lptm: LPTEXTMETRICA->tagTEXTMETRICA*
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetTextMetricsA")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool GetTextMetricsA([InAttribute] IntPtr hdc, [OutAttribute] out tagTEXTMETRICA lptm);
+        public static extern bool GetTextMetricsA([InAttribute] IntPtr hdc, [OutAttribute] out TEXTMETRICA lptm);
 
 
         /// Return Type: int
@@ -1465,7 +1465,7 @@ namespace Win32Interop.Methods
         ///ppfd: PIXELFORMATDESCRIPTOR*
         [DllImportAttribute("gdi32.dll", EntryPoint = "SetPixelFormat")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool SetPixelFormat([InAttribute] IntPtr hdc, int format, [InAttribute] ref tagPIXELFORMATDESCRIPTOR ppfd);
+        public static extern bool SetPixelFormat([InAttribute] IntPtr hdc, int format, [InAttribute] ref PIXELFORMATDESCRIPTOR ppfd);
 
 
         /// Return Type: DWORD->unsigned int
@@ -1518,7 +1518,7 @@ namespace Win32Interop.Methods
         ///lpsize: LPSIZE->tagSIZE*
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetWindowExtEx")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool GetWindowExtEx([InAttribute] IntPtr hdc, [OutAttribute] out tagSIZE lpsize);
+        public static extern bool GetWindowExtEx([InAttribute] IntPtr hdc, [OutAttribute] out SIZE lpsize);
 
 
         /// Return Type: int
@@ -1582,7 +1582,7 @@ namespace Win32Interop.Methods
         ///ppe: PALETTEENTRY*
         [DllImportAttribute("gdi32.dll", EntryPoint = "AnimatePalette")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool AnimatePalette([InAttribute] IntPtr hPal, uint iStartIndex, uint cEntries, [MarshalAsAttribute(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 2)] tagPALETTEENTRY[] ppe);
+        public static extern bool AnimatePalette([InAttribute] IntPtr hPal, uint iStartIndex, uint cEntries, [MarshalAsAttribute(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 2)] PALETTEENTRY[] ppe);
 
 
         /// Return Type: int
@@ -1600,7 +1600,7 @@ namespace Win32Interop.Methods
         ///iUsage: UINT->unsigned int
         ///rop: DWORD->unsigned int
         [DllImportAttribute("gdi32.dll", EntryPoint = "StretchDIBits")]
-        public static extern int StretchDIBits([InAttribute] IntPtr hdc, int xDest, int yDest, int DestWidth, int DestHeight, int xSrc, int ySrc, int SrcWidth, int SrcHeight, [InAttribute] IntPtr lpBits, [InAttribute] ref tagBITMAPINFO lpbmi, uint iUsage, uint rop);
+        public static extern int StretchDIBits([InAttribute] IntPtr hdc, int xDest, int yDest, int DestWidth, int DestHeight, int xSrc, int ySrc, int SrcWidth, int SrcHeight, [InAttribute] IntPtr lpBits, [InAttribute] ref BITMAPINFO lpbmi, uint iUsage, uint rop);
 
 
         /// Return Type: BOOL->int
@@ -1768,7 +1768,7 @@ namespace Win32Interop.Methods
         ///lprect: LPRECT->tagRECT*
         ///flags: UINT->unsigned int
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetBoundsRect")]
-        public static extern uint GetBoundsRect([InAttribute] IntPtr hdc, [OutAttribute] out tagRECT lprect, uint flags);
+        public static extern uint GetBoundsRect([InAttribute] IntPtr hdc, [OutAttribute] out RECT lprect, uint flags);
 
 
         /// Return Type: LONG->int
@@ -1801,7 +1801,7 @@ namespace Win32Interop.Methods
         /// Return Type: HPALETTE->HPALETTE__*
         ///plpal: LOGPALETTE*
         [DllImportAttribute("gdi32.dll", EntryPoint = "CreatePalette")]
-        public static extern IntPtr CreatePalette([InAttribute] ref tagLOGPALETTE plpal);
+        public static extern IntPtr CreatePalette([InAttribute] ref LOGPALETTE plpal);
 
 
         /// Return Type: HMETAFILE->HMETAFILE__*
@@ -1864,7 +1864,7 @@ namespace Win32Interop.Methods
         ///lprect: RECT*
         [DllImportAttribute("gdi32.dll", EntryPoint = "RectInRegion")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool RectInRegion([InAttribute] IntPtr hrgn, [InAttribute] ref tagRECT lprect);
+        public static extern bool RectInRegion([InAttribute] IntPtr hrgn, [InAttribute] ref RECT lprect);
 
 
         /// Return Type: BOOL->int
@@ -1873,7 +1873,7 @@ namespace Win32Interop.Methods
         ///nstrings: int
         [DllImportAttribute("gdi32.dll", EntryPoint = "PolyTextOutW")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool PolyTextOutW([InAttribute] IntPtr hdc, [MarshalAsAttribute(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 2)] tagPOLYTEXTW[] ppt, int nstrings);
+        public static extern bool PolyTextOutW([InAttribute] IntPtr hdc, [MarshalAsAttribute(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 2)] POLYTEXTW[] ppt, int nstrings);
 
 
         /// Return Type: BOOL->int
@@ -1882,7 +1882,7 @@ namespace Win32Interop.Methods
         ///nstrings: int
         [DllImportAttribute("gdi32.dll", EntryPoint = "PolyTextOutA")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool PolyTextOutA([InAttribute] IntPtr hdc, [MarshalAsAttribute(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 2)] tagPOLYTEXTA[] ppt, int nstrings);
+        public static extern bool PolyTextOutA([InAttribute] IntPtr hdc, [MarshalAsAttribute(UnmanagedType.LPArray, ArraySubType = UnmanagedType.Struct, SizeParamIndex = 2)] POLYTEXTA[] ppt, int nstrings);
 
 
         /// Return Type: BOOL->int
@@ -1984,7 +1984,7 @@ namespace Win32Interop.Methods
         ///cStyle: DWORD->unsigned int
         ///pstyle: DWORD*
         [DllImportAttribute("gdi32.dll", EntryPoint = "ExtCreatePen")]
-        public static extern IntPtr ExtCreatePen(uint iPenStyle, uint cWidth, [InAttribute] ref tagLOGBRUSH plbrush, uint cStyle, [InAttribute] IntPtr pstyle);
+        public static extern IntPtr ExtCreatePen(uint iPenStyle, uint cWidth, [InAttribute] ref LOGBRUSH plbrush, uint cStyle, [InAttribute] IntPtr pstyle);
 
 
         /// Return Type: BOOL->int
@@ -2026,7 +2026,7 @@ namespace Win32Interop.Methods
         ///lprect: RECT*
         [DllImportAttribute("gdi32.dll", EntryPoint = "RectVisible")]
         [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        public static extern bool RectVisible([InAttribute] IntPtr hdc, [InAttribute] ref tagRECT lprect);
+        public static extern bool RectVisible([InAttribute] IntPtr hdc, [InAttribute] ref RECT lprect);
 
 
         /// Return Type: BOOL->int
@@ -2275,7 +2275,7 @@ namespace Win32Interop.Methods
         ///hdc: HDC->HDC__*
         ///lprect: LPRECT->tagRECT*
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetClipBox")]
-        public static extern int GetClipBox([InAttribute] IntPtr hdc, [OutAttribute] out tagRECT lprect);
+        public static extern int GetClipBox([InAttribute] IntPtr hdc, [OutAttribute] out RECT lprect);
 
 
         /// Return Type: COLORREF->DWORD->unsigned int
@@ -2382,7 +2382,7 @@ namespace Win32Interop.Methods
         ///lpbmi: BITMAPINFO*
         ///ColorUse: UINT->unsigned int
         [DllImportAttribute("gdi32.dll", EntryPoint = "SetDIBits")]
-        public static extern int SetDIBits([InAttribute] IntPtr hdc, [InAttribute] IntPtr hbm, uint start, uint cLines, [InAttribute] IntPtr lpBits, [InAttribute] ref tagBITMAPINFO lpbmi, uint ColorUse);
+        public static extern int SetDIBits([InAttribute] IntPtr hdc, [InAttribute] IntPtr hbm, uint start, uint cLines, [InAttribute] IntPtr lpBits, [InAttribute] ref BITMAPINFO lpbmi, uint ColorUse);
 
 
         /// Return Type: int
@@ -2453,7 +2453,7 @@ namespace Win32Interop.Methods
         ///hrgn: HRGN->HRGN__*
         ///lprc: LPRECT->tagRECT*
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetRgnBox")]
-        public static extern int GetRgnBox([InAttribute] IntPtr hrgn, [OutAttribute] out tagRECT lprc);
+        public static extern int GetRgnBox([InAttribute] IntPtr hrgn, [OutAttribute] out RECT lprc);
 
 
         /// Return Type: DWORD->unsigned int
@@ -2471,7 +2471,7 @@ namespace Win32Interop.Methods
         ///lpbmi: LPBITMAPINFO->tagBITMAPINFO*
         ///usage: UINT->unsigned int
         [DllImportAttribute("gdi32.dll", EntryPoint = "GetDIBits")]
-        public static extern int GetDIBits([InAttribute] IntPtr hdc, [InAttribute] IntPtr hbm, uint start, uint cLines, IntPtr lpvBits, ref tagBITMAPINFO lpbmi, uint usage);
+        public static extern int GetDIBits([InAttribute] IntPtr hdc, [InAttribute] IntPtr hbm, uint start, uint cLines, IntPtr lpvBits, ref BITMAPINFO lpbmi, uint usage);
 
 
         /// Return Type: int

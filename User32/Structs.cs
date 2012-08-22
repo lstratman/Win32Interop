@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using Win32Interop.Enums;
 using Win32Interop.Methods;
@@ -36,7 +37,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagSIZE
+    public struct SIZE
     {
         /// LONG->int
         public int cx;
@@ -62,7 +63,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagMSGBOXPARAMSW
+    public struct MSGBOXPARAMSW
     {
         /// UINT->unsigned int
         public uint cbSize;
@@ -99,7 +100,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagMSGBOXPARAMSA
+    public struct MSGBOXPARAMSA
     {
         /// UINT->unsigned int
         public uint cbSize;
@@ -136,7 +137,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagWINDOWPLACEMENT
+    public struct WINDOWPLACEMENT
     {
         /// UINT->unsigned int
         public uint length;
@@ -154,11 +155,11 @@ namespace Win32Interop.Structs
         public Point ptMaxPosition;
 
         /// RECT->tagRECT
-        public tagRECT rcNormalPosition;
+        public RECT rcNormalPosition;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagRECT
+    public struct RECT
     {
         /// LONG->int
         public int left;
@@ -174,7 +175,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagMSG
+    public struct MSG
     {
         /// HWND->HWND__*
         public IntPtr hwnd;
@@ -196,7 +197,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagWNDCLASSEXW
+    public struct WNDCLASSEXW
     {
         /// UINT->unsigned int
         public uint cbSize;
@@ -238,7 +239,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagWNDCLASSEXA
+    public struct WNDCLASSEXA
     {
         /// UINT->unsigned int
         public uint cbSize;
@@ -280,7 +281,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagWNDCLASSW
+    public struct WNDCLASSW
     {
         /// UINT->unsigned int
         public uint style;
@@ -316,7 +317,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagWNDCLASSA
+    public struct WNDCLASSA
     {
         /// UINT->unsigned int
         public uint style;
@@ -352,7 +353,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagPAINTSTRUCT
+    public struct PAINTSTRUCT
     {
         /// HDC->HDC__*
         public IntPtr hdc;
@@ -362,7 +363,7 @@ namespace Win32Interop.Structs
         public bool fErase;
 
         /// RECT->tagRECT
-        public tagRECT rcPaint;
+        public RECT rcPaint;
 
         /// BOOL->int
         [MarshalAs(UnmanagedType.Bool)]
@@ -378,7 +379,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagRAWINPUTDEVICE
+    public struct RAWINPUTDEVICE
     {
         /// USHORT->unsigned short
         public ushort usUsagePage;
@@ -584,7 +585,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagACCEL
+    public struct ACCEL
     {
         /// BYTE->unsigned char
         public byte fVirt;
@@ -597,7 +598,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagRAWINPUTDEVICELIST
+    public struct RAWINPUTDEVICELIST
     {
         /// HANDLE->void*
         public IntPtr hDevice;
@@ -607,7 +608,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagMOUSEMOVEPOINT
+    public struct MOUSEMOVEPOINT
     {
         /// int
         public int x;
@@ -689,23 +690,23 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagRAWINPUT
+    public struct RAWINPUT
     {
         /// RAWINPUTHEADER->tagRAWINPUTHEADER
-        public tagRAWINPUTHEADER header;
+        public RAWINPUTHEADER header;
 
         /// Anonymous_d34c77ee_53b2_47a5_a97c_d5c2b29c8ee3
         public RAW_INPUT_DATA data;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagSCROLLBARINFO
+    public struct SCROLLBARINFO
     {
         /// DWORD->unsigned int
         public uint cbSize;
 
         /// RECT->tagRECT
-        public tagRECT rcScrollBar;
+        public RECT rcScrollBar;
 
         /// int
         public int dxyLineButton;
@@ -725,7 +726,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagMENUITEMINFOW
+    public struct MENUITEMINFOW
     {
         /// UINT->unsigned int
         public uint cbSize;
@@ -766,7 +767,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagMENUITEMINFOA
+    public struct MENUITEMINFOA
     {
         /// UINT->unsigned int
         public uint cbSize;
@@ -807,7 +808,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagLASTINPUTINFO
+    public struct LASTINPUTINFO
     {
         /// UINT->unsigned int
         public uint cbSize;
@@ -817,7 +818,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagGUITHREADINFO
+    public struct GUITHREADINFO
     {
         /// DWORD->unsigned int
         public uint cbSize;
@@ -844,11 +845,11 @@ namespace Win32Interop.Structs
         public IntPtr hwndCaret;
 
         /// RECT->tagRECT
-        public tagRECT rcCaret;
+        public RECT rcCaret;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagTRACKMOUSEEVENT
+    public struct TRACKMOUSEEVENT
     {
         /// DWORD->unsigned int
         public uint cbSize;
@@ -864,13 +865,13 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagTITLEBARINFO
+    public struct TITLEBARINFO
     {
         /// DWORD->unsigned int
         public uint cbSize;
 
         /// RECT->tagRECT
-        public tagRECT rcTitleBar;
+        public RECT rcTitleBar;
 
         /// DWORD[6]
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 6, ArraySubType = UnmanagedType.U4)]
@@ -878,32 +879,32 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagMONITORINFO
+    public struct MONITORINFO
     {
         /// DWORD->unsigned int
         public uint cbSize;
 
         /// RECT->tagRECT
-        public tagRECT rcMonitor;
+        public RECT rcMonitor;
 
         /// RECT->tagRECT
-        public tagRECT rcWork;
+        public RECT rcWork;
 
         /// DWORD->unsigned int
         public uint dwFlags;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagCOMBOBOXINFO
+    public struct COMBOBOXINFO
     {
         /// DWORD->unsigned int
         public uint cbSize;
 
         /// RECT->tagRECT
-        public tagRECT rcItem;
+        public RECT rcItem;
 
         /// RECT->tagRECT
-        public tagRECT rcButton;
+        public RECT rcButton;
 
         /// DWORD->unsigned int
         public uint stateButton;
@@ -919,13 +920,13 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagMENUBARINFO
+    public struct MENUBARINFO
     {
         /// DWORD->unsigned int
         public uint cbSize;
 
         /// RECT->tagRECT
-        public tagRECT rcBar;
+        public RECT rcBar;
 
         /// HMENU->HMENU__*
         public IntPtr hMenu;
@@ -965,7 +966,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagALTTABINFO
+    public struct ALTTABINFO
     {
         /// DWORD->unsigned int
         public uint cbSize;
@@ -996,16 +997,16 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagWINDOWINFO
+    public struct WINDOWINFO
     {
         /// DWORD->unsigned int
         public uint cbSize;
 
         /// RECT->tagRECT
-        public tagRECT rcWindow;
+        public RECT rcWindow;
 
         /// RECT->tagRECT
-        public tagRECT rcClient;
+        public RECT rcClient;
 
         /// DWORD->unsigned int
         public uint dwStyle;
@@ -1030,7 +1031,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagSCROLLINFO
+    public struct SCROLLINFO
     {
         /// UINT->unsigned int
         public uint cbSize;
@@ -1055,7 +1056,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagCURSORINFO
+    public struct CURSORINFO
     {
         /// DWORD->unsigned int
         public uint cbSize;
@@ -1090,7 +1091,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagMENUINFO
+    public struct MENUINFO
     {
         /// DWORD->unsigned int
         public uint cbSize;
@@ -1115,7 +1116,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagDRAWTEXTPARAMS
+    public struct DRAWTEXTPARAMS
     {
         /// UINT->unsigned int
         public uint cbSize;
@@ -1134,7 +1135,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagINPUT
+    public struct INPUT
     {
         /// DWORD->unsigned int
         public uint type;
@@ -1189,17 +1190,17 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagTPMPARAMS
+    public struct TPMPARAMS
     {
         /// UINT->unsigned int
         public uint cbSize;
 
         /// RECT->tagRECT
-        public tagRECT rcExclude;
+        public RECT rcExclude;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagCONVINFO
+    public struct CONVINFO
     {
         /// DWORD->unsigned int
         public uint cb;
@@ -1241,7 +1242,7 @@ namespace Win32Interop.Structs
         public IntPtr hConvList;
 
         /// CONVCONTEXT->tagCONVCONTEXT
-        public tagCONVCONTEXT ConvCtxt;
+        public CONVCONTEXT ConvCtxt;
 
         /// HWND->HWND__*
         public IntPtr hwnd;
@@ -1251,7 +1252,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagCONVCONTEXT
+    public struct CONVCONTEXT
     {
         /// UINT->unsigned int
         public uint cb;
@@ -1304,15 +1305,15 @@ namespace Win32Interop.Structs
     {
         /// RAWMOUSE->tagRAWMOUSE
         [FieldOffset(0)]
-        public tagRAWMOUSE mouse;
+        public RAWMOUSE mouse;
 
         /// RAWKEYBOARD->tagRAWKEYBOARD
         [FieldOffset(0)]
-        public tagRAWKEYBOARD keyboard;
+        public RAWKEYBOARD keyboard;
 
         /// RAWHID->tagRAWHID
         [FieldOffset(0)]
-        public tagRAWHID hid;
+        public RAWHID hid;
     }
 
     [StructLayout(LayoutKind.Explicit)]
@@ -1320,15 +1321,15 @@ namespace Win32Interop.Structs
     {
         /// MOUSEINPUT->tagMOUSEINPUT
         [FieldOffset(0)]
-        public tagMOUSEINPUT mi;
+        public MOUSEINPUT mi;
 
         /// KEYBDINPUT->tagKEYBDINPUT
         [FieldOffset(0)]
-        public tagKEYBDINPUT ki;
+        public KEYBDINPUT ki;
 
         /// HARDWAREINPUT->tagHARDWAREINPUT
         [FieldOffset(0)]
-        public tagHARDWAREINPUT hi;
+        public HARDWAREINPUT hi;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -1342,7 +1343,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagRAWINPUTHEADER
+    public struct RAWINPUTHEADER
     {
         /// DWORD->unsigned int
         public uint dwType;
@@ -1399,7 +1400,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagRAWMOUSE
+    public struct RAWMOUSE
     {
         /// USHORT->unsigned short
         public ushort usFlags;
@@ -1421,7 +1422,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagRAWKEYBOARD
+    public struct RAWKEYBOARD
     {
         /// USHORT->unsigned short
         public ushort MakeCode;
@@ -1443,7 +1444,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagRAWHID
+    public struct RAWHID
     {
         /// DWORD->unsigned int
         public uint dwSizeHid;
@@ -1457,7 +1458,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagMOUSEINPUT
+    public struct MOUSEINPUT
     {
         /// LONG->int
         public int dx;
@@ -1479,7 +1480,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagKEYBDINPUT
+    public struct KEYBDINPUT
     {
         /// WORD->unsigned short
         public ushort wVk;
@@ -1498,7 +1499,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagHARDWAREINPUT
+    public struct HARDWAREINPUT
     {
         /// DWORD->unsigned int
         public uint uMsg;
@@ -1511,7 +1512,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagHELPINFO
+    public struct HELPINFO
     {
         /// UINT->unsigned int
         public uint cbSize;
@@ -1572,6 +1573,103 @@ namespace Win32Interop.Structs
         public int flags;
         public int time;
         public UIntPtr dwExtraInfo;
+    }
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+    public class TEXTMETRIC
+    {
+        public int tmHeight;
+        public int tmAscent;
+        public int tmDescent;
+        public int tmInternalLeading;
+        public int tmExternalLeading;
+        public int tmAveCharWidth;
+        public int tmMaxCharWidth;
+        public int tmWeight;
+        public int tmOverhang;
+        public int tmDigitizedAspectX;
+        public int tmDigitizedAspectY;
+        public char tmFirstChar;
+        public char tmLastChar;
+        public char tmDefaultChar;
+        public char tmBreakChar;
+        public byte tmItalic;
+        public byte tmUnderlined;
+        public byte tmStruckOut;
+        public byte tmPitchAndFamily;
+        public byte tmCharSet;
+    }
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    public class TEXTMETRICA
+    {
+        public int tmHeight;
+        public int tmAscent;
+        public int tmDescent;
+        public int tmInternalLeading;
+        public int tmExternalLeading;
+        public int tmAveCharWidth;
+        public int tmMaxCharWidth;
+        public int tmWeight;
+        public int tmOverhang;
+        public int tmDigitizedAspectX;
+        public int tmDigitizedAspectY;
+        public byte tmFirstChar;
+        public byte tmLastChar;
+        public byte tmDefaultChar;
+        public byte tmBreakChar;
+        public byte tmItalic;
+        public byte tmUnderlined;
+        public byte tmStruckOut;
+        public byte tmPitchAndFamily;
+        public byte tmCharSet;
+    }
+
+    [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct TEXTMETRICW
+    {
+        public int tmHeight;
+        public int tmAscent;
+        public int tmDescent;
+        public int tmInternalLeading;
+        public int tmExternalLeading;
+        public int tmAveCharWidth;
+        public int tmMaxCharWidth;
+        public int tmWeight;
+        public int tmOverhang;
+        public int tmDigitizedAspectX;
+        public int tmDigitizedAspectY;
+        public ushort tmFirstChar;      /// WCHAR->wchar_t->unsigned short
+        public ushort tmLastChar;       /// WCHAR->wchar_t->unsigned short
+        public ushort tmDefaultChar;    /// WCHAR->wchar_t->unsigned short
+        public ushort tmBreakChar;      /// WCHAR->wchar_t->unsigned short
+        public byte tmItalic;
+        public byte tmUnderlined;
+        public byte tmStruckOut;
+        public byte tmPitchAndFamily;
+        public byte tmCharSet;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct COLORREF
+    {
+        public uint ColorDWORD;
+
+        public COLORREF(Color color)
+        {
+            ColorDWORD = (uint)color.R + (((uint)color.G) << 8) + (((uint)color.B) << 16);
+        }
+
+        public Color GetColor()
+        {
+            return Color.FromArgb((int)(0x000000FFU & ColorDWORD),
+           (int)(0x0000FF00U & ColorDWORD) >> 8, (int)(0x00FF0000U & ColorDWORD) >> 16);
+        }
+
+        public void SetColor(Color color)
+        {
+            ColorDWORD = color.R + (((uint)color.G) << 8) + (((uint)color.B) << 16);
+        }
     }
     // ReSharper restore InconsistentNaming
 }
