@@ -181,7 +181,7 @@ namespace Win32Interop.Structs
         public IntPtr hwnd;
 
         /// UINT->unsigned int
-        public uint message;
+        public WM message;
 
         /// WPARAM->UINT_PTR->unsigned int
         public uint wParam;

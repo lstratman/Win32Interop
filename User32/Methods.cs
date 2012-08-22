@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Text;
+using Win32Interop.Enums;
 using Win32Interop.Structs;
 
 // ReSharper disable CheckNamespace
@@ -172,14 +173,14 @@ namespace Win32Interop.Methods
         ///NotificationFilter: LPVOID->void*
         ///Flags: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "RegisterDeviceNotificationW")]
-        public static extern IntPtr RegisterDeviceNotificationW([In] IntPtr hRecipient, [In] IntPtr NotificationFilter, uint Flags);
+        public static extern IntPtr RegisterDeviceNotificationW([In] IntPtr hRecipient, [In] IntPtr NotificationFilter, DEVICE_NOTIFY Flags);
 
         /// Return Type: HDEVNOTIFY->PVOID->void*
         ///hRecipient: HANDLE->void*
         ///NotificationFilter: LPVOID->void*
         ///Flags: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "RegisterDeviceNotificationA")]
-        public static extern IntPtr RegisterDeviceNotificationA([In] IntPtr hRecipient, [In] IntPtr NotificationFilter, uint Flags);
+        public static extern IntPtr RegisterDeviceNotificationA([In] IntPtr hRecipient, [In] IntPtr NotificationFilter, DEVICE_NOTIFY Flags);
 
         /// Return Type: DWORD->unsigned int
         ///nCount: DWORD->unsigned int
@@ -188,7 +189,7 @@ namespace Win32Interop.Methods
         ///dwWakeMask: DWORD->unsigned int
         ///dwFlags: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "MsgWaitForMultipleObjectsEx")]
-        public static extern uint MsgWaitForMultipleObjectsEx(uint nCount, ref IntPtr pHandles, uint dwMilliseconds, uint dwWakeMask, uint dwFlags);
+        public static extern uint MsgWaitForMultipleObjectsEx(uint nCount, ref IntPtr pHandles, uint dwMilliseconds, QS dwWakeMask, MWMO dwFlags);
 
         /// Return Type: int
         ///presbits: PBYTE->BYTE*
@@ -198,7 +199,7 @@ namespace Win32Interop.Methods
         ///Flags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "LookupIconIdFromDirectoryEx")]
         public static extern int LookupIconIdFromDirectoryEx(
-            [In] ref byte presbits, [MarshalAs(UnmanagedType.Bool)] bool fIcon, int cxDesired, int cyDesired, uint Flags);
+            [In] ref byte presbits, [MarshalAs(UnmanagedType.Bool)] bool fIcon, int cxDesired, int cyDesired, LR Flags);
 
         /// Return Type: BOOL->int
         ///hwnd: HWND->HWND__*
@@ -207,7 +208,7 @@ namespace Win32Interop.Methods
         ///dwFlags: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "SetLayeredWindowAttributes")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetLayeredWindowAttributes([In] IntPtr hwnd, uint crKey, byte bAlpha, uint dwFlags);
+        public static extern bool SetLayeredWindowAttributes([In] IntPtr hwnd, uint crKey, byte bAlpha, LWA dwFlags);
 
         /// Return Type: BOOL->int
         ///format: UINT->unsigned int
@@ -240,7 +241,7 @@ namespace Win32Interop.Methods
         ///pdwFlags: DWORD*
         [DllImport("user32.dll", EntryPoint = "GetLayeredWindowAttributes")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetLayeredWindowAttributes([In] IntPtr hwnd, IntPtr pcrKey, IntPtr pbAlpha, IntPtr pdwFlags);
+        public static extern bool GetLayeredWindowAttributes([In] IntPtr hwnd, IntPtr pcrKey, IntPtr pbAlpha, out LWA pdwFlags);
 
         /// Return Type: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "GetClipboardSequenceNumber")]
@@ -337,7 +338,7 @@ namespace Win32Interop.Methods
         ///pbsmInfo: PBSMINFO->Anonymous_5d2ef610_55e9_4d35_a7f7_233f11c0e96c*
         [DllImport("user32.dll", EntryPoint = "BroadcastSystemMessageExW")]
         public static extern int BroadcastSystemMessageExW(
-            uint flags, IntPtr lpInfo, uint Msg, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam, IntPtr pbsmInfo);
+            BSF flags, IntPtr lpInfo, uint Msg, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam, IntPtr pbsmInfo);
 
         /// Return Type: int
         ///flags: DWORD->unsigned int
@@ -348,7 +349,7 @@ namespace Win32Interop.Methods
         ///pbsmInfo: PBSMINFO->Anonymous_5d2ef610_55e9_4d35_a7f7_233f11c0e96c*
         [DllImport("user32.dll", EntryPoint = "BroadcastSystemMessageExA")]
         public static extern int BroadcastSystemMessageExA(
-            uint flags, IntPtr lpInfo, uint Msg, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam, IntPtr pbsmInfo);
+            BSF flags, IntPtr lpInfo, uint Msg, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam, IntPtr pbsmInfo);
 
         /// Return Type: UINT->unsigned int
         ///lpszFormat: LPCWSTR->WCHAR*
@@ -398,7 +399,7 @@ namespace Win32Interop.Methods
         ///Flags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "CreateIconFromResourceEx")]
         public static extern IntPtr CreateIconFromResourceEx(
-            [In] ref byte presbits, uint dwResSize, [MarshalAs(UnmanagedType.Bool)] bool fIcon, uint dwVer, int cxDesired, int cyDesired, uint Flags);
+            [In] ref byte presbits, uint dwResSize, [MarshalAs(UnmanagedType.Bool)] bool fIcon, uint dwVer, int cxDesired, int cyDesired, LR Flags);
 
         /// Return Type: LONG->int
         ///lpszDeviceName: LPCWSTR->WCHAR*
@@ -408,7 +409,7 @@ namespace Win32Interop.Methods
         ///lParam: LPVOID->void*
         [DllImport("user32.dll", EntryPoint = "ChangeDisplaySettingsExW")]
         public static extern int ChangeDisplaySettingsExW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszDeviceName, [In] IntPtr lpDevMode, IntPtr hwnd, uint dwflags, [In] IntPtr lParam);
+            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszDeviceName, [In] IntPtr lpDevMode, IntPtr hwnd, CDS dwflags, [In] IntPtr lParam);
 
         /// Return Type: LONG->int
         ///lpszDeviceName: LPCSTR->CHAR*
@@ -418,7 +419,7 @@ namespace Win32Interop.Methods
         ///lParam: LPVOID->void*
         [DllImport("user32.dll", EntryPoint = "ChangeDisplaySettingsExA")]
         public static extern int ChangeDisplaySettingsExA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpszDeviceName, [In] IntPtr lpDevMode, IntPtr hwnd, uint dwflags, [In] IntPtr lParam);
+            [In] [MarshalAs(UnmanagedType.LPStr)] string lpszDeviceName, [In] IntPtr lpDevMode, IntPtr hwnd, CDS dwflags, [In] IntPtr lParam);
 
         /// Return Type: BOOL->int
         ///dwProcessId: DWORD->unsigned int
@@ -560,7 +561,7 @@ namespace Win32Interop.Methods
         ///lParam: LPARAM->LONG_PTR->int
         [DllImport("user32.dll", EntryPoint = "BroadcastSystemMessageW")]
         public static extern int BroadcastSystemMessageW(
-            uint flags, IntPtr lpInfo, uint Msg, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam);
+            BSF flags, IntPtr lpInfo, uint Msg, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam);
 
         /// Return Type: int
         ///flags: DWORD->unsigned int
@@ -570,7 +571,7 @@ namespace Win32Interop.Methods
         ///lParam: LPARAM->LONG_PTR->int
         [DllImport("user32.dll", EntryPoint = "BroadcastSystemMessageA")]
         public static extern int BroadcastSystemMessageA(
-            uint flags, IntPtr lpInfo, uint Msg, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam);
+            BSF flags, IntPtr lpInfo, uint Msg, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam);
 
         /// Return Type: BOOL->int
         ///param0: HWND->HWND__*
@@ -634,7 +635,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "EnumDisplaySettingsExW")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool EnumDisplaySettingsExW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszDeviceName, uint iModeNum, [Out] out DEVMODEW lpDevMode, uint dwFlags);
+            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszDeviceName, uint iModeNum, [Out] out DEVMODEW lpDevMode, EDS dwFlags);
 
         /// Return Type: BOOL->int
         ///lpszDeviceName: LPCSTR->CHAR*
@@ -644,7 +645,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "EnumDisplaySettingsExA")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool EnumDisplaySettingsExA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpszDeviceName, uint iModeNum, [Out] out DEVMODEA lpDevMode, uint dwFlags);
+            [In] [MarshalAs(UnmanagedType.LPStr)] string lpszDeviceName, uint iModeNum, [Out] out DEVMODEA lpDevMode, EDS dwFlags);
 
         /// Return Type: BOOL->int
         ///hwndClient: HWND->HWND__*
@@ -681,25 +682,25 @@ namespace Win32Interop.Methods
         ///pt: POINT->tagPOINT
         ///flags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "ChildWindowFromPointEx")]
-        public static extern IntPtr ChildWindowFromPointEx([In] IntPtr hwnd, Point pt, uint flags);
+        public static extern IntPtr ChildWindowFromPointEx([In] IntPtr hwnd, Point pt, CWP flags);
 
         /// Return Type: LONG->int
         ///lpDevMode: LPDEVMODEW->_devicemodeW*
         ///dwFlags: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "ChangeDisplaySettingsW")]
-        public static extern int ChangeDisplaySettingsW([In] IntPtr lpDevMode, uint dwFlags);
+        public static extern int ChangeDisplaySettingsW([In] IntPtr lpDevMode, CDS dwFlags);
 
         /// Return Type: LONG->int
         ///lpDevMode: LPDEVMODEA->_devicemodeA*
         ///dwFlags: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "ChangeDisplaySettingsA")]
-        public static extern int ChangeDisplaySettingsA([In] IntPtr lpDevMode, uint dwFlags);
+        public static extern int ChangeDisplaySettingsA([In] IntPtr lpDevMode, CDS dwFlags);
 
         /// Return Type: HKL->HKL__*
         ///hkl: HKL->HKL__*
         ///Flags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "ActivateKeyboardLayout")]
-        public static extern IntPtr ActivateKeyboardLayout([In] IntPtr hkl, uint Flags);
+        public static extern IntPtr ActivateKeyboardLayout([In] IntPtr hkl, KLF Flags);
 
         /// Return Type: BOOL->int
         ///hUserHandle: HANDLE->void*
@@ -863,7 +864,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "PrivateExtractIconsW")]
         public static extern uint PrivateExtractIconsW(
             [In] [MarshalAs(UnmanagedType.LPWStr)] string szFileName, int nIconIndex, int cxIcon, int cyIcon, ref IntPtr phicon, IntPtr piconid, uint nIcons,
-            uint flags);
+            LR flags);
 
         /// Return Type: UINT->unsigned int
         ///szFileName: LPCSTR->CHAR*
@@ -877,7 +878,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "PrivateExtractIconsA")]
         public static extern uint PrivateExtractIconsA(
             [In] [MarshalAs(UnmanagedType.LPStr)] string szFileName, int nIconIndex, int cxIcon, int cyIcon, ref IntPtr phicon, IntPtr piconid, uint nIcons,
-            uint flags);
+            LR flags);
 
         /// Return Type: int
         ///hWnd: HWND->HWND__*
@@ -971,7 +972,7 @@ namespace Win32Interop.Methods
         ///lpsa: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
         [DllImport("user32.dll", EntryPoint = "CreateWindowStationW")]
         public static extern IntPtr CreateWindowStationW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpwinsta, uint dwFlags, uint dwDesiredAccess, [In] IntPtr lpsa);
+            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpwinsta, CWF dwFlags, uint dwDesiredAccess, [In] IntPtr lpsa);
 
         /// Return Type: HWINSTA->HWINSTA__*
         ///lpwinsta: LPCSTR->CHAR*
@@ -980,7 +981,7 @@ namespace Win32Interop.Methods
         ///lpsa: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
         [DllImport("user32.dll", EntryPoint = "CreateWindowStationA")]
         public static extern IntPtr CreateWindowStationA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpwinsta, uint dwFlags, uint dwDesiredAccess, [In] IntPtr lpsa);
+            [In] [MarshalAs(UnmanagedType.LPStr)] string lpwinsta, CWF dwFlags, uint dwDesiredAccess, [In] IntPtr lpsa);
 
         /// Return Type: HWND->HWND__*
         ///hWndParent: HWND->HWND__*
@@ -1014,7 +1015,7 @@ namespace Win32Interop.Methods
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool UpdateLayeredWindow(
             [In] IntPtr hWnd, [In] IntPtr hdcDst, ref Point pptDst, ref SIZE psize, [In] IntPtr hdcSrc, ref Point pptSrc, uint crKey, ref BLENDFUNCTION pblend,
-            uint dwFlags);
+            ULW dwFlags);
 
         /// Return Type: BOOL->int
         ///hhk: HHOOK->HHOOK__*
@@ -1045,7 +1046,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "SendMessageTimeoutW")]
         [return: MarshalAs(UnmanagedType.SysInt)]
         public static extern int SendMessageTimeoutW(
-            [In] IntPtr hWnd, uint Msg, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam, uint fuFlags,
+            [In] IntPtr hWnd, uint Msg, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam, SMTO fuFlags,
             uint uTimeout, IntPtr lpdwResult);
 
         /// Return Type: LRESULT->LONG_PTR->int
@@ -1059,7 +1060,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "SendMessageTimeoutA")]
         [return: MarshalAs(UnmanagedType.SysInt)]
         public static extern int SendMessageTimeoutA(
-            [In] IntPtr hWnd, uint Msg, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam, uint fuFlags,
+            [In] IntPtr hWnd, uint Msg, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam, SMTO fuFlags,
             uint uTimeout, IntPtr lpdwResult);
 
         /// Return Type: LRESULT->LONG_PTR->int
@@ -1114,13 +1115,13 @@ namespace Win32Interop.Methods
         ///pwszKLID: LPCWSTR->WCHAR*
         ///Flags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "LoadKeyboardLayoutW")]
-        public static extern IntPtr LoadKeyboardLayoutW([In] [MarshalAs(UnmanagedType.LPWStr)] string pwszKLID, uint Flags);
+        public static extern IntPtr LoadKeyboardLayoutW([In] [MarshalAs(UnmanagedType.LPWStr)] string pwszKLID, KLF Flags);
 
         /// Return Type: HKL->HKL__*
         ///pwszKLID: LPCSTR->CHAR*
         ///Flags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "LoadKeyboardLayoutA")]
-        public static extern IntPtr LoadKeyboardLayoutA([In] [MarshalAs(UnmanagedType.LPStr)] string pwszKLID, uint Flags);
+        public static extern IntPtr LoadKeyboardLayoutA([In] [MarshalAs(UnmanagedType.LPStr)] string pwszKLID, KLF Flags);
 
         /// Return Type: HCURSOR->HICON->HICON__*
         ///lpFileName: LPCWSTR->WCHAR*
@@ -1192,7 +1193,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "EnumDisplayDevicesW")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool EnumDisplayDevicesW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpDevice, uint iDevNum, ref DISPLAY_DEVICEW lpDisplayDevice, uint dwFlags);
+            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpDevice, uint iDevNum, ref DISPLAY_DEVICEW lpDisplayDevice, EDD dwFlags);
 
         /// Return Type: BOOL->int
         ///lpDevice: LPCSTR->CHAR*
@@ -1202,7 +1203,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "EnumDisplayDevicesA")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool EnumDisplayDevicesA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpDevice, uint iDevNum, ref DISPLAY_DEVICEA lpDisplayDevice, uint dwFlags);
+            [In] [MarshalAs(UnmanagedType.LPStr)] string lpDevice, uint iDevNum, ref DISPLAY_DEVICEA lpDisplayDevice, EDD dwFlags);
 
         /// Return Type: int
         ///hDlg: HWND->HWND__*
@@ -1279,7 +1280,7 @@ namespace Win32Interop.Methods
         ///hBitmapChecked: HBITMAP->HBITMAP__*
         [DllImport("user32.dll", EntryPoint = "SetMenuItemBitmaps")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetMenuItemBitmaps([In] IntPtr hMenu, uint uPosition, uint uFlags, [In] IntPtr hBitmapUnchecked, [In] IntPtr hBitmapChecked);
+        public static extern bool SetMenuItemBitmaps([In] IntPtr hMenu, uint uPosition, MF uFlags, [In] IntPtr hBitmapUnchecked, [In] IntPtr hBitmapChecked);
 
         /// Return Type: BOOL->int
         ///hMenu: HMENU->HMENU__*
@@ -1379,7 +1380,7 @@ namespace Win32Interop.Methods
         ///fByPos: UINT->unsigned int
         ///gmdiFlags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "GetMenuDefaultItem")]
-        public static extern uint GetMenuDefaultItem([In] IntPtr hMenu, uint fByPos, uint gmdiFlags);
+        public static extern uint GetMenuDefaultItem([In] IntPtr hMenu, uint fByPos, GMDI gmdiFlags);
 
         /// Return Type: HWND->HWND__*
         ///hWnd: HWND->HWND__*
@@ -1453,7 +1454,7 @@ namespace Win32Interop.Methods
         ///flags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "CheckMenuRadioItem")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CheckMenuRadioItem([In] IntPtr hmenu, uint first, uint last, uint check, uint flags);
+        public static extern bool CheckMenuRadioItem([In] IntPtr hmenu, uint first, uint last, uint check, MF flags);
 
         /// Return Type: BOOL->int
         ///lpRect: LPRECT->tagRECT*
@@ -1497,7 +1498,7 @@ namespace Win32Interop.Methods
         ///hwnd: HWND->HWND__*
         ///dwFlags: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "MonitorFromWindow")]
-        public static extern IntPtr MonitorFromWindow([In] IntPtr hwnd, uint dwFlags);
+        public static extern IntPtr MonitorFromWindow([In] IntPtr hwnd, MONITOR dwFlags);
 
         /// Return Type: int
         ///hWnd: HWND->HWND__*
@@ -1703,13 +1704,13 @@ namespace Win32Interop.Methods
         ///fInherit: BOOL->int
         ///dwDesiredAccess: ACCESS_MASK->DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "OpenInputDesktop")]
-        public static extern IntPtr OpenInputDesktop(uint dwFlags, [MarshalAs(UnmanagedType.Bool)] bool fInherit, uint dwDesiredAccess);
+        public static extern IntPtr OpenInputDesktop(DF dwFlags, [MarshalAs(UnmanagedType.Bool)] bool fInherit, uint dwDesiredAccess);
 
         /// Return Type: HMONITOR->HMONITOR__*
         ///pt: POINT->tagPOINT
         ///dwFlags: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "MonitorFromPoint")]
-        public static extern IntPtr MonitorFromPoint(Point pt, uint dwFlags);
+        public static extern IntPtr MonitorFromPoint(Point pt, MONITOR dwFlags);
 
         /// Return Type: UINT->unsigned int
         ///uCode: UINT->unsigned int
@@ -1999,7 +2000,7 @@ namespace Win32Interop.Methods
         ///dwFlags: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "SetWinEventHook")]
         public static extern IntPtr SetWinEventHook(
-            uint eventMin, uint eventMax, [In] IntPtr hmodWinEventProc, WINEVENTPROC pfnWinEventProc, uint idProcess, uint idThread, uint dwFlags);
+            uint eventMin, uint eventMax, [In] IntPtr hmodWinEventProc, WINEVENTPROC pfnWinEventProc, uint idProcess, uint idThread, WINEVENT dwFlags);
 
         /// Return Type: HHOOK->HHOOK__*
         ///nFilterType: int
@@ -2056,7 +2057,7 @@ namespace Win32Interop.Methods
         ///lprc: LPCRECT->RECT*
         ///dwFlags: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "MonitorFromRect")]
-        public static extern IntPtr MonitorFromRect([In] ref RECT lprc, uint dwFlags);
+        public static extern IntPtr MonitorFromRect([In] ref RECT lprc, MONITOR dwFlags);
 
         /// Return Type: int
         ///hWndFrom: HWND->HWND__*
@@ -2188,7 +2189,7 @@ namespace Win32Interop.Methods
         ///hProcess: HANDLE->void*
         ///uiFlags: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "GetGuiResources")]
-        public static extern uint GetGuiResources([In] IntPtr hProcess, uint uiFlags);
+        public static extern uint GetGuiResources([In] IntPtr hProcess, GR uiFlags);
 
         /// Return Type: UINT->unsigned int
         ///hDlg: HWND->HWND__*
@@ -2240,7 +2241,7 @@ namespace Win32Interop.Methods
         ///wArrows: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "EnableScrollBar")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnableScrollBar([In] IntPtr hWnd, uint wSBflags, uint wArrows);
+        public static extern bool EnableScrollBar([In] IntPtr hWnd, SB wSBflags, ESB wArrows);
 
         /// Return Type: BOOL->int
         ///hwndDlg: HWND->HWND__*
@@ -2406,7 +2407,7 @@ namespace Win32Interop.Methods
         ///prcRect: RECT*
         [DllImport("user32.dll", EntryPoint = "TrackPopupMenu")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool TrackPopupMenu([In] IntPtr hMenu, uint uFlags, int x, int y, int nReserved, [In] IntPtr hWnd, [In] IntPtr prcRect);
+        public static extern bool TrackPopupMenu([In] IntPtr hMenu, TPM uFlags, int x, int y, int nReserved, [In] IntPtr hWnd, [In] IntPtr prcRect);
 
         /// Return Type: LONG->int
         ///hdc: HDC->HDC__*
@@ -2491,7 +2492,7 @@ namespace Win32Interop.Methods
         ///flags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "ScrollWindowEx")]
         public static extern int ScrollWindowEx(
-            [In] IntPtr hWnd, int dx, int dy, [In] IntPtr prcScroll, [In] IntPtr prcClip, [In] IntPtr hrgnUpdate, IntPtr prcUpdate, uint flags);
+            [In] IntPtr hWnd, int dx, int dy, [In] IntPtr prcScroll, [In] IntPtr prcClip, [In] IntPtr hrgnUpdate, IntPtr prcUpdate, SW flags);
 
         /// Return Type: BOOL->int
         ///hWnd: HWND->HWND__*
@@ -2633,7 +2634,7 @@ namespace Win32Interop.Methods
         /// Return Type: DWORD->unsigned int
         ///flags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "GetQueueStatus")]
-        public static extern uint GetQueueStatus(uint flags);
+        public static extern uint GetQueueStatus(QS flags);
 
         /// Return Type: LONG->int
         [DllImport("user32.dll", EntryPoint = "GetMessageTime")]
@@ -2647,7 +2648,7 @@ namespace Win32Interop.Methods
         ///flags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "GetMenuStringW")]
         public static extern int GetMenuStringW(
-            [In] IntPtr hMenu, uint uIDItem, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpString, int cchMax, uint flags);
+            [In] IntPtr hMenu, uint uIDItem, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpString, int cchMax, MF flags);
 
         /// Return Type: int
         ///hMenu: HMENU->HMENU__*
@@ -2657,7 +2658,7 @@ namespace Win32Interop.Methods
         ///flags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "GetMenuStringA")]
         public static extern int GetMenuStringA(
-            [In] IntPtr hMenu, uint uIDItem, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpString, int cchMax, uint flags);
+            [In] IntPtr hMenu, uint uIDItem, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpString, int cchMax, MF flags);
 
         /// Return Type: BOOL->int
         ///hwnd: HWND->HWND__*
@@ -2739,7 +2740,7 @@ namespace Win32Interop.Methods
         ///uFlags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "DeferWindowPos")]
         public static extern IntPtr DeferWindowPos(
-            [In] IntPtr hWinPosInfo, [In] IntPtr hWnd, [In] IntPtr hWndInsertAfter, int x, int y, int cx, int cy, uint uFlags);
+            [In] IntPtr hWinPosInfo, [In] IntPtr hWnd, [In] IntPtr hWndInsertAfter, int x, int y, int cx, int cy, SWP uFlags);
 
         /// Return Type: HDDEDATA->HDDEDATA__*
         ///idInst: DWORD->unsigned int
@@ -2783,7 +2784,7 @@ namespace Win32Interop.Methods
         ///lpsa: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
         [DllImport("user32.dll", EntryPoint = "CreateDesktopW")]
         public static extern IntPtr CreateDesktopW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszDesktop, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszDevice, IntPtr pDevmode, uint dwFlags,
+            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszDesktop, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszDevice, IntPtr pDevmode, DF dwFlags,
             uint dwDesiredAccess, [In] IntPtr lpsa);
 
         /// Return Type: HDESK->HDESK__*
@@ -2795,7 +2796,7 @@ namespace Win32Interop.Methods
         ///lpsa: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
         [DllImport("user32.dll", EntryPoint = "CreateDesktopA")]
         public static extern IntPtr CreateDesktopA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpszDesktop, [In] [MarshalAs(UnmanagedType.LPStr)] string lpszDevice, IntPtr pDevmode, uint dwFlags,
+            [In] [MarshalAs(UnmanagedType.LPStr)] string lpszDesktop, [In] [MarshalAs(UnmanagedType.LPStr)] string lpszDevice, IntPtr pDevmode, DF dwFlags,
             uint dwDesiredAccess, [In] IntPtr lpsa);
 
         /// Return Type: BOOL->int
@@ -3270,7 +3271,7 @@ namespace Win32Interop.Methods
         ///dwFlags: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "AnimateWindow")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool AnimateWindow([In] IntPtr hWnd, uint dwTime, uint dwFlags);
+        public static extern bool AnimateWindow([In] IntPtr hWnd, uint dwTime, AW dwFlags);
 
         /// Return Type: HWND->HWND__*
         ///hDC: HDC->HDC__*
@@ -3327,7 +3328,7 @@ namespace Win32Interop.Methods
         ///uFlags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "SetWindowPos")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetWindowPos([In] IntPtr hWnd, [In] IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+        public static extern bool SetWindowPos([In] IntPtr hWnd, [In] IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, SWP uFlags);
 
         /// Return Type: BOOL->int
         ///cElements: int
@@ -3410,7 +3411,7 @@ namespace Win32Interop.Methods
         ///flags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "RedrawWindow")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool RedrawWindow([In] IntPtr hWnd, [In] IntPtr lprcUpdate, [In] IntPtr hrgnUpdate, uint flags);
+        public static extern bool RedrawWindow([In] IntPtr hWnd, [In] IntPtr lprcUpdate, [In] IntPtr hrgnUpdate, RDW flags);
 
         /// Return Type: BOOL->int
         ///hWnd: HWND->HWND__*
@@ -3465,7 +3466,7 @@ namespace Win32Interop.Methods
         ///dwDesiredAccess: ACCESS_MASK->DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "OpenDesktopW")]
         public static extern IntPtr OpenDesktopW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszDesktop, uint dwFlags, [MarshalAs(UnmanagedType.Bool)] bool fInherit, uint dwDesiredAccess);
+            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszDesktop, DF dwFlags, [MarshalAs(UnmanagedType.Bool)] bool fInherit, uint dwDesiredAccess);
 
         /// Return Type: HDESK->HDESK__*
         ///lpszDesktop: LPCSTR->CHAR*
@@ -3474,7 +3475,7 @@ namespace Win32Interop.Methods
         ///dwDesiredAccess: ACCESS_MASK->DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "OpenDesktopA")]
         public static extern IntPtr OpenDesktopA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpszDesktop, uint dwFlags, [MarshalAs(UnmanagedType.Bool)] bool fInherit, uint dwDesiredAccess);
+            [In] [MarshalAs(UnmanagedType.LPStr)] string lpszDesktop, DF dwFlags, [MarshalAs(UnmanagedType.Bool)] bool fInherit, uint dwDesiredAccess);
 
         /// Return Type: BOOL->int
         ///ch: WCHAR->wchar_t->unsigned short
@@ -3541,7 +3542,7 @@ namespace Win32Interop.Methods
         ///uId: UINT->unsigned int
         ///uFlags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "GetMenuState")]
-        public static extern uint GetMenuState([In] IntPtr hMenu, uint uId, uint uFlags);
+        public static extern uint GetMenuState([In] IntPtr hMenu, uint uId, MF uFlags);
 
         /// Return Type: int
         ///hWnd: HWND->HWND__*
@@ -3631,7 +3632,7 @@ namespace Win32Interop.Methods
         ///dwhkl: HKL->HKL__*
         [DllImport("user32.dll", EntryPoint = "ToUnicodeEx")]
         public static extern int ToUnicodeEx(
-            uint wVirtKey, uint wScanCode, [In] IntPtr lpKeyState, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder pwszBuff, int cchBuff, uint wFlags,
+            uint wVirtKey, uint wScanCode, [In] IntPtr lpKeyState, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder pwszBuff, int cchBuff, TU wFlags,
             [In] IntPtr dwhkl);
 
         /// Return Type: WORD->unsigned short
@@ -3675,7 +3676,7 @@ namespace Win32Interop.Methods
         ///nFlags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "PrintWindow")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool PrintWindow([In] IntPtr hwnd, [In] IntPtr hdcBlt, uint nFlags);
+        public static extern bool PrintWindow([In] IntPtr hwnd, [In] IntPtr hdcBlt, PW nFlags);
 
         /// Return Type: void
         ///dwFlags: DWORD->unsigned int
@@ -3684,7 +3685,7 @@ namespace Win32Interop.Methods
         ///dwData: DWORD->unsigned int
         ///dwExtraInfo: ULONG_PTR->unsigned int
         [DllImport("user32.dll", EntryPoint = "mouse_event")]
-        public static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint dwData, uint dwExtraInfo);
+        public static extern void mouse_event(MOUSEEVENTF dwFlags, uint dx, uint dy, uint dwData, uint dwExtraInfo);
 
         /// Return Type: BOOL->int
         ///hMnu: HMENU->HMENU__*
@@ -3695,7 +3696,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "ModifyMenuW")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool ModifyMenuW(
-            [In] IntPtr hMnu, uint uPosition, uint uFlags, [MarshalAs(UnmanagedType.SysUInt)] uint uIDNewItem,
+            [In] IntPtr hMnu, uint uPosition, MF uFlags, [MarshalAs(UnmanagedType.SysUInt)] uint uIDNewItem,
             [In] [MarshalAs(UnmanagedType.LPWStr)] string lpNewItem);
 
         /// Return Type: BOOL->int
@@ -3707,7 +3708,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "ModifyMenuA")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool ModifyMenuA(
-            [In] IntPtr hMnu, uint uPosition, uint uFlags, [MarshalAs(UnmanagedType.SysUInt)] uint uIDNewItem,
+            [In] IntPtr hMnu, uint uPosition, MF uFlags, [MarshalAs(UnmanagedType.SysUInt)] uint uIDNewItem,
             [In] [MarshalAs(UnmanagedType.LPStr)] string lpNewItem);
 
         /// Return Type: int
@@ -3780,7 +3781,7 @@ namespace Win32Interop.Methods
         ///dwFlags: DWORD->unsigned int
         ///dwExtraInfo: ULONG_PTR->unsigned int
         [DllImport("user32.dll", EntryPoint = "keybd_event")]
-        public static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, uint dwExtraInfo);
+        public static extern void keybd_event(byte bVk, byte bScan, KEYEVENTF dwFlags, uint dwExtraInfo);
 
         /// Return Type: BOOL->int
         ///lprc: RECT*
@@ -3803,7 +3804,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "InsertMenuW")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool InsertMenuW(
-            [In] IntPtr hMenu, uint uPosition, uint uFlags, [MarshalAs(UnmanagedType.SysUInt)] uint uIDNewItem,
+            [In] IntPtr hMenu, uint uPosition, MF uFlags, [MarshalAs(UnmanagedType.SysUInt)] uint uIDNewItem,
             [In] [MarshalAs(UnmanagedType.LPWStr)] string lpNewItem);
 
         /// Return Type: BOOL->int
@@ -3815,7 +3816,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "InsertMenuA")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool InsertMenuA(
-            [In] IntPtr hMenu, uint uPosition, uint uFlags, [MarshalAs(UnmanagedType.SysUInt)] uint uIDNewItem,
+            [In] IntPtr hMenu, uint uPosition, MF uFlags, [MarshalAs(UnmanagedType.SysUInt)] uint uIDNewItem,
             [In] [MarshalAs(UnmanagedType.LPStr)] string lpNewItem);
 
         /// Return Type: BOOL->int
@@ -3915,7 +3916,7 @@ namespace Win32Interop.Methods
         ///hwnd: HWND->HWND__*
         ///gaFlags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "GetAncestor")]
-        public static extern IntPtr GetAncestor([In] IntPtr hwnd, uint gaFlags);
+        public static extern IntPtr GetAncestor([In] IntPtr hwnd, GA gaFlags);
 
         /// Return Type: BOOL->int
         ///hWnd: HWND->HWND__*
@@ -3980,7 +3981,7 @@ namespace Win32Interop.Methods
         ///flags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "DrawCaption")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DrawCaption([In] IntPtr hwnd, [In] IntPtr hdc, [In] ref RECT lprect, uint flags);
+        public static extern bool DrawCaption([In] IntPtr hwnd, [In] IntPtr hdc, [In] ref RECT lprect, DC flags);
 
         /// Return Type: int
         ///hDlg: HWND->HWND__*
@@ -4055,7 +4056,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "CharPrevExA")]
         [return: MarshalAs(UnmanagedType.LPStr)]
         public static extern string CharPrevExA(
-            ushort CodePage, [In] [MarshalAs(UnmanagedType.LPStr)] string lpStart, [In] [MarshalAs(UnmanagedType.LPStr)] string lpCurrentChar, uint dwFlags);
+            CP CodePage, [In] [MarshalAs(UnmanagedType.LPStr)] string lpStart, [In] [MarshalAs(UnmanagedType.LPStr)] string lpCurrentChar, uint dwFlags);
 
         /// Return Type: LPSTR->CHAR*
         ///CodePage: WORD->unsigned short
@@ -4063,7 +4064,7 @@ namespace Win32Interop.Methods
         ///dwFlags: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "CharNextExA")]
         [return: MarshalAs(UnmanagedType.LPStr)]
-        public static extern string CharNextExA(ushort CodePage, [In] [MarshalAs(UnmanagedType.LPStr)] string lpCurrentChar, uint dwFlags);
+        public static extern string CharNextExA(CP CodePage, [In] [MarshalAs(UnmanagedType.LPStr)] string lpCurrentChar, uint dwFlags);
 
         /// Return Type: BOOL->int
         ///hMenu: HMENU->HMENU__*
@@ -4074,7 +4075,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "ChangeMenuW")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool ChangeMenuW(
-            [In] IntPtr hMenu, uint cmd, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszNewItem, uint cmdInsert, uint flags);
+            [In] IntPtr hMenu, uint cmd, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszNewItem, uint cmdInsert, MF flags);
 
         /// Return Type: BOOL->int
         ///hMenu: HMENU->HMENU__*
@@ -4084,7 +4085,7 @@ namespace Win32Interop.Methods
         ///flags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "ChangeMenuA")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool ChangeMenuA([In] IntPtr hMenu, uint cmd, [In] [MarshalAs(UnmanagedType.LPStr)] string lpszNewItem, uint cmdInsert, uint flags);
+        public static extern bool ChangeMenuA([In] IntPtr hMenu, uint cmd, [In] [MarshalAs(UnmanagedType.LPStr)] string lpszNewItem, uint cmdInsert, MF flags);
 
         /// Return Type: BOOL->int
         ///hMenu: HMENU->HMENU__*
@@ -4094,7 +4095,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "AppendMenuW")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool AppendMenuW(
-            [In] IntPtr hMenu, uint uFlags, [MarshalAs(UnmanagedType.SysUInt)] uint uIDNewItem, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpNewItem);
+            [In] IntPtr hMenu, MF uFlags, [MarshalAs(UnmanagedType.SysUInt)] uint uIDNewItem, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpNewItem);
 
         /// Return Type: BOOL->int
         ///hMenu: HMENU->HMENU__*
@@ -4104,7 +4105,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "AppendMenuA")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool AppendMenuA(
-            [In] IntPtr hMenu, uint uFlags, [MarshalAs(UnmanagedType.SysUInt)] uint uIDNewItem, [In] [MarshalAs(UnmanagedType.LPStr)] string lpNewItem);
+            [In] IntPtr hMenu, MF uFlags, [MarshalAs(UnmanagedType.SysUInt)] uint uIDNewItem, [In] [MarshalAs(UnmanagedType.LPStr)] string lpNewItem);
 
         /// Return Type: int
         ///param0: LPWSTR->WCHAR*
@@ -4157,7 +4158,7 @@ namespace Win32Interop.Methods
         ///uFlags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "RemoveMenu")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool RemoveMenu([In] IntPtr hMenu, uint uPosition, uint uFlags);
+        public static extern bool RemoveMenu([In] IntPtr hMenu, uint uPosition, MF uFlags);
 
         /// Return Type: BOOL->int
         ///lprc: LPRECT->tagRECT*
@@ -4300,7 +4301,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "DrawIconEx")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool DrawIconEx(
-            [In] IntPtr hdc, int xLeft, int yTop, [In] IntPtr hIcon, int cxWidth, int cyWidth, uint istepIfAniCur, [In] IntPtr hbrFlickerFreeDraw, uint diFlags);
+            [In] IntPtr hdc, int xLeft, int yTop, [In] IntPtr hIcon, int cxWidth, int cyWidth, uint istepIfAniCur, [In] IntPtr hbrFlickerFreeDraw, DI diFlags);
 
         /// Return Type: DWORD->unsigned int
         ///hwndParent: HWND->HWND__*
@@ -4324,7 +4325,7 @@ namespace Win32Interop.Methods
         ///uFlags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "DeleteMenu")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DeleteMenu([In] IntPtr hMenu, uint uPosition, uint uFlags);
+        public static extern bool DeleteMenu([In] IntPtr hMenu, uint uPosition, MF uFlags);
 
         /// Return Type: DWORD->unsigned int
         ///hData: HDDEDATA->HDDEDATA__*
@@ -4434,7 +4435,7 @@ namespace Win32Interop.Methods
         ///wFlags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "ToUnicode")]
         public static extern int ToUnicode(
-            uint wVirtKey, uint wScanCode, [In] IntPtr lpKeyState, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder pwszBuff, int cchBuff, uint wFlags);
+            uint wVirtKey, uint wScanCode, [In] IntPtr lpKeyState, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder pwszBuff, int cchBuff, TU wFlags);
 
         /// Return Type: int
         ///uVirtKey: UINT->unsigned int
@@ -4444,7 +4445,7 @@ namespace Win32Interop.Methods
         ///uFlags: UINT->unsigned int
         ///dwhkl: HKL->HKL__*
         [DllImport("user32.dll", EntryPoint = "ToAsciiEx")]
-        public static extern int ToAsciiEx(uint uVirtKey, uint uScanCode, [In] IntPtr lpKeyState, [Out] out ushort lpChar, uint uFlags, [In] IntPtr dwhkl);
+        public static extern int ToAsciiEx(uint uVirtKey, uint uScanCode, [In] IntPtr lpKeyState, [Out] out ushort lpChar, TA uFlags, [In] IntPtr dwhkl);
 
         /// Return Type: BOOL->int
         ///hWnd: HWND->HWND__*
@@ -4518,7 +4519,7 @@ namespace Win32Interop.Methods
         ///hWnd: HWND->HWND__*
         ///uCmd: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "GetWindow")]
-        public static extern IntPtr GetWindow([In] IntPtr hWnd, uint uCmd);
+        public static extern IntPtr GetWindow([In] IntPtr hWnd, GW uCmd);
 
         /// Return Type: HWND->HWND__*
         ///hWnd: HWND->HWND__*
@@ -4576,7 +4577,7 @@ namespace Win32Interop.Methods
         ///cy: int
         ///flags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "CopyImage")]
-        public static extern IntPtr CopyImage([In] IntPtr h, uint type, int cx, int cy, uint flags);
+        public static extern IntPtr CopyImage([In] IntPtr h, uint type, int cx, int cy, LR flags);
 
         /// Return Type: LPWSTR->WCHAR*
         ///lpszStart: LPCWSTR->WCHAR*
@@ -4743,7 +4744,7 @@ namespace Win32Interop.Methods
         ///grfFlags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "DrawEdge")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DrawEdge([In] IntPtr hdc, ref RECT qrc, uint edge, uint grfFlags);
+        public static extern bool DrawEdge([In] IntPtr hdc, ref RECT qrc, uint edge, BF grfFlags);
 
         /// Return Type: BOOL->int
         ///lprcDst: LPRECT->tagRECT*
@@ -4769,7 +4770,7 @@ namespace Win32Interop.Methods
         ///lpChar: LPWORD->WORD*
         ///uFlags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "ToAscii")]
-        public static extern int ToAscii(uint uVirtKey, uint uScanCode, [In] IntPtr lpKeyState, [Out] out ushort lpChar, uint uFlags);
+        public static extern int ToAscii(uint uVirtKey, uint uScanCode, [In] IntPtr lpKeyState, [Out] out ushort lpChar, TA uFlags);
 
         /// Return Type: BOOL->int
         ///lprc: LPRECT->tagRECT*
@@ -4805,7 +4806,7 @@ namespace Win32Interop.Methods
         ///hrgnClip: HRGN->HRGN__*
         ///flags: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "GetDCEx")]
-        public static extern IntPtr GetDCEx([In] IntPtr hWnd, [In] IntPtr hrgnClip, uint flags);
+        public static extern IntPtr GetDCEx([In] IntPtr hWnd, [In] IntPtr hrgnClip, DCX flags);
 
         /// Return Type: BOOL->int
         [DllImport("user32.dll", EntryPoint = "EndMenu")]
