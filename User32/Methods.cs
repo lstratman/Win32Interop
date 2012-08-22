@@ -2877,7 +2877,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "CallNextHookEx")]
         [return: MarshalAs(UnmanagedType.SysInt)]
         public static extern int CallNextHookEx(
-            [In] IntPtr hhk, int nCode, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam);
+            [In] IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
 
         /// Return Type: BOOL->int
         ///lpMsg: LPMSG->tagMSG*
