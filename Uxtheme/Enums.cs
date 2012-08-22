@@ -41,4 +41,33 @@ namespace Win32Interop.Enums
         BPAS_CUBIC,               // Cubic fade animation
         BPAS_SINE                 // Sinusoid fade animation
     }
+
+    [Flags]
+    public enum WTNCA : uint
+    {
+        /// <summary>
+        /// Prevents the window caption from being drawn.
+        /// </summary>
+        NODRAWCAPTION = 1,
+
+        /// <summary>
+        /// Prevents the system icon from being drawn.
+        /// </summary>
+        NODRAWICON = 2,
+
+        /// <summary>
+        /// Prevents the system icon menu from appearing.
+        /// </summary>
+        NOSYSMENU = 4,
+
+        /// <summary>
+        /// Prevents mirroring of the question mark, even in right-to-left (RTL) layout.
+        /// </summary>
+        NOMIRRORHELP = 8,
+
+        /// <summary>
+        /// A mask that contains all the valid bits.
+        /// </summary>
+        VALIDBITS = NODRAWCAPTION | NODRAWICON | NOSYSMENU | NOMIRRORHELP
+    }
 }
