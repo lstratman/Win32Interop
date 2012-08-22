@@ -35,8 +35,8 @@ namespace Win32Interop.Structs
     [StructLayout(LayoutKind.Sequential)]
     public struct WTA_OPTIONS
     {
-        public uint dwFlags;          // values for each style option specified in the bitmask
-        public uint dwMask;           // bitmask for flags that are changing
+        public WTNCA dwFlags;          // values for each style option specified in the bitmask
+        public WTNCA dwMask;           // bitmask for flags that are changing
         // valid options are: WTNCA_NODRAWCAPTION, WTNCA_NODRAWICON, WTNCA_NOSYSMENU
     }
 
