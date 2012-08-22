@@ -18,6 +18,7 @@ namespace Win32Interop.Methods
 //  IntPtr IntPtr - The handle to the Target window that will receive feedback
 //                                                                                                 
 //---------------------------------------------------------------------------
+[DllImport("uxtheme.dll", EntryPoint = "BeginPanningFeedback")]
 public static extern bool
 BeginPanningFeedback(
 [In] IntPtr hwnd); 
@@ -49,6 +50,7 @@ BeginPanningFeedback(
 //        the second call would be with the parameter as 20 pixels as opposed to 10
 //   Eg : UpdatePanningFeedback(hwnd, 10, 10, TRUE)
 // 
+        [DllImport("uxtheme.dll", EntryPoint = "UpdatePanningFeedback")]
 public static extern bool
 UpdatePanningFeedback(
 	[In] IntPtr hwnd,
@@ -72,6 +74,7 @@ UpdatePanningFeedback(
 //                      Either ways the method will try to restore the moved window.
 //                      The latter case exists for compatibility with legacy apps. 
 //
+        [DllImport("uxtheme.dll", EntryPoint = "EndPanningFeedback")]
 public static extern bool
 EndPanningFeedback(
 	[In] IntPtr hwnd, 
@@ -170,6 +173,7 @@ OpenThemeDataEx(
 //  hTheme              - open theme data handle (returned from prior call
 //                        to OpenThemeData() API).
 //---------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "CloseThemeData")]
 public static extern int
 CloseThemeData(
     IntPtr hTheme
@@ -209,6 +213,7 @@ CloseThemeData(
 //  pRect               - defines the size/location of the part
 //  pClipRect           - optional clipping rect (don't draw outside it)
 //------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "DrawThemeBackground")]
 public static extern int
 DrawThemeBackground(
     IntPtr hTheme,
@@ -235,6 +240,7 @@ DrawThemeBackground(
 //  pRect               - defines the size/location of the part
 //  pOptions            - ptr to optional params
 //------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "DrawThemeBackgroundEx")]
 public static extern int
 DrawThemeBackgroundEx(
     IntPtr hTheme,
@@ -287,6 +293,7 @@ DrawThemeText(
 //      pBoundingRect   - the outer RECT of the part being drawn
 //      pContentRect    - RECT to receive the content area
 //-------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeBackgroundContentRect")]
 public static extern int
 GetThemeBackgroundContentRect(
     IntPtr hTheme,
@@ -309,6 +316,7 @@ GetThemeBackgroundContentRect(
 //      pContentRect    - RECT that defines the content area
 //      pBoundingRect   - RECT to receive the overall size/location of part
 //-------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeBackgroundExtent")]
 public static extern int
 GetThemeBackgroundExtent(
     IntPtr hTheme,
@@ -334,6 +342,7 @@ GetThemeBackgroundExtent(
 //  pRect               - the RECT used to draw the part
 //  pRegion             - receives handle to calculated region
 //-------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeBackgroundRegion")]
 public static extern int
 GetThemeBackgroundRegion(
     IntPtr hTheme,
@@ -355,6 +364,7 @@ GetThemeBackgroundRegion(
 //  eSize               - the type of size to be retreived
 //  psz                 - receives the specified size of the part 
 //-------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemePartSize")]
 public static extern int
 GetThemePartSize(
     IntPtr hTheme,
@@ -405,6 +415,7 @@ GetThemeTextExtent(
 //  iStateId            - state number (of the part) 
 //  ptm                 - receives the font info
 //-------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeTextMetrics")]
 public static extern int
 GetThemeTextMetrics(
     IntPtr hTheme,
@@ -438,6 +449,7 @@ GetThemeTextMetrics(
 //                        HTRIGHT, HTTOPRIGHT, HTBOTTOMRIGHT,
 //                        HTTOP, HTBOTTOM, HTCLIENT
 //-------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "HitTestThemeBackground")]
 public static extern int
 HitTestThemeBackground(
     IntPtr hTheme,
@@ -463,6 +475,7 @@ HitTestThemeBackground(
 //  uFlags              - Same as DrawEdge() API
 //  pContentRect        - Receives the interior rect if (uFlags & BF_ADJUST)
 //------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "DrawThemeEdge")]
 public static extern int
 DrawThemeEdge(
     IntPtr hTheme,
@@ -487,6 +500,7 @@ DrawThemeEdge(
 //  himl                - handle to IMAGELIST 
 //  iImageIndex         - index into IMAGELIST (which icon to draw)
 //------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "DrawThemeIcon")]
 public static extern int
 DrawThemeIcon(
     IntPtr hTheme,
@@ -506,6 +520,7 @@ DrawThemeIcon(
 //  iPartId             - part number to find definition for
 //  iStateId            - state number of part
 //---------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "IsThemePartDefined")]
 public static extern bool
 IsThemePartDefined(
     IntPtr hTheme,
@@ -523,6 +538,7 @@ IsThemePartDefined(
 //  iPartId             - part number 
 //  iStateId            - state number of part
 //---------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "IsThemeBackgroundPartiallyTransparent")]
 public static extern bool
 IsThemeBackgroundPartiallyTransparent(
     IntPtr hTheme,
@@ -556,6 +572,7 @@ IsThemeBackgroundPartiallyTransparent(
 //  iPropId             - the property number to get the value for
 //  pColor              - receives the value of the property
 //-----------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeColor")]
 public static extern int
 GetThemeColor(
     IntPtr hTheme,
@@ -576,6 +593,7 @@ GetThemeColor(
 //  iPropId             - the property number to get the value for
 //  piVal               - receives the value of the property
 //-----------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeMetric")]
 public static extern int
 GetThemeMetric(
     IntPtr hTheme,
@@ -616,6 +634,7 @@ GetThemeString(
 //  iPropId             - the property number to get the value for
 //  pfVal               - receives the value of the property
 //-----------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeBool")]
 public static extern int
 GetThemeBool(
     IntPtr hTheme,
@@ -634,6 +653,7 @@ GetThemeBool(
 //  iPropId             - the property number to get the value for
 //  piVal               - receives the value of the property
 //-----------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeInt")]
 public static extern int
 GetThemeInt(
     IntPtr hTheme,
@@ -652,6 +672,7 @@ GetThemeInt(
 //  iPropId             - the property number to get the value for
 //  piVal               - receives the value of the enum (cast to int*)
 //-----------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeEnumValue")]
 public static extern int
 GetThemeEnumValue(
     IntPtr hTheme,
@@ -671,6 +692,7 @@ GetThemeEnumValue(
 //  iPropId             - the property number to get the value for
 //  pPoint              - receives the value of the position property
 //-----------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemePosition")]
 public static extern int
 GetThemePosition(
     IntPtr hTheme,
@@ -691,6 +713,7 @@ GetThemePosition(
 //  pFont               - receives the value of the LOGFONT property
 //                        (scaled for the current logical screen dpi) 
 //-----------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeFont")]
 public static extern int
 GetThemeFont(
     IntPtr hTheme,
@@ -710,6 +733,7 @@ GetThemeFont(
 //  iPropId             - the property number to get the value for
 //  pRect               - receives the value of the RECT property
 //-----------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeRect")]
 public static extern int
 GetThemeRect(
     IntPtr hTheme,
@@ -730,6 +754,7 @@ GetThemeRect(
 //      prc             - RECT for area to be drawn into
 //      pMargins        - receives the value of the MARGINS property
 //-----------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeMargins")]
 public static extern int
 GetThemeMargins(
     IntPtr hTheme,
@@ -750,6 +775,7 @@ GetThemeMargins(
 //      iPropId         - the property number to get the value for
 //      pIntList        - receives the value of the INTLIST property
 //-----------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeIntList")]
 public static extern int
 GetThemeIntList(
     IntPtr hTheme,
@@ -771,6 +797,7 @@ GetThemeIntList(
 //  iPropId             - the property number to search for
 //  pOrigin             - receives the value of the property origin
 //-----------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemePropertyOrigin")]
 public static extern int
 GetThemePropertyOrigin(
     IntPtr hTheme,
@@ -847,6 +874,7 @@ GetThemeFilename(
 //
 //  iColorId            - the system color index defined in winuser.h
 //---------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeSysColor")]
 public static extern COLORREF
 GetThemeSysColor(
     IntPtr hTheme,
@@ -864,6 +892,7 @@ GetThemeSysColor(
 //
 //  iColorId            - the system color index defined in winuser.h
 //---------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeSysColorBrush")]
 public static extern IntPtr
 GetThemeSysColorBrush(
     IntPtr hTheme,
@@ -880,6 +909,7 @@ GetThemeSysColorBrush(
 //  iBoolId             - the TMT_XXX bool number (first BOOL
 //                        is TMT_FLATMENUS)
 //---------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeSysBool")]
 public static extern bool
 GetThemeSysBool(
     IntPtr hTheme,
@@ -911,6 +941,7 @@ GetThemeSysBool(
 //                        when hTheme is NULL, iSizeId is passed directly
 //                        to the GetSystemMetrics() function
 //---------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeSysSize")]
 public static extern int
 GetThemeSysSize(
     IntPtr hTheme,
@@ -974,6 +1005,7 @@ GetThemeSysString(
 //
 //  piValue             - ptr to int to receive value
 //---------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeSysInt")]
 public static extern int
 GetThemeSysInt(
     IntPtr hTheme,
@@ -988,6 +1020,7 @@ GetThemeSysInt(
 //                        use the API "IsAppThemed()" to test if a theme is
 //                        active for the calling process.
 //---------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "IsThemeActive")]
 public static extern bool
 IsThemeActive();
 
@@ -995,6 +1028,7 @@ IsThemeActive();
 //  IsAppThemed()       - returns TRUE if a theme is active and available to
 //                        the current process
 //---------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "IsAppThemed")]
 public static extern bool
 IsAppThemed();
 
@@ -1005,6 +1039,7 @@ IsAppThemed();
 //
 //      IntPtr            - the window to get the IntPtr of
 //---------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetWindowTheme")]
 public static extern IntPtr
 GetWindowTheme(
     IntPtr hwnd
@@ -1025,6 +1060,7 @@ GetWindowTheme(
 //                     ETDT_ENABLETAB to enable the theme-defined background 
 //                          texturing using the Tab texture
 //---------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "EnableThemeDialogTexture")]
 public static extern int
 EnableThemeDialogTexture(
     [In] IntPtr hwnd,
@@ -1038,6 +1074,7 @@ EnableThemeDialogTexture(
 //
 //      hdlg         - the window handle of the target dialog
 //---------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "IsThemeDialogTextureEnabled")]
 public static extern bool
 IsThemeDialogTextureEnabled(
     [In] IntPtr hwnd
@@ -1047,6 +1084,7 @@ IsThemeDialogTextureEnabled(
 //  GetThemeAppProperties()
 //                      - returns the app property flags that control theming
 //---------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeAppProperties")]
 public static extern uint
 GetThemeAppProperties();
 
@@ -1056,6 +1094,7 @@ GetThemeAppProperties();
 //
 //      dwFlags         - the flag values to be set
 //---------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "SetThemeAppProperties")]
 public static extern void
 SetThemeAppProperties(
     uint dwFlags
@@ -1125,6 +1164,7 @@ GetThemeDocumentationProperty(
 //  prc                 - (optional) rect that defines the area to be 
 //                        drawn (CHILD coordinates)
 //---------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "DrawThemeParentBackground")]
 public static extern int
 DrawThemeParentBackground(
     IntPtr hwnd,
@@ -1141,6 +1181,7 @@ DrawThemeParentBackground(
 //                      - if TRUE, enable themeing and, if user previously
 //                        had a theme active, make it active now.
 //---------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "EnableTheming")]
 public static extern int
 EnableTheming(
     bool fEnable
@@ -1173,6 +1214,7 @@ EnableTheming(
 //
 //  Return value        - S_OK if something was painted, S_FALSE if not.
 //---------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "DrawThemeParentBackgroundEx")]
 public static extern int
 DrawThemeParentBackgroundEx(
     IntPtr hwnd,
@@ -1181,6 +1223,7 @@ DrawThemeParentBackgroundEx(
     ref RECT prc
     );
 
+        [DllImport("uxtheme.dll", EntryPoint = "SetWindowThemeAttribute")]
 public static extern int
 SetWindowThemeAttribute(
     IntPtr hwnd,
@@ -1189,6 +1232,7 @@ SetWindowThemeAttribute(
     uint cbAttribute
     );
 
+        [DllImport("uxtheme.dll", EntryPoint = "SetWindowThemeNonClientAttributes")]
         public static extern int SetWindowThemeNonClientAttributes(IntPtr hwnd, uint dwMask, uint dwAttributes);
 
 //---------------------------------------------------------------------------
@@ -1200,6 +1244,7 @@ SetWindowThemeAttribute(
 // compiling for all platforms.
 
 // Callback function used by DrawThemeTextEx, instead of DrawText
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
 public delegate int DTT_CALLBACK_PROC
 (
     IntPtr hdc,
@@ -1237,6 +1282,7 @@ DrawThemeTextEx(
 //                    file when iPropId==TMT_DISKSTREAM (use GetCurrentThemeName 
 //                    and LoadLibraryEx(LOAD_LIBRARY_AS_DATAFILE)
 //-----------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeBitmap")]
 public static extern int
 GetThemeBitmap(
     IntPtr hTheme,
@@ -1260,6 +1306,7 @@ GetThemeBitmap(
 //                    file when iPropId==TMT_DISKSTREAM (use GetCurrentThemeName 
 //                    and LoadLibraryEx(LOAD_LIBRARY_AS_DATAFILE)
 //-----------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeStream")]
 public static extern int
 GetThemeStream(
     IntPtr hTheme,
@@ -1277,6 +1324,7 @@ GetThemeStream(
 //                        Should be called prior to BeginBufferedPaint,
 //                        and should have a matching BufferedPaintUnInit.
 //------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "BufferedPaintInit")]
 public static extern int
 BufferedPaintInit(
     );
@@ -1286,6 +1334,7 @@ BufferedPaintInit(
 //                          Should be called once for each call to BufferedPaintInit,
 //                          when calls to BeginBufferedPaint are no longer needed.
 //------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "BufferedPaintUnInit")]
 public static extern int
 BufferedPaintUnInit(
     );
@@ -1299,7 +1348,7 @@ BufferedPaintUnInit(
 //    pPaintParams       - Paint operation parameters (see BP_PAINTPARAMS)
 //    phBufferedPaint    - Pointer to receive handle to new buffered paint context
 //------------------------------------------------------------------------
-
+        [DllImport("uxtheme.dll", EntryPoint = "BeginBufferedPaint")]
 public static extern IntPtr
 BeginBufferedPaint(
     IntPtr hdcTarget,
@@ -1316,6 +1365,7 @@ BeginBufferedPaint(
 //    hBufferedPaint   - handle to buffered paint context
 //    fUpdateTarget    - update target DC
 //------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "EndBufferedPaint")]
 public static extern int
 EndBufferedPaint(
     IntPtr hBufferedPaint,
@@ -1328,6 +1378,7 @@ EndBufferedPaint(
 //    hBufferedPaint             - handle to buffered paint context
 //    prc                        - pointer to receive target rectangle
 //------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetBufferedPaintTargetRect")]
 public static extern int
 GetBufferedPaintTargetRect(
     IntPtr hBufferedPaint,
@@ -1339,6 +1390,7 @@ GetBufferedPaintTargetRect(
 //
 //    hBufferedPaint           - handle to buffered paint context
 //------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetBufferedPaintTargetDC")]
 public static extern IntPtr
 GetBufferedPaintTargetDC(
     IntPtr hBufferedPaint
@@ -1349,6 +1401,7 @@ GetBufferedPaintTargetDC(
 //
 //    hBufferedPaint     - handle to buffered paint context
 //------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetBufferedPaintDC")]
 public static extern IntPtr
 GetBufferedPaintDC(
     IntPtr hBufferedPaint
@@ -1362,6 +1415,7 @@ GetBufferedPaintDC(
 //    pcxRow               - pointer to receive width of buffer bitmap, in pixels;
 //                           this value may not necessarily be equal to the buffer width
 //------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetBufferedPaintBits")]
 public static extern int
 GetBufferedPaintBits(
     IntPtr hBufferedPaint,
@@ -1375,6 +1429,7 @@ GetBufferedPaintBits(
 //    hBufferedPaint     - handle to buffered paint context
 //    prc                - rectangle to clear; NULL specifies entire buffer
 //------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "BufferedPaintClear")]
 public static extern int
 BufferedPaintClear(
     IntPtr hBufferedPaint,
@@ -1388,6 +1443,7 @@ BufferedPaintClear(
 //    prc                   - rectangle to set alpha in; NULL specifies entire buffer
 //    alpha                 - alpha value to set in the given rectangle
 //------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "BufferedPaintSetAlpha")]
 public static extern int
 BufferedPaintSetAlpha(
     IntPtr hBufferedPaint,
@@ -1400,11 +1456,13 @@ BufferedPaintSetAlpha(
 //
 //    IntPtr                           - window on which to stop all animations
 //------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "BufferedPaintStopAllAnimations")]
 public static extern int
 BufferedPaintStopAllAnimations(
     IntPtr hwnd
     );
 
+        [DllImport("uxtheme.dll", EntryPoint = "BeginBufferedAnimation")]
 public static extern IntPtr
 BeginBufferedAnimation(
     IntPtr hwnd,
@@ -1417,12 +1475,14 @@ BeginBufferedAnimation(
     out IntPtr phdcTo
     );
 
+        [DllImport("uxtheme.dll", EntryPoint = "EndBufferedAnimation")]
 public static extern int
 EndBufferedAnimation(
     IntPtr hbpAnimation,
     bool fUpdateTarget
     );
 
+        [DllImport("uxtheme.dll", EntryPoint = "BufferedPaintRenderAnimation")]
 public static extern bool
 BufferedPaintRenderAnimation(
     IntPtr hwnd,
@@ -1434,6 +1494,7 @@ BufferedPaintRenderAnimation(
 // process (themes are active). 
 // Roughly equivalent to "DwmIsCompositionEnabled() && IsAppthemed()"
 //----------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "IsCompositionActive")]
 public static extern bool IsCompositionActive();
 
 //------------------------------------------------------------------------
@@ -1447,6 +1508,7 @@ public static extern bool IsCompositionActive();
 //  iPropId             - property id 
 //  pdwDuration         - receives the transition duration
 //------------------------------------------------------------------------
+        [DllImport("uxtheme.dll", EntryPoint = "GetThemeTransitionDuration")]
 public static extern int
 GetThemeTransitionDuration(
     IntPtr hTheme,
