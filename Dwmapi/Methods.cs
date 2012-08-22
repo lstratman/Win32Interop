@@ -73,7 +73,7 @@ DwmGetWindowAttribute(
 [DllImport("dwmapi.dll", EntryPoint = "DwmIsCompositionEnabled")]
 public static extern int 
 DwmIsCompositionEnabled(
-    [Out] IntPtr pfEnabled
+    out bool pfEnabled
     );
 
 [DllImport("dwmapi.dll", EntryPoint = "DwmModifyPreviousDxFrameDuration")]
