@@ -1463,7 +1463,7 @@ namespace Win32Interop.Methods
         ///dwExStyle: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "AdjustWindowRectEx")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool AdjustWindowRectEx(ref RECT lpRect, uint dwStyle, [MarshalAs(UnmanagedType.Bool)] bool bMenu, uint dwExStyle);
+        public static extern bool AdjustWindowRectEx(ref RECT lpRect, WS dwStyle, [MarshalAs(UnmanagedType.Bool)] bool bMenu, WS_EX dwExStyle);
 
         /// Return Type: BOOL->int
         ///nCode: int
@@ -1908,7 +1908,7 @@ namespace Win32Interop.Methods
         ///lParam: LPARAM->LONG_PTR->int
         [DllImport("user32.dll", EntryPoint = "CreateMDIWindowW")]
         public static extern IntPtr CreateMDIWindowW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpClassName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpWindowName, uint dwStyle, int X, int Y,
+            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpClassName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpWindowName, WS dwStyle, int X, int Y,
             int nWidth, int nHeight, [In] IntPtr hWndParent, [In] IntPtr hInstance, [MarshalAs(UnmanagedType.SysInt)] int lParam);
 
         /// Return Type: HWND->HWND__*
@@ -1924,7 +1924,7 @@ namespace Win32Interop.Methods
         ///lParam: LPARAM->LONG_PTR->int
         [DllImport("user32.dll", EntryPoint = "CreateMDIWindowA")]
         public static extern IntPtr CreateMDIWindowA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpClassName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpWindowName, uint dwStyle, int X, int Y,
+            [In] [MarshalAs(UnmanagedType.LPStr)] string lpClassName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpWindowName, WS dwStyle, int X, int Y,
             int nWidth, int nHeight, [In] IntPtr hWndParent, [In] IntPtr hInstance, [MarshalAs(UnmanagedType.SysInt)] int lParam);
 
         /// Return Type: BOOL->int
@@ -1948,7 +1948,7 @@ namespace Win32Interop.Methods
         ///bMenu: BOOL->int
         [DllImport("user32.dll", EntryPoint = "AdjustWindowRect")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool AdjustWindowRect(ref RECT lpRect, uint dwStyle, [MarshalAs(UnmanagedType.Bool)] bool bMenu);
+        public static extern bool AdjustWindowRect(ref RECT lpRect, WS dwStyle, [MarshalAs(UnmanagedType.Bool)] bool bMenu);
 
         /// Return Type: HWND->HWND__*
         ///Point: POINT->tagPOINT
@@ -2344,7 +2344,7 @@ namespace Win32Interop.Methods
         ///lpParam: LPVOID->void*
         [DllImport("user32.dll", EntryPoint = "CreateWindowExW")]
         public static extern IntPtr CreateWindowExW(
-            uint dwExStyle, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpClassName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpWindowName, uint dwStyle,
+            WS_EX dwExStyle, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpClassName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpWindowName, WS dwStyle,
             int X, int Y, int nWidth, int nHeight, [In] IntPtr hWndParent, [In] IntPtr hMenu, [In] IntPtr hInstance, [In] IntPtr lpParam);
 
         /// Return Type: HWND->HWND__*
@@ -2362,7 +2362,7 @@ namespace Win32Interop.Methods
         ///lpParam: LPVOID->void*
         [DllImport("user32.dll", EntryPoint = "CreateWindowExA")]
         public static extern IntPtr CreateWindowExA(
-            uint dwExStyle, [In] [MarshalAs(UnmanagedType.LPStr)] string lpClassName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpWindowName, uint dwStyle,
+            WS_EX dwExStyle, [In] [MarshalAs(UnmanagedType.LPStr)] string lpClassName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpWindowName, WS dwStyle,
             int X, int Y, int nWidth, int nHeight, [In] IntPtr hWndParent, [In] IntPtr hMenu, [In] IntPtr hInstance, [In] IntPtr lpParam);
 
         /// Return Type: HMENU->HMENU__*
