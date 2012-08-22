@@ -2875,8 +2875,7 @@ namespace Win32Interop.Methods
         ///wParam: WPARAM->UINT_PTR->unsigned int
         ///lParam: LPARAM->LONG_PTR->int
         [DllImport("user32.dll", EntryPoint = "CallNextHookEx")]
-        [return: MarshalAs(UnmanagedType.SysInt)]
-        public static extern int CallNextHookEx(
+        public static extern IntPtr CallNextHookEx(
             [In] IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
 
         /// Return Type: BOOL->int
