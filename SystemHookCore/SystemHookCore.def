@@ -1,0 +1,6 @@
+LIBRARY	SystemHookCore
+
+EXPORTS
+	SetUserHookCallback
+	UninitializeHook
+	Dispose

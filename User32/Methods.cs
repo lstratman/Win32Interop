@@ -1470,23 +1470,38 @@ namespace Win32Interop.Methods
         ///pfnFilterProc: HOOKPROC
         [DllImport("user32.dll", EntryPoint = "UnhookWindowsHook")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool UnhookWindowsHook(int nCode, HOOKPROC pfnFilterProc);
+        protected static extern bool UnhookWindowsHookInternal(WH nCode, HOOKPROC pfnFilterProc);
+
+        public static bool UnhookWindowsHook(WH nCode, HOOKPROC pfnFilterProc)
+        {
+            if (nCode == WH.WH_GETMESSAGE)
+                return UninitializeHook(nCode);
+
+            return UnhookWindowsHookInternal(nCode, pfnFilterProc);
+        }
 
         /// Return Type: HHOOK->HHOOK__*
         ///idHook: int
         ///lpfn: HOOKPROC
         ///hmod: HINSTANCE->HINSTANCE__*
         ///dwThreadId: DWORD->unsigned int
-        [DllImport("user32.dll", EntryPoint = "SetWindowsHookExW")]
-        public static extern IntPtr SetWindowsHookExW(int idHook, HOOKPROC lpfn, [In] IntPtr hmod, uint dwThreadId);
+        [DllImport("user32.dll", EntryPoint = "SetWindowsHookEx")]
+        protected static extern IntPtr SetWindowsHookExInternal(WH idHook, HOOKPROC lpfn, [In] IntPtr hmod, uint dwThreadId);
 
-        /// Return Type: HHOOK->HHOOK__*
-        ///idHook: int
-        ///lpfn: HOOKPROC
-        ///hmod: HINSTANCE->HINSTANCE__*
-        ///dwThreadId: DWORD->unsigned int
-        [DllImport("user32.dll", EntryPoint = "SetWindowsHookExA")]
-        public static extern IntPtr SetWindowsHookExA(int idHook, HOOKPROC lpfn, [In] IntPtr hmod, uint dwThreadId);
+        [DllImport("SystemHookCore.dll", EntryPoint = "SetUserHookCallback")]
+        protected static extern IntPtr SetUserHookCallback(WH hookID, HOOKPROC lpfn, uint threadId);
+
+        [DllImport("SystemHookCore.dll", EntryPoint = "UninitializeHook")]
+        protected static extern bool UninitializeHook(WH hookType);
+
+        public static IntPtr SetWindowsHookEx(WH idHook, HOOKPROC lpfn, IntPtr hmod, uint dwThreadId)
+        {
+            if (idHook == WH.WH_GETMESSAGE)
+                return SetUserHookCallback(idHook, lpfn, dwThreadId);
+
+            else
+                return SetWindowsHookExInternal(idHook, lpfn, hmod, dwThreadId);
+        }
 
         /// Return Type: BOOL->int
         ///uMSeconds: UINT->unsigned int
@@ -2005,14 +2020,8 @@ namespace Win32Interop.Methods
         /// Return Type: HHOOK->HHOOK__*
         ///nFilterType: int
         ///pfnFilterProc: HOOKPROC
-        [DllImport("user32.dll", EntryPoint = "SetWindowsHookW")]
-        public static extern IntPtr SetWindowsHookW(int nFilterType, HOOKPROC pfnFilterProc);
-
-        /// Return Type: HHOOK->HHOOK__*
-        ///nFilterType: int
-        ///pfnFilterProc: HOOKPROC
-        [DllImport("user32.dll", EntryPoint = "SetWindowsHookA")]
-        public static extern IntPtr SetWindowsHookA(int nFilterType, HOOKPROC pfnFilterProc);
+        [DllImport("user32.dll", EntryPoint = "SetWindowsHook")]
+        public static extern IntPtr SetWindowsHook(int nFilterType, HOOKPROC pfnFilterProc);
 
         /// Return Type: BOOL->int
         ///hcur: HCURSOR->HICON->HICON__*
