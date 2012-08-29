@@ -1153,11 +1153,6 @@ namespace Win32Interop.Enums
         WM_INPUT = 0x00FF,
 
         /// <summary>
-        /// This message filters for keyboard messages.
-        /// </summary>
-        WM_KEYFIRST = 0x0100,
-
-        /// <summary>
         /// The WM_KEYDOWN message is posted to the window with the keyboard focus when a nonsystem key is pressed. A nonsystem key is a key that is pressed 
         /// when the ALT key is not pressed. 
         /// </summary>
@@ -1219,11 +1214,6 @@ namespace Win32Interop.Enums
         WM_UNICHAR = 0x0109,
 
         /// <summary>
-        /// This message filters for keyboard messages.
-        /// </summary>
-        WM_KEYLAST = 0x0109,
-
-        /// <summary>
         /// Sent immediately before the IME generates the composition string as a result of a keystroke. A window receives this message through its WindowProc 
         /// function. 
         /// </summary>
@@ -1239,7 +1229,6 @@ namespace Win32Interop.Enums
         /// function. 
         /// </summary>
         WM_IME_COMPOSITION = 0x010F,
-        WM_IME_KEYLAST = 0x010F,
 
         /// <summary>
         /// The WM_INITDIALOG message is sent to the dialog box procedure immediately before a dialog box is displayed. Dialog box procedures typically use 

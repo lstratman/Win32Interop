@@ -25,52 +25,35 @@ map<int, HHOOK> hooks;
 //
 HINSTANCE g_appInstance = NULL;
 
-static LRESULT CALLBACK InternalMouseHookCallback(int code, WPARAM wparam, LPARAM lparam)
+static LRESULT CALLBACK InternalExecuteCallback(int code, WPARAM wparam, LPARAM lparam, int messageType)
 {
-	map <int, HHOOK> :: const_iterator hook = hooks.find(WH_MOUSE_LL);
+	map <int, HHOOK> :: const_iterator hook = hooks.find(messageType);
 
 	if (code >= 0)
 	{
-		map <int, HOOKPROC> :: const_iterator callback = callbacks.find(WH_MOUSE_LL);
+		map <int, HOOKPROC> :: const_iterator callback = callbacks.find(messageType);
 
 		if (callback != callbacks.end())
-			((HOOKPROC)callback->second)(code, wparam, lparam);
+			return ((HOOKPROC)callback->second)(code, wparam, lparam);
 	}
 
 	else if (hook != hooks.end())
 		return CallNextHookEx(hook->second, code, wparam, lparam);
+}
+
+static LRESULT CALLBACK InternalMouseHookCallback(int code, WPARAM wparam, LPARAM lparam)
+{
+	return InternalExecuteCallback(code, wparam, lparam, WH_MOUSE_LL);
 }
 
 static LRESULT CALLBACK InternalKeyboardHookCallback(int code, WPARAM wparam, LPARAM lparam)
 {
-	map <int, HHOOK> :: const_iterator hook = hooks.find(WH_KEYBOARD_LL);
-
-	if (code >= 0)
-	{
-		map <int, HOOKPROC> :: const_iterator callback = callbacks.find(WH_KEYBOARD_LL);
-
-		if (callback != callbacks.end())
-			((HOOKPROC)callback->second)(code, wparam, lparam);
-	}
-
-	else if (hook != hooks.end())
-		return CallNextHookEx(hook->second, code, wparam, lparam);
+	return InternalExecuteCallback(code, wparam, lparam, WH_KEYBOARD_LL);
 }
 
 static LRESULT CALLBACK InternalGetMessageHookCallback(int code, WPARAM wparam, LPARAM lparam)
 {
-	map <int, HHOOK> :: const_iterator hook = hooks.find(WH_GETMESSAGE);
-
-	if (code >= 0)
-	{
-		map <int, HOOKPROC> :: const_iterator callback = callbacks.find(WH_GETMESSAGE);
-
-		if (callback != callbacks.end())
-			((HOOKPROC)callback->second)(code, wparam, lparam);
-	}
-
-	else if (hook != hooks.end())
-		return CallNextHookEx(hook->second, code, wparam, lparam);
+	return InternalExecuteCallback(code, wparam, lparam, WH_GETMESSAGE);
 }
 
 bool UninitializeHook(int hookID)
@@ -110,7 +93,7 @@ HHOOK SetUserHookCallback(int hookID, HOOKPROC lpfn, UINT threadID)
 	switch (hookID)
 	{
 		case WH_GETMESSAGE:
-			callbackProc = InternalMouseHookCallback;
+			callbackProc = InternalGetMessageHookCallback;
 			break;
 
 		case WH_KEYBOARD_LL:

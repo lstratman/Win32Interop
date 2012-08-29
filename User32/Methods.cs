@@ -62,7 +62,7 @@ namespace Win32Interop.Methods
     ///wParam: WPARAM->UINT_PTR->unsigned int
     ///lParam: LPARAM->LONG_PTR->int
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int HOOKPROC(int code, IntPtr wParam, IntPtr lParam);
+    public delegate IntPtr HOOKPROC(int code, IntPtr wParam, IntPtr lParam);
 
     /// Return Type: void
     ///hWinEventHook: HWINEVENTHOOK->HWINEVENTHOOK__*
