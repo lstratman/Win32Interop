@@ -12,6 +12,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win32Interop.Dwmapi", "Dwma
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SystemHookCore", "SystemHookCore\SystemHookCore.vcxproj", "{A558485A-58F7-4748-A0BE-EE1BB01732F5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReSharper Settings", "ReSharper Settings", "{CAA7C6FB-9420-4D76-AC05-19F3D7DEDC84}"
+	ProjectSection(SolutionItems) = preProject
+		Win32Interop.sln.DotSettings = Win32Interop.sln.DotSettings
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
