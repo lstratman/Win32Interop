@@ -1,233 +1,353 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using Win32Interop.Enums;
+using Win32Interop.Methods;
 
+// ReSharper disable CheckNamespace
 namespace Win32Interop.Structs
+// ReSharper restore CheckNamespace
 {
-    [StructLayout(LayoutKind.Sequential)]
-    public struct DWM_BLURBEHIND
-    {
-        uint dwFlags;
-        bool fEnable;
-        IntPtr hRgnBlur;
-        bool fTransitionOnMaximized;
-    }
+	// ReSharper disable InconsistentNaming
+	/// <summary>
+	/// Specifies Desktop Window Manager (DWM) blur-behind properties. Used by the DwmEnableBlurBehindWindow function.
+	/// </summary>
+	[StructLayout(LayoutKind.Sequential)]
+	public struct DWM_BLURBEHIND
+	{
+		/// <summary>
+		/// A bitwise combination of DWM Blur Behind constant values that indicates which of the members of this structure have been set.
+		/// </summary>
+		public uint dwFlags;
 
-    [StructLayout(LayoutKind.Sequential)]
-    public struct DWM_THUMBNAIL_PROPERTIES
-    {
-        uint dwFlags;
-        RECT rcDestination;
-        RECT rcSource;
-        byte opacity;
-        bool fVisible;
-        bool fSourceClientAreaOnly;
-    }
+		/// <summary>
+		/// TRUE to register the window handle to DWM blur behind; FALSE to unregister the window handle from DWM blur behind.
+		/// </summary>
+		public bool fEnable;
 
-    [StructLayout(LayoutKind.Sequential)]
-    public struct UNSIGNED_RATIO
-    {
-        UInt32 uiNumerator;
-        UInt32 uiDenominator;
-    }
+		/// <summary>
+		/// The region within the client area where the blur behind will be applied. A NULL value will apply the blur behind the entire client area.
+		/// </summary>
+		public IntPtr hRgnBlur;
 
-    [StructLayout(LayoutKind.Sequential)]
-    public struct DWM_PRESENT_PARAMETERS
-    {
-        UInt32 cbSize;
-        bool fQueue;
-        UInt64 cRefreshStart;
-        uint cBuffer;
-        bool fUseSourceRate;
-        UNSIGNED_RATIO rateSource;
-        uint cRefreshesPerFrame;
-        DWM_SOURCE_FRAME_SAMPLING eSampling;
-    }
+		/// <summary>
+		/// TRUE if the window's colorization should transition to match the maximized windows; otherwise, FALSE.
+		/// </summary>
+		public bool fTransitionOnMaximized;
+	}
 
-    [StructLayout(LayoutKind.Sequential)]
-    public struct DWM_TIMING_INFO
-    {
-            UInt32 cbSize;
+	/// <summary>
+	/// Specifies Desktop Window Manager (DWM) thumbnail properties. Used by the DwmUpdateThumbnailProperties function.
+	/// </summary>
+	[StructLayout(LayoutKind.Sequential)]
+	public struct DWM_THUMBNAIL_PROPERTIES
+	{
+		/// <summary>
+		/// A bitwise combination of DWM thumbnail constant values that indicates which members of this structure are set.
+		/// </summary>
+		public uint dwFlags;
 
-        // Data on DWM composition overall
-    
-        // Monitor refresh rate
-        UNSIGNED_RATIO  rateRefresh;
+		/// <summary>
+		/// The area in the destination window where the thumbnail will be rendered.
+		/// </summary>
+		public RECT rcDestination;
 
-        // Actual period
-        UInt64        qpcRefreshPeriod;
+		/// <summary>
+		/// The region of the source window to use as the thumbnail. By default, the entire window is used as the thumbnail.
+		/// </summary>
+		public RECT rcSource;
 
-        // composition rate     
-        UNSIGNED_RATIO  rateCompose;
+		/// <summary>
+		/// The opacity with which to render the thumbnail. 0 is fully transparent while 255 is fully opaque. The default value is 255.
+		/// </summary>
+		public byte opacity;
 
-        // QPC time at a VSync interupt
-        UInt64        qpcVBlank;
+		/// <summary>
+		/// TRUE to make the thumbnail visible; otherwise, FALSE. The default is FALSE.
+		/// </summary>
+		public bool fVisible;
 
-        // DWM refresh count of the last vsync
-        // DWM refresh count is a 64bit number where zero is
-        // the first refresh the DWM woke up to process
-        UInt64 cRefresh;
+		/// <summary>
+		/// TRUE to use only the thumbnail source's client area; otherwise, FALSE. The default is FALSE.
+		/// </summary>
+		public bool fSourceClientAreaOnly;
+	}
 
-        // DX refresh count at the last Vsync Interupt
-        // DX refresh count is a 32bit number with zero 
-        // being the first refresh after the card was initialized
-        // DX increments a counter when ever a VSync ISR is processed
-        // It is possible for DX to miss VSyncs
-        //
-        // There is not a fixed mapping between DX and DWM refresh counts
-        // because the DX will rollover and may miss VSync interupts
-        uint cDXRefresh;
+	/// <summary>
+	/// Defines a data type used by the Desktop Window Manager (DWM) APIs. It represents a generic ratio and is used for different purposes and units even
+	/// within a single API.
+	/// </summary>
+	[StructLayout(LayoutKind.Sequential)]
+	public struct UNSIGNED_RATIO
+	{
+		/// <summary>
+		/// The ratio numerator.
+		/// </summary>
+		public UInt32 uiNumerator;
 
-        // QPC time at a compose time.  
-        UInt64        qpcCompose;
+		/// <summary>
+		/// The ratio denominator.
+		/// </summary>
+		public UInt32 uiDenominator;
+	}
 
-        // Frame number that was composed at qpcCompose
-        UInt64 cFrame;
+	/// <summary>
+	/// Specifies Desktop Window Manager (DWM) video frame parameters for frame composition. Used by the DwmSetPresentParameters function.
+	/// </summary>
+	[StructLayout(LayoutKind.Sequential)]
+	public struct DWM_PRESENT_PARAMETERS
+	{
+		/// <summary>
+		/// The size of the <see cref="DWM_PRESENT_PARAMETERS" /> structure.
+		/// </summary>
+		public UInt32 cbSize;
 
-        // The present number DX uses to identify renderer frames
-        uint            cDXPresent;
+		/// <summary>
+		/// TRUE if the caller is requesting queued presents; otherwise, FALSE. If TRUE, the remaining parameters must be specified. If FALSE, queued
+		/// presentation is disabled for this window and present behavior returns to the default behavior.
+		/// </summary>
+		public bool fQueue;
 
-        // Refresh count of the frame that was composed at qpcCompose
-        UInt64 cRefreshFrame;
+		/// <summary>
+		/// A ULONGLONG value that provides the refresh number that the next presented frame should begin to display.
+		/// </summary>
+		public UInt64 cRefreshStart;
 
+		/// <summary>
+		/// The number of frames the application is instructing DWM to queue. The valid range is 2-8.
+		/// </summary>
+		public uint cBuffer;
 
-        // DWM frame number that was last submitted
-        UInt64 cFrameSubmitted;
+		/// <summary>
+		/// TRUE if the application wants DWM to schedule presentation based on source rate. FALSE if the application will decide how many refreshes to display
+		/// for each frame. If TRUE, <see cref="rateSource" /> must be specified. If FALSE, <see cref="cRefreshesPerFrame" /> must be specified.
+		/// </summary>
+		public bool fUseSourceRate;
 
-        // DX Present number that was last submitted
-        uint cDXPresentSubmitted;
+		/// <summary>
+		/// The rate, in frames per second, of the source material being displayed.
+		/// </summary>
+		public UNSIGNED_RATIO rateSource;
 
-        // DWM frame number that was last confirmed presented
-        UInt64 cFrameConfirmed;
+		/// <summary>
+		/// The number of monitor refreshes through which each frame should be displayed on the screen.
+		/// </summary>
+		public uint cRefreshesPerFrame;
 
-        // DX Present number that was last confirmed presented
-        uint cDXPresentConfirmed;
+		/// <summary>
+		/// The frame sampling type to use for composition.
+		/// </summary>
+		public DWM_SOURCE_FRAME_SAMPLING eSampling;
+	}
 
-        // The target refresh count of the last
-        // frame confirmed completed by the GPU
-        UInt64 cRefreshConfirmed;
+	/// <summary>
+	/// Specifies Desktop Window Manager (DWM) composition timing information. Used by the DwmGetCompositionTimingInfo function.
+	/// </summary>
+	[StructLayout(LayoutKind.Sequential)]
+	public struct DWM_TIMING_INFO
+	{
+		/// <summary>
+		/// The size of this <see cref="DWM_TIMING_INFO" /> structure.
+		/// </summary>
+		public UInt32 cbSize;
 
-        // DX refresh count when the frame was confirmed presented
-        uint cDXRefreshConfirmed;
+		/// <summary>
+		/// The monitor refresh rate.
+		/// </summary>
+		public UNSIGNED_RATIO rateRefresh;
 
-        // Number of frames the DWM presented late
-        // AKA Glitches
-        UInt64          cFramesLate;
-    
-        // the number of composition frames that 
-        // have been issued but not confirmed completed
-        uint          cFramesOutstanding;
+		/// <summary>
+		/// The monitor refresh period.
+		/// </summary>
+		public UInt64 qpcRefreshPeriod;
 
+		/// <summary>
+		/// The composition rate.
+		/// </summary>
+		public UNSIGNED_RATIO rateCompose;
 
-        // Following fields are only relavent when an HWND is specified
-        // Display frame
+		/// <summary>
+		/// The query performance counter value before the vertical blank.
+		/// </summary>
+		public UInt64 qpcVBlank;
 
+		/// <summary>
+		/// The DWM refresh counter.
+		/// </summary>
+		public UInt64 cRefresh;
 
-        // Last frame displayed
-        UInt64 cFrameDisplayed;
+		/// <summary>
+		/// The DirectX refresh counter.
+		/// </summary>
+		public uint cDXRefresh;
 
-        // QPC time of the composition pass when the frame was displayed
-        UInt64        qpcFrameDisplayed; 
+		/// <summary>
+		/// The query performance counter value for a frame composition.
+		/// </summary>
+		public UInt64 qpcCompose;
 
-        // Count of the VSync when the frame should have become visible
-        UInt64 cRefreshFrameDisplayed;
+		/// <summary>
+		/// The frame number that was composed at <see cref="qpcCompose" />.
+		/// </summary>
+		public UInt64 cFrame;
 
-        // Complete frames: DX has notified the DWM that the frame is done rendering
+		/// <summary>
+		/// The DirectX present number used to identify rendering frames.
+		/// </summary>
+		public uint cDXPresent;
 
-        // ID of the the last frame marked complete (starts at 0)
-        UInt64 cFrameComplete;
+		/// <summary>
+		/// The refresh count of the frame that was composed at <see cref="qpcCompose" />.
+		/// </summary>
+		public UInt64 cRefreshFrame;
 
-        // QPC time when the last frame was marked complete
-        UInt64        qpcFrameComplete;
+		/// <summary>
+		/// The DWM frame number that was last submitted.
+		/// </summary>
+		public UInt64 cFrameSubmitted;
 
-        // Pending frames:
-        // The application has been submitted to DX but not completed by the GPU
- 
-        // ID of the the last frame marked pending (starts at 0)
-        UInt64 cFramePending;
+		/// <summary>
+		/// The DirectX present number that was last submitted.
+		/// </summary>
+		public uint cDXPresentSubmitted;
 
-        // QPC time when the last frame was marked pending
-        UInt64        qpcFramePending;
+		/// <summary>
+		/// The DWM frame number that was last confirmed as presented.
+		/// </summary>
+		public UInt64 cFrameConfirmed;
 
-        // number of unique frames displayed
-        UInt64 cFramesDisplayed;
+		/// <summary>
+		/// The DirectX present number that was last confirmed as presented.
+		/// </summary>
+		public uint cDXPresentConfirmed;
 
-        // number of new completed frames that have been received
-        UInt64 cFramesComplete;
+		/// <summary>
+		/// The target refresh count of the last frame confirmed as completed by the GPU.
+		/// </summary>
+		public UInt64 cRefreshConfirmed;
 
-         // number of new frames submitted to DX but not yet complete
-        UInt64 cFramesPending;
+		/// <summary>
+		/// The DirectX refresh count when the frame was confirmed as presented.
+		/// </summary>
+		public uint cDXRefreshConfirmed;
 
-        // number of frames available but not displayed, used or dropped
-        UInt64 cFramesAvailable;
+		/// <summary>
+		/// The number of frames the DWM presented late.
+		/// </summary>
+		public UInt64 cFramesLate;
 
-        // number of rendered frames that were never
-        // displayed because composition occured too late
-        UInt64 cFramesDropped;
-    
-        // number of times an old frame was composed 
-        // when a new frame should have been used
-        // but was not available
-        UInt64 cFramesMissed;
-    
-        // the refresh at which the next frame is
-        // scheduled to be displayed
-        UInt64 cRefreshNextDisplayed;
+		/// <summary>
+		/// The number of composition frames that have been issued but have not been confirmed as completed.
+		/// </summary>
+		public uint cFramesOutstanding;
 
-        // the refresh at which the next DX present is 
-        // scheduled to be displayed
-        UInt64 cRefreshNextPresented;
+		/// <summary>
+		/// The last frame displayed.
+		/// </summary>
+		public UInt64 cFrameDisplayed;
 
-        // The total number of refreshes worth of content
-        // for this HWND that have been displayed by the DWM
-        // since DwmSetPresentParameters was called
-        UInt64 cRefreshesDisplayed;
-	
-        // The total number of refreshes worth of content
-        // that have been presented by the application
-        // since DwmSetPresentParameters was called
-        UInt64 cRefreshesPresented;
+		/// <summary>
+		/// The QPC time of the composition pass when the frame was displayed.
+		/// </summary>
+		public UInt64 qpcFrameDisplayed;
 
+		/// <summary>
+		/// The vertical refresh count when the frame should have become visible.
+		/// </summary>
+		public UInt64 cRefreshFrameDisplayed;
 
-        // The actual refresh # when content for this
-        // window started to be displayed
-        // it may be different than that requested
-        // DwmSetPresentParameters
-        UInt64 cRefreshStarted;
+		/// <summary>
+		/// The ID of the last frame marked as completed.
+		/// </summary>
+		public UInt64 cFrameComplete;
 
-        // Total number of pixels DX redirected
-        // to the DWM.
-        // If Queueing is used the full buffer
-        // is transfered on each present.
-        // If not queuing it is possible only 
-        // a dirty region is updated
-        UInt64  cPixelsReceived;
+		/// <summary>
+		/// The QPC time when the last frame was marked as completed.
+		/// </summary>
+		public UInt64 qpcFrameComplete;
 
-        // Total number of pixels drawn.
-        // Does not take into account if
-        // if the window is only partial drawn
-        // do to clipping or dirty rect management 
-        UInt64  cPixelsDrawn;
+		/// <summary>
+		/// The ID of the last frame marked as pending.
+		/// </summary>
+		public UInt64 cFramePending;
 
-        // The number of buffers in the flipchain
-        // that are empty.   An application can 
-        // present that number of times and guarantee 
-        // it won't be blocked waiting for a buffer to 
-        // become empty to present to
-        UInt64      cBuffersEmpty;
+		/// <summary>
+		/// The QPC time when the last frame was marked as pending.
+		/// </summary>
+		public UInt64 qpcFramePending;
 
-    }
+		/// <summary>
+		/// The number of unique frames displayed. This value is valid only after a second call to the <see cref="Dwmapi.DwmGetCompositionTimingInfo" />
+		/// function.
+		/// </summary>
+		public UInt64 cFramesDisplayed;
 
-    [StructLayout(LayoutKind.Sequential)]
-    public struct UUID
-    {
-        public uint Data1;
-        public ushort Data2;
-        public ushort Data3;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-        public byte[] Data4;
-    }
+		/// <summary>
+		/// The number of new completed frames that have been received.
+		/// </summary>
+		public UInt64 cFramesComplete;
+
+		/// <summary>
+		/// The number of new frames submitted to DirectX but not yet completed.
+		/// </summary>
+		public UInt64 cFramesPending;
+
+		/// <summary>
+		/// The number of frames available but not displayed, used, or dropped. This value is valid only after a second call to
+		///     <see cref="Dwmapi.DwmGetCompositionTimingInfo" />.
+		/// </summary>
+		public UInt64 cFramesAvailable;
+
+		/// <summary>
+		/// The number of rendered frames that were never displayed because composition occurred too late. This value is valid only after a second call to
+		///     <see cref="Dwmapi.DwmGetCompositionTimingInfo" />.
+		/// </summary>
+		public UInt64 cFramesDropped;
+
+		/// <summary>
+		/// The number of times an old frame was composed when a new frame should have been used but was not available.
+		/// </summary>
+		public UInt64 cFramesMissed;
+
+		/// <summary>
+		/// The frame count at which the next frame is scheduled to be displayed.
+		/// </summary>
+		public UInt64 cRefreshNextDisplayed;
+
+		/// <summary>
+		/// The frame count at which the next DirectX present is scheduled to be displayed.
+		/// </summary>
+		public UInt64 cRefreshNextPresented;
+
+		/// <summary>
+		/// The total number of refreshes that have been displayed for the application since the <see cref="Dwmapi.DwmSetPresentParameters" /> function was last
+		/// called.
+		/// </summary>
+		public UInt64 cRefreshesDisplayed;
+
+		/// <summary>
+		/// The total number of refreshes that have been presented by the application since <see cref="Dwmapi.DwmSetPresentParameters" /> was last called.
+		/// </summary>
+		public UInt64 cRefreshesPresented;
+
+		/// <summary>
+		/// The refresh number when content for this window started to be displayed.
+		/// </summary>
+		public UInt64 cRefreshStarted;
+
+		/// <summary>
+		/// The total number of pixels DirectX redirected to the DWM.
+		/// </summary>
+		public UInt64 cPixelsReceived;
+
+		/// <summary>
+		/// The number of pixels drawn.
+		/// </summary>
+		public UInt64 cPixelsDrawn;
+
+		/// <summary>
+		/// The number of empty buffers in the flip chain.
+		/// </summary>
+		public UInt64 cBuffersEmpty;
+	}
+	// ReSharper restore InconsistentNaming
 }
