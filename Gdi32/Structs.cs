@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using Win32Interop.Enums;
 
 namespace Win32Interop.Structs
 {
@@ -22,22 +23,11 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct ENUMLOGFONTEXDVW
+    public struct ENUMLOGFONTEXDV
     {
 
         /// ENUMLOGFONTEXW->tagENUMLOGFONTEXW
-        public ENUMLOGFONTEXW elfEnumLogfontEx;
-
-        /// DESIGNVECTOR->tagDESIGNVECTOR
-        public DESIGNVECTOR elfDesignVector;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct ENUMLOGFONTEXDVA
-    {
-
-        /// ENUMLOGFONTEXA->tagENUMLOGFONTEXA
-        public ENUMLOGFONTEXA elfEnumLogfontEx;
+        public ENUMLOGFONTEX elfEnumLogfontEx;
 
         /// DESIGNVECTOR->tagDESIGNVECTOR
         public DESIGNVECTOR elfDesignVector;
@@ -92,101 +82,28 @@ namespace Win32Interop.Structs
         public IntPtr bmBits;
     }
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-    public struct LOGFONTW
-    {
-
-        /// LONG->int
-        public int lfHeight;
-
-        /// LONG->int
-        public int lfWidth;
-
-        /// LONG->int
-        public int lfEscapement;
-
-        /// LONG->int
-        public int lfOrientation;
-
-        /// LONG->int
-        public int lfWeight;
-
-        /// BYTE->unsigned char
-        public byte lfItalic;
-
-        /// BYTE->unsigned char
-        public byte lfUnderline;
-
-        /// BYTE->unsigned char
-        public byte lfStrikeOut;
-
-        /// BYTE->unsigned char
-        public byte lfCharSet;
-
-        /// BYTE->unsigned char
-        public byte lfOutPrecision;
-
-        /// BYTE->unsigned char
-        public byte lfClipPrecision;
-
-        /// BYTE->unsigned char
-        public byte lfQuality;
-
-        /// BYTE->unsigned char
-        public byte lfPitchAndFamily;
-
-        /// WCHAR[32]
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
-        public string lfFaceName;
-    }
-
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct LOGFONTA
-    {
-
-        /// LONG->int
-        public int lfHeight;
-
-        /// LONG->int
-        public int lfWidth;
-
-        /// LONG->int
-        public int lfEscapement;
-
-        /// LONG->int
-        public int lfOrientation;
-
-        /// LONG->int
-        public int lfWeight;
-
-        /// BYTE->unsigned char
-        public byte lfItalic;
-
-        /// BYTE->unsigned char
-        public byte lfUnderline;
-
-        /// BYTE->unsigned char
-        public byte lfStrikeOut;
-
-        /// BYTE->unsigned char
-        public byte lfCharSet;
-
-        /// BYTE->unsigned char
-        public byte lfOutPrecision;
-
-        /// BYTE->unsigned char
-        public byte lfClipPrecision;
-
-        /// BYTE->unsigned char
-        public byte lfQuality;
-
-        /// BYTE->unsigned char
-        public byte lfPitchAndFamily;
-
-        /// CHAR[32]
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
-        public string lfFaceName;
-    }
+	[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+	public struct LOGFONT
+	{
+		public int lfHeight;
+		public int lfWidth;
+		public int lfEscapement;
+		public int lfOrientation;
+		public FontWeight lfWeight;
+		[MarshalAs(UnmanagedType.U1)]
+		public bool lfItalic;
+		[MarshalAs(UnmanagedType.U1)]
+		public bool lfUnderline;
+		[MarshalAs(UnmanagedType.U1)]
+		public bool lfStrikeOut;
+		public FontCharSet lfCharSet;
+		public FontPrecision lfOutPrecision;
+		public FontClipPrecision lfClipPrecision;
+		public FontQuality lfQuality;
+		public FontPitchAndFamily lfPitchAndFamily;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+		public string lfFaceName;
+	}
 
     [StructLayout(LayoutKind.Sequential)]
     public struct LOGBRUSH
@@ -540,22 +457,19 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct DOCINFOW
+    public struct DOCINFO
     {
 
         /// int
         public int cbSize;
 
         /// LPCWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
         public string lpszDocName;
 
         /// LPCWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
         public string lpszOutput;
 
         /// LPCWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
         public string lpszDatatype;
 
         /// DWORD->unsigned int
@@ -563,37 +477,14 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct DOCINFOA
-    {
-
-        /// int
-        public int cbSize;
-
-        /// LPCSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string lpszDocName;
-
-        /// LPCSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string lpszOutput;
-
-        /// LPCSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string lpszDatatype;
-
-        /// DWORD->unsigned int
-        public uint fwType;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct OUTLINETEXTMETRICW
+    public struct OUTLINETEXTMETRIC
     {
 
         /// UINT->unsigned int
         public uint otmSize;
 
         /// TEXTMETRICW->tagTEXTMETRICW
-        public TEXTMETRICW otmTextMetrics;
+        public TEXTMETRIC otmTextMetrics;
 
         /// BYTE->unsigned char
         public byte otmFiller;
@@ -691,119 +582,14 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct OUTLINETEXTMETRICA
-    {
-
-        /// UINT->unsigned int
-        public uint otmSize;
-
-        /// TEXTMETRICA->tagTEXTMETRICA
-        public TEXTMETRICA otmTextMetrics;
-
-        /// BYTE->unsigned char
-        public byte otmFiller;
-
-        /// PANOSE->tagPANOSE
-        public PANOSE otmPanoseNumber;
-
-        /// UINT->unsigned int
-        public uint otmfsSelection;
-
-        /// UINT->unsigned int
-        public uint otmfsType;
-
-        /// int
-        public int otmsCharSlopeRise;
-
-        /// int
-        public int otmsCharSlopeRun;
-
-        /// int
-        public int otmItalicAngle;
-
-        /// UINT->unsigned int
-        public uint otmEMSquare;
-
-        /// int
-        public int otmAscent;
-
-        /// int
-        public int otmDescent;
-
-        /// UINT->unsigned int
-        public uint otmLineGap;
-
-        /// UINT->unsigned int
-        public uint otmsCapEmHeight;
-
-        /// UINT->unsigned int
-        public uint otmsXHeight;
-
-        /// RECT->tagRECT
-        public RECT otmrcFontBox;
-
-        /// int
-        public int otmMacAscent;
-
-        /// int
-        public int otmMacDescent;
-
-        /// UINT->unsigned int
-        public uint otmMacLineGap;
-
-        /// UINT->unsigned int
-        public uint otmusMinimumPPEM;
-
-        /// POINT->tagPOINT
-        public Point otmptSubscriptSize;
-
-        /// POINT->tagPOINT
-        public Point otmptSubscriptOffset;
-
-        /// POINT->tagPOINT
-        public Point otmptSuperscriptSize;
-
-        /// POINT->tagPOINT
-        public Point otmptSuperscriptOffset;
-
-        /// UINT->unsigned int
-        public uint otmsStrikeoutSize;
-
-        /// int
-        public int otmsStrikeoutPosition;
-
-        /// int
-        public int otmsUnderscoreSize;
-
-        /// int
-        public int otmsUnderscorePosition;
-
-        /// PSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string otmpFamilyName;
-
-        /// PSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string otmpFaceName;
-
-        /// PSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string otmpStyleName;
-
-        /// PSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string otmpFullName;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct GCP_RESULTSW
+    public struct GCP_RESULTS
     {
 
         /// DWORD->unsigned int
         public uint lStructSize;
 
         /// LPWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
+		[MarshalAs(UnmanagedType.LPTStr)]
         public string lpOutString;
 
         /// UINT*
@@ -820,42 +606,6 @@ namespace Win32Interop.Structs
         public string lpClass;
 
         /// LPWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
-        public string lpGlyphs;
-
-        /// UINT->unsigned int
-        public uint nGlyphs;
-
-        /// int
-        public int nMaxFit;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct GCP_RESULTSA
-    {
-
-        /// DWORD->unsigned int
-        public uint lStructSize;
-
-        /// LPSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string lpOutString;
-
-        /// UINT*
-        public IntPtr lpOrder;
-
-        /// int*
-        public IntPtr lpDx;
-
-        /// int*
-        public IntPtr lpCaretPos;
-
-        /// LPSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string lpClass;
-
-        /// LPWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
         public string lpGlyphs;
 
         /// UINT->unsigned int
@@ -1028,7 +778,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-    public struct LOGCOLORSPACEW
+    public struct LOGCOLORSPACE
     {
 
         /// DWORD->unsigned int
@@ -1059,42 +809,6 @@ namespace Win32Interop.Structs
         public uint lcsGammaBlue;
 
         /// WCHAR[260]
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
-        public string lcsFilename;
-    }
-
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct LOGCOLORSPACEA
-    {
-
-        /// DWORD->unsigned int
-        public uint lcsSignature;
-
-        /// DWORD->unsigned int
-        public uint lcsVersion;
-
-        /// DWORD->unsigned int
-        public uint lcsSize;
-
-        /// LCSCSTYPE->LONG->int
-        public int lcsCSType;
-
-        /// LCSGAMUTMATCH->LONG->int
-        public int lcsIntent;
-
-        /// CIEXYZTRIPLE->tagICEXYZTRIPLE
-        public ICEXYZTRIPLE lcsEndpoints;
-
-        /// DWORD->unsigned int
-        public uint lcsGammaRed;
-
-        /// DWORD->unsigned int
-        public uint lcsGammaGreen;
-
-        /// DWORD->unsigned int
-        public uint lcsGammaBlue;
-
-        /// CHAR[260]
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
         public string lcsFilename;
     }
@@ -1147,12 +861,12 @@ namespace Win32Interop.Structs
         public short gmCellIncY;
     }
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-    public struct ENUMLOGFONTEXW
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+    public struct ENUMLOGFONTEX
     {
 
         /// LOGFONTW->tagLOGFONTW
-        public LOGFONTW elfLogFont;
+        public LOGFONT elfLogFont;
 
         /// WCHAR[64]
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
@@ -1180,26 +894,6 @@ namespace Win32Interop.Structs
         /// LONG[16]
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16, ArraySubType = UnmanagedType.I4)]
         public int[] dvValues;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct ENUMLOGFONTEXA
-    {
-
-        /// LOGFONTA->tagLOGFONTA
-        public LOGFONTA elfLogFont;
-
-        /// BYTE[64]
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64, ArraySubType = UnmanagedType.I1)]
-        public byte[] elfFullName;
-
-        /// BYTE[32]
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
-        public byte[] elfStyle;
-
-        /// BYTE[32]
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
-        public byte[] elfScript;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -1324,23 +1018,31 @@ namespace Win32Interop.Structs
         public int ciexyzZ;
     }
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct LOGFONT
-    {
-        public int lfHeight;
-        public int lfWidth;
-        public int lfEscapement;
-        public int lfOrientation;
-        public int lfWeight;
-        public byte lfItalic;
-        public byte lfUnderline;
-        public byte lfStrikeOut;
-        public byte lfCharSet;
-        public byte lfOutPrecision;
-        public byte lfClipPrecision;
-        public byte lfQuality;
-        public byte lfPitchAndFamily;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
-        public string lfFaceName;
-    }
+	/// <summary>
+	/// The ABCFLOAT structure contains the A, B, and C widths of a font character.
+	/// </summary>
+	/// <remarks>
+	/// <para>
+	/// The A, B, and C widths are measured along the base line of the font.
+	/// </para>
+	/// <para>
+	/// The character increment (total width) of a character is the sum of the A, B, and C spaces. Either the A or the C space can be negative to indicate underhangs or overhangs. 
+	/// </para>
+	/// </remarks>
+	[StructLayout(LayoutKind.Sequential)]
+	public struct ABCFloat
+	{
+		/// <summary>
+		/// Specifies the A spacing of the character. The A spacing is the distance to add to the current position before drawing the character glyph.
+		/// </summary>
+		public float abcfA;
+		/// <summary>
+		/// Specifies the B spacing of the character. The B spacing is the width of the drawn portion of the character glyph.
+		/// </summary>
+		public float abcfB;
+		/// <summary>
+		/// Specifies the C spacing of the character. The C spacing is the distance to add to the current position to provide white space to the right of the character glyph.
+		/// </summary>
+		public float abcfC;
+	}
 }

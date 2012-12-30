@@ -632,20 +632,10 @@ namespace Win32Interop.Methods
         ///iModeNum: DWORD->unsigned int
         ///lpDevMode: LPDEVMODEW->_devicemodeW*
         ///dwFlags: DWORD->unsigned int
-        [DllImport("user32.dll", EntryPoint = "EnumDisplaySettingsExW")]
+        [DllImport("user32.dll", EntryPoint = "EnumDisplaySettingsEx")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumDisplaySettingsExW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszDeviceName, uint iModeNum, [Out] out DEVMODEW lpDevMode, EDS dwFlags);
-
-        /// Return Type: BOOL->int
-        ///lpszDeviceName: LPCSTR->CHAR*
-        ///iModeNum: DWORD->unsigned int
-        ///lpDevMode: LPDEVMODEA->_devicemodeA*
-        ///dwFlags: DWORD->unsigned int
-        [DllImport("user32.dll", EntryPoint = "EnumDisplaySettingsExA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumDisplaySettingsExA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpszDeviceName, uint iModeNum, [Out] out DEVMODEA lpDevMode, EDS dwFlags);
+        public static extern bool EnumDisplaySettingsEx(
+            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszDeviceName, uint iModeNum, [Out] out DEVMODE lpDevMode, EDS dwFlags);
 
         /// Return Type: BOOL->int
         ///hwndClient: HWND->HWND__*
@@ -928,18 +918,10 @@ namespace Win32Interop.Methods
         ///lpszDeviceName: LPCWSTR->WCHAR*
         ///iModeNum: DWORD->unsigned int
         ///lpDevMode: LPDEVMODEW->_devicemodeW*
-        [DllImport("user32.dll", EntryPoint = "EnumDisplaySettingsW")]
+        [DllImport("user32.dll", EntryPoint = "EnumDisplaySettings")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumDisplaySettingsW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszDeviceName, uint iModeNum, [Out] out DEVMODEW lpDevMode);
-
-        /// Return Type: BOOL->int
-        ///lpszDeviceName: LPCSTR->CHAR*
-        ///iModeNum: DWORD->unsigned int
-        ///lpDevMode: LPDEVMODEA->_devicemodeA*
-        [DllImport("user32.dll", EntryPoint = "EnumDisplaySettingsA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumDisplaySettingsA([In] [MarshalAs(UnmanagedType.LPStr)] string lpszDeviceName, uint iModeNum, [Out] out DEVMODEA lpDevMode);
+        public static extern bool EnumDisplaySettings(
+            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszDeviceName, uint iModeNum, [Out] out DEVMODE lpDevMode);
 
         /// Return Type: UINT->unsigned int
         ///format: UINT->unsigned int

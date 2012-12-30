@@ -422,7 +422,7 @@ GetThemeTextMetrics(
     IntPtr hdc,
     int iPartId,
     int iStateId,
-    out TEXTMETRICW ptm
+    out TEXTMETRIC ptm
     );
 
 //-------------------------------------------------------------------------

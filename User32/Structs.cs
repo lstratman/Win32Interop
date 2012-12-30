@@ -410,8 +410,8 @@ namespace Win32Interop.Structs
         public LUID luid;
     }
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-    public struct DEVMODEW
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+    public struct DEVMODE
     {
         /// WCHAR[32]
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
@@ -468,93 +468,6 @@ namespace Win32Interop.Structs
 
         /// Anonymous_084dbe97_5806_4c28_a299_ed6037f61d90
         public DISPLAY_DATA displayData;
-
-        /// DWORD->unsigned int
-        public uint dmDisplayFrequency;
-
-        /// DWORD->unsigned int
-        public uint dmICMMethod;
-
-        /// DWORD->unsigned int
-        public uint dmICMIntent;
-
-        /// DWORD->unsigned int
-        public uint dmMediaType;
-
-        /// DWORD->unsigned int
-        public uint dmDitherType;
-
-        /// DWORD->unsigned int
-        public uint dmReserved1;
-
-        /// DWORD->unsigned int
-        public uint dmReserved2;
-
-        /// DWORD->unsigned int
-        public uint dmPanningWidth;
-
-        /// DWORD->unsigned int
-        public uint dmPanningHeight;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct DEVMODEA
-    {
-        /// BYTE[32]
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
-        public byte[] dmDeviceName;
-
-        /// WORD->unsigned short
-        public ushort dmSpecVersion;
-
-        /// WORD->unsigned short
-        public ushort dmDriverVersion;
-
-        /// WORD->unsigned short
-        public ushort dmSize;
-
-        /// WORD->unsigned short
-        public ushort dmDriverExtra;
-
-        /// DWORD->unsigned int
-        public uint dmFields;
-
-        /// Anonymous_2338c0fc_03a3_4514_b536_fb9bb5df14c5
-        public PAGE_DATA pageData;
-
-        /// short
-        public short dmColor;
-
-        /// short
-        public short dmDuplex;
-
-        /// short
-        public short dmYResolution;
-
-        /// short
-        public short dmTTOption;
-
-        /// short
-        public short dmCollate;
-
-        /// BYTE[32]
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
-        public byte[] dmFormName;
-
-        /// WORD->unsigned short
-        public ushort dmLogPixels;
-
-        /// DWORD->unsigned int
-        public uint dmBitsPerPel;
-
-        /// DWORD->unsigned int
-        public uint dmPelsWidth;
-
-        /// DWORD->unsigned int
-        public uint dmPelsHeight;
-
-        /// Anonymous_7557e508_845c_4777_b9f2_a1496c1c7b21
-        public DISPLAY_DATA DisplayData;
 
         /// DWORD->unsigned int
         public uint dmDisplayFrequency;
@@ -1589,60 +1502,10 @@ namespace Win32Interop.Structs
         public int tmOverhang;
         public int tmDigitizedAspectX;
         public int tmDigitizedAspectY;
-        public char tmFirstChar;
-        public char tmLastChar;
-        public char tmDefaultChar;
-        public char tmBreakChar;
-        public byte tmItalic;
-        public byte tmUnderlined;
-        public byte tmStruckOut;
-        public byte tmPitchAndFamily;
-        public byte tmCharSet;
-    }
-
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public class TEXTMETRICA
-    {
-        public int tmHeight;
-        public int tmAscent;
-        public int tmDescent;
-        public int tmInternalLeading;
-        public int tmExternalLeading;
-        public int tmAveCharWidth;
-        public int tmMaxCharWidth;
-        public int tmWeight;
-        public int tmOverhang;
-        public int tmDigitizedAspectX;
-        public int tmDigitizedAspectY;
         public byte tmFirstChar;
         public byte tmLastChar;
         public byte tmDefaultChar;
         public byte tmBreakChar;
-        public byte tmItalic;
-        public byte tmUnderlined;
-        public byte tmStruckOut;
-        public byte tmPitchAndFamily;
-        public byte tmCharSet;
-    }
-
-    [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-    public struct TEXTMETRICW
-    {
-        public int tmHeight;
-        public int tmAscent;
-        public int tmDescent;
-        public int tmInternalLeading;
-        public int tmExternalLeading;
-        public int tmAveCharWidth;
-        public int tmMaxCharWidth;
-        public int tmWeight;
-        public int tmOverhang;
-        public int tmDigitizedAspectX;
-        public int tmDigitizedAspectY;
-        public ushort tmFirstChar;      /// WCHAR->wchar_t->unsigned short
-        public ushort tmLastChar;       /// WCHAR->wchar_t->unsigned short
-        public ushort tmDefaultChar;    /// WCHAR->wchar_t->unsigned short
-        public ushort tmBreakChar;      /// WCHAR->wchar_t->unsigned short
         public byte tmItalic;
         public byte tmUnderlined;
         public byte tmStruckOut;
