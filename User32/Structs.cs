@@ -11,7 +11,7 @@ namespace Win32Interop.Structs
 {
     // ReSharper disable InconsistentNaming
     [StructLayout(LayoutKind.Sequential)]
-    public struct Point
+    public struct POINT
     {
         /// LONG->int
         public int x;
@@ -149,10 +149,10 @@ namespace Win32Interop.Structs
         public uint showCmd;
 
         /// POINT->tagPOINT
-        public Point ptMinPosition;
+        public POINT ptMinPosition;
 
         /// POINT->tagPOINT
-        public Point ptMaxPosition;
+        public POINT ptMaxPosition;
 
         /// RECT->tagRECT
         public RECT rcNormalPosition;
@@ -193,7 +193,7 @@ namespace Win32Interop.Structs
         public uint time;
 
         /// POINT->tagPOINT
-        public Point pt;
+        public POINT pt;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -551,7 +551,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-    public struct DISPLAY_DEVICEW
+    public struct DISPLAY_DEVICE
     {
         /// DWORD->unsigned int
         public uint cb;
@@ -572,32 +572,6 @@ namespace Win32Interop.Structs
         public string DeviceID;
 
         /// WCHAR[128]
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-        public string DeviceKey;
-    }
-
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct DISPLAY_DEVICEA
-    {
-        /// DWORD->unsigned int
-        public uint cb;
-
-        /// CHAR[32]
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
-        public string DeviceName;
-
-        /// CHAR[128]
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-        public string DeviceString;
-
-        /// DWORD->unsigned int
-        public uint StateFlags;
-
-        /// CHAR[128]
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-        public string DeviceID;
-
-        /// CHAR[128]
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
         public string DeviceKey;
     }
@@ -906,7 +880,7 @@ namespace Win32Interop.Structs
         public int cyItem;
 
         /// POINT->tagPOINT
-        public Point ptStart;
+        public POINT ptStart;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -981,7 +955,7 @@ namespace Win32Interop.Structs
         public IntPtr hCursor;
 
         /// POINT->tagPOINT
-        public Point ptScreenPos;
+        public POINT ptScreenPos;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -1443,7 +1417,7 @@ namespace Win32Interop.Structs
         public uint dwContextId;
 
         /// POINT->tagPOINT
-        public Point MousePos;
+        public POINT MousePos;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -1481,7 +1455,7 @@ namespace Win32Interop.Structs
     [StructLayout(LayoutKind.Sequential)]
     public struct MSLLHOOKSTRUCT
     {
-        public Point pt;
+        public POINT pt;
         public int mouseData; // be careful, this must be ints, not uints (was wrong before I changed it...). regards, cmew.
         public int flags;
         public int time;

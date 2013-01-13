@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Win32Interop.Enums
+﻿namespace Win32Interop.Enums
 {
     public enum MEMORY_RESOURCE_NOTIFICATION_TYPE
     {

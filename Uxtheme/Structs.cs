@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using Win32Interop.Enums;
 using Win32Interop.Methods;
 
@@ -49,7 +46,7 @@ namespace Win32Interop.Structs
         public COLORREF crBorder;            // color to use for text outline
         public COLORREF crShadow;            // color to use for text shadow
         public int iTextShadowType;     // TST_SINGLE or TST_CONTINUOUS
-        public Point ptShadowOffset;      // where shadow is drawn (relative to text)
+        public POINT ptShadowOffset;      // where shadow is drawn (relative to text)
         public int iBorderSize;         // Border radius around text
         public int iFontPropId;         // Font property to use for the text instead of TMT_FONT
         public int iColorPropId;        // Color property to use for the text instead of TMT_TEXTCOLOR

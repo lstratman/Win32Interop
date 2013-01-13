@@ -365,7 +365,7 @@ namespace Win32Interop.Methods
         ///hwndParent: HWND->HWND__*
         ///ptParentClientCoords: POINT->tagPOINT
         [DllImport("user32.dll", EntryPoint = "RealChildWindowFromPoint")]
-        public static extern IntPtr RealChildWindowFromPoint([In] IntPtr hwndParent, Point ptParentClientCoords);
+        public static extern IntPtr RealChildWindowFromPoint([In] IntPtr hwndParent, POINT ptParentClientCoords);
 
         /// Return Type: DWORD->unsigned int
         ///hWnd: HWND->HWND__*
@@ -672,19 +672,13 @@ namespace Win32Interop.Methods
         ///pt: POINT->tagPOINT
         ///flags: UINT->unsigned int
         [DllImport("user32.dll", EntryPoint = "ChildWindowFromPointEx")]
-        public static extern IntPtr ChildWindowFromPointEx([In] IntPtr hwnd, Point pt, CWP flags);
+        public static extern IntPtr ChildWindowFromPointEx([In] IntPtr hwnd, POINT pt, CWP flags);
 
         /// Return Type: LONG->int
         ///lpDevMode: LPDEVMODEW->_devicemodeW*
         ///dwFlags: DWORD->unsigned int
-        [DllImport("user32.dll", EntryPoint = "ChangeDisplaySettingsW")]
-        public static extern int ChangeDisplaySettingsW([In] IntPtr lpDevMode, CDS dwFlags);
-
-        /// Return Type: LONG->int
-        ///lpDevMode: LPDEVMODEA->_devicemodeA*
-        ///dwFlags: DWORD->unsigned int
-        [DllImport("user32.dll", EntryPoint = "ChangeDisplaySettingsA")]
-        public static extern int ChangeDisplaySettingsA([In] IntPtr lpDevMode, CDS dwFlags);
+        [DllImport("user32.dll", EntryPoint = "ChangeDisplaySettings")]
+        public static extern int ChangeDisplaySettings([In] IntPtr lpDevMode, CDS dwFlags);
 
         /// Return Type: HKL->HKL__*
         ///hkl: HKL->HKL__*
@@ -719,18 +713,9 @@ namespace Win32Interop.Methods
         ///uiParam: UINT->unsigned int
         ///pvParam: PVOID->void*
         ///fWinIni: UINT->unsigned int
-        [DllImport("user32.dll", EntryPoint = "SystemParametersInfoW")]
+        [DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SystemParametersInfoW(uint uiAction, uint uiParam, IntPtr pvParam, uint fWinIni);
-
-        /// Return Type: BOOL->int
-        ///uiAction: UINT->unsigned int
-        ///uiParam: UINT->unsigned int
-        ///pvParam: PVOID->void*
-        ///fWinIni: UINT->unsigned int
-        [DllImport("user32.dll", EntryPoint = "SystemParametersInfoA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SystemParametersInfoA(uint uiAction, uint uiParam, IntPtr pvParam, uint fWinIni);
+        public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, IntPtr pvParam, uint fWinIni);
 
         /// Return Type: BOOL->int
         ///hObj: HANDLE->void*
@@ -969,7 +954,7 @@ namespace Win32Interop.Methods
         ///hWndParent: HWND->HWND__*
         ///Point: POINT->tagPOINT
         [DllImport("user32.dll", EntryPoint = "ChildWindowFromPoint")]
-        public static extern IntPtr ChildWindowFromPoint([In] IntPtr hWndParent, Point Point);
+        public static extern IntPtr ChildWindowFromPoint([In] IntPtr hWndParent, POINT Point);
 
         /// Return Type: BOOL->int
         ///hWndRemove: HWND->HWND__*
@@ -996,7 +981,7 @@ namespace Win32Interop.Methods
         [DllImport("user32.dll", EntryPoint = "UpdateLayeredWindow")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool UpdateLayeredWindow(
-            [In] IntPtr hWnd, [In] IntPtr hdcDst, ref Point pptDst, ref SIZE psize, [In] IntPtr hdcSrc, ref Point pptSrc, uint crKey, ref BLENDFUNCTION pblend,
+            [In] IntPtr hWnd, [In] IntPtr hdcDst, ref POINT pptDst, ref SIZE psize, [In] IntPtr hdcSrc, ref POINT pptSrc, uint crKey, ref BLENDFUNCTION pblend,
             ULW dwFlags);
 
         /// Return Type: BOOL->int
@@ -1172,20 +1157,10 @@ namespace Win32Interop.Methods
         ///iDevNum: DWORD->unsigned int
         ///lpDisplayDevice: PDISPLAY_DEVICEW->_DISPLAY_DEVICEW*
         ///dwFlags: DWORD->unsigned int
-        [DllImport("user32.dll", EntryPoint = "EnumDisplayDevicesW")]
+        [DllImport("user32.dll", EntryPoint = "EnumDisplayDevices")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumDisplayDevicesW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpDevice, uint iDevNum, ref DISPLAY_DEVICEW lpDisplayDevice, EDD dwFlags);
-
-        /// Return Type: BOOL->int
-        ///lpDevice: LPCSTR->CHAR*
-        ///iDevNum: DWORD->unsigned int
-        ///lpDisplayDevice: PDISPLAY_DEVICEA->_DISPLAY_DEVICEA*
-        ///dwFlags: DWORD->unsigned int
-        [DllImport("user32.dll", EntryPoint = "EnumDisplayDevicesA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumDisplayDevicesA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpDevice, uint iDevNum, ref DISPLAY_DEVICEA lpDisplayDevice, EDD dwFlags);
+        public static extern bool EnumDisplayDevices(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpDevice, uint iDevNum, ref DISPLAY_DEVICE lpDisplayDevice, EDD dwFlags);
 
         /// Return Type: int
         ///hDlg: HWND->HWND__*
@@ -1502,7 +1477,7 @@ namespace Win32Interop.Methods
         ///hMenu: HMENU->HMENU__*
         ///ptScreen: POINT->tagPOINT
         [DllImport("user32.dll", EntryPoint = "MenuItemFromPoint")]
-        public static extern int MenuItemFromPoint([In] IntPtr hWnd, [In] IntPtr hMenu, Point ptScreen);
+        public static extern int MenuItemFromPoint([In] IntPtr hWnd, [In] IntPtr hMenu, POINT ptScreen);
 
         /// Return Type: HMENU->HMENU__*
         ///lpMenuTemplate: MENUTEMPLATEW*
@@ -1707,7 +1682,7 @@ namespace Win32Interop.Methods
         ///pt: POINT->tagPOINT
         ///dwFlags: DWORD->unsigned int
         [DllImport("user32.dll", EntryPoint = "MonitorFromPoint")]
-        public static extern IntPtr MonitorFromPoint(Point pt, MONITOR dwFlags);
+        public static extern IntPtr MonitorFromPoint(POINT pt, MONITOR dwFlags);
 
         /// Return Type: UINT->unsigned int
         ///uCode: UINT->unsigned int
@@ -1950,7 +1925,7 @@ namespace Win32Interop.Methods
         /// Return Type: HWND->HWND__*
         ///Point: POINT->tagPOINT
         [DllImport("user32.dll", EntryPoint = "WindowFromPoint")]
-        public static extern IntPtr WindowFromPoint(Point Point);
+        public static extern IntPtr WindowFromPoint(POINT Point);
 
         /// Return Type: BOOL->int
         ///msg: UINT->unsigned int
@@ -2490,7 +2465,7 @@ namespace Win32Interop.Methods
         ///lpPoint: LPPOINT->tagPOINT*
         [DllImport("user32.dll", EntryPoint = "ScreenToClient")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool ScreenToClient([In] IntPtr hWnd, ref Point lpPoint);
+        public static extern bool ScreenToClient([In] IntPtr hWnd, ref POINT lpPoint);
 
         /// Return Type: LPARAM->LONG_PTR->int
         ///lParam: LPARAM->LONG_PTR->int
@@ -2800,7 +2775,7 @@ namespace Win32Interop.Methods
         ///lpPoint: LPPOINT->tagPOINT*
         [DllImport("user32.dll", EntryPoint = "ClientToScreen")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool ClientToScreen([In] IntPtr hWnd, ref Point lpPoint);
+        public static extern bool ClientToScreen([In] IntPtr hWnd, ref POINT lpPoint);
 
         /// Return Type: BOOL->int
         ///hDlg: HWND->HWND__*
@@ -3364,19 +3339,9 @@ namespace Win32Interop.Methods
         ///Msg: UINT->unsigned int
         ///wParam: WPARAM->UINT_PTR->unsigned int
         ///lParam: LPARAM->LONG_PTR->int
-        [DllImport("user32.dll", EntryPoint = "SendMessageW")]
+        [DllImport("user32.dll", EntryPoint = "SendMessage")]
         [return: MarshalAs(UnmanagedType.SysInt)]
-        public static extern int SendMessageW(
-            [In] IntPtr hWnd, uint Msg, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam);
-
-        /// Return Type: LRESULT->LONG_PTR->int
-        ///hWnd: HWND->HWND__*
-        ///Msg: UINT->unsigned int
-        ///wParam: WPARAM->UINT_PTR->unsigned int
-        ///lParam: LPARAM->LONG_PTR->int
-        [DllImport("user32.dll", EntryPoint = "SendMessageA")]
-        [return: MarshalAs(UnmanagedType.SysInt)]
-        public static extern int SendMessageA(
+        public static extern int SendMessage(
             [In] IntPtr hWnd, uint Msg, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam);
 
         /// Return Type: BOOL->int
@@ -3544,7 +3509,7 @@ namespace Win32Interop.Methods
         ///lpPoint: LPPOINT->tagPOINT*
         [DllImport("user32.dll", EntryPoint = "GetCursorPos")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetCursorPos([Out] out Point lpPoint);
+        public static extern bool GetCursorPos([Out] out POINT lpPoint);
 
         /// Return Type: WORD->unsigned short
         ///hWnd: HWND->HWND__*
@@ -3901,7 +3866,7 @@ namespace Win32Interop.Methods
         ///lpPoint: LPPOINT->tagPOINT*
         [DllImport("user32.dll", EntryPoint = "GetCaretPos")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetCaretPos([Out] out Point lpPoint);
+        public static extern bool GetCaretPos([Out] out POINT lpPoint);
 
         /// Return Type: HWND->HWND__*
         ///hwnd: HWND->HWND__*
@@ -4308,7 +4273,7 @@ namespace Win32Interop.Methods
         ///pt: POINT->tagPOINT
         [DllImport("user32.dll", EntryPoint = "DragDetect")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DragDetect([In] IntPtr hwnd, Point pt);
+        public static extern bool DragDetect([In] IntPtr hwnd, POINT pt);
 
         /// Return Type: BOOL->int
         ///hMenu: HMENU->HMENU__*
@@ -4663,7 +4628,7 @@ namespace Win32Interop.Methods
         ///pt: POINT->tagPOINT
         [DllImport("user32.dll", EntryPoint = "PtInRect")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool PtInRect([In] ref RECT lprc, Point pt);
+        public static extern bool PtInRect([In] ref RECT lprc, POINT pt);
 
         /// Return Type: BOOL->int
         ///hWnd: HWND->HWND__*

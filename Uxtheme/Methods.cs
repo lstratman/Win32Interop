@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using Win32Interop.Enums;
@@ -459,7 +457,7 @@ HitTestThemeBackground(
     uint dwOptions,
     ref RECT pRect,
     IntPtr hrgn,
-    Point ptTest,
+    POINT ptTest,
     [Out] ushort pwHitTestCode
     );
 
@@ -699,7 +697,7 @@ GetThemePosition(
     int iPartId,
     int iStateId,
     int iPropId,
-    out Point pPoint
+    out POINT pPoint
     );
 
 //-----------------------------------------------------------------------
