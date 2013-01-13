@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Win32Interop.Uxtheme")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Interop methods, structs, and enums for uxtheme.dll")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("Luke Stratman")]
 [assembly: AssemblyProduct("Win32Interop.Uxtheme")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2012")]
+[assembly: AssemblyCopyright("Copyright © 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
