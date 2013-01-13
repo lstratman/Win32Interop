@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Win32Interop.Gdi32</id>
+        <version>1.0.0</version>
+        <title />
+        <authors>Luke Stratman</authors>
+        <owners />
+        <projectUrl>https://github.com/lstratman/Win32Interop</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Provides interop methods, structs, and enums for gdi32.dll.</description>
+    </metadata>
+    <files>
+        <file src="..\bin\Release\Win32Interop.Gdi32.dll" target="lib\Win32Interop.Gdi32.dll" />
+        <file src="..\bin\Release\Win32Interop.Gdi32.pdb" target="lib\Win32Interop.Gdi32.pdb" />
+        <file src="..\bin\Release\Win32Interop.Gdi32.XML" target="lib\Win32Interop.Gdi32.XML" />
+    </files>
+</package>
