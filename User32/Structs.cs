@@ -63,7 +63,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct MSGBOXPARAMSW
+    public struct MSGBOXPARAMS
     {
         /// UINT->unsigned int
         public uint cbSize;
@@ -75,55 +75,18 @@ namespace Win32Interop.Structs
         public IntPtr hInstance;
 
         /// LPCWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
+        [MarshalAs(UnmanagedType.LPTStr)]
         public string lpszText;
 
         /// LPCWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
+        [MarshalAs(UnmanagedType.LPTStr)]
         public string lpszCaption;
 
         /// DWORD->unsigned int
         public uint dwStyle;
 
         /// LPCWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
-        public string lpszIcon;
-
-        /// DWORD_PTR->ULONG_PTR->unsigned int
-        public uint dwContextHelpId;
-
-        /// MSGBOXCALLBACK
-        public MSGBOXCALLBACK lpfnMsgBoxCallback;
-
-        /// DWORD->unsigned int
-        public uint dwLanguageId;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct MSGBOXPARAMSA
-    {
-        /// UINT->unsigned int
-        public uint cbSize;
-
-        /// HWND->HWND__*
-        public IntPtr hwndOwner;
-
-        /// HINSTANCE->HINSTANCE__*
-        public IntPtr hInstance;
-
-        /// LPCSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string lpszText;
-
-        /// LPCSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string lpszCaption;
-
-        /// DWORD->unsigned int
-        public uint dwStyle;
-
-        /// LPCSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.LPTStr)]
         public string lpszIcon;
 
         /// DWORD_PTR->ULONG_PTR->unsigned int
@@ -197,7 +160,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct WNDCLASSEXW
+    public struct WNDCLASSEX
     {
         /// UINT->unsigned int
         public uint cbSize;
@@ -227,11 +190,11 @@ namespace Win32Interop.Structs
         public IntPtr hbrBackground;
 
         /// LPCWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
+        [MarshalAs(UnmanagedType.LPTStr)]
         public string lpszMenuName;
 
         /// LPCWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
+        [MarshalAs(UnmanagedType.LPTStr)]
         public string lpszClassName;
 
         /// HICON->HICON__*
@@ -239,49 +202,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct WNDCLASSEXA
-    {
-        /// UINT->unsigned int
-        public uint cbSize;
-
-        /// UINT->unsigned int
-        public uint style;
-
-        /// WNDPROC
-        public WNDPROC lpfnWndProc;
-
-        /// int
-        public int cbClsExtra;
-
-        /// int
-        public int cbWndExtra;
-
-        /// HINSTANCE->HINSTANCE__*
-        public IntPtr hInstance;
-
-        /// HICON->HICON__*
-        public IntPtr hIcon;
-
-        /// HCURSOR->HICON->HICON__*
-        public IntPtr hCursor;
-
-        /// HBRUSH->HBRUSH__*
-        public IntPtr hbrBackground;
-
-        /// LPCSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string lpszMenuName;
-
-        /// LPCSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string lpszClassName;
-
-        /// HICON->HICON__*
-        public IntPtr hIconSm;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct WNDCLASSW
+    public struct WNDCLASS
     {
         /// UINT->unsigned int
         public uint style;
@@ -308,47 +229,11 @@ namespace Win32Interop.Structs
         public IntPtr hbrBackground;
 
         /// LPCWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
+        [MarshalAs(UnmanagedType.LPTStr)]
         public string lpszMenuName;
 
         /// LPCWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
-        public string lpszClassName;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct WNDCLASSA
-    {
-        /// UINT->unsigned int
-        public uint style;
-
-        /// WNDPROC
-        public WNDPROC lpfnWndProc;
-
-        /// int
-        public int cbClsExtra;
-
-        /// int
-        public int cbWndExtra;
-
-        /// HINSTANCE->HINSTANCE__*
-        public IntPtr hInstance;
-
-        /// HICON->HICON__*
-        public IntPtr hIcon;
-
-        /// HCURSOR->HICON->HICON__*
-        public IntPtr hCursor;
-
-        /// HBRUSH->HBRUSH__*
-        public IntPtr hbrBackground;
-
-        /// LPCSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string lpszMenuName;
-
-        /// LPCSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.LPTStr)]
         public string lpszClassName;
     }
 
@@ -613,7 +498,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct MENUITEMINFOW
+    public struct MENUITEMINFO
     {
         /// UINT->unsigned int
         public uint cbSize;
@@ -643,48 +528,7 @@ namespace Win32Interop.Structs
         public uint dwItemData;
 
         /// LPWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
-        public string dwTypeData;
-
-        /// UINT->unsigned int
-        public uint cch;
-
-        /// HBITMAP->HBITMAP__*
-        public IntPtr hbmpItem;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct MENUITEMINFOA
-    {
-        /// UINT->unsigned int
-        public uint cbSize;
-
-        /// UINT->unsigned int
-        public uint fMask;
-
-        /// UINT->unsigned int
-        public uint fType;
-
-        /// UINT->unsigned int
-        public uint fState;
-
-        /// UINT->unsigned int
-        public uint wID;
-
-        /// HMENU->HMENU__*
-        public IntPtr hSubMenu;
-
-        /// HBITMAP->HBITMAP__*
-        public IntPtr hbmpChecked;
-
-        /// HBITMAP->HBITMAP__*
-        public IntPtr hbmpUnchecked;
-
-        /// ULONG_PTR->unsigned int
-        public uint dwItemData;
-
-        /// LPSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.LPTStr)]
         public string dwTypeData;
 
         /// UINT->unsigned int
