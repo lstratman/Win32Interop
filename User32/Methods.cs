@@ -11,49 +11,49 @@ namespace Win32Interop.Methods
 	// ReSharper disable InconsistentNaming
 
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	public delegate int NAMEENUMPROC(StringBuilder param0, IntPtr param1);
+	public delegate int EnumWindowStationProc(StringBuilder param0, IntPtr param1);
 
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	public delegate void MSGBOXCALLBACK(ref HELPINFO lpHelpInfo);
+	public delegate void MsgBoxCallback(ref HELPINFO lpHelpInfo);
 
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	public delegate int DLGPROC(IntPtr param0, uint param1, IntPtr param2, IntPtr param3);
+	public delegate int DialogProc(IntPtr param0, uint param1, IntPtr param2, IntPtr param3);
 
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	public delegate void SENDASYNCPROC(IntPtr param0, uint param1, uint param2, IntPtr param3);
+	public delegate void SendAsyncProc(IntPtr param0, uint param1, uint param2, IntPtr param3);
 
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	public delegate int MONITORENUMPROC(IntPtr param0, IntPtr param1, ref RECT param2, IntPtr param3);
+	public delegate int MonitorEnumProc(IntPtr param0, IntPtr param1, ref RECT param2, IntPtr param3);
 
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	public delegate int WNDENUMPROC(IntPtr param0, IntPtr param1);
+	public delegate int EnumWindowsProc(IntPtr param0, IntPtr param1);
 
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
 	public delegate IntPtr HOOKPROC(int code, IntPtr wParam, IntPtr lParam);
 
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	public delegate void WINEVENTPROC(IntPtr hWinEventHook, uint @event, IntPtr hwnd, int idObject, int idChild, uint idEventThread, uint dwmsEventTime);
+	public delegate void WinEventProc(IntPtr hWinEventHook, uint @event, IntPtr hwnd, int idObject, int idChild, uint idEventThread, uint dwmsEventTime);
 
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	public delegate int WNDPROC(IntPtr param0, uint param1, IntPtr param2, IntPtr param3);
+	public delegate int WindowProc(IntPtr param0, uint param1, IntPtr param2, IntPtr param3);
 
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	public delegate IntPtr PFNCALLBACK(uint wType, uint wFmt, IntPtr hConv, IntPtr hsz1, IntPtr hsz2, IntPtr hData, uint dwData1, uint dwData2);
+	public delegate IntPtr DdeCallback(uint wType, uint wFmt, IntPtr hConv, IntPtr hsz1, IntPtr hsz2, IntPtr hData, uint dwData1, uint dwData2);
 
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	public delegate int PROPENUMPROCEX(IntPtr param0, StringBuilder param1, IntPtr param2, uint param3);
+	public delegate int PropEnumProcEx(IntPtr param0, StringBuilder param1, IntPtr param2, uint param3);
 
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	public delegate int GRAYSTRINGPROC(IntPtr param0, IntPtr param1, int param2);
+	public delegate int OutputProc(IntPtr param0, IntPtr param1, int param2);
 
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	public delegate int PROPENUMPROC(IntPtr param0, [In] string param1, IntPtr param2);
+	public delegate int PropEnumProc(IntPtr param0, [In] string param1, IntPtr param2);
 
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	public delegate int DRAWSTATEPROC(IntPtr hdc, IntPtr lData, IntPtr wData, int cx, int cy);
+	public delegate int DrawStateProc(IntPtr hdc, IntPtr lData, IntPtr wData, int cx, int cy);
 
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	public delegate void TIMERPROC(IntPtr param0, uint param1, IntPtr param2, uint param3);
+	public delegate void TimerProc(IntPtr param0, uint param1, IntPtr param2, uint param3);
 
 	public class User32
 	{
@@ -105,7 +105,7 @@ namespace Win32Interop.Methods
 
 		[DllImport("user32.dll", EntryPoint = "CreateDialogIndirectParam")]
 		public static extern IntPtr CreateDialogIndirectParam(
-			[In] IntPtr hInstance, [In] ref DLGTEMPLATE lpTemplate, [In] IntPtr hWndParent, DLGPROC lpDialogFunc,
+			[In] IntPtr hInstance, [In] ref DLGTEMPLATE lpTemplate, [In] IntPtr hWndParent, DialogProc lpDialogFunc,
 			[MarshalAs(UnmanagedType.SysInt)] int dwInitParam);
 
 		[DllImport("user32.dll", EntryPoint = "SetUserObjectInformation")]
@@ -198,7 +198,7 @@ namespace Win32Interop.Methods
 
 		[DllImport("user32.dll", EntryPoint = "DialogBoxIndirectParam")]
 		public static extern int DialogBoxIndirectParam(
-			[In] IntPtr hInstance, [In] ref DLGTEMPLATE hDialogTemplate, [In] IntPtr hWndParent, DLGPROC lpDialogFunc,
+			[In] IntPtr hInstance, [In] ref DLGTEMPLATE hDialogTemplate, [In] IntPtr hWndParent, DialogProc lpDialogFunc,
 			[MarshalAs(UnmanagedType.SysInt)] int dwInitParam);
 
 		[DllImport("user32.dll", EntryPoint = "DestroyAcceleratorTable")]
@@ -311,7 +311,7 @@ namespace Win32Interop.Methods
 		[return: MarshalAs(UnmanagedType.Bool)]
 		public static extern bool SendMessageCallback(
 			[In] IntPtr hWnd, uint Msg, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam,
-			SENDASYNCPROC lpResultCallBack, uint dwData);
+			SendAsyncProc lpResultCallBack, uint dwData);
 
 		[DllImport("user32.dll", EntryPoint = "PrivateExtractIcons")]
 		public static extern uint PrivateExtractIcons(
@@ -415,12 +415,12 @@ namespace Win32Interop.Methods
 
 		[DllImport("user32.dll", EntryPoint = "EnumWindowStations")]
 		[return: MarshalAs(UnmanagedType.Bool)]
-		public static extern bool EnumWindowStations(NAMEENUMPROC lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)] int lParam);
+		public static extern bool EnumWindowStations(EnumWindowStationProc lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)] int lParam);
 
 		[DllImport("user32.dll", EntryPoint = "EnumDisplayMonitors")]
 		[return: MarshalAs(UnmanagedType.Bool)]
 		public static extern bool EnumDisplayMonitors(
-			[In] IntPtr hdc, [In] IntPtr lprcClip, MONITORENUMPROC lpfnEnum, [MarshalAs(UnmanagedType.SysInt)] int dwData);
+			[In] IntPtr hdc, [In] IntPtr lprcClip, MonitorEnumProc lpfnEnum, [MarshalAs(UnmanagedType.SysInt)] int dwData);
 
 		[DllImport("user32.dll", EntryPoint = "EnumDisplayDevices")]
 		[return: MarshalAs(UnmanagedType.Bool)]
@@ -509,7 +509,7 @@ namespace Win32Interop.Methods
 
 		[DllImport("user32.dll", EntryPoint = "EnumDesktopWindows")]
 		[return: MarshalAs(UnmanagedType.Bool)]
-		public static extern bool EnumDesktopWindows([In] IntPtr hDesktop, WNDENUMPROC lpfn, [MarshalAs(UnmanagedType.SysInt)] int lParam);
+		public static extern bool EnumDesktopWindows([In] IntPtr hDesktop, EnumWindowsProc lpfn, [MarshalAs(UnmanagedType.SysInt)] int lParam);
 
 		[DllImport("user32.dll", EntryPoint = "DdeQueryNextServer")]
 		public static extern IntPtr DdeQueryNextServer(IntPtr hConvList, IntPtr hConvPrev);
@@ -519,7 +519,7 @@ namespace Win32Interop.Methods
 
 		[DllImport("user32.dll", EntryPoint = "CreateDialogParam")]
 		public static extern IntPtr CreateDialogParam(
-			[In] IntPtr hInstance, [In] string lpTemplateName, [In] IntPtr hWndParent, DLGPROC lpDialogFunc, [MarshalAs(UnmanagedType.SysInt)] int dwInitParam);
+			[In] IntPtr hInstance, [In] string lpTemplateName, [In] IntPtr hWndParent, DialogProc lpDialogFunc, [MarshalAs(UnmanagedType.SysInt)] int dwInitParam);
 
 		[DllImport("user32.dll", EntryPoint = "CloseWindowStation")]
 		[return: MarshalAs(UnmanagedType.Bool)]
@@ -596,7 +596,7 @@ namespace Win32Interop.Methods
 
 		[DllImport("user32.dll", EntryPoint = "EnumThreadWindows")]
 		[return: MarshalAs(UnmanagedType.Bool)]
-		public static extern bool EnumThreadWindows(uint dwThreadId, WNDENUMPROC lpfn, [MarshalAs(UnmanagedType.SysInt)] int lParam);
+		public static extern bool EnumThreadWindows(uint dwThreadId, EnumWindowsProc lpfn, [MarshalAs(UnmanagedType.SysInt)] int lParam);
 
 		[DllImport("user32.dll", EntryPoint = "EndDeferWindowPos")]
 		[return: MarshalAs(UnmanagedType.Bool)]
@@ -723,7 +723,7 @@ namespace Win32Interop.Methods
 
 		[DllImport("user32.dll", EntryPoint = "EnumChildWindows")]
 		[return: MarshalAs(UnmanagedType.Bool)]
-		public static extern bool EnumChildWindows([In] IntPtr hWndParent, WNDENUMPROC lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)] int lParam);
+		public static extern bool EnumChildWindows([In] IntPtr hWndParent, EnumWindowsProc lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)] int lParam);
 
 		[DllImport("user32.dll", EntryPoint = "DrawFrameControl")]
 		[return: MarshalAs(UnmanagedType.Bool)]
@@ -786,7 +786,7 @@ namespace Win32Interop.Methods
 
 		[DllImport("user32.dll", EntryPoint = "SetWinEventHook")]
 		public static extern IntPtr SetWinEventHook(
-			uint eventMin, uint eventMax, [In] IntPtr hmodWinEventProc, WINEVENTPROC pfnWinEventProc, uint idProcess, uint idThread, WINEVENT dwFlags);
+			uint eventMin, uint eventMax, [In] IntPtr hmodWinEventProc, WinEventProc pfnWinEventProc, uint idProcess, uint idThread, WINEVENT dwFlags);
 
 		[DllImport("user32.dll", EntryPoint = "SetWindowsHook")]
 		public static extern IntPtr SetWindowsHook(int nFilterType, HOOKPROC pfnFilterProc);
@@ -894,7 +894,7 @@ namespace Win32Interop.Methods
 
 		[DllImport("user32.dll", EntryPoint = "DialogBoxParam")]
 		public static extern int DialogBoxParam(
-			[In] IntPtr hInstance, [In] string lpTemplateName, [In] IntPtr hWndParent, DLGPROC lpDialogFunc, [MarshalAs(UnmanagedType.SysInt)] int dwInitParam);
+			[In] IntPtr hInstance, [In] string lpTemplateName, [In] IntPtr hWndParent, DialogProc lpDialogFunc, [MarshalAs(UnmanagedType.SysInt)] int dwInitParam);
 
 		[DllImport("user32.dll", EntryPoint = "DefRawInputProc")]
 		[return: MarshalAs(UnmanagedType.SysInt)]
@@ -925,7 +925,7 @@ namespace Win32Interop.Methods
 		[DllImport("user32.dll", EntryPoint = "CallWindowProc")]
 		[return: MarshalAs(UnmanagedType.SysInt)]
 		public static extern int CallWindowProc(
-			WNDPROC lpPrevWndFunc, [In] IntPtr hWnd, uint Msg, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam);
+			WindowProc lpPrevWndFunc, [In] IntPtr hWnd, uint Msg, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam);
 
 		[DllImport("user32.dll", EntryPoint = "UnhookWinEvent")]
 		[return: MarshalAs(UnmanagedType.Bool)]
@@ -1049,7 +1049,7 @@ namespace Win32Interop.Methods
 		public static extern IntPtr DdeNameService(uint idInst, IntPtr hsz1, IntPtr hsz2, uint afCmd);
 
 		[DllImport("user32.dll", EntryPoint = "DdeInitialize")]
-		public static extern uint DdeInitialize(ref uint pidInst, PFNCALLBACK pfnCallback, uint afCmd, uint ulRes);
+		public static extern uint DdeInitialize(ref uint pidInst, DdeCallback pfnCallback, uint afCmd, uint ulRes);
 
 		[DllImport("user32.dll", EntryPoint = "DdeConnectList")]
 		public static extern IntPtr DdeConnectList(uint idInst, IntPtr hszService, IntPtr hszTopic, IntPtr hConvList, ref CONVCONTEXT pCC);
@@ -1215,7 +1215,7 @@ namespace Win32Interop.Methods
 
 		[DllImport("user32.dll", EntryPoint = "EnumDesktops")]
 		[return: MarshalAs(UnmanagedType.Bool)]
-		public static extern bool EnumDesktops([In] IntPtr hwinsta, NAMEENUMPROC lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)] int lParam);
+		public static extern bool EnumDesktops([In] IntPtr hwinsta, EnumWindowStationProc lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)] int lParam);
 
 		[DllImport("user32.dll", EntryPoint = "DrawFocusRect")]
 		[return: MarshalAs(UnmanagedType.Bool)]
@@ -1368,7 +1368,7 @@ namespace Win32Interop.Methods
 		public static extern ushort GetClassWord([In] IntPtr hWnd, int nIndex);
 
 		[DllImport("user32.dll", EntryPoint = "EnumPropsEx")]
-		public static extern int EnumPropsEx([In] IntPtr hWnd, PROPENUMPROCEX lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)] int lParam);
+		public static extern int EnumPropsEx([In] IntPtr hWnd, PropEnumProcEx lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)] int lParam);
 
 		[DllImport("user32.dll", EntryPoint = "EnableWindow")]
 		[return: MarshalAs(UnmanagedType.Bool)]
@@ -1466,7 +1466,7 @@ namespace Win32Interop.Methods
 		[DllImport("user32.dll", EntryPoint = "GrayString")]
 		[return: MarshalAs(UnmanagedType.Bool)]
 		public static extern bool GrayString(
-			[In] IntPtr hDC, [In] IntPtr hBrush, GRAYSTRINGPROC lpOutputFunc, [MarshalAs(UnmanagedType.SysInt)] int lpData, int nCount, int X, int Y, int nWidth,
+			[In] IntPtr hDC, [In] IntPtr hBrush, OutputProc lpOutputFunc, [MarshalAs(UnmanagedType.SysInt)] int lpData, int nCount, int X, int Y, int nWidth,
 			int nHeight);
 
 		[DllImport("user32.dll", EntryPoint = "GetWindowDC")]
@@ -1506,7 +1506,7 @@ namespace Win32Interop.Methods
 
 		[DllImport("user32.dll", EntryPoint = "EnumWindows")]
 		[return: MarshalAs(UnmanagedType.Bool)]
-		public static extern bool EnumWindows(WNDENUMPROC lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)] int lParam);
+		public static extern bool EnumWindows(EnumWindowsProc lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)] int lParam);
 
 		[DllImport("user32.dll", EntryPoint = "DrawTextEx")]
 		public static extern int DrawTextEx([In] IntPtr hdc, StringBuilder lpchText, int cchText, ref RECT lprc, uint format, [In] IntPtr lpdtp);
@@ -1613,12 +1613,12 @@ namespace Win32Interop.Methods
 		public static extern IntPtr GetCapture();
 
 		[DllImport("user32.dll", EntryPoint = "EnumProps")]
-		public static extern int EnumProps([In] IntPtr hWnd, PROPENUMPROC lpEnumFunc);
+		public static extern int EnumProps([In] IntPtr hWnd, PropEnumProc lpEnumFunc);
 
 		[DllImport("user32.dll", EntryPoint = "DrawState")]
 		[return: MarshalAs(UnmanagedType.Bool)]
 		public static extern bool DrawState(
-			[In] IntPtr hdc, [In] IntPtr hbrFore, DRAWSTATEPROC qfnCallBack, [MarshalAs(UnmanagedType.SysInt)] int lData,
+			[In] IntPtr hdc, [In] IntPtr hbrFore, DrawStateProc qfnCallBack, [MarshalAs(UnmanagedType.SysInt)] int lData,
 			[MarshalAs(UnmanagedType.SysUInt)] uint wData, int x, int y, int cx, int cy, uint uFlags);
 
 		[DllImport("user32.dll", EntryPoint = "DrawIconEx")]
@@ -1750,7 +1750,7 @@ namespace Win32Interop.Methods
 
 		[DllImport("user32.dll", EntryPoint = "SetTimer")]
 		[return: MarshalAs(UnmanagedType.SysUInt)]
-		public static extern uint SetTimer([In] IntPtr hWnd, [MarshalAs(UnmanagedType.SysUInt)] uint nIDEvent, uint uElapse, TIMERPROC lpTimerFunc);
+		public static extern uint SetTimer([In] IntPtr hWnd, [MarshalAs(UnmanagedType.SysUInt)] uint nIDEvent, uint uElapse, TimerProc lpTimerFunc);
 
 		[DllImport("user32.dll", EntryPoint = "SetProp")]
 		[return: MarshalAs(UnmanagedType.Bool)]

@@ -93,7 +93,7 @@ namespace Win32Interop.Structs
         public uint dwContextHelpId;
 
         /// MSGBOXCALLBACK
-        public MSGBOXCALLBACK lpfnMsgBoxCallback;
+        public MsgBoxCallback lpfnMsgBoxCallback;
 
         /// DWORD->unsigned int
         public uint dwLanguageId;
@@ -169,7 +169,7 @@ namespace Win32Interop.Structs
         public uint style;
 
         /// WNDPROC
-        public WNDPROC lpfnWndProc;
+        public WindowProc lpfnWndProc;
 
         /// int
         public int cbClsExtra;
@@ -208,7 +208,7 @@ namespace Win32Interop.Structs
         public uint style;
 
         /// WNDPROC
-        public WNDPROC lpfnWndProc;
+        public WindowProc lpfnWndProc;
 
         /// int
         public int cbClsExtra;
