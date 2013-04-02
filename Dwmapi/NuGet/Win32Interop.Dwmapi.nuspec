@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Win32Interop.Dwmapi</id>
@@ -9,10 +9,13 @@
         <projectUrl>https://github.com/lstratman/Win32Interop</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Provides interop methods, structs, and enums for dwmapi.dll.</description>
+        <dependencies>
+            <dependency id="Win32Interop.User32" version="1.0.0" />
+            <dependency id="Win32Interop.Uxtheme" version="1.0.0" />
+        </dependencies>
     </metadata>
     <files>
-        <file src="..\bin\Release\Win32Interop.Dwmapi.dll" target="lib\Win32Interop.Dwmapi.dll" />
-        <file src="..\bin\Release\Win32Interop.Dwmapi.pdb" target="lib\Win32Interop.Dwmapi.pdb" />
-        <file src="..\bin\Release\Win32Interop.Dwmapi.XML" target="lib\Win32Interop.Dwmapi.XML" />
+        <file src="Release\Win32Interop.Dwmapi.dll" target="lib\Win32Interop.Dwmapi.dll" />
+        <file src="Release\Win32Interop.Dwmapi.pdb" target="lib\Win32Interop.Dwmapi.pdb" />
     </files>
 </package>
