@@ -39,18 +39,8 @@ namespace Win32Interop.Methods
     ///param3: DWORD->unsigned int
     ///param4: LONG_PTR->int
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int LANGUAGEGROUP_ENUMPROCW(
-        uint param0, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder param1, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder param2, uint param3, IntPtr param4);
-
-    /// Return Type: BOOL->int
-    ///param0: LGRPID->DWORD->unsigned int
-    ///param1: LPSTR->CHAR*
-    ///param2: LPSTR->CHAR*
-    ///param3: DWORD->unsigned int
-    ///param4: LONG_PTR->int
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int LANGUAGEGROUP_ENUMPROCA(
-        uint param0, [MarshalAs(UnmanagedType.LPStr)] StringBuilder param1, [MarshalAs(UnmanagedType.LPStr)] StringBuilder param2, uint param3, IntPtr param4);
+    public delegate int LANGUAGEGROUP_ENUMPROC(
+        uint param0, [MarshalAs(UnmanagedType.LPTStr)] StringBuilder param1, [MarshalAs(UnmanagedType.LPTStr)] StringBuilder param2, uint param3, IntPtr param4);
 
     /// Return Type: BOOL->int
     ///param0: LGRPID->DWORD->unsigned int
@@ -58,15 +48,7 @@ namespace Win32Interop.Methods
     ///param2: LPWSTR->WCHAR*
     ///param3: LONG_PTR->int
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int LANGGROUPLOCALE_ENUMPROCW(uint param0, uint param1, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder param2, IntPtr param3);
-
-    /// Return Type: BOOL->int
-    ///param0: LGRPID->DWORD->unsigned int
-    ///param1: LCID->DWORD->unsigned int
-    ///param2: LPSTR->CHAR*
-    ///param3: LONG_PTR->int
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int LANGGROUPLOCALE_ENUMPROCA(uint param0, uint param1, [MarshalAs(UnmanagedType.LPStr)] StringBuilder param2, IntPtr param3);
+    public delegate int LANGGROUPLOCALE_ENUMPROC(uint param0, uint param1, [MarshalAs(UnmanagedType.LPTStr)] StringBuilder param2, IntPtr param3);
 
     /// Return Type: void
     ///dwErrorCode: DWORD->unsigned int
@@ -81,19 +63,8 @@ namespace Win32Interop.Methods
     ///wLanguage: WORD->unsigned short
     ///lParam: LONG_PTR->int
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int ENUMRESLANGPROCW(
-        [In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpType, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName, ushort wLanguage,
-        [In] IntPtr lParam);
-
-    /// Return Type: BOOL->int
-    ///hModule: HMODULE->HINSTANCE->HINSTANCE__*
-    ///lpType: LPCSTR->CHAR*
-    ///lpName: LPCSTR->CHAR*
-    ///wLanguage: WORD->unsigned short
-    ///lParam: LONG_PTR->int
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int ENUMRESLANGPROCA(
-        [In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPStr)] string lpType, [In] [MarshalAs(UnmanagedType.LPStr)] string lpName, ushort wLanguage,
+    public delegate int ENUMRESLANGPROC(
+        [In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpType, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName, ushort wLanguage,
         [In] IntPtr lParam);
 
     /// Return Type: BOOL->int
@@ -117,48 +88,25 @@ namespace Win32Interop.Methods
     /// Return Type: BOOL->int
     ///param0: LPWSTR->WCHAR*
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int CODEPAGE_ENUMPROCW([MarshalAs(UnmanagedType.LPWStr)] StringBuilder param0);
-
-    /// Return Type: BOOL->int
-    ///param0: LPSTR->CHAR*
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int CODEPAGE_ENUMPROCA([MarshalAs(UnmanagedType.LPStr)] StringBuilder param0);
+    public delegate int CODEPAGE_ENUMPROC([MarshalAs(UnmanagedType.LPTStr)] StringBuilder param0);
 
     /// Return Type: BOOL->int
     ///param0: LPWSTR->WCHAR*
     ///param1: CALID->DWORD->unsigned int
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int CALINFO_ENUMPROCEXW([MarshalAs(UnmanagedType.LPWStr)] StringBuilder param0, uint param1);
-
-    /// Return Type: BOOL->int
-    ///param0: LPSTR->CHAR*
-    ///param1: CALID->DWORD->unsigned int
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int CALINFO_ENUMPROCEXA([MarshalAs(UnmanagedType.LPStr)] StringBuilder param0, uint param1);
+    public delegate int CALINFO_ENUMPROCEX([MarshalAs(UnmanagedType.LPTStr)] StringBuilder param0, uint param1);
 
     /// Return Type: BOOL->int
     ///param0: LPWSTR->WCHAR*
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int LOCALE_ENUMPROCW([MarshalAs(UnmanagedType.LPWStr)] StringBuilder param0);
-
-    /// Return Type: BOOL->int
-    ///param0: LPSTR->CHAR*
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int LOCALE_ENUMPROCA([MarshalAs(UnmanagedType.LPStr)] StringBuilder param0);
+    public delegate int LOCALE_ENUMPROC([MarshalAs(UnmanagedType.LPTStr)] StringBuilder param0);
 
     /// Return Type: BOOL->int
     ///hModule: HMODULE->HINSTANCE->HINSTANCE__*
     ///lpType: LPWSTR->WCHAR*
     ///lParam: LONG_PTR->int
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int ENUMRESTYPEPROCW([In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpType, [In] IntPtr lParam);
-
-    /// Return Type: BOOL->int
-    ///hModule: HMODULE->HINSTANCE->HINSTANCE__*
-    ///lpType: LPSTR->CHAR*
-    ///lParam: LONG_PTR->int
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int ENUMRESTYPEPROCA([In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPStr)] string lpType, [In] IntPtr lParam);
+    public delegate int ENUMRESTYPEPROC([In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpType, [In] IntPtr lParam);
 
     /// Return Type: BOOL->int
     ///hModule: HMODULE->HINSTANCE->HINSTANCE__*
@@ -166,39 +114,19 @@ namespace Win32Interop.Methods
     ///lpName: LPWSTR->WCHAR*
     ///lParam: LONG_PTR->int
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int ENUMRESNAMEPROCW(
-        [In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpType, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName, [In] IntPtr lParam);
-
-    /// Return Type: BOOL->int
-    ///hModule: HMODULE->HINSTANCE->HINSTANCE__*
-    ///lpType: LPCSTR->CHAR*
-    ///lpName: LPSTR->CHAR*
-    ///lParam: LONG_PTR->int
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int ENUMRESNAMEPROCA(
-        [In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPStr)] string lpType, [In] [MarshalAs(UnmanagedType.LPStr)] string lpName, [In] IntPtr lParam);
+    public delegate int ENUMRESNAMEPROC(
+        [In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpType, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName, [In] IntPtr lParam);
 
     /// Return Type: BOOL->int
     ///param0: LPWSTR->WCHAR*
     ///param1: CALID->DWORD->unsigned int
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int DATEFMT_ENUMPROCEXW([MarshalAs(UnmanagedType.LPWStr)] StringBuilder param0, uint param1);
-
-    /// Return Type: BOOL->int
-    ///param0: LPSTR->CHAR*
-    ///param1: CALID->DWORD->unsigned int
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int DATEFMT_ENUMPROCEXA([MarshalAs(UnmanagedType.LPStr)] StringBuilder param0, uint param1);
+    public delegate int DATEFMT_ENUMPROCEX([MarshalAs(UnmanagedType.LPTStr)] StringBuilder param0, uint param1);
 
     /// Return Type: BOOL->int
     ///param0: LPWSTR->WCHAR*
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int CALINFO_ENUMPROCW([MarshalAs(UnmanagedType.LPWStr)] StringBuilder param0);
-
-    /// Return Type: BOOL->int
-    ///param0: LPSTR->CHAR*
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int CALINFO_ENUMPROCA([MarshalAs(UnmanagedType.LPStr)] StringBuilder param0);
+    public delegate int CALINFO_ENUMPROC([MarshalAs(UnmanagedType.LPTStr)] StringBuilder param0);
 
     /// Return Type: void
     ///lpArgToCompletionRoutine: LPVOID->void*
@@ -210,33 +138,17 @@ namespace Win32Interop.Methods
     ///param0: LPWSTR->WCHAR*
     ///param1: LONG_PTR->int
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int UILANGUAGE_ENUMPROCW([MarshalAs(UnmanagedType.LPWStr)] StringBuilder param0, IntPtr param1);
-
-    /// Return Type: BOOL->int
-    ///param0: LPSTR->CHAR*
-    ///param1: LONG_PTR->int
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int UILANGUAGE_ENUMPROCA([MarshalAs(UnmanagedType.LPStr)] StringBuilder param0, IntPtr param1);
+    public delegate int UILANGUAGE_ENUMPROC([MarshalAs(UnmanagedType.LPTStr)] StringBuilder param0, IntPtr param1);
 
     /// Return Type: BOOL->int
     ///param0: LPWSTR->WCHAR*
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int TIMEFMT_ENUMPROCW([MarshalAs(UnmanagedType.LPWStr)] StringBuilder param0);
-
-    /// Return Type: BOOL->int
-    ///param0: LPSTR->CHAR*
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int TIMEFMT_ENUMPROCA([MarshalAs(UnmanagedType.LPStr)] StringBuilder param0);
+    public delegate int TIMEFMT_ENUMPROC([MarshalAs(UnmanagedType.LPTStr)] StringBuilder param0);
 
     /// Return Type: BOOL->int
     ///param0: LPWSTR->WCHAR*
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int DATEFMT_ENUMPROCW([MarshalAs(UnmanagedType.LPWStr)] StringBuilder param0);
-
-    /// Return Type: BOOL->int
-    ///param0: LPSTR->CHAR*
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int DATEFMT_ENUMPROCA([MarshalAs(UnmanagedType.LPStr)] StringBuilder param0);
+    public delegate int DATEFMT_ENUMPROC([MarshalAs(UnmanagedType.LPTStr)] StringBuilder param0);
 
     /// Return Type: BOOL->int
     ///param0: GEOID->LONG->int
@@ -264,20 +176,10 @@ namespace Win32Interop.Methods
         ///lpszVolumeMountPoint: LPCWSTR->WCHAR*
         ///lpszVolumeName: LPWSTR->WCHAR*
         ///cchBufferLength: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetVolumeNameForVolumeMountPointW")]
+        [DllImport("kernel32.dll", EntryPoint = "GetVolumeNameForVolumeMountPoint")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetVolumeNameForVolumeMountPointW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszVolumeMountPoint, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpszVolumeName,
-            uint cchBufferLength);
-
-        /// Return Type: BOOL->int
-        ///lpszVolumeMountPoint: LPCSTR->CHAR*
-        ///lpszVolumeName: LPSTR->CHAR*
-        ///cchBufferLength: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetVolumeNameForVolumeMountPointA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetVolumeNameForVolumeMountPointA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpszVolumeMountPoint, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpszVolumeName,
+        public static extern bool GetVolumeNameForVolumeMountPoint(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpszVolumeMountPoint, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpszVolumeName,
             uint cchBufferLength);
 
         /// Return Type: BOOL->int
@@ -285,21 +187,10 @@ namespace Win32Interop.Methods
         ///lpszVolumePathNames: LPWCH->WCHAR*
         ///cchBufferLength: DWORD->unsigned int
         ///lpcchReturnLength: PDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetVolumePathNamesForVolumeNameW")]
+        [DllImport("kernel32.dll", EntryPoint = "GetVolumePathNamesForVolumeName")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetVolumePathNamesForVolumeNameW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszVolumeName, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpszVolumePathNames,
-            uint cchBufferLength, [Out] out uint lpcchReturnLength);
-
-        /// Return Type: BOOL->int
-        ///lpszVolumeName: LPCSTR->CHAR*
-        ///lpszVolumePathNames: LPCH->CHAR*
-        ///cchBufferLength: DWORD->unsigned int
-        ///lpcchReturnLength: PDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetVolumePathNamesForVolumeNameA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetVolumePathNamesForVolumeNameA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpszVolumeName, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpszVolumePathNames,
+        public static extern bool GetVolumePathNamesForVolumeName(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpszVolumeName, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpszVolumePathNames,
             uint cchBufferLength, [Out] out uint lpcchReturnLength);
 
         /// Return Type: HANDLE->void*
@@ -330,20 +221,10 @@ namespace Win32Interop.Methods
         ///lpGuid: LPCWSTR->WCHAR*
         ///pValue: PVOID->void*
         ///nSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "SetFirmwareEnvironmentVariableW")]
+        [DllImport("kernel32.dll", EntryPoint = "SetFirmwareEnvironmentVariable")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetFirmwareEnvironmentVariableW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpGuid, [In] IntPtr pValue, uint nSize);
-
-        /// Return Type: BOOL->int
-        ///lpName: LPCSTR->CHAR*
-        ///lpGuid: LPCSTR->CHAR*
-        ///pValue: PVOID->void*
-        ///nSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "SetFirmwareEnvironmentVariableA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetFirmwareEnvironmentVariableA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpGuid, [In] IntPtr pValue, uint nSize);
+        public static extern bool SetFirmwareEnvironmentVariable(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpGuid, [In] IntPtr pValue, uint nSize);
 
         /// Return Type: BOOL->int
         ///ResourceNotificationHandle: HANDLE->void*
@@ -357,18 +238,9 @@ namespace Win32Interop.Methods
         ///lpGuid: LPCWSTR->WCHAR*
         ///pBuffer: PVOID->void*
         ///nSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetFirmwareEnvironmentVariableW")]
-        public static extern uint GetFirmwareEnvironmentVariableW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpGuid, IntPtr pBuffer, uint nSize);
-
-        /// Return Type: DWORD->unsigned int
-        ///lpName: LPCSTR->CHAR*
-        ///lpGuid: LPCSTR->CHAR*
-        ///pBuffer: PVOID->void*
-        ///nSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetFirmwareEnvironmentVariableA")]
-        public static extern uint GetFirmwareEnvironmentVariableA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpGuid, IntPtr pBuffer, uint nSize);
+        [DllImport("kernel32.dll", EntryPoint = "GetFirmwareEnvironmentVariable")]
+        public static extern uint GetFirmwareEnvironmentVariable(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpGuid, IntPtr pBuffer, uint nSize);
 
         /// Return Type: ULONG->unsigned int
         ///Handle: PVOID->void*
@@ -379,17 +251,9 @@ namespace Win32Interop.Methods
         ///lpszReturnBuffer: LPWSTR->WCHAR*
         ///nSize: DWORD->unsigned int
         ///lpFileName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetPrivateProfileSectionNamesW")]
-        public static extern uint GetPrivateProfileSectionNamesW(
-            [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpszReturnBuffer, uint nSize, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpFileName);
-
-        /// Return Type: DWORD->unsigned int
-        ///lpszReturnBuffer: LPSTR->CHAR*
-        ///nSize: DWORD->unsigned int
-        ///lpFileName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetPrivateProfileSectionNamesA")]
-        public static extern uint GetPrivateProfileSectionNamesA(
-            [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpszReturnBuffer, uint nSize, [In] [MarshalAs(UnmanagedType.LPStr)] string lpFileName);
+        [DllImport("kernel32.dll", EntryPoint = "GetPrivateProfileSectionNames")]
+        public static extern uint GetPrivateProfileSectionNames(
+            [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpszReturnBuffer, uint nSize, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpFileName);
 
         /// Return Type: BOOL->int
         ///lpNumberOfMouseButtons: LPDWORD->DWORD*
@@ -424,21 +288,10 @@ namespace Win32Interop.Methods
         ///nLength: DWORD->unsigned int
         ///dwWriteCoord: COORD->_COORD
         ///lpNumberOfCharsWritten: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "WriteConsoleOutputCharacterW")]
+        [DllImport("kernel32.dll", EntryPoint = "WriteConsoleOutputCharacter")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WriteConsoleOutputCharacterW(
-            IntPtr hConsoleOutput, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpCharacter, uint nLength, COORD dwWriteCoord, ref uint lpNumberOfCharsWritten);
-
-        /// Return Type: BOOL->int
-        ///hConsoleOutput: HANDLE->void*
-        ///lpCharacter: LPCSTR->CHAR*
-        ///nLength: DWORD->unsigned int
-        ///dwWriteCoord: COORD->_COORD
-        ///lpNumberOfCharsWritten: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "WriteConsoleOutputCharacterA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WriteConsoleOutputCharacterA(
-            IntPtr hConsoleOutput, [In] [MarshalAs(UnmanagedType.LPStr)] string lpCharacter, uint nLength, COORD dwWriteCoord, ref uint lpNumberOfCharsWritten);
+        public static extern bool WriteConsoleOutputCharacter(
+            IntPtr hConsoleOutput, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpCharacter, uint nLength, COORD dwWriteCoord, ref uint lpNumberOfCharsWritten);
 
         /// Return Type: BOOL->int
         ///dwLevel: DWORD->unsigned int
@@ -464,37 +317,19 @@ namespace Win32Interop.Methods
         ///lpPathName: LPCWSTR->WCHAR*
         ///bWatchSubtree: BOOL->int
         ///dwNotifyFilter: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "FindFirstChangeNotificationW")]
-        public static extern IntPtr FindFirstChangeNotificationW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpPathName, [MarshalAs(UnmanagedType.Bool)] bool bWatchSubtree, uint dwNotifyFilter);
-
-        /// Return Type: HANDLE->void*
-        ///lpPathName: LPCSTR->CHAR*
-        ///bWatchSubtree: BOOL->int
-        ///dwNotifyFilter: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "FindFirstChangeNotificationA")]
-        public static extern IntPtr FindFirstChangeNotificationA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpPathName, [MarshalAs(UnmanagedType.Bool)] bool bWatchSubtree, uint dwNotifyFilter);
+        [DllImport("kernel32.dll", EntryPoint = "FindFirstChangeNotification")]
+        public static extern IntPtr FindFirstChangeNotification(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpPathName, [MarshalAs(UnmanagedType.Bool)] bool bWatchSubtree, uint dwNotifyFilter);
 
         /// Return Type: BOOL->int
         ///lpAppName: LPCWSTR->WCHAR*
         ///lpString: LPCWSTR->WCHAR*
         ///lpFileName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "WritePrivateProfileSectionW")]
+        [DllImport("kernel32.dll", EntryPoint = "WritePrivateProfileSection")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WritePrivateProfileSectionW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpString,
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpFileName);
-
-        /// Return Type: BOOL->int
-        ///lpAppName: LPCSTR->CHAR*
-        ///lpString: LPCSTR->CHAR*
-        ///lpFileName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "WritePrivateProfileSectionA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WritePrivateProfileSectionA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpString,
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpFileName);
+        public static extern bool WritePrivateProfileSection(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpString,
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpFileName);
 
         /// Return Type: BOOL->int
         ///hConsoleOutput: HANDLE->void*
@@ -536,21 +371,10 @@ namespace Win32Interop.Methods
         ///nLength: DWORD->unsigned int
         ///dwReadCoord: COORD->_COORD
         ///lpNumberOfCharsRead: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "ReadConsoleOutputCharacterW")]
+        [DllImport("kernel32.dll", EntryPoint = "ReadConsoleOutputCharacter")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool ReadConsoleOutputCharacterW(
-            IntPtr hConsoleOutput, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpCharacter, uint nLength, COORD dwReadCoord, ref uint lpNumberOfCharsRead);
-
-        /// Return Type: BOOL->int
-        ///hConsoleOutput: HANDLE->void*
-        ///lpCharacter: LPSTR->CHAR*
-        ///nLength: DWORD->unsigned int
-        ///dwReadCoord: COORD->_COORD
-        ///lpNumberOfCharsRead: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "ReadConsoleOutputCharacterA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool ReadConsoleOutputCharacterA(
-            IntPtr hConsoleOutput, [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpCharacter, uint nLength, COORD dwReadCoord, ref uint lpNumberOfCharsRead);
+        public static extern bool ReadConsoleOutputCharacter(
+            IntPtr hConsoleOutput, [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpCharacter, uint nLength, COORD dwReadCoord, ref uint lpNumberOfCharsRead);
 
         /// Return Type: BOOL->int
         ///VirtualAddresses: PVOID*
@@ -579,21 +403,10 @@ namespace Win32Interop.Methods
         ///nLength: DWORD->unsigned int
         ///dwWriteCoord: COORD->_COORD
         ///lpNumberOfCharsWritten: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "FillConsoleOutputCharacterW")]
+        [DllImport("kernel32.dll", EntryPoint = "FillConsoleOutputCharacter")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool FillConsoleOutputCharacterW(
+        public static extern bool FillConsoleOutputCharacter(
             IntPtr hConsoleOutput, char cCharacter, uint nLength, COORD dwWriteCoord, ref uint lpNumberOfCharsWritten);
-
-        /// Return Type: BOOL->int
-        ///hConsoleOutput: HANDLE->void*
-        ///cCharacter: CHAR->char
-        ///nLength: DWORD->unsigned int
-        ///dwWriteCoord: COORD->_COORD
-        ///lpNumberOfCharsWritten: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "FillConsoleOutputCharacterA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool FillConsoleOutputCharacterA(
-            IntPtr hConsoleOutput, byte cCharacter, uint nLength, COORD dwWriteCoord, ref uint lpNumberOfCharsWritten);
 
         /// Return Type: PVOID->void*
         ///First: ULONG->unsigned int
@@ -607,45 +420,22 @@ namespace Win32Interop.Methods
         ///lpStruct: LPVOID->void*
         ///uSizeStruct: UINT->unsigned int
         ///szFile: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "WritePrivateProfileStructW")]
+        [DllImport("kernel32.dll", EntryPoint = "WritePrivateProfileStruct")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WritePrivateProfileStructW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszSection, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszKey, [In] IntPtr lpStruct,
-            uint uSizeStruct, [In] [MarshalAs(UnmanagedType.LPWStr)] string szFile);
-
-        /// Return Type: BOOL->int
-        ///lpszSection: LPCSTR->CHAR*
-        ///lpszKey: LPCSTR->CHAR*
-        ///lpStruct: LPVOID->void*
-        ///uSizeStruct: UINT->unsigned int
-        ///szFile: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "WritePrivateProfileStructA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WritePrivateProfileStructA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpszSection, [In] [MarshalAs(UnmanagedType.LPStr)] string lpszKey, [In] IntPtr lpStruct,
-            uint uSizeStruct, [In] [MarshalAs(UnmanagedType.LPStr)] string szFile);
+        public static extern bool WritePrivateProfileStruct(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpszSection, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpszKey, [In] IntPtr lpStruct,
+            uint uSizeStruct, [In] [MarshalAs(UnmanagedType.LPTStr)] string szFile);
 
         /// Return Type: BOOL->int
         ///lpAppName: LPCWSTR->WCHAR*
         ///lpKeyName: LPCWSTR->WCHAR*
         ///lpString: LPCWSTR->WCHAR*
         ///lpFileName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "WritePrivateProfileStringW")]
+        [DllImport("kernel32.dll", EntryPoint = "WritePrivateProfileString")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WritePrivateProfileStringW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpKeyName,
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpString, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpFileName);
-
-        /// Return Type: BOOL->int
-        ///lpAppName: LPCSTR->CHAR*
-        ///lpKeyName: LPCSTR->CHAR*
-        ///lpString: LPCSTR->CHAR*
-        ///lpFileName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "WritePrivateProfileStringA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WritePrivateProfileStringA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpKeyName,
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpString, [In] [MarshalAs(UnmanagedType.LPStr)] string lpFileName);
+        public static extern bool WritePrivateProfileString(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpKeyName,
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpString, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpFileName);
 
         /// Return Type: BOOL->int
         ///hMsgIndicator: HANDLE->void*
@@ -667,20 +457,9 @@ namespace Win32Interop.Methods
         ///lpClipRectangle: SMALL_RECT*
         ///dwDestinationOrigin: COORD->_COORD
         ///lpFill: CHAR_INFO*
-        [DllImport("kernel32.dll", EntryPoint = "ScrollConsoleScreenBufferW")]
+        [DllImport("kernel32.dll", EntryPoint = "ScrollConsoleScreenBuffer")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool ScrollConsoleScreenBufferW(
-            IntPtr hConsoleOutput, ref SMALL_RECT lpScrollRectangle, ref SMALL_RECT lpClipRectangle, COORD dwDestinationOrigin, ref CHAR_INFO lpFill);
-
-        /// Return Type: BOOL->int
-        ///hConsoleOutput: HANDLE->void*
-        ///lpScrollRectangle: SMALL_RECT*
-        ///lpClipRectangle: SMALL_RECT*
-        ///dwDestinationOrigin: COORD->_COORD
-        ///lpFill: CHAR_INFO*
-        [DllImport("kernel32.dll", EntryPoint = "ScrollConsoleScreenBufferA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool ScrollConsoleScreenBufferA(
+        public static extern bool ScrollConsoleScreenBuffer(
             IntPtr hConsoleOutput, ref SMALL_RECT lpScrollRectangle, ref SMALL_RECT lpClipRectangle, COORD dwDestinationOrigin, ref CHAR_INFO lpFill);
 
         /// Return Type: BOOL->int
@@ -714,14 +493,8 @@ namespace Win32Interop.Methods
         /// Return Type: UINT->unsigned int
         ///lpBuffer: LPWSTR->WCHAR*
         ///uSize: UINT->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetSystemWindowsDirectoryW")]
-        public static extern uint GetSystemWindowsDirectoryW([Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpBuffer, uint uSize);
-
-        /// Return Type: UINT->unsigned int
-        ///lpBuffer: LPSTR->CHAR*
-        ///uSize: UINT->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetSystemWindowsDirectoryA")]
-        public static extern uint GetSystemWindowsDirectoryA([Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpBuffer, uint uSize);
+        [DllImport("kernel32.dll", EntryPoint = "GetSystemWindowsDirectory")]
+        public static extern uint GetSystemWindowsDirectory([Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpBuffer, uint uSize);
 
         /// Return Type: LANGID->WORD->unsigned short
         [DllImport("kernel32.dll", EntryPoint = "GetSystemDefaultUILanguage")]
@@ -749,12 +522,8 @@ namespace Win32Interop.Methods
         public static extern bool GetConsoleScreenBufferInfo(IntPtr hConsoleOutput, ref CONSOLE_SCREEN_BUFFER_INFO lpConsoleScreenBufferInfo);
 
         /// Return Type: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetConsoleAliasExesLengthW")]
-        public static extern uint GetConsoleAliasExesLengthW();
-
-        /// Return Type: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetConsoleAliasExesLengthA")]
-        public static extern uint GetConsoleAliasExesLengthA();
+        [DllImport("kernel32.dll", EntryPoint = "GetConsoleAliasExesLength")]
+        public static extern uint GetConsoleAliasExesLength();
 
         /// Return Type: BOOL->int
         ///hChangeHandle: HANDLE->void*
@@ -766,18 +535,9 @@ namespace Win32Interop.Methods
         ///lpszRootPathName: LPCWSTR->WCHAR*
         ///lpszVolumeMountPoint: LPWSTR->WCHAR*
         ///cchBufferLength: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "FindFirstVolumeMountPointW")]
-        public static extern IntPtr FindFirstVolumeMountPointW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszRootPathName, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpszVolumeMountPoint,
-            uint cchBufferLength);
-
-        /// Return Type: HANDLE->void*
-        ///lpszRootPathName: LPCSTR->CHAR*
-        ///lpszVolumeMountPoint: LPSTR->CHAR*
-        ///cchBufferLength: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "FindFirstVolumeMountPointA")]
-        public static extern IntPtr FindFirstVolumeMountPointA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpszRootPathName, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpszVolumeMountPoint,
+        [DllImport("kernel32.dll", EntryPoint = "FindFirstVolumeMountPoint")]
+        public static extern IntPtr FindFirstVolumeMountPoint(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpszRootPathName, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpszVolumeMountPoint,
             uint cchBufferLength);
 
         /// Return Type: BOOL->int
@@ -795,19 +555,10 @@ namespace Win32Interop.Methods
         ///Hostname: LPCWSTR->WCHAR*
         ///ComputerName: LPWSTR->WCHAR*
         ///nSize: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "DnsHostnameToComputerNameW")]
+        [DllImport("kernel32.dll", EntryPoint = "DnsHostnameToComputerName")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DnsHostnameToComputerNameW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string Hostname, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder ComputerName, ref uint nSize);
-
-        /// Return Type: BOOL->int
-        ///Hostname: LPCSTR->CHAR*
-        ///ComputerName: LPSTR->CHAR*
-        ///nSize: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "DnsHostnameToComputerNameA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DnsHostnameToComputerNameA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string Hostname, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder ComputerName, ref uint nSize);
+        public static extern bool DnsHostnameToComputerName(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string Hostname, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder ComputerName, ref uint nSize);
 
         /// Return Type: BOOL->int
         ///hProcess: HANDLE->void*
@@ -867,20 +618,10 @@ namespace Win32Interop.Methods
         ///lpReturnedString: LPWSTR->WCHAR*
         ///nSize: DWORD->unsigned int
         ///lpFileName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetPrivateProfileSectionW")]
-        public static extern uint GetPrivateProfileSectionW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpAppName, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpReturnedString, uint nSize,
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpFileName);
-
-        /// Return Type: DWORD->unsigned int
-        ///lpAppName: LPCSTR->CHAR*
-        ///lpReturnedString: LPSTR->CHAR*
-        ///nSize: DWORD->unsigned int
-        ///lpFileName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetPrivateProfileSectionA")]
-        public static extern uint GetPrivateProfileSectionA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpAppName, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpReturnedString, uint nSize,
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpFileName);
+        [DllImport("kernel32.dll", EntryPoint = "GetPrivateProfileSection")]
+        public static extern uint GetPrivateProfileSection(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpAppName, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpReturnedString, uint nSize,
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpFileName);
 
         /// Return Type: BOOL->int
         ///hFindVolumeMountPoint: HANDLE->void*
@@ -892,73 +633,37 @@ namespace Win32Interop.Methods
         ///hFindVolumeMountPoint: HANDLE->void*
         ///lpszVolumeMountPoint: LPWSTR->WCHAR*
         ///cchBufferLength: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "FindNextVolumeMountPointW")]
+        [DllImport("kernel32.dll", EntryPoint = "FindNextVolumeMountPoint")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool FindNextVolumeMountPointW(
-            [In] IntPtr hFindVolumeMountPoint, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpszVolumeMountPoint, uint cchBufferLength);
-
-        /// Return Type: BOOL->int
-        ///hFindVolumeMountPoint: HANDLE->void*
-        ///lpszVolumeMountPoint: LPSTR->CHAR*
-        ///cchBufferLength: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "FindNextVolumeMountPointA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool FindNextVolumeMountPointA(
-            [In] IntPtr hFindVolumeMountPoint, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpszVolumeMountPoint, uint cchBufferLength);
+        public static extern bool FindNextVolumeMountPoint(
+            [In] IntPtr hFindVolumeMountPoint, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpszVolumeMountPoint, uint cchBufferLength);
 
         /// Return Type: DWORD->unsigned int
         ///lpSrc: LPCWSTR->WCHAR*
         ///lpDst: LPWSTR->WCHAR*
         ///nSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "ExpandEnvironmentStringsW")]
-        public static extern uint ExpandEnvironmentStringsW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpSrc, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpDst, uint nSize);
-
-        /// Return Type: DWORD->unsigned int
-        ///lpSrc: LPCSTR->CHAR*
-        ///lpDst: LPSTR->CHAR*
-        ///nSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "ExpandEnvironmentStringsA")]
-        public static extern uint ExpandEnvironmentStringsA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpSrc, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpDst, uint nSize);
+        [DllImport("kernel32.dll", EntryPoint = "ExpandEnvironmentStrings")]
+        public static extern uint ExpandEnvironmentStrings(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpSrc, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpDst, uint nSize);
 
         /// Return Type: BOOL->int
         ///lpLanguageGroupEnumProc: LANGUAGEGROUP_ENUMPROCW
         ///dwFlags: DWORD->unsigned int
         ///lParam: LONG_PTR->int
-        [DllImport("kernel32.dll", EntryPoint = "EnumSystemLanguageGroupsW")]
+        [DllImport("kernel32.dll", EntryPoint = "EnumSystemLanguageGroups")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumSystemLanguageGroupsW(
-            LANGUAGEGROUP_ENUMPROCW lpLanguageGroupEnumProc, uint dwFlags, [MarshalAs(UnmanagedType.SysInt)] int lParam);
-
-        /// Return Type: BOOL->int
-        ///lpLanguageGroupEnumProc: LANGUAGEGROUP_ENUMPROCA
-        ///dwFlags: DWORD->unsigned int
-        ///lParam: LONG_PTR->int
-        [DllImport("kernel32.dll", EntryPoint = "EnumSystemLanguageGroupsA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumSystemLanguageGroupsA(
-            LANGUAGEGROUP_ENUMPROCA lpLanguageGroupEnumProc, uint dwFlags, [MarshalAs(UnmanagedType.SysInt)] int lParam);
+        public static extern bool EnumSystemLanguageGroups(
+            LANGUAGEGROUP_ENUMPROC lpLanguageGroupEnumProc, uint dwFlags, [MarshalAs(UnmanagedType.SysInt)] int lParam);
 
         /// Return Type: BOOL->int
         ///lpLangGroupLocaleEnumProc: LANGGROUPLOCALE_ENUMPROCW
         ///LanguageGroup: LGRPID->DWORD->unsigned int
         ///dwFlags: DWORD->unsigned int
         ///lParam: LONG_PTR->int
-        [DllImport("kernel32.dll", EntryPoint = "EnumLanguageGroupLocalesW")]
+        [DllImport("kernel32.dll", EntryPoint = "EnumLanguageGroupLocales")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumLanguageGroupLocalesW(
-            LANGGROUPLOCALE_ENUMPROCW lpLangGroupLocaleEnumProc, uint LanguageGroup, uint dwFlags, [MarshalAs(UnmanagedType.SysInt)] int lParam);
-
-        /// Return Type: BOOL->int
-        ///lpLangGroupLocaleEnumProc: LANGGROUPLOCALE_ENUMPROCA
-        ///LanguageGroup: LGRPID->DWORD->unsigned int
-        ///dwFlags: DWORD->unsigned int
-        ///lParam: LONG_PTR->int
-        [DllImport("kernel32.dll", EntryPoint = "EnumLanguageGroupLocalesA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumLanguageGroupLocalesA(
-            LANGGROUPLOCALE_ENUMPROCA lpLangGroupLocaleEnumProc, uint LanguageGroup, uint dwFlags, [MarshalAs(UnmanagedType.SysInt)] int lParam);
+        public static extern bool EnumLanguageGroupLocales(
+            LANGGROUPLOCALE_ENUMPROC lpLangGroupLocaleEnumProc, uint LanguageGroup, uint dwFlags, [MarshalAs(UnmanagedType.SysInt)] int lParam);
 
         /// Return Type: BOOL->int
         ///hLibModule: HMODULE->HINSTANCE->HINSTANCE__*
@@ -1039,14 +744,8 @@ namespace Win32Interop.Methods
         /// Return Type: UINT->unsigned int
         ///lpBuffer: LPWSTR->WCHAR*
         ///uSize: UINT->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetSystemWow64DirectoryW")]
-        public static extern uint GetSystemWow64DirectoryW([Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpBuffer, uint uSize);
-
-        /// Return Type: UINT->unsigned int
-        ///lpBuffer: LPSTR->CHAR*
-        ///uSize: UINT->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetSystemWow64DirectoryA")]
-        public static extern uint GetSystemWow64DirectoryA([Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpBuffer, uint uSize);
+        [DllImport("kernel32.dll", EntryPoint = "GetSystemWow64Directory")]
+        public static extern uint GetSystemWow64Directory([Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpBuffer, uint uSize);
 
         /// Return Type: BOOL->int
         ///hProcess: HANDLE->void*
@@ -1062,23 +761,11 @@ namespace Win32Interop.Methods
         ///lpStruct: LPVOID->void*
         ///uSizeStruct: UINT->unsigned int
         ///szFile: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetPrivateProfileStructW")]
+        [DllImport("kernel32.dll", EntryPoint = "GetPrivateProfileStruct")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetPrivateProfileStructW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszSection, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszKey, IntPtr lpStruct, uint uSizeStruct,
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string szFile);
-
-        /// Return Type: BOOL->int
-        ///lpszSection: LPCSTR->CHAR*
-        ///lpszKey: LPCSTR->CHAR*
-        ///lpStruct: LPVOID->void*
-        ///uSizeStruct: UINT->unsigned int
-        ///szFile: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetPrivateProfileStructA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetPrivateProfileStructA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpszSection, [In] [MarshalAs(UnmanagedType.LPStr)] string lpszKey, IntPtr lpStruct, uint uSizeStruct,
-            [In] [MarshalAs(UnmanagedType.LPStr)] string szFile);
+        public static extern bool GetPrivateProfileStruct(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpszSection, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpszKey, IntPtr lpStruct, uint uSizeStruct,
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string szFile);
 
         /// Return Type: DWORD->unsigned int
         ///lpAppName: LPCWSTR->WCHAR*
@@ -1087,24 +774,11 @@ namespace Win32Interop.Methods
         ///lpReturnedString: LPWSTR->WCHAR*
         ///nSize: DWORD->unsigned int
         ///lpFileName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetPrivateProfileStringW")]
-        public static extern uint GetPrivateProfileStringW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpKeyName,
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpDefault, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpReturnedString, uint nSize,
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpFileName);
-
-        /// Return Type: DWORD->unsigned int
-        ///lpAppName: LPCSTR->CHAR*
-        ///lpKeyName: LPCSTR->CHAR*
-        ///lpDefault: LPCSTR->CHAR*
-        ///lpReturnedString: LPSTR->CHAR*
-        ///nSize: DWORD->unsigned int
-        ///lpFileName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetPrivateProfileStringA")]
-        public static extern uint GetPrivateProfileStringA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpKeyName,
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpDefault, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpReturnedString, uint nSize,
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpFileName);
+        [DllImport("kernel32.dll", EntryPoint = "GetPrivateProfileString")]
+        public static extern uint GetPrivateProfileString(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpKeyName,
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpDefault, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpReturnedString, uint nSize,
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpFileName);
 
         /// Return Type: BOOL->int
         ///Node: UCHAR->unsigned char
@@ -1127,35 +801,16 @@ namespace Win32Interop.Methods
         ///lpCollectDataTimeout: LPDWORD->DWORD*
         ///lpUserName: LPWSTR->WCHAR*
         ///nMaxUserNameSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetNamedPipeHandleStateW")]
+        [DllImport("kernel32.dll", EntryPoint = "GetNamedPipeHandleState")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetNamedPipeHandleStateW(
+        public static extern bool GetNamedPipeHandleState(
             [In] IntPtr hNamedPipe, IntPtr lpState, IntPtr lpCurInstances, IntPtr lpMaxCollectionCount, IntPtr lpCollectDataTimeout,
-            [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpUserName, uint nMaxUserNameSize);
-
-        /// Return Type: BOOL->int
-        ///hNamedPipe: HANDLE->void*
-        ///lpState: LPDWORD->DWORD*
-        ///lpCurInstances: LPDWORD->DWORD*
-        ///lpMaxCollectionCount: LPDWORD->DWORD*
-        ///lpCollectDataTimeout: LPDWORD->DWORD*
-        ///lpUserName: LPSTR->CHAR*
-        ///nMaxUserNameSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetNamedPipeHandleStateA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetNamedPipeHandleStateA(
-            [In] IntPtr hNamedPipe, IntPtr lpState, IntPtr lpCurInstances, IntPtr lpMaxCollectionCount, IntPtr lpCollectDataTimeout,
-            [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpUserName, uint nMaxUserNameSize);
+            [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpUserName, uint nMaxUserNameSize);
 
         /// Return Type: DWORD->unsigned int
         ///ExeName: LPWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetConsoleAliasesLengthW")]
-        public static extern uint GetConsoleAliasesLengthW([MarshalAs(UnmanagedType.LPWStr)] StringBuilder ExeName);
-
-        /// Return Type: DWORD->unsigned int
-        ///ExeName: LPSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetConsoleAliasesLengthA")]
-        public static extern uint GetConsoleAliasesLengthA([MarshalAs(UnmanagedType.LPStr)] StringBuilder ExeName);
+        [DllImport("kernel32.dll", EntryPoint = "GetConsoleAliasesLength")]
+        public static extern uint GetConsoleAliasesLength([MarshalAs(UnmanagedType.LPTStr)] StringBuilder ExeName);
 
         /// Return Type: BOOL->int
         ///dwCtrlEvent: DWORD->unsigned int
@@ -1176,41 +831,20 @@ namespace Win32Interop.Methods
         ///ulSectionId: ULONG->unsigned int
         ///lpStringToFind: LPCWSTR->WCHAR*
         ///ReturnedData: PACTCTX_SECTION_KEYED_DATA->tagACTCTX_SECTION_KEYED_DATA*
-        [DllImport("kernel32.dll", EntryPoint = "FindActCtxSectionStringW")]
+        [DllImport("kernel32.dll", EntryPoint = "FindActCtxSectionString")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool FindActCtxSectionStringW(
-            uint dwFlags, IntPtr lpExtensionGuid, uint ulSectionId, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpStringToFind,
-            [Out] out tagACTCTX_SECTION_KEYED_DATA ReturnedData);
-
-        /// Return Type: BOOL->int
-        ///dwFlags: DWORD->unsigned int
-        ///lpExtensionGuid: GUID*
-        ///ulSectionId: ULONG->unsigned int
-        ///lpStringToFind: LPCSTR->CHAR*
-        ///ReturnedData: PACTCTX_SECTION_KEYED_DATA->tagACTCTX_SECTION_KEYED_DATA*
-        [DllImport("kernel32.dll", EntryPoint = "FindActCtxSectionStringA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool FindActCtxSectionStringA(
-            uint dwFlags, IntPtr lpExtensionGuid, uint ulSectionId, [In] [MarshalAs(UnmanagedType.LPStr)] string lpStringToFind,
+        public static extern bool FindActCtxSectionString(
+            uint dwFlags, IntPtr lpExtensionGuid, uint ulSectionId, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpStringToFind,
             [Out] out tagACTCTX_SECTION_KEYED_DATA ReturnedData);
 
         /// Return Type: BOOL->int
         ///lpDef: LPCWSTR->WCHAR*
         ///lpDCB: LPDCB->_DCB*
         ///lpCommTimeouts: LPCOMMTIMEOUTS->_COMMTIMEOUTS*
-        [DllImport("kernel32.dll", EntryPoint = "BuildCommDCBAndTimeoutsW")]
+        [DllImport("kernel32.dll", EntryPoint = "BuildCommDCBAndTimeouts")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool BuildCommDCBAndTimeoutsW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpDef, [Out] out DCB lpDCB, [Out] out COMMTIMEOUTS lpCommTimeouts);
-
-        /// Return Type: BOOL->int
-        ///lpDef: LPCSTR->CHAR*
-        ///lpDCB: LPDCB->_DCB*
-        ///lpCommTimeouts: LPCOMMTIMEOUTS->_COMMTIMEOUTS*
-        [DllImport("kernel32.dll", EntryPoint = "BuildCommDCBAndTimeoutsA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool BuildCommDCBAndTimeoutsA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpDef, [Out] out DCB lpDCB, [Out] out COMMTIMEOUTS lpCommTimeouts);
+        public static extern bool BuildCommDCBAndTimeouts(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpDef, [Out] out DCB lpDCB, [Out] out COMMTIMEOUTS lpCommTimeouts);
 
         /// Return Type: BOOL->int
         ///FileHandle: HANDLE->void*
@@ -1281,18 +915,10 @@ namespace Win32Interop.Methods
         /// Return Type: BOOL->int
         ///lpName: LPCWSTR->WCHAR*
         ///lpValue: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetEnvironmentVariableW")]
+        [DllImport("kernel32.dll", EntryPoint = "SetEnvironmentVariable")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetEnvironmentVariableW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpValue);
-
-        /// Return Type: BOOL->int
-        ///lpName: LPCSTR->CHAR*
-        ///lpValue: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetEnvironmentVariableA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetEnvironmentVariableA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpValue);
+        public static extern bool SetEnvironmentVariable(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpValue);
 
         /// Return Type: BOOL->int
         ///hConsoleOutput: HANDLE->void*
@@ -1343,30 +969,16 @@ namespace Win32Interop.Methods
         /// Return Type: DWORD->unsigned int
         ///nBufferLength: DWORD->unsigned int
         ///lpBuffer: LPWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetLogicalDriveStringsW")]
-        public static extern uint GetLogicalDriveStringsW(uint nBufferLength, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpBuffer);
-
-        /// Return Type: DWORD->unsigned int
-        ///nBufferLength: DWORD->unsigned int
-        ///lpBuffer: LPSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetLogicalDriveStringsA")]
-        public static extern uint GetLogicalDriveStringsA(uint nBufferLength, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpBuffer);
+        [DllImport("kernel32.dll", EntryPoint = "GetLogicalDriveStrings")]
+        public static extern uint GetLogicalDriveStrings(uint nBufferLength, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpBuffer);
 
         /// Return Type: DWORD->unsigned int
         ///lpName: LPCWSTR->WCHAR*
         ///lpBuffer: LPWSTR->WCHAR*
         ///nSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetEnvironmentVariableW")]
-        public static extern uint GetEnvironmentVariableW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpBuffer, uint nSize);
-
-        /// Return Type: DWORD->unsigned int
-        ///lpName: LPCSTR->CHAR*
-        ///lpBuffer: LPSTR->CHAR*
-        ///nSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetEnvironmentVariableA")]
-        public static extern uint GetEnvironmentVariableA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpName, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpBuffer, uint nSize);
+        [DllImport("kernel32.dll", EntryPoint = "GetEnvironmentVariable")]
+        public static extern uint GetEnvironmentVariable(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpBuffer, uint nSize);
 
         /// Return Type: BOOL->int
         ///lpConsoleSelectionInfo: PCONSOLE_SELECTION_INFO->_CONSOLE_SELECTION_INFO*
@@ -1376,15 +988,9 @@ namespace Win32Interop.Methods
 
         /// Return Type: BOOL->int
         ///param0: LPWCH->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "FreeEnvironmentStringsW")]
+        [DllImport("kernel32.dll", EntryPoint = "FreeEnvironmentStrings")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool FreeEnvironmentStringsW([In] [MarshalAs(UnmanagedType.LPWStr)] string param0);
-
-        /// Return Type: BOOL->int
-        ///param0: LPCH->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "FreeEnvironmentStringsA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool FreeEnvironmentStringsA([In] [MarshalAs(UnmanagedType.LPStr)] string param0);
+        public static extern bool FreeEnvironmentStrings([In] [MarshalAs(UnmanagedType.LPTStr)] string param0);
 
         /// Return Type: BOOL->int
         ///hConsoleInput: HANDLE->void*
@@ -1401,15 +1007,9 @@ namespace Win32Interop.Methods
 
         /// Return Type: BOOL->int
         ///lpszVolumeMountPoint: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "DeleteVolumeMountPointW")]
+        [DllImport("kernel32.dll", EntryPoint = "DeleteVolumeMountPoint")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DeleteVolumeMountPointW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpszVolumeMountPoint);
-
-        /// Return Type: BOOL->int
-        ///lpszVolumeMountPoint: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "DeleteVolumeMountPointA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DeleteVolumeMountPointA([In] [MarshalAs(UnmanagedType.LPStr)] string lpszVolumeMountPoint);
+        public static extern bool DeleteVolumeMountPoint([In] [MarshalAs(UnmanagedType.LPTStr)] string lpszVolumeMountPoint);
 
         /// Return Type: BOOL->int
         ///lpName: LPCWSTR->WCHAR*
@@ -1417,22 +1017,10 @@ namespace Win32Interop.Methods
         ///OemNameSize: DWORD->unsigned int
         ///pbNameContainsSpaces: PBOOL->BOOL*
         ///pbNameLegal: PBOOL->BOOL*
-        [DllImport("kernel32.dll", EntryPoint = "CheckNameLegalDOS8Dot3W")]
+        [DllImport("kernel32.dll", EntryPoint = "CheckNameLegalDOS8Dot3")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CheckNameLegalDOS8Dot3W(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpOemName, uint OemNameSize,
-            IntPtr pbNameContainsSpaces, [Out] out int pbNameLegal);
-
-        /// Return Type: BOOL->int
-        ///lpName: LPCSTR->CHAR*
-        ///lpOemName: LPSTR->CHAR*
-        ///OemNameSize: DWORD->unsigned int
-        ///pbNameContainsSpaces: PBOOL->BOOL*
-        ///pbNameLegal: PBOOL->BOOL*
-        [DllImport("kernel32.dll", EntryPoint = "CheckNameLegalDOS8Dot3A")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CheckNameLegalDOS8Dot3A(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpName, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpOemName, uint OemNameSize,
+        public static extern bool CheckNameLegalDOS8Dot3(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpOemName, uint OemNameSize,
             IntPtr pbNameContainsSpaces, [Out] out int pbNameLegal);
 
         /// Return Type: DWORD->unsigned int
@@ -1517,21 +1105,11 @@ namespace Win32Interop.Methods
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetProcessAffinityMask([In] IntPtr hProcess, [Out] out uint lpProcessAffinityMask, [Out] out uint lpSystemAffinityMask);
 
-        /// Return Type: LPWCH->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetEnvironmentStringsW")]
-        public static extern IntPtr GetEnvironmentStringsW();
-
         /// Return Type: DWORD->unsigned int
         ///lpFileName: LPCWSTR->WCHAR*
         ///lpFileSizeHigh: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetCompressedFileSizeW")]
-        public static extern uint GetCompressedFileSizeW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpFileName, [Out] out uint lpFileSizeHigh);
-
-        /// Return Type: DWORD->unsigned int
-        ///lpFileName: LPCSTR->CHAR*
-        ///lpFileSizeHigh: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetCompressedFileSizeA")]
-        public static extern uint GetCompressedFileSizeA([In] [MarshalAs(UnmanagedType.LPStr)] string lpFileName, [Out] out uint lpFileSizeHigh);
+        [DllImport("kernel32.dll", EntryPoint = "GetCompressedFileSize")]
+        public static extern uint GetCompressedFileSize([In] [MarshalAs(UnmanagedType.LPTStr)] string lpFileName, [Out] out uint lpFileSizeHigh);
 
         /// Return Type: BOOL->int
         ///hModule: HMODULE->HINSTANCE->HINSTANCE__*
@@ -1539,23 +1117,11 @@ namespace Win32Interop.Methods
         ///lpName: LPCWSTR->WCHAR*
         ///lpEnumFunc: ENUMRESLANGPROCW
         ///lParam: LONG_PTR->int
-        [DllImport("kernel32.dll", EntryPoint = "EnumResourceLanguagesW")]
+        [DllImport("kernel32.dll", EntryPoint = "EnumResourceLanguages")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumResourceLanguagesW(
-            [In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpType, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName,
-            ENUMRESLANGPROCW lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)] int lParam);
-
-        /// Return Type: BOOL->int
-        ///hModule: HMODULE->HINSTANCE->HINSTANCE__*
-        ///lpType: LPCSTR->CHAR*
-        ///lpName: LPCSTR->CHAR*
-        ///lpEnumFunc: ENUMRESLANGPROCA
-        ///lParam: LONG_PTR->int
-        [DllImport("kernel32.dll", EntryPoint = "EnumResourceLanguagesA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumResourceLanguagesA(
-            [In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPStr)] string lpType, [In] [MarshalAs(UnmanagedType.LPStr)] string lpName,
-            ENUMRESLANGPROCA lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)] int lParam);
+        public static extern bool EnumResourceLanguages(
+            [In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpType, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName,
+            ENUMRESLANGPROC lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)] int lParam);
 
         /// Return Type: BOOL->int
         ///dwProcessId: DWORD->unsigned int
@@ -1589,17 +1155,9 @@ namespace Win32Interop.Methods
         ///lpszName: LPCWSTR->WCHAR*
         ///lpCC: LPCOMMCONFIG->_COMMCONFIG*
         ///dwSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "SetDefaultCommConfigW")]
+        [DllImport("kernel32.dll", EntryPoint = "SetDefaultCommConfig")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetDefaultCommConfigW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpszName, [In] IntPtr lpCC, uint dwSize);
-
-        /// Return Type: BOOL->int
-        ///lpszName: LPCSTR->CHAR*
-        ///lpCC: LPCOMMCONFIG->_COMMCONFIG*
-        ///dwSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "SetDefaultCommConfigA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetDefaultCommConfigA([In] [MarshalAs(UnmanagedType.LPStr)] string lpszName, [In] IntPtr lpCC, uint dwSize);
+        public static extern bool SetDefaultCommConfig([In] [MarshalAs(UnmanagedType.LPTStr)] string lpszName, [In] IntPtr lpCC, uint dwSize);
 
         /// Return Type: BOOL->int
         ///HandlerRoutine: PHANDLER_ROUTINE
@@ -1617,9 +1175,9 @@ namespace Win32Interop.Methods
         ///lpBytesReturned: LPDWORD->DWORD*
         ///lpOverlapped: LPOVERLAPPED->_OVERLAPPED*
         ///lpCompletionRoutine: LPOVERLAPPED_COMPLETION_ROUTINE
-        [DllImport("kernel32.dll", EntryPoint = "ReadDirectoryChangesW")]
+        [DllImport("kernel32.dll", EntryPoint = "ReadDirectoryChanges")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool ReadDirectoryChangesW(
+        public static extern bool ReadDirectoryChanges(
             [In] IntPtr hDirectory, IntPtr lpBuffer, uint nBufferLength, [MarshalAs(UnmanagedType.Bool)] bool bWatchSubtree, uint dwNotifyFilter,
             [Out] out uint lpBytesReturned, ref OVERLAPPED lpOverlapped, LPOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine);
 
@@ -1629,22 +1187,10 @@ namespace Win32Interop.Methods
         ///lpProgressRoutine: LPPROGRESS_ROUTINE
         ///lpData: LPVOID->void*
         ///dwFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "MoveFileWithProgressW")]
+        [DllImport("kernel32.dll", EntryPoint = "MoveFileWithProgress")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool MoveFileWithProgressW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpExistingFileName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpNewFileName,
-            LPPROGRESS_ROUTINE lpProgressRoutine, [In] IntPtr lpData, uint dwFlags);
-
-        /// Return Type: BOOL->int
-        ///lpExistingFileName: LPCSTR->CHAR*
-        ///lpNewFileName: LPCSTR->CHAR*
-        ///lpProgressRoutine: LPPROGRESS_ROUTINE
-        ///lpData: LPVOID->void*
-        ///dwFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "MoveFileWithProgressA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool MoveFileWithProgressA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpExistingFileName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpNewFileName,
+        public static extern bool MoveFileWithProgress(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpExistingFileName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpNewFileName,
             LPPROGRESS_ROUTINE lpProgressRoutine, [In] IntPtr lpData, uint dwFlags);
 
         /// Return Type: PSINGLE_LIST_ENTRY->_SINGLE_LIST_ENTRY*
@@ -1661,28 +1207,12 @@ namespace Win32Interop.Methods
         ///lpFileSystemFlags: LPDWORD->DWORD*
         ///lpFileSystemNameBuffer: LPWSTR->WCHAR*
         ///nFileSystemNameSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetVolumeInformationW")]
+        [DllImport("kernel32.dll", EntryPoint = "GetVolumeInformation")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetVolumeInformationW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpRootPathName, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpVolumeNameBuffer,
+        public static extern bool GetVolumeInformation(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpRootPathName, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpVolumeNameBuffer,
             uint nVolumeNameSize, IntPtr lpVolumeSerialNumber, IntPtr lpMaximumComponentLength, IntPtr lpFileSystemFlags,
-            [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpFileSystemNameBuffer, uint nFileSystemNameSize);
-
-        /// Return Type: BOOL->int
-        ///lpRootPathName: LPCSTR->CHAR*
-        ///lpVolumeNameBuffer: LPSTR->CHAR*
-        ///nVolumeNameSize: DWORD->unsigned int
-        ///lpVolumeSerialNumber: LPDWORD->DWORD*
-        ///lpMaximumComponentLength: LPDWORD->DWORD*
-        ///lpFileSystemFlags: LPDWORD->DWORD*
-        ///lpFileSystemNameBuffer: LPSTR->CHAR*
-        ///nFileSystemNameSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetVolumeInformationA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetVolumeInformationA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpRootPathName, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpVolumeNameBuffer,
-            uint nVolumeNameSize, IntPtr lpVolumeSerialNumber, IntPtr lpMaximumComponentLength, IntPtr lpFileSystemFlags,
-            [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpFileSystemNameBuffer, uint nFileSystemNameSize);
+            [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpFileSystemNameBuffer, uint nFileSystemNameSize);
 
         /// Return Type: BOOL->int
         ///hProcess: HANDLE->void*
@@ -1696,20 +1226,10 @@ namespace Win32Interop.Methods
         ///lpKeyName: LPCWSTR->WCHAR*
         ///nDefault: INT->int
         ///lpFileName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetPrivateProfileIntW")]
-        public static extern uint GetPrivateProfileIntW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpKeyName, int nDefault,
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpFileName);
-
-        /// Return Type: UINT->unsigned int
-        ///lpAppName: LPCSTR->CHAR*
-        ///lpKeyName: LPCSTR->CHAR*
-        ///nDefault: INT->int
-        ///lpFileName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetPrivateProfileIntA")]
-        public static extern uint GetPrivateProfileIntA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpKeyName, int nDefault,
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpFileName);
+        [DllImport("kernel32.dll", EntryPoint = "GetPrivateProfileInt")]
+        public static extern uint GetPrivateProfileInt(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpKeyName, int nDefault,
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpFileName);
 
         /// Return Type: LPCH->CHAR*
         [DllImport("kernel32.dll", EntryPoint = "GetEnvironmentStrings")]
@@ -1719,17 +1239,9 @@ namespace Win32Interop.Methods
         ///lpszName: LPCWSTR->WCHAR*
         ///lpCC: LPCOMMCONFIG->_COMMCONFIG*
         ///lpdwSize: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetDefaultCommConfigW")]
+        [DllImport("kernel32.dll", EntryPoint = "GetDefaultCommConfig")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetDefaultCommConfigW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpszName, IntPtr lpCC, ref uint lpdwSize);
-
-        /// Return Type: BOOL->int
-        ///lpszName: LPCSTR->CHAR*
-        ///lpCC: LPCOMMCONFIG->_COMMCONFIG*
-        ///lpdwSize: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetDefaultCommConfigA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetDefaultCommConfigA([In] [MarshalAs(UnmanagedType.LPStr)] string lpszName, IntPtr lpCC, ref uint lpdwSize);
+        public static extern bool GetDefaultCommConfig([In] [MarshalAs(UnmanagedType.LPTStr)] string lpszName, IntPtr lpCC, ref uint lpdwSize);
 
         /// Return Type: BOOL->int
         ///hConsoleOutput: HANDLE->void*
@@ -1840,18 +1352,10 @@ namespace Win32Interop.Methods
         /// Return Type: BOOL->int
         ///lpAppName: LPCWSTR->WCHAR*
         ///lpString: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "WriteProfileSectionW")]
+        [DllImport("kernel32.dll", EntryPoint = "WriteProfileSection")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WriteProfileSectionW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpString);
-
-        /// Return Type: BOOL->int
-        ///lpAppName: LPCSTR->CHAR*
-        ///lpString: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "WriteProfileSectionA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WriteProfileSectionA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpString);
+        public static extern bool WriteProfileSection(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpString);
 
         /// Return Type: BOOL->int
         ///lpSystemTime: SYSTEMTIME*
@@ -1863,18 +1367,10 @@ namespace Win32Interop.Methods
         /// Return Type: BOOL->int
         ///lpszVolumeMountPoint: LPCWSTR->WCHAR*
         ///lpszVolumeName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetVolumeMountPointW")]
+        [DllImport("kernel32.dll", EntryPoint = "SetVolumeMountPoint")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetVolumeMountPointW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszVolumeMountPoint, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszVolumeName);
-
-        /// Return Type: BOOL->int
-        ///lpszVolumeMountPoint: LPCSTR->CHAR*
-        ///lpszVolumeName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetVolumeMountPointA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetVolumeMountPointA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpszVolumeMountPoint, [In] [MarshalAs(UnmanagedType.LPStr)] string lpszVolumeName);
+        public static extern bool SetVolumeMountPoint(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpszVolumeMountPoint, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpszVolumeName);
 
         /// Return Type: BOOL->int
         ///hObject: HANDLE->void*
@@ -1886,15 +1382,9 @@ namespace Win32Interop.Methods
 
         /// Return Type: BOOL->int
         ///lpPathName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetCurrentDirectoryW")]
+        [DllImport("kernel32.dll", EntryPoint = "SetCurrentDirectory")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetCurrentDirectoryW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpPathName);
-
-        /// Return Type: BOOL->int
-        ///lpPathName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetCurrentDirectoryA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetCurrentDirectoryA([In] [MarshalAs(UnmanagedType.LPStr)] string lpPathName);
+        public static extern bool SetCurrentDirectory([In] [MarshalAs(UnmanagedType.LPTStr)] string lpPathName);
 
         /// Return Type: BOOL->int
         ///hConsoleOutput: HANDLE->void*
@@ -1974,14 +1464,8 @@ namespace Win32Interop.Methods
         /// Return Type: UINT->unsigned int
         ///lpBuffer: LPWSTR->WCHAR*
         ///uSize: UINT->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetWindowsDirectoryW")]
-        public static extern uint GetWindowsDirectoryW([Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpBuffer, uint uSize);
-
-        /// Return Type: UINT->unsigned int
-        ///lpBuffer: LPSTR->CHAR*
-        ///uSize: UINT->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetWindowsDirectoryA")]
-        public static extern uint GetWindowsDirectoryA([Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpBuffer, uint uSize);
+        [DllImport("kernel32.dll", EntryPoint = "GetWindowsDirectory")]
+        public static extern uint GetWindowsDirectory([Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpBuffer, uint uSize);
 
         /// Return Type: LANGID->WORD->unsigned short
         [DllImport("kernel32.dll", EntryPoint = "GetUserDefaultLangID")]
@@ -2022,31 +1506,16 @@ namespace Win32Interop.Methods
         ///lpFileName: LPCWSTR->WCHAR*
         ///fInfoLevelId: GET_FILEEX_INFO_LEVELS->_GET_FILEEX_INFO_LEVELS
         ///lpFileInformation: LPVOID->void*
-        [DllImport("kernel32.dll", EntryPoint = "GetFileAttributesExW")]
+        [DllImport("kernel32.dll", EntryPoint = "GetFileAttributesEx")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetFileAttributesExW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpFileName, GET_FILEEX_INFO_LEVELS fInfoLevelId, IntPtr lpFileInformation);
-
-        /// Return Type: BOOL->int
-        ///lpFileName: LPCSTR->CHAR*
-        ///fInfoLevelId: GET_FILEEX_INFO_LEVELS->_GET_FILEEX_INFO_LEVELS
-        ///lpFileInformation: LPVOID->void*
-        [DllImport("kernel32.dll", EntryPoint = "GetFileAttributesExA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetFileAttributesExA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpFileName, GET_FILEEX_INFO_LEVELS fInfoLevelId, IntPtr lpFileInformation);
+        public static extern bool GetFileAttributesEx(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpFileName, GET_FILEEX_INFO_LEVELS fInfoLevelId, IntPtr lpFileInformation);
 
         /// Return Type: DWORD->unsigned int
         ///nBufferLength: DWORD->unsigned int
         ///lpBuffer: LPWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetCurrentDirectoryW")]
-        public static extern uint GetCurrentDirectoryW(uint nBufferLength, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpBuffer);
-
-        /// Return Type: DWORD->unsigned int
-        ///nBufferLength: DWORD->unsigned int
-        ///lpBuffer: LPSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetCurrentDirectoryA")]
-        public static extern uint GetCurrentDirectoryA(uint nBufferLength, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpBuffer);
+        [DllImport("kernel32.dll", EntryPoint = "GetCurrentDirectory")]
+        public static extern uint GetCurrentDirectory(uint nBufferLength, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpBuffer);
 
         /// Return Type: BOOL->int
         ///hConsoleOutput: HANDLE->void*
@@ -2058,14 +1527,8 @@ namespace Win32Interop.Methods
         /// Return Type: DWORD->unsigned int
         ///ExeNameBuffer: LPWSTR->WCHAR*
         ///ExeNameBufferLength: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetConsoleAliasExesW")]
-        public static extern uint GetConsoleAliasExesW([MarshalAs(UnmanagedType.LPWStr)] StringBuilder ExeNameBuffer, uint ExeNameBufferLength);
-
-        /// Return Type: DWORD->unsigned int
-        ///ExeNameBuffer: LPSTR->CHAR*
-        ///ExeNameBufferLength: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetConsoleAliasExesA")]
-        public static extern uint GetConsoleAliasExesA([MarshalAs(UnmanagedType.LPStr)] StringBuilder ExeNameBuffer, uint ExeNameBufferLength);
+        [DllImport("kernel32.dll", EntryPoint = "GetConsoleAliasExes")]
+        public static extern uint GetConsoleAliasExes([MarshalAs(UnmanagedType.LPTStr)] StringBuilder ExeNameBuffer, uint ExeNameBufferLength);
 
         /// Return Type: BOOL->int
         ///lpFileTime: FILETIME*
@@ -2077,16 +1540,9 @@ namespace Win32Interop.Methods
         /// Return Type: BOOL->int
         ///lpCodePageEnumProc: CODEPAGE_ENUMPROCW
         ///dwFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "EnumSystemCodePagesW")]
+        [DllImport("kernel32.dll", EntryPoint = "EnumSystemCodePages")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumSystemCodePagesW(CODEPAGE_ENUMPROCW lpCodePageEnumProc, uint dwFlags);
-
-        /// Return Type: BOOL->int
-        ///lpCodePageEnumProc: CODEPAGE_ENUMPROCA
-        ///dwFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "EnumSystemCodePagesA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumSystemCodePagesA(CODEPAGE_ENUMPROCA lpCodePageEnumProc, uint dwFlags);
+        public static extern bool EnumSystemCodePages(CODEPAGE_ENUMPROC lpCodePageEnumProc, uint dwFlags);
 
         /// Return Type: void
         ///lpCriticalSection: LPCRITICAL_SECTION->PRTL_CRITICAL_SECTION->_RTL_CRITICAL_SECTION*
@@ -2097,17 +1553,9 @@ namespace Win32Interop.Methods
         ///lpTimerAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
         ///bManualReset: BOOL->int
         ///lpTimerName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "CreateWaitableTimerW")]
-        public static extern IntPtr CreateWaitableTimerW(
-            [In] IntPtr lpTimerAttributes, [MarshalAs(UnmanagedType.Bool)] bool bManualReset, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpTimerName);
-
-        /// Return Type: HANDLE->void*
-        ///lpTimerAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
-        ///bManualReset: BOOL->int
-        ///lpTimerName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "CreateWaitableTimerA")]
-        public static extern IntPtr CreateWaitableTimerA(
-            [In] IntPtr lpTimerAttributes, [MarshalAs(UnmanagedType.Bool)] bool bManualReset, [In] [MarshalAs(UnmanagedType.LPStr)] string lpTimerName);
+        [DllImport("kernel32.dll", EntryPoint = "CreateWaitableTimer")]
+        public static extern IntPtr CreateWaitableTimer(
+            [In] IntPtr lpTimerAttributes, [MarshalAs(UnmanagedType.Bool)] bool bManualReset, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpTimerName);
 
         /// Return Type: LPVOID->void*
         ///lpParameter: LPVOID->void*
@@ -2127,36 +1575,19 @@ namespace Win32Interop.Methods
         /// Return Type: HANDLE->void*
         ///pFileName: LPCWSTR->WCHAR*
         ///bDeleteExistingResources: BOOL->int
-        [DllImport("kernel32.dll", EntryPoint = "BeginUpdateResourceW")]
-        public static extern IntPtr BeginUpdateResourceW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string pFileName, [MarshalAs(UnmanagedType.Bool)] bool bDeleteExistingResources);
-
-        /// Return Type: HANDLE->void*
-        ///pFileName: LPCSTR->CHAR*
-        ///bDeleteExistingResources: BOOL->int
-        [DllImport("kernel32.dll", EntryPoint = "BeginUpdateResourceA")]
-        public static extern IntPtr BeginUpdateResourceA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string pFileName, [MarshalAs(UnmanagedType.Bool)] bool bDeleteExistingResources);
+        [DllImport("kernel32.dll", EntryPoint = "BeginUpdateResource")]
+        public static extern IntPtr BeginUpdateResource(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string pFileName, [MarshalAs(UnmanagedType.Bool)] bool bDeleteExistingResources);
 
         /// Return Type: BOOL->int
         ///lpAppName: LPCWSTR->WCHAR*
         ///lpKeyName: LPCWSTR->WCHAR*
         ///lpString: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "WriteProfileStringW")]
+        [DllImport("kernel32.dll", EntryPoint = "WriteProfileString")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WriteProfileStringW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpKeyName,
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpString);
-
-        /// Return Type: BOOL->int
-        ///lpAppName: LPCSTR->CHAR*
-        ///lpKeyName: LPCSTR->CHAR*
-        ///lpString: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "WriteProfileStringA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WriteProfileStringA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpKeyName,
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpString);
+        public static extern bool WriteProfileString(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpKeyName,
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpString);
 
         /// Return Type: BOOL->int
         ///hConsoleOutput: HANDLE->void*
@@ -2164,21 +1595,10 @@ namespace Win32Interop.Methods
         ///dwBufferSize: COORD->_COORD
         ///dwBufferCoord: COORD->_COORD
         ///lpWriteRegion: PSMALL_RECT->_SMALL_RECT*
-        [DllImport("kernel32.dll", EntryPoint = "WriteConsoleOutputW")]
+        [DllImport("kernel32.dll", EntryPoint = "WriteConsoleOutput")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WriteConsoleOutputW(
-            IntPtr hConsoleOutput, ref CHAR_INFO lpBuffer, COORD dwBufferSize, COORD dwBufferCoord, ref SMALL_RECT lpWriteRegion);
-
-        /// Return Type: BOOL->int
-        ///hConsoleOutput: HANDLE->void*
-        ///lpBuffer: CHAR_INFO*
-        ///dwBufferSize: COORD->_COORD
-        ///dwBufferCoord: COORD->_COORD
-        ///lpWriteRegion: PSMALL_RECT->_SMALL_RECT*
-        [DllImport("kernel32.dll", EntryPoint = "WriteConsoleOutputA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WriteConsoleOutputA(
-            IntPtr hConsoleOutput, ref CHAR_INFO lpBuffer, COORD dwBufferSize, COORD dwBufferCoord, ref SMALL_RECT lpWriteRegion);
+        public static extern bool WriteConsoleOutput(
+            IntPtr hConsoleOutput, ref CHAR_INFO[] lpBuffer, COORD dwBufferSize, COORD dwBufferCoord, ref SMALL_RECT lpWriteRegion);
 
         /// Return Type: int
         ///CodePage: UINT->unsigned int
@@ -2255,14 +1675,8 @@ namespace Win32Interop.Methods
         /// Return Type: UINT->unsigned int
         ///lpBuffer: LPWSTR->WCHAR*
         ///uSize: UINT->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetSystemDirectoryW")]
-        public static extern uint GetSystemDirectoryW([Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpBuffer, uint uSize);
-
-        /// Return Type: UINT->unsigned int
-        ///lpBuffer: LPSTR->CHAR*
-        ///uSize: UINT->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetSystemDirectoryA")]
-        public static extern uint GetSystemDirectoryA([Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpBuffer, uint uSize);
+        [DllImport("kernel32.dll", EntryPoint = "GetSystemDirectory")]
+        public static extern uint GetSystemDirectory([Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpBuffer, uint uSize);
 
         /// Return Type: BOOL->int
         ///hFile: HANDLE->void*
@@ -2284,21 +1698,10 @@ namespace Win32Interop.Methods
         ///lpFreeBytesAvailableToCaller: PULARGE_INTEGER->ULARGE_INTEGER*
         ///lpTotalNumberOfBytes: PULARGE_INTEGER->ULARGE_INTEGER*
         ///lpTotalNumberOfFreeBytes: PULARGE_INTEGER->ULARGE_INTEGER*
-        [DllImport("kernel32.dll", EntryPoint = "GetDiskFreeSpaceExW")]
+        [DllImport("kernel32.dll", EntryPoint = "GetDiskFreeSpaceEx")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetDiskFreeSpaceExW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpDirectoryName, IntPtr lpFreeBytesAvailableToCaller, IntPtr lpTotalNumberOfBytes,
-            IntPtr lpTotalNumberOfFreeBytes);
-
-        /// Return Type: BOOL->int
-        ///lpDirectoryName: LPCSTR->CHAR*
-        ///lpFreeBytesAvailableToCaller: PULARGE_INTEGER->ULARGE_INTEGER*
-        ///lpTotalNumberOfBytes: PULARGE_INTEGER->ULARGE_INTEGER*
-        ///lpTotalNumberOfFreeBytes: PULARGE_INTEGER->ULARGE_INTEGER*
-        [DllImport("kernel32.dll", EntryPoint = "GetDiskFreeSpaceExA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetDiskFreeSpaceExA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpDirectoryName, IntPtr lpFreeBytesAvailableToCaller, IntPtr lpTotalNumberOfBytes,
+        public static extern bool GetDiskFreeSpaceEx(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpDirectoryName, IntPtr lpFreeBytesAvailableToCaller, IntPtr lpTotalNumberOfBytes,
             IntPtr lpTotalNumberOfFreeBytes);
 
         /// Return Type: BOOL->int
@@ -2317,18 +1720,9 @@ namespace Win32Interop.Methods
         ///Locale: LCID->DWORD->unsigned int
         ///Calendar: CALID->DWORD->unsigned int
         ///CalType: CALTYPE->DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "EnumCalendarInfoExW")]
+        [DllImport("kernel32.dll", EntryPoint = "EnumCalendarInfoEx")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumCalendarInfoExW(CALINFO_ENUMPROCEXW lpCalInfoEnumProcEx, uint Locale, uint Calendar, uint CalType);
-
-        /// Return Type: BOOL->int
-        ///lpCalInfoEnumProcEx: CALINFO_ENUMPROCEXA
-        ///Locale: LCID->DWORD->unsigned int
-        ///Calendar: CALID->DWORD->unsigned int
-        ///CalType: CALTYPE->DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "EnumCalendarInfoExA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumCalendarInfoExA(CALINFO_ENUMPROCEXA lpCalInfoEnumProcEx, uint Locale, uint Calendar, uint CalType);
+        public static extern bool EnumCalendarInfoEx(CALINFO_ENUMPROCEX lpCalInfoEnumProcEx, uint Locale, uint Calendar, uint CalType);
 
         /// Return Type: PVOID->void*
         ///Ptr: PVOID->void*
@@ -2376,34 +1770,17 @@ namespace Win32Interop.Methods
         ///lpBuffer: INPUT_RECORD*
         ///nLength: DWORD->unsigned int
         ///lpNumberOfEventsWritten: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "WriteConsoleInputW")]
+        [DllImport("kernel32.dll", EntryPoint = "WriteConsoleInput")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WriteConsoleInputW(IntPtr hConsoleInput, ref INPUT_RECORD lpBuffer, uint nLength, ref uint lpNumberOfEventsWritten);
-
-        /// Return Type: BOOL->int
-        ///hConsoleInput: HANDLE->void*
-        ///lpBuffer: INPUT_RECORD*
-        ///nLength: DWORD->unsigned int
-        ///lpNumberOfEventsWritten: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "WriteConsoleInputA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WriteConsoleInputA(IntPtr hConsoleInput, ref INPUT_RECORD lpBuffer, uint nLength, ref uint lpNumberOfEventsWritten);
+        public static extern bool WriteConsoleInput(IntPtr hConsoleInput, ref INPUT_RECORD lpBuffer, uint nLength, ref uint lpNumberOfEventsWritten);
 
         /// Return Type: BOOL->int
         ///lpVersionInformation: LPOSVERSIONINFOEXW->_OSVERSIONINFOEXW*
         ///dwTypeMask: DWORD->unsigned int
         ///dwlConditionMask: DWORDLONG->ULONGLONG->unsigned __int64
-        [DllImport("kernel32.dll", EntryPoint = "VerifyVersionInfoW")]
+        [DllImport("kernel32.dll", EntryPoint = "VerifyVersionInfo")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool VerifyVersionInfoW(ref RTL_OSVERSIONINFOEXW lpVersionInformation, uint dwTypeMask, ulong dwlConditionMask);
-
-        /// Return Type: BOOL->int
-        ///lpVersionInformation: LPOSVERSIONINFOEXA->_OSVERSIONINFOEXA*
-        ///dwTypeMask: DWORD->unsigned int
-        ///dwlConditionMask: DWORDLONG->ULONGLONG->unsigned __int64
-        [DllImport("kernel32.dll", EntryPoint = "VerifyVersionInfoA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool VerifyVersionInfoA(ref OSVERSIONINFOEXA lpVersionInformation, uint dwTypeMask, ulong dwlConditionMask);
+        public static extern bool VerifyVersionInfo(ref RTL_OSVERSIONINFOEX lpVersionInformation, uint dwTypeMask, ulong dwlConditionMask);
 
         /// Return Type: BOOL->int
         ///hJob: HANDLE->void*
@@ -2427,16 +1804,9 @@ namespace Win32Interop.Methods
         /// Return Type: BOOL->int
         ///lpFileName: LPCWSTR->WCHAR*
         ///dwFileAttributes: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "SetFileAttributesW")]
+        [DllImport("kernel32.dll", EntryPoint = "SetFileAttributes")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetFileAttributesW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpFileName, uint dwFileAttributes);
-
-        /// Return Type: BOOL->int
-        ///lpFileName: LPCSTR->CHAR*
-        ///dwFileAttributes: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "SetFileAttributesA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetFileAttributesA([In] [MarshalAs(UnmanagedType.LPStr)] string lpFileName, uint dwFileAttributes);
+        public static extern bool SetFileAttributes([In] [MarshalAs(UnmanagedType.LPTStr)] string lpFileName, uint dwFileAttributes);
 
         /// Return Type: BOOL->int
         ///wCodePageID: UINT->unsigned int
@@ -2447,16 +1817,9 @@ namespace Win32Interop.Methods
         /// Return Type: BOOL->int
         ///NameType: COMPUTER_NAME_FORMAT->_COMPUTER_NAME_FORMAT
         ///lpBuffer: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetComputerNameExW")]
+        [DllImport("kernel32.dll", EntryPoint = "SetComputerNameEx")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetComputerNameExW(COMPUTER_NAME_FORMAT NameType, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpBuffer);
-
-        /// Return Type: BOOL->int
-        ///NameType: COMPUTER_NAME_FORMAT->_COMPUTER_NAME_FORMAT
-        ///lpBuffer: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetComputerNameExA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetComputerNameExA(COMPUTER_NAME_FORMAT NameType, [In] [MarshalAs(UnmanagedType.LPStr)] string lpBuffer);
+        public static extern bool SetComputerNameEx(COMPUTER_NAME_FORMAT NameType, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpBuffer);
 
         /// Return Type: BOOL->int
         ///hConsoleOutput: HANDLE->void*
@@ -2464,47 +1827,23 @@ namespace Win32Interop.Methods
         ///dwBufferSize: COORD->_COORD
         ///dwBufferCoord: COORD->_COORD
         ///lpReadRegion: PSMALL_RECT->_SMALL_RECT*
-        [DllImport("kernel32.dll", EntryPoint = "ReadConsoleOutputW")]
+        [DllImport("kernel32.dll", EntryPoint = "ReadConsoleOutput")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool ReadConsoleOutputW(
-            IntPtr hConsoleOutput, ref CHAR_INFO lpBuffer, COORD dwBufferSize, COORD dwBufferCoord, ref SMALL_RECT lpReadRegion);
-
-        /// Return Type: BOOL->int
-        ///hConsoleOutput: HANDLE->void*
-        ///lpBuffer: PCHAR_INFO->_CHAR_INFO*
-        ///dwBufferSize: COORD->_COORD
-        ///dwBufferCoord: COORD->_COORD
-        ///lpReadRegion: PSMALL_RECT->_SMALL_RECT*
-        [DllImport("kernel32.dll", EntryPoint = "ReadConsoleOutputA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool ReadConsoleOutputA(
-            IntPtr hConsoleOutput, ref CHAR_INFO lpBuffer, COORD dwBufferSize, COORD dwBufferCoord, ref SMALL_RECT lpReadRegion);
+        public static extern bool ReadConsoleOutput(
+            IntPtr hConsoleOutput, ref CHAR_INFO[] lpBuffer, COORD dwBufferSize, COORD dwBufferCoord, ref SMALL_RECT lpReadRegion);
 
         /// Return Type: void
         ///lpOutputString: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "OutputDebugStringW")]
-        public static extern void OutputDebugStringW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpOutputString);
-
-        /// Return Type: void
-        ///lpOutputString: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "OutputDebugStringA")]
-        public static extern void OutputDebugStringA([In] [MarshalAs(UnmanagedType.LPStr)] string lpOutputString);
+        [DllImport("kernel32.dll", EntryPoint = "OutputDebugString")]
+        public static extern void OutputDebugString([In] [MarshalAs(UnmanagedType.LPTStr)] string lpOutputString);
 
         /// Return Type: HANDLE->void*
         ///dwDesiredAccess: DWORD->unsigned int
         ///bInheritHandle: BOOL->int
         ///lpTimerName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "OpenWaitableTimerW")]
-        public static extern IntPtr OpenWaitableTimerW(
-            uint dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpTimerName);
-
-        /// Return Type: HANDLE->void*
-        ///dwDesiredAccess: DWORD->unsigned int
-        ///bInheritHandle: BOOL->int
-        ///lpTimerName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "OpenWaitableTimerA")]
-        public static extern IntPtr OpenWaitableTimerA(
-            uint dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, [In] [MarshalAs(UnmanagedType.LPStr)] string lpTimerName);
+        [DllImport("kernel32.dll", EntryPoint = "OpenWaitableTimer")]
+        public static extern IntPtr OpenWaitableTimer(
+            uint dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpTimerName);
 
         /// Return Type: BOOL->int
         ///HeapHandle: HANDLE->void*
@@ -2525,34 +1864,17 @@ namespace Win32Interop.Methods
         ///nAtom: ATOM->WORD->unsigned short
         ///lpBuffer: LPWSTR->WCHAR*
         ///nSize: int
-        [DllImport("kernel32.dll", EntryPoint = "GlobalGetAtomNameW")]
-        public static extern uint GlobalGetAtomNameW(ushort nAtom, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpBuffer, int nSize);
-
-        /// Return Type: UINT->unsigned int
-        ///nAtom: ATOM->WORD->unsigned short
-        ///lpBuffer: LPSTR->CHAR*
-        ///nSize: int
-        [DllImport("kernel32.dll", EntryPoint = "GlobalGetAtomNameA")]
-        public static extern uint GlobalGetAtomNameA(ushort nAtom, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpBuffer, int nSize);
+        [DllImport("kernel32.dll", EntryPoint = "GlobalGetAtomName")]
+        public static extern uint GlobalGetAtomName(ushort nAtom, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpBuffer, int nSize);
 
         /// Return Type: BOOL->int
         ///lpszFileName: LPCWSTR->WCHAR*
         ///lpszVolumePathName: LPWSTR->WCHAR*
         ///cchBufferLength: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetVolumePathNameW")]
+        [DllImport("kernel32.dll", EntryPoint = "GetVolumePathName")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetVolumePathNameW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszFileName, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpszVolumePathName,
-            uint cchBufferLength);
-
-        /// Return Type: BOOL->int
-        ///lpszFileName: LPCSTR->CHAR*
-        ///lpszVolumePathName: LPSTR->CHAR*
-        ///cchBufferLength: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetVolumePathNameA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetVolumePathNameA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpszFileName, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpszVolumePathName,
+        public static extern bool GetVolumePathName(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpszFileName, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpszVolumePathName,
             uint cchBufferLength);
 
         /// Return Type: LCID->DWORD->unsigned int
@@ -2563,57 +1885,29 @@ namespace Win32Interop.Methods
         ///lpAppName: LPCWSTR->WCHAR*
         ///lpReturnedString: LPWSTR->WCHAR*
         ///nSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetProfileSectionW")]
-        public static extern uint GetProfileSectionW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpAppName, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpReturnedString, uint nSize);
-
-        /// Return Type: DWORD->unsigned int
-        ///lpAppName: LPCSTR->CHAR*
-        ///lpReturnedString: LPSTR->CHAR*
-        ///nSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetProfileSectionA")]
-        public static extern uint GetProfileSectionA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpAppName, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpReturnedString, uint nSize);
+        [DllImport("kernel32.dll", EntryPoint = "GetProfileSection")]
+        public static extern uint GetProfileSection(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpAppName, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpReturnedString, uint nSize);
 
         /// Return Type: BOOL->int
         ///dwFlags: DWORD->unsigned int
         ///lpModuleName: LPCWSTR->WCHAR*
         ///phModule: HMODULE*
-        [DllImport("kernel32.dll", EntryPoint = "GetModuleHandleExW")]
+        [DllImport("kernel32.dll", EntryPoint = "GetModuleHandleEx")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetModuleHandleExW(uint dwFlags, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpModuleName, ref IntPtr phModule);
-
-        /// Return Type: BOOL->int
-        ///dwFlags: DWORD->unsigned int
-        ///lpModuleName: LPCSTR->CHAR*
-        ///phModule: HMODULE*
-        [DllImport("kernel32.dll", EntryPoint = "GetModuleHandleExA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetModuleHandleExA(uint dwFlags, [In] [MarshalAs(UnmanagedType.LPStr)] string lpModuleName, ref IntPtr phModule);
+        public static extern bool GetModuleHandleEx(uint dwFlags, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpModuleName, ref IntPtr phModule);
 
         /// Return Type: DWORD->unsigned int
         ///hModule: HMODULE->HINSTANCE->HINSTANCE__*
         ///lpFilename: LPWCH->WCHAR*
         ///nSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetModuleFileNameW")]
-        public static extern uint GetModuleFileNameW([In] IntPtr hModule, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpFilename, uint nSize);
-
-        /// Return Type: DWORD->unsigned int
-        ///hModule: HMODULE->HINSTANCE->HINSTANCE__*
-        ///lpFilename: LPCH->CHAR*
-        ///nSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetModuleFileNameA")]
-        public static extern uint GetModuleFileNameA([In] IntPtr hModule, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpFilename, uint nSize);
+        [DllImport("kernel32.dll", EntryPoint = "GetModuleFileName")]
+        public static extern uint GetModuleFileName([In] IntPtr hModule, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpFilename, uint nSize);
 
         /// Return Type: DWORD->unsigned int
         ///lpFileName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetFileAttributesW")]
-        public static extern uint GetFileAttributesW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpFileName);
-
-        /// Return Type: DWORD->unsigned int
-        ///lpFileName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetFileAttributesA")]
-        public static extern uint GetFileAttributesA([In] [MarshalAs(UnmanagedType.LPStr)] string lpFileName);
+        [DllImport("kernel32.dll", EntryPoint = "GetFileAttributes")]
+        public static extern uint GetFileAttributes([In] [MarshalAs(UnmanagedType.LPTStr)] string lpFileName);
 
         /// Return Type: BOOL->int
         ///hProcess: HANDLE->void*
@@ -2633,22 +1927,10 @@ namespace Win32Interop.Methods
         ///lpFormat: CURRENCYFMTW*
         ///lpCurrencyStr: LPWSTR->WCHAR*
         ///cchCurrency: int
-        [DllImport("kernel32.dll", EntryPoint = "GetCurrencyFormatW")]
-        public static extern int GetCurrencyFormatW(
-            uint Locale, uint dwFlags, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpValue, [In] IntPtr lpFormat,
-            [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpCurrencyStr, int cchCurrency);
-
-        /// Return Type: int
-        ///Locale: LCID->DWORD->unsigned int
-        ///dwFlags: DWORD->unsigned int
-        ///lpValue: LPCSTR->CHAR*
-        ///lpFormat: CURRENCYFMTA*
-        ///lpCurrencyStr: LPSTR->CHAR*
-        ///cchCurrency: int
-        [DllImport("kernel32.dll", EntryPoint = "GetCurrencyFormatA")]
-        public static extern int GetCurrencyFormatA(
-            uint Locale, uint dwFlags, [In] [MarshalAs(UnmanagedType.LPStr)] string lpValue, [In] IntPtr lpFormat,
-            [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpCurrencyStr, int cchCurrency);
+        [DllImport("kernel32.dll", EntryPoint = "GetCurrencyFormat")]
+        public static extern int GetCurrencyFormat(
+            uint Locale, uint dwFlags, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpValue, [In] IntPtr lpFormat,
+            [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpCurrencyStr, int cchCurrency);
 
         /// Return Type: UINT->unsigned int
         [DllImport("kernel32.dll", EntryPoint = "GetConsoleOutputCP")]
@@ -2664,35 +1946,18 @@ namespace Win32Interop.Methods
         ///AliasBuffer: LPWSTR->WCHAR*
         ///AliasBufferLength: DWORD->unsigned int
         ///ExeName: LPWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetConsoleAliasesW")]
-        public static extern uint GetConsoleAliasesW(
-            [MarshalAs(UnmanagedType.LPWStr)] StringBuilder AliasBuffer, uint AliasBufferLength, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder ExeName);
-
-        /// Return Type: DWORD->unsigned int
-        ///AliasBuffer: LPSTR->CHAR*
-        ///AliasBufferLength: DWORD->unsigned int
-        ///ExeName: LPSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetConsoleAliasesA")]
-        public static extern uint GetConsoleAliasesA(
-            [MarshalAs(UnmanagedType.LPStr)] StringBuilder AliasBuffer, uint AliasBufferLength, [MarshalAs(UnmanagedType.LPStr)] StringBuilder ExeName);
+        [DllImport("kernel32.dll", EntryPoint = "GetConsoleAliases")]
+        public static extern uint GetConsoleAliases(
+            [MarshalAs(UnmanagedType.LPTStr)] StringBuilder AliasBuffer, uint AliasBufferLength, [MarshalAs(UnmanagedType.LPTStr)] StringBuilder ExeName);
 
         /// Return Type: BOOL->int
         ///NameType: COMPUTER_NAME_FORMAT->_COMPUTER_NAME_FORMAT
         ///lpBuffer: LPWSTR->WCHAR*
         ///nSize: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetComputerNameExW")]
+        [DllImport("kernel32.dll", EntryPoint = "GetComputerNameEx")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetComputerNameExW(
-            COMPUTER_NAME_FORMAT NameType, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpBuffer, ref uint nSize);
-
-        /// Return Type: BOOL->int
-        ///NameType: COMPUTER_NAME_FORMAT->_COMPUTER_NAME_FORMAT
-        ///lpBuffer: LPSTR->CHAR*
-        ///nSize: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetComputerNameExA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetComputerNameExA(
-            COMPUTER_NAME_FORMAT NameType, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpBuffer, ref uint nSize);
+        public static extern bool GetComputerNameEx(
+            COMPUTER_NAME_FORMAT NameType, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpBuffer, ref uint nSize);
 
         /// Return Type: BOOL->int
         ///hFile: HANDLE->void*
@@ -2711,82 +1976,42 @@ namespace Win32Interop.Methods
         /// Return Type: BOOL->int
         ///lpLocaleEnumProc: LOCALE_ENUMPROCW
         ///dwFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "EnumSystemLocalesW")]
+        [DllImport("kernel32.dll", EntryPoint = "EnumSystemLocales")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumSystemLocalesW(LOCALE_ENUMPROCW lpLocaleEnumProc, uint dwFlags);
-
-        /// Return Type: BOOL->int
-        ///lpLocaleEnumProc: LOCALE_ENUMPROCA
-        ///dwFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "EnumSystemLocalesA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumSystemLocalesA(LOCALE_ENUMPROCA lpLocaleEnumProc, uint dwFlags);
+        public static extern bool EnumSystemLocales(LOCALE_ENUMPROC lpLocaleEnumProc, uint dwFlags);
 
         /// Return Type: BOOL->int
         ///hModule: HMODULE->HINSTANCE->HINSTANCE__*
         ///lpEnumFunc: ENUMRESTYPEPROCW
         ///lParam: LONG_PTR->int
-        [DllImport("kernel32.dll", EntryPoint = "EnumResourceTypesW")]
+        [DllImport("kernel32.dll", EntryPoint = "EnumResourceTypes")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumResourceTypesW([In] IntPtr hModule, ENUMRESTYPEPROCW lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)] int lParam);
-
-        /// Return Type: BOOL->int
-        ///hModule: HMODULE->HINSTANCE->HINSTANCE__*
-        ///lpEnumFunc: ENUMRESTYPEPROCA
-        ///lParam: LONG_PTR->int
-        [DllImport("kernel32.dll", EntryPoint = "EnumResourceTypesA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumResourceTypesA([In] IntPtr hModule, ENUMRESTYPEPROCA lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)] int lParam);
+        public static extern bool EnumResourceTypes([In] IntPtr hModule, ENUMRESTYPEPROC lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)] int lParam);
 
         /// Return Type: BOOL->int
         ///hModule: HMODULE->HINSTANCE->HINSTANCE__*
         ///lpType: LPCWSTR->WCHAR*
         ///lpEnumFunc: ENUMRESNAMEPROCW
         ///lParam: LONG_PTR->int
-        [DllImport("kernel32.dll", EntryPoint = "EnumResourceNamesW")]
+        [DllImport("kernel32.dll", EntryPoint = "EnumResourceNames")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumResourceNamesW(
-            [In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpType, ENUMRESNAMEPROCW lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)] int lParam);
-
-        /// Return Type: BOOL->int
-        ///hModule: HMODULE->HINSTANCE->HINSTANCE__*
-        ///lpType: LPCSTR->CHAR*
-        ///lpEnumFunc: ENUMRESNAMEPROCA
-        ///lParam: LONG_PTR->int
-        [DllImport("kernel32.dll", EntryPoint = "EnumResourceNamesA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumResourceNamesA(
-            [In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPStr)] string lpType, ENUMRESNAMEPROCA lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)] int lParam);
+        public static extern bool EnumResourceNames(
+            [In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpType, ENUMRESNAMEPROC lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)] int lParam);
 
         /// Return Type: BOOL->int
         ///lpDateFmtEnumProcEx: DATEFMT_ENUMPROCEXW
         ///Locale: LCID->DWORD->unsigned int
         ///dwFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "EnumDateFormatsExW")]
+        [DllImport("kernel32.dll", EntryPoint = "EnumDateFormatsEx")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumDateFormatsExW(DATEFMT_ENUMPROCEXW lpDateFmtEnumProcEx, uint Locale, uint dwFlags);
-
-        /// Return Type: BOOL->int
-        ///lpDateFmtEnumProcEx: DATEFMT_ENUMPROCEXA
-        ///Locale: LCID->DWORD->unsigned int
-        ///dwFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "EnumDateFormatsExA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumDateFormatsExA(DATEFMT_ENUMPROCEXA lpDateFmtEnumProcEx, uint Locale, uint dwFlags);
+        public static extern bool EnumDateFormatsEx(DATEFMT_ENUMPROCEX lpDateFmtEnumProcEx, uint Locale, uint dwFlags);
 
         /// Return Type: BOOL->int
         ///hUpdate: HANDLE->void*
         ///fDiscard: BOOL->int
-        [DllImport("kernel32.dll", EntryPoint = "EndUpdateResourceW")]
+        [DllImport("kernel32.dll", EntryPoint = "EndUpdateResource")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EndUpdateResourceW([In] IntPtr hUpdate, [MarshalAs(UnmanagedType.Bool)] bool fDiscard);
-
-        /// Return Type: BOOL->int
-        ///hUpdate: HANDLE->void*
-        ///fDiscard: BOOL->int
-        [DllImport("kernel32.dll", EntryPoint = "EndUpdateResourceA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EndUpdateResourceA([In] IntPtr hUpdate, [MarshalAs(UnmanagedType.Bool)] bool fDiscard);
+        public static extern bool EndUpdateResource([In] IntPtr hUpdate, [MarshalAs(UnmanagedType.Bool)] bool fDiscard);
 
         /// Return Type: BOOL->int
         ///TimerQueue: HANDLE->void*
@@ -2821,41 +2046,19 @@ namespace Win32Interop.Methods
         ///dwMaximumSizeHigh: DWORD->unsigned int
         ///dwMaximumSizeLow: DWORD->unsigned int
         ///lpName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "CreateFileMappingW")]
-        public static extern IntPtr CreateFileMappingW(
+        [DllImport("kernel32.dll", EntryPoint = "CreateFileMapping")]
+        public static extern IntPtr CreateFileMapping(
             [In] IntPtr hFile, [In] IntPtr lpFileMappingAttributes, uint flProtect, uint dwMaximumSizeHigh, uint dwMaximumSizeLow,
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName);
-
-        /// Return Type: HANDLE->void*
-        ///hFile: HANDLE->void*
-        ///lpFileMappingAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
-        ///flProtect: DWORD->unsigned int
-        ///dwMaximumSizeHigh: DWORD->unsigned int
-        ///dwMaximumSizeLow: DWORD->unsigned int
-        ///lpName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "CreateFileMappingA")]
-        public static extern IntPtr CreateFileMappingA(
-            [In] IntPtr hFile, [In] IntPtr lpFileMappingAttributes, uint flProtect, uint dwMaximumSizeHigh, uint dwMaximumSizeLow,
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpName);
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName);
 
         /// Return Type: BOOL->int
         ///lpTemplateDirectory: LPCWSTR->WCHAR*
         ///lpNewDirectory: LPCWSTR->WCHAR*
         ///lpSecurityAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
-        [DllImport("kernel32.dll", EntryPoint = "CreateDirectoryExW")]
+        [DllImport("kernel32.dll", EntryPoint = "CreateDirectoryEx")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CreateDirectoryExW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpTemplateDirectory, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpNewDirectory,
-            [In] IntPtr lpSecurityAttributes);
-
-        /// Return Type: BOOL->int
-        ///lpTemplateDirectory: LPCSTR->CHAR*
-        ///lpNewDirectory: LPCSTR->CHAR*
-        ///lpSecurityAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
-        [DllImport("kernel32.dll", EntryPoint = "CreateDirectoryExA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CreateDirectoryExA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpTemplateDirectory, [In] [MarshalAs(UnmanagedType.LPStr)] string lpNewDirectory,
+        public static extern bool CreateDirectoryEx(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpTemplateDirectory, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpNewDirectory,
             [In] IntPtr lpSecurityAttributes);
 
         /// Return Type: BOOL->int
@@ -2904,16 +2107,9 @@ namespace Win32Interop.Methods
         /// Return Type: BOOL->int
         ///hFile: HANDLE->void*
         ///lpShortName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetFileShortNameW")]
+        [DllImport("kernel32.dll", EntryPoint = "SetFileShortName")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetFileShortNameW([In] IntPtr hFile, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpShortName);
-
-        /// Return Type: BOOL->int
-        ///hFile: HANDLE->void*
-        ///lpShortName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetFileShortNameA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetFileShortNameA([In] IntPtr hFile, [In] [MarshalAs(UnmanagedType.LPStr)] string lpShortName);
+        public static extern bool SetFileShortName([In] IntPtr hFile, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpShortName);
 
         /// Return Type: void
         [DllImport("kernel32.dll", EntryPoint = "SetFileApisToANSI")]
@@ -2939,18 +2135,9 @@ namespace Win32Interop.Methods
         ///lpBuffer: PINPUT_RECORD->_INPUT_RECORD*
         ///nLength: DWORD->unsigned int
         ///lpNumberOfEventsRead: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "ReadConsoleInputW")]
+        [DllImport("kernel32.dll", EntryPoint = "ReadConsoleInput")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool ReadConsoleInputW(IntPtr hConsoleInput, ref INPUT_RECORD lpBuffer, uint nLength, ref uint lpNumberOfEventsRead);
-
-        /// Return Type: BOOL->int
-        ///hConsoleInput: HANDLE->void*
-        ///lpBuffer: PINPUT_RECORD->_INPUT_RECORD*
-        ///nLength: DWORD->unsigned int
-        ///lpNumberOfEventsRead: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "ReadConsoleInputA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool ReadConsoleInputA(IntPtr hConsoleInput, ref INPUT_RECORD lpBuffer, uint nLength, ref uint lpNumberOfEventsRead);
+        public static extern bool ReadConsoleInput(IntPtr hConsoleInput, ref INPUT_RECORD lpBuffer, uint nLength, ref uint lpNumberOfEventsRead);
 
         /// Return Type: BOOL->int
         ///Function: LPTHREAD_START_ROUTINE->PTHREAD_START_ROUTINE
@@ -2965,18 +2152,9 @@ namespace Win32Interop.Methods
         ///lpBuffer: PINPUT_RECORD->_INPUT_RECORD*
         ///nLength: DWORD->unsigned int
         ///lpNumberOfEventsRead: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "PeekConsoleInputW")]
+        [DllImport("kernel32.dll", EntryPoint = "PeekConsoleInput")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool PeekConsoleInputW(IntPtr hConsoleInput, ref INPUT_RECORD lpBuffer, uint nLength, ref uint lpNumberOfEventsRead);
-
-        /// Return Type: BOOL->int
-        ///hConsoleInput: HANDLE->void*
-        ///lpBuffer: PINPUT_RECORD->_INPUT_RECORD*
-        ///nLength: DWORD->unsigned int
-        ///lpNumberOfEventsRead: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "PeekConsoleInputA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool PeekConsoleInputA(IntPtr hConsoleInput, ref INPUT_RECORD lpBuffer, uint nLength, ref uint lpNumberOfEventsRead);
+        public static extern bool PeekConsoleInput(IntPtr hConsoleInput, ref INPUT_RECORD lpBuffer, uint nLength, ref uint lpNumberOfEventsRead);
 
         /// Return Type: BOOL->int
         [DllImport("kernel32.dll", EntryPoint = "IsDebuggerPresent")]
@@ -3007,17 +2185,9 @@ namespace Win32Interop.Methods
         ///lpszLongPath: LPCWSTR->WCHAR*
         ///lpszShortPath: LPWSTR->WCHAR*
         ///cchBuffer: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetShortPathNameW")]
-        public static extern uint GetShortPathNameW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszLongPath, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpszShortPath, uint cchBuffer);
-
-        /// Return Type: DWORD->unsigned int
-        ///lpszLongPath: LPCSTR->CHAR*
-        ///lpszShortPath: LPSTR->CHAR*
-        ///cchBuffer: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetShortPathNameA")]
-        public static extern uint GetShortPathNameA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpszLongPath, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpszShortPath, uint cchBuffer);
+        [DllImport("kernel32.dll", EntryPoint = "GetShortPathName")]
+        public static extern uint GetShortPathName(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpszLongPath, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpszShortPath, uint cchBuffer);
 
         /// Return Type: DWORD->unsigned int
         ///lpAppName: LPCWSTR->WCHAR*
@@ -3025,21 +2195,10 @@ namespace Win32Interop.Methods
         ///lpDefault: LPCWSTR->WCHAR*
         ///lpReturnedString: LPWSTR->WCHAR*
         ///nSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetProfileStringW")]
-        public static extern uint GetProfileStringW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpKeyName,
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpDefault, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpReturnedString, uint nSize);
-
-        /// Return Type: DWORD->unsigned int
-        ///lpAppName: LPCSTR->CHAR*
-        ///lpKeyName: LPCSTR->CHAR*
-        ///lpDefault: LPCSTR->CHAR*
-        ///lpReturnedString: LPSTR->CHAR*
-        ///nSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetProfileStringA")]
-        public static extern uint GetProfileStringA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpKeyName,
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpDefault, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpReturnedString, uint nSize);
+        [DllImport("kernel32.dll", EntryPoint = "GetProfileString")]
+        public static extern uint GetProfileString(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpKeyName,
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpDefault, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpReturnedString, uint nSize);
 
         /// Return Type: DWORD->unsigned int
         ///ProcessId: DWORD->unsigned int
@@ -3059,22 +2218,10 @@ namespace Win32Interop.Methods
         ///lpBytesPerSector: LPDWORD->DWORD*
         ///lpNumberOfFreeClusters: LPDWORD->DWORD*
         ///lpTotalNumberOfClusters: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetDiskFreeSpaceW")]
+        [DllImport("kernel32.dll", EntryPoint = "GetDiskFreeSpace")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetDiskFreeSpaceW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpRootPathName, IntPtr lpSectorsPerCluster, IntPtr lpBytesPerSector, IntPtr lpNumberOfFreeClusters,
-            IntPtr lpTotalNumberOfClusters);
-
-        /// Return Type: BOOL->int
-        ///lpRootPathName: LPCSTR->CHAR*
-        ///lpSectorsPerCluster: LPDWORD->DWORD*
-        ///lpBytesPerSector: LPDWORD->DWORD*
-        ///lpNumberOfFreeClusters: LPDWORD->DWORD*
-        ///lpTotalNumberOfClusters: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetDiskFreeSpaceA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetDiskFreeSpaceA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpRootPathName, IntPtr lpSectorsPerCluster, IntPtr lpBytesPerSector, IntPtr lpNumberOfFreeClusters,
+        public static extern bool GetDiskFreeSpace(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpRootPathName, IntPtr lpSectorsPerCluster, IntPtr lpBytesPerSector, IntPtr lpNumberOfFreeClusters,
             IntPtr lpTotalNumberOfClusters);
 
         /// Return Type: HANDLE->void*
@@ -3093,18 +2240,9 @@ namespace Win32Interop.Methods
         ///Locale: LCID->DWORD->unsigned int
         ///Calendar: CALID->DWORD->unsigned int
         ///CalType: CALTYPE->DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "EnumCalendarInfoW")]
+        [DllImport("kernel32.dll", EntryPoint = "EnumCalendarInfo")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumCalendarInfoW(CALINFO_ENUMPROCW lpCalInfoEnumProc, uint Locale, uint Calendar, uint CalType);
-
-        /// Return Type: BOOL->int
-        ///lpCalInfoEnumProc: CALINFO_ENUMPROCA
-        ///Locale: LCID->DWORD->unsigned int
-        ///Calendar: CALID->DWORD->unsigned int
-        ///CalType: CALTYPE->DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "EnumCalendarInfoA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumCalendarInfoA(CALINFO_ENUMPROCA lpCalInfoEnumProc, uint Locale, uint Calendar, uint CalType);
+        public static extern bool EnumCalendarInfo(CALINFO_ENUMPROC lpCalInfoEnumProc, uint Locale, uint Calendar, uint CalType);
 
         /// Return Type: BOOL->int
         ///Process: HANDLE->void*
@@ -3116,17 +2254,9 @@ namespace Win32Interop.Methods
         ///lpszName: LPCWSTR->WCHAR*
         ///hWnd: HWND->HWND__*
         ///lpCC: LPCOMMCONFIG->_COMMCONFIG*
-        [DllImport("kernel32.dll", EntryPoint = "CommConfigDialogW")]
+        [DllImport("kernel32.dll", EntryPoint = "CommConfigDialog")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CommConfigDialogW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpszName, [In] IntPtr hWnd, ref COMMCONFIG lpCC);
-
-        /// Return Type: BOOL->int
-        ///lpszName: LPCSTR->CHAR*
-        ///hWnd: HWND->HWND__*
-        ///lpCC: LPCOMMCONFIG->_COMMCONFIG*
-        [DllImport("kernel32.dll", EntryPoint = "CommConfigDialogA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CommConfigDialogA([In] [MarshalAs(UnmanagedType.LPStr)] string lpszName, [In] IntPtr hWnd, ref COMMCONFIG lpCC);
+        public static extern bool CommConfigDialog([In] [MarshalAs(UnmanagedType.LPTStr)] string lpszName, [In] IntPtr hWnd, ref COMMCONFIG lpCC);
 
         /// Return Type: BOOL->int
         ///hProcess: HANDLE->void*
@@ -3142,15 +2272,8 @@ namespace Win32Interop.Methods
         ///wLang: DWORD->unsigned int
         ///szLang: LPWSTR->WCHAR*
         ///nSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "VerLanguageNameW")]
-        public static extern uint VerLanguageNameW(uint wLang, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder szLang, uint nSize);
-
-        /// Return Type: DWORD->unsigned int
-        ///wLang: DWORD->unsigned int
-        ///szLang: LPSTR->CHAR*
-        ///nSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "VerLanguageNameA")]
-        public static extern uint VerLanguageNameA(uint wLang, [MarshalAs(UnmanagedType.LPStr)] StringBuilder szLang, uint nSize);
+        [DllImport("kernel32.dll", EntryPoint = "VerLanguageName")]
+        public static extern uint VerLanguageName(uint wLang, [MarshalAs(UnmanagedType.LPTStr)] StringBuilder szLang, uint nSize);
 
         /// Return Type: BOOL->int
         ///WaitHandle: HANDLE->void*
@@ -3222,69 +2345,36 @@ namespace Win32Interop.Methods
 
         /// Return Type: BOOL->int
         ///lpPathName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetDllDirectoryW")]
+        [DllImport("kernel32.dll", EntryPoint = "SetDllDirectory")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetDllDirectoryW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpPathName);
-
-        /// Return Type: BOOL->int
-        ///lpPathName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetDllDirectoryA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetDllDirectoryA([In] [MarshalAs(UnmanagedType.LPStr)] string lpPathName);
+        public static extern bool SetDllDirectory([In] [MarshalAs(UnmanagedType.LPTStr)] string lpPathName);
 
         /// Return Type: BOOL->int
         ///lpConsoleTitle: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetConsoleTitleW")]
+        [DllImport("kernel32.dll", EntryPoint = "SetConsoleTitle")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetConsoleTitleW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpConsoleTitle);
-
-        /// Return Type: BOOL->int
-        ///lpConsoleTitle: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetConsoleTitleA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetConsoleTitleA([In] [MarshalAs(UnmanagedType.LPStr)] string lpConsoleTitle);
+        public static extern bool SetConsoleTitle([In] [MarshalAs(UnmanagedType.LPTStr)] string lpConsoleTitle);
 
         /// Return Type: BOOL->int
         ///lpComputerName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetComputerNameW")]
+        [DllImport("kernel32.dll", EntryPoint = "SetComputerName")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetComputerNameW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpComputerName);
-
-        /// Return Type: BOOL->int
-        ///lpComputerName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetComputerNameA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetComputerNameA([In] [MarshalAs(UnmanagedType.LPStr)] string lpComputerName);
+        public static extern bool SetComputerName([In] [MarshalAs(UnmanagedType.LPTStr)] string lpComputerName);
 
         /// Return Type: BOOL->int
         ///Locale: LCID->DWORD->unsigned int
         ///Calendar: CALID->DWORD->unsigned int
         ///CalType: CALTYPE->DWORD->unsigned int
         ///lpCalData: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetCalendarInfoW")]
+        [DllImport("kernel32.dll", EntryPoint = "SetCalendarInfo")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetCalendarInfoW(uint Locale, uint Calendar, uint CalType, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpCalData);
-
-        /// Return Type: BOOL->int
-        ///Locale: LCID->DWORD->unsigned int
-        ///Calendar: CALID->DWORD->unsigned int
-        ///CalType: CALTYPE->DWORD->unsigned int
-        ///lpCalData: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetCalendarInfoA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetCalendarInfoA(uint Locale, uint Calendar, uint CalType, [In] [MarshalAs(UnmanagedType.LPStr)] string lpCalData);
+        public static extern bool SetCalendarInfo(uint Locale, uint Calendar, uint CalType, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpCalData);
 
         /// Return Type: BOOL->int
         ///lpPathName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "RemoveDirectoryW")]
+        [DllImport("kernel32.dll", EntryPoint = "RemoveDirectory")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool RemoveDirectoryW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpPathName);
-
-        /// Return Type: BOOL->int
-        ///lpPathName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "RemoveDirectoryA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool RemoveDirectoryA([In] [MarshalAs(UnmanagedType.LPStr)] string lpPathName);
+        public static extern bool RemoveDirectory([In] [MarshalAs(UnmanagedType.LPTStr)] string lpPathName);
 
         /// Return Type: BOOL->int
         ///hSemaphore: HANDLE->void*
@@ -3298,17 +2388,9 @@ namespace Win32Interop.Methods
         ///dwDesiredAccess: DWORD->unsigned int
         ///bInheritHandle: BOOL->int
         ///lpName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "OpenFileMappingW")]
-        public static extern IntPtr OpenFileMappingW(
-            uint dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName);
-
-        /// Return Type: HANDLE->void*
-        ///dwDesiredAccess: DWORD->unsigned int
-        ///bInheritHandle: BOOL->int
-        ///lpName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "OpenFileMappingA")]
-        public static extern IntPtr OpenFileMappingA(
-            uint dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, [In] [MarshalAs(UnmanagedType.LPStr)] string lpName);
+        [DllImport("kernel32.dll", EntryPoint = "OpenFileMapping")]
+        public static extern IntPtr OpenFileMapping(
+            uint dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName);
 
         /// Return Type: BOOL->int
         ///CodePage: UINT->unsigned int
@@ -3341,20 +2423,10 @@ namespace Win32Interop.Methods
         ///lpPrefixString: LPCWSTR->WCHAR*
         ///uUnique: UINT->unsigned int
         ///lpTempFileName: LPWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetTempFileNameW")]
-        public static extern uint GetTempFileNameW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpPathName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpPrefixString, uint uUnique,
-            [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpTempFileName);
-
-        /// Return Type: UINT->unsigned int
-        ///lpPathName: LPCSTR->CHAR*
-        ///lpPrefixString: LPCSTR->CHAR*
-        ///uUnique: UINT->unsigned int
-        ///lpTempFileName: LPSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetTempFileNameA")]
-        public static extern uint GetTempFileNameA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpPathName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpPrefixString, uint uUnique,
-            [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpTempFileName);
+        [DllImport("kernel32.dll", EntryPoint = "GetTempFileName")]
+        public static extern uint GetTempFileName(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpPathName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpPrefixString, uint uUnique,
+            [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpTempFileName);
 
         /// Return Type: BOOL->int
         ///Locale: LCID->DWORD->unsigned int
@@ -3362,21 +2434,10 @@ namespace Win32Interop.Methods
         ///lpSrcStr: LPCWSTR->WCHAR*
         ///cchSrc: int
         ///lpCharType: LPWORD->WORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetStringTypeExW")]
+        [DllImport("kernel32.dll", EntryPoint = "GetStringTypeEx")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetStringTypeExW(
-            uint Locale, uint dwInfoType, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpSrcStr, int cchSrc, [Out] out ushort lpCharType);
-
-        /// Return Type: BOOL->int
-        ///Locale: LCID->DWORD->unsigned int
-        ///dwInfoType: DWORD->unsigned int
-        ///lpSrcStr: LPCSTR->CHAR*
-        ///cchSrc: int
-        ///lpCharType: LPWORD->WORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetStringTypeExA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetStringTypeExA(
-            uint Locale, uint dwInfoType, [In] [MarshalAs(UnmanagedType.LPStr)] string lpSrcStr, int cchSrc, [Out] out ushort lpCharType);
+        public static extern bool GetStringTypeEx(
+            uint Locale, uint dwInfoType, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpSrcStr, int cchSrc, [Out] out ushort lpCharType);
 
         /// Return Type: DWORD->unsigned int
         ///hProcess: HANDLE->void*
@@ -3390,22 +2451,10 @@ namespace Win32Interop.Methods
         ///lpFormat: NUMBERFMTW*
         ///lpNumberStr: LPWSTR->WCHAR*
         ///cchNumber: int
-        [DllImport("kernel32.dll", EntryPoint = "GetNumberFormatW")]
-        public static extern int GetNumberFormatW(
-            uint Locale, uint dwFlags, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpValue, [In] IntPtr lpFormat,
-            [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpNumberStr, int cchNumber);
-
-        /// Return Type: int
-        ///Locale: LCID->DWORD->unsigned int
-        ///dwFlags: DWORD->unsigned int
-        ///lpValue: LPCSTR->CHAR*
-        ///lpFormat: NUMBERFMTA*
-        ///lpNumberStr: LPSTR->CHAR*
-        ///cchNumber: int
-        [DllImport("kernel32.dll", EntryPoint = "GetNumberFormatA")]
-        public static extern int GetNumberFormatA(
-            uint Locale, uint dwFlags, [In] [MarshalAs(UnmanagedType.LPStr)] string lpValue, [In] IntPtr lpFormat,
-            [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpNumberStr, int cchNumber);
+        [DllImport("kernel32.dll", EntryPoint = "GetNumberFormat")]
+        public static extern int GetNumberFormat(
+            uint Locale, uint dwFlags, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpValue, [In] IntPtr lpFormat,
+            [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpNumberStr, int cchNumber);
 
         /// Return Type: BOOL->int
         ///hNamedPipe: HANDLE->void*
@@ -3419,29 +2468,16 @@ namespace Win32Interop.Methods
 
         /// Return Type: HMODULE->HINSTANCE->HINSTANCE__*
         ///lpModuleName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetModuleHandleW")]
-        public static extern IntPtr GetModuleHandleW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpModuleName);
-
-        /// Return Type: HMODULE->HINSTANCE->HINSTANCE__*
-        ///lpModuleName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetModuleHandleA")]
-        public static extern IntPtr GetModuleHandleA([In] [MarshalAs(UnmanagedType.LPStr)] string lpModuleName);
+        [DllImport("kernel32.dll", EntryPoint = "GetModuleHandle")]
+        public static extern IntPtr GetModuleHandle([In] [MarshalAs(UnmanagedType.LPTStr)] string lpModuleName);
 
         /// Return Type: DWORD->unsigned int
         ///lpszShortPath: LPCWSTR->WCHAR*
         ///lpszLongPath: LPWSTR->WCHAR*
         ///cchBuffer: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetLongPathNameW")]
-        public static extern uint GetLongPathNameW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpszShortPath, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpszLongPath, uint cchBuffer);
-
-        /// Return Type: DWORD->unsigned int
-        ///lpszShortPath: LPCSTR->CHAR*
-        ///lpszLongPath: LPSTR->CHAR*
-        ///cchBuffer: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetLongPathNameA")]
-        public static extern uint GetLongPathNameA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpszShortPath, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpszLongPath, uint cchBuffer);
+        [DllImport("kernel32.dll", EntryPoint = "GetLongPathName")]
+        public static extern uint GetLongPathName(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpszShortPath, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpszLongPath, uint cchBuffer);
 
         /// Return Type: DWORD->unsigned int
         [DllImport("kernel32.dll", EntryPoint = "GetLogicalDrives")]
@@ -3452,45 +2488,23 @@ namespace Win32Interop.Methods
         ///nBufferLength: DWORD->unsigned int
         ///lpBuffer: LPWSTR->WCHAR*
         ///lpFilePart: LPWSTR*
-        [DllImport("kernel32.dll", EntryPoint = "GetFullPathNameW")]
-        public static extern uint GetFullPathNameW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpFileName, uint nBufferLength, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpBuffer,
-            ref IntPtr lpFilePart);
-
-        /// Return Type: DWORD->unsigned int
-        ///lpFileName: LPCSTR->CHAR*
-        ///nBufferLength: DWORD->unsigned int
-        ///lpBuffer: LPSTR->CHAR*
-        ///lpFilePart: LPSTR*
-        [DllImport("kernel32.dll", EntryPoint = "GetFullPathNameA")]
-        public static extern uint GetFullPathNameA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpFileName, uint nBufferLength, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpBuffer,
+        [DllImport("kernel32.dll", EntryPoint = "GetFullPathName")]
+        public static extern uint GetFullPathName(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpFileName, uint nBufferLength, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpBuffer,
             ref IntPtr lpFilePart);
 
         /// Return Type: INT->int
         ///param0: LPWSTR->WCHAR*
         ///param1: LPWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetExpandedNameW")]
-        public static extern int GetExpandedNameW(
-            [MarshalAs(UnmanagedType.LPWStr)] StringBuilder param0, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder param1);
-
-        /// Return Type: INT->int
-        ///param0: LPSTR->CHAR*
-        ///param1: LPSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetExpandedNameA")]
-        public static extern int GetExpandedNameA([MarshalAs(UnmanagedType.LPStr)] StringBuilder param0, [MarshalAs(UnmanagedType.LPStr)] StringBuilder param1);
+        [DllImport("kernel32.dll", EntryPoint = "GetExpandedName")]
+        public static extern int GetExpandedName(
+            [MarshalAs(UnmanagedType.LPTStr)] StringBuilder param0, [MarshalAs(UnmanagedType.LPTStr)] StringBuilder param1);
 
         /// Return Type: DWORD->unsigned int
         ///nBufferLength: DWORD->unsigned int
         ///lpBuffer: LPWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetDllDirectoryW")]
-        public static extern uint GetDllDirectoryW(uint nBufferLength, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpBuffer);
-
-        /// Return Type: DWORD->unsigned int
-        ///nBufferLength: DWORD->unsigned int
-        ///lpBuffer: LPSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetDllDirectoryA")]
-        public static extern uint GetDllDirectoryA(uint nBufferLength, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpBuffer);
+        [DllImport("kernel32.dll", EntryPoint = "GetDllDirectory")]
+        public static extern uint GetDllDirectory(uint nBufferLength, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpBuffer);
 
         /// Return Type: HANDLE->void*
         [DllImport("kernel32.dll", EntryPoint = "GetCurrentThread")]
@@ -3509,48 +2523,25 @@ namespace Win32Interop.Methods
         /// Return Type: DWORD->unsigned int
         ///lpConsoleTitle: LPWSTR->WCHAR*
         ///nSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetConsoleTitleW")]
-        public static extern uint GetConsoleTitleW([MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpConsoleTitle, uint nSize);
-
-        /// Return Type: DWORD->unsigned int
-        ///lpConsoleTitle: LPSTR->CHAR*
-        ///nSize: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "GetConsoleTitleA")]
-        public static extern uint GetConsoleTitleA([MarshalAs(UnmanagedType.LPStr)] StringBuilder lpConsoleTitle, uint nSize);
+        [DllImport("kernel32.dll", EntryPoint = "GetConsoleTitle")]
+        public static extern uint GetConsoleTitle([MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpConsoleTitle, uint nSize);
 
         /// Return Type: DWORD->unsigned int
         ///Source: LPWSTR->WCHAR*
         ///TargetBuffer: LPWSTR->WCHAR*
         ///TargetBufferLength: DWORD->unsigned int
         ///ExeName: LPWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetConsoleAliasW")]
-        public static extern uint GetConsoleAliasW(
-            [MarshalAs(UnmanagedType.LPWStr)] StringBuilder Source, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder TargetBuffer, uint TargetBufferLength,
-            [MarshalAs(UnmanagedType.LPWStr)] StringBuilder ExeName);
-
-        /// Return Type: DWORD->unsigned int
-        ///Source: LPSTR->CHAR*
-        ///TargetBuffer: LPSTR->CHAR*
-        ///TargetBufferLength: DWORD->unsigned int
-        ///ExeName: LPSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetConsoleAliasA")]
-        public static extern uint GetConsoleAliasA(
-            [MarshalAs(UnmanagedType.LPStr)] StringBuilder Source, [MarshalAs(UnmanagedType.LPStr)] StringBuilder TargetBuffer, uint TargetBufferLength,
-            [MarshalAs(UnmanagedType.LPStr)] StringBuilder ExeName);
+        [DllImport("kernel32.dll", EntryPoint = "GetConsoleAlias")]
+        public static extern uint GetConsoleAlias(
+            [MarshalAs(UnmanagedType.LPTStr)] StringBuilder Source, [MarshalAs(UnmanagedType.LPTStr)] StringBuilder TargetBuffer, uint TargetBufferLength,
+            [MarshalAs(UnmanagedType.LPTStr)] StringBuilder ExeName);
 
         /// Return Type: BOOL->int
         ///lpBuffer: LPWSTR->WCHAR*
         ///nSize: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetComputerNameW")]
+        [DllImport("kernel32.dll", EntryPoint = "GetComputerName")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetComputerNameW([Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpBuffer, ref uint nSize);
-
-        /// Return Type: BOOL->int
-        ///lpBuffer: LPSTR->CHAR*
-        ///nSize: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetComputerNameA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetComputerNameA([Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpBuffer, ref uint nSize);
+        public static extern bool GetComputerName([Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpBuffer, ref uint nSize);
 
         /// Return Type: int
         ///Locale: LCID->DWORD->unsigned int
@@ -3559,20 +2550,9 @@ namespace Win32Interop.Methods
         ///lpCalData: LPWSTR->WCHAR*
         ///cchData: int
         ///lpValue: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetCalendarInfoW")]
-        public static extern int GetCalendarInfoW(
-            uint Locale, uint Calendar, uint CalType, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpCalData, int cchData, [In] IntPtr lpValue);
-
-        /// Return Type: int
-        ///Locale: LCID->DWORD->unsigned int
-        ///Calendar: CALID->DWORD->unsigned int
-        ///CalType: CALTYPE->DWORD->unsigned int
-        ///lpCalData: LPSTR->CHAR*
-        ///cchData: int
-        ///lpValue: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetCalendarInfoA")]
-        public static extern int GetCalendarInfoA(
-            uint Locale, uint Calendar, uint CalType, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpCalData, int cchData, [In] IntPtr lpValue);
+        [DllImport("kernel32.dll", EntryPoint = "GetCalendarInfo")]
+        public static extern int GetCalendarInfo(
+            uint Locale, uint Calendar, uint CalType, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpCalData, int cchData, [In] IntPtr lpValue);
 
         /// Return Type: BOOL->int
         ///hFile: HANDLE->void*
@@ -3583,14 +2563,8 @@ namespace Win32Interop.Methods
         /// Return Type: HANDLE->void*
         ///lpszVolumeName: LPWSTR->WCHAR*
         ///cchBufferLength: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "FindFirstVolumeW")]
-        public static extern IntPtr FindFirstVolumeW([Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpszVolumeName, uint cchBufferLength);
-
-        /// Return Type: HANDLE->void*
-        ///lpszVolumeName: LPSTR->CHAR*
-        ///cchBufferLength: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "FindFirstVolumeA")]
-        public static extern IntPtr FindFirstVolumeA([Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpszVolumeName, uint cchBufferLength);
+        [DllImport("kernel32.dll", EntryPoint = "FindFirstVolume")]
+        public static extern IntPtr FindFirstVolume([Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpszVolumeName, uint cchBufferLength);
 
         /// Return Type: HANDLE->void*
         ///lpFileName: LPCWSTR->WCHAR*
@@ -3599,70 +2573,34 @@ namespace Win32Interop.Methods
         ///fSearchOp: FINDEX_SEARCH_OPS->_FINDEX_SEARCH_OPS
         ///lpSearchFilter: LPVOID->void*
         ///dwAdditionalFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "FindFirstFileExW")]
-        public static extern IntPtr FindFirstFileExW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpFileName, FINDEX_INFO_LEVELS fInfoLevelId, IntPtr lpFindFileData, FINDEX_SEARCH_OPS fSearchOp,
-            IntPtr lpSearchFilter, uint dwAdditionalFlags);
-
-        /// Return Type: HANDLE->void*
-        ///lpFileName: LPCSTR->CHAR*
-        ///fInfoLevelId: FINDEX_INFO_LEVELS->_FINDEX_INFO_LEVELS
-        ///lpFindFileData: LPVOID->void*
-        ///fSearchOp: FINDEX_SEARCH_OPS->_FINDEX_SEARCH_OPS
-        ///lpSearchFilter: LPVOID->void*
-        ///dwAdditionalFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "FindFirstFileExA")]
-        public static extern IntPtr FindFirstFileExA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpFileName, FINDEX_INFO_LEVELS fInfoLevelId, IntPtr lpFindFileData, FINDEX_SEARCH_OPS fSearchOp,
+        [DllImport("kernel32.dll", EntryPoint = "FindFirstFileEx")]
+        public static extern IntPtr FindFirstFileEx(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpFileName, FINDEX_INFO_LEVELS fInfoLevelId, IntPtr lpFindFileData, FINDEX_SEARCH_OPS fSearchOp,
             IntPtr lpSearchFilter, uint dwAdditionalFlags);
 
         /// Return Type: BOOL->int
         ///lpUILanguageEnumProc: UILANGUAGE_ENUMPROCW
         ///dwFlags: DWORD->unsigned int
         ///lParam: LONG_PTR->int
-        [DllImport("kernel32.dll", EntryPoint = "EnumUILanguagesW")]
+        [DllImport("kernel32.dll", EntryPoint = "EnumUILanguages")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumUILanguagesW(UILANGUAGE_ENUMPROCW lpUILanguageEnumProc, uint dwFlags, [MarshalAs(UnmanagedType.SysInt)] int lParam);
-
-        /// Return Type: BOOL->int
-        ///lpUILanguageEnumProc: UILANGUAGE_ENUMPROCA
-        ///dwFlags: DWORD->unsigned int
-        ///lParam: LONG_PTR->int
-        [DllImport("kernel32.dll", EntryPoint = "EnumUILanguagesA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumUILanguagesA(UILANGUAGE_ENUMPROCA lpUILanguageEnumProc, uint dwFlags, [MarshalAs(UnmanagedType.SysInt)] int lParam);
+        public static extern bool EnumUILanguages(UILANGUAGE_ENUMPROC lpUILanguageEnumProc, uint dwFlags, [MarshalAs(UnmanagedType.SysInt)] int lParam);
 
         /// Return Type: BOOL->int
         ///lpTimeFmtEnumProc: TIMEFMT_ENUMPROCW
         ///Locale: LCID->DWORD->unsigned int
         ///dwFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "EnumTimeFormatsW")]
+        [DllImport("kernel32.dll", EntryPoint = "EnumTimeFormats")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumTimeFormatsW(TIMEFMT_ENUMPROCW lpTimeFmtEnumProc, uint Locale, uint dwFlags);
-
-        /// Return Type: BOOL->int
-        ///lpTimeFmtEnumProc: TIMEFMT_ENUMPROCA
-        ///Locale: LCID->DWORD->unsigned int
-        ///dwFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "EnumTimeFormatsA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumTimeFormatsA(TIMEFMT_ENUMPROCA lpTimeFmtEnumProc, uint Locale, uint dwFlags);
+        public static extern bool EnumTimeFormats(TIMEFMT_ENUMPROC lpTimeFmtEnumProc, uint Locale, uint dwFlags);
 
         /// Return Type: BOOL->int
         ///lpDateFmtEnumProc: DATEFMT_ENUMPROCW
         ///Locale: LCID->DWORD->unsigned int
         ///dwFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "EnumDateFormatsW")]
+        [DllImport("kernel32.dll", EntryPoint = "EnumDateFormats")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumDateFormatsW(DATEFMT_ENUMPROCW lpDateFmtEnumProc, uint Locale, uint dwFlags);
-
-        /// Return Type: BOOL->int
-        ///lpDateFmtEnumProc: DATEFMT_ENUMPROCA
-        ///Locale: LCID->DWORD->unsigned int
-        ///dwFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "EnumDateFormatsA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumDateFormatsA(DATEFMT_ENUMPROCA lpDateFmtEnumProc, uint Locale, uint dwFlags);
+        public static extern bool EnumDateFormats(DATEFMT_ENUMPROC lpDateFmtEnumProc, uint Locale, uint dwFlags);
 
         /// Return Type: BOOL->int
         ///TimerQueue: HANDLE->void*
@@ -3674,19 +2612,10 @@ namespace Win32Interop.Methods
         ///dwFlags: DWORD->unsigned int
         ///lpDeviceName: LPCWSTR->WCHAR*
         ///lpTargetPath: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "DefineDosDeviceW")]
+        [DllImport("kernel32.dll", EntryPoint = "DefineDosDevice")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DefineDosDeviceW(
-            uint dwFlags, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpDeviceName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpTargetPath);
-
-        /// Return Type: BOOL->int
-        ///dwFlags: DWORD->unsigned int
-        ///lpDeviceName: LPCSTR->CHAR*
-        ///lpTargetPath: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "DefineDosDeviceA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DefineDosDeviceA(
-            uint dwFlags, [In] [MarshalAs(UnmanagedType.LPStr)] string lpDeviceName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpTargetPath);
+        public static extern bool DefineDosDevice(
+            uint dwFlags, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpDeviceName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpTargetPath);
 
         /// Return Type: BOOL->int
         ///dwFlags: DWORD->unsigned int
@@ -3704,18 +2633,9 @@ namespace Win32Interop.Methods
         ///lInitialCount: LONG->int
         ///lMaximumCount: LONG->int
         ///lpName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "CreateSemaphoreW")]
-        public static extern IntPtr CreateSemaphoreW(
-            [In] IntPtr lpSemaphoreAttributes, int lInitialCount, int lMaximumCount, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName);
-
-        /// Return Type: HANDLE->void*
-        ///lpSemaphoreAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
-        ///lInitialCount: LONG->int
-        ///lMaximumCount: LONG->int
-        ///lpName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "CreateSemaphoreA")]
-        public static extern IntPtr CreateSemaphoreA(
-            [In] IntPtr lpSemaphoreAttributes, int lInitialCount, int lMaximumCount, [In] [MarshalAs(UnmanagedType.LPStr)] string lpName);
+        [DllImport("kernel32.dll", EntryPoint = "CreateSemaphore")]
+        public static extern IntPtr CreateSemaphore(
+            [In] IntPtr lpSemaphoreAttributes, int lInitialCount, int lMaximumCount, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName);
 
         /// Return Type: HANDLE->void*
         ///lpName: LPCWSTR->WCHAR*
@@ -3726,50 +2646,23 @@ namespace Win32Interop.Methods
         ///nInBufferSize: DWORD->unsigned int
         ///nDefaultTimeOut: DWORD->unsigned int
         ///lpSecurityAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
-        [DllImport("kernel32.dll", EntryPoint = "CreateNamedPipeW")]
-        public static extern IntPtr CreateNamedPipeW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName, uint dwOpenMode, uint dwPipeMode, uint nMaxInstances, uint nOutBufferSize, uint nInBufferSize,
-            uint nDefaultTimeOut, [In] IntPtr lpSecurityAttributes);
-
-        /// Return Type: HANDLE->void*
-        ///lpName: LPCSTR->CHAR*
-        ///dwOpenMode: DWORD->unsigned int
-        ///dwPipeMode: DWORD->unsigned int
-        ///nMaxInstances: DWORD->unsigned int
-        ///nOutBufferSize: DWORD->unsigned int
-        ///nInBufferSize: DWORD->unsigned int
-        ///nDefaultTimeOut: DWORD->unsigned int
-        ///lpSecurityAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
-        [DllImport("kernel32.dll", EntryPoint = "CreateNamedPipeA")]
-        public static extern IntPtr CreateNamedPipeA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpName, uint dwOpenMode, uint dwPipeMode, uint nMaxInstances, uint nOutBufferSize, uint nInBufferSize,
+        [DllImport("kernel32.dll", EntryPoint = "CreateNamedPipe")]
+        public static extern IntPtr CreateNamedPipe(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName, uint dwOpenMode, uint dwPipeMode, uint nMaxInstances, uint nOutBufferSize, uint nInBufferSize,
             uint nDefaultTimeOut, [In] IntPtr lpSecurityAttributes);
 
         /// Return Type: HANDLE->void*
         ///lpJobAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
         ///lpName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "CreateJobObjectW")]
-        public static extern IntPtr CreateJobObjectW([In] IntPtr lpJobAttributes, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName);
-
-        /// Return Type: HANDLE->void*
-        ///lpJobAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
-        ///lpName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "CreateJobObjectA")]
-        public static extern IntPtr CreateJobObjectA([In] IntPtr lpJobAttributes, [In] [MarshalAs(UnmanagedType.LPStr)] string lpName);
+        [DllImport("kernel32.dll", EntryPoint = "CreateJobObject")]
+        public static extern IntPtr CreateJobObject([In] IntPtr lpJobAttributes, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName);
 
         /// Return Type: BOOL->int
         ///lpPathName: LPCWSTR->WCHAR*
         ///lpSecurityAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
-        [DllImport("kernel32.dll", EntryPoint = "CreateDirectoryW")]
+        [DllImport("kernel32.dll", EntryPoint = "CreateDirectory")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CreateDirectoryW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpPathName, [In] IntPtr lpSecurityAttributes);
-
-        /// Return Type: BOOL->int
-        ///lpPathName: LPCSTR->CHAR*
-        ///lpSecurityAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
-        [DllImport("kernel32.dll", EntryPoint = "CreateDirectoryA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CreateDirectoryA([In] [MarshalAs(UnmanagedType.LPStr)] string lpPathName, [In] IntPtr lpSecurityAttributes);
+        public static extern bool CreateDirectory([In] [MarshalAs(UnmanagedType.LPTStr)] string lpPathName, [In] IntPtr lpSecurityAttributes);
 
         /// Return Type: BOOL->int
         ///hNamedPipe: HANDLE->void*
@@ -3782,21 +2675,11 @@ namespace Win32Interop.Methods
         ///Source: LPWSTR->WCHAR*
         ///Target: LPWSTR->WCHAR*
         ///ExeName: LPWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "AddConsoleAliasW")]
+        [DllImport("kernel32.dll", EntryPoint = "AddConsoleAlias")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool AddConsoleAliasW(
-            [MarshalAs(UnmanagedType.LPWStr)] StringBuilder Source, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder Target,
-            [MarshalAs(UnmanagedType.LPWStr)] StringBuilder ExeName);
-
-        /// Return Type: BOOL->int
-        ///Source: LPSTR->CHAR*
-        ///Target: LPSTR->CHAR*
-        ///ExeName: LPSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "AddConsoleAliasA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool AddConsoleAliasA(
-            [MarshalAs(UnmanagedType.LPStr)] StringBuilder Source, [MarshalAs(UnmanagedType.LPStr)] StringBuilder Target,
-            [MarshalAs(UnmanagedType.LPStr)] StringBuilder ExeName);
+        public static extern bool AddConsoleAlias(
+            [MarshalAs(UnmanagedType.LPTStr)] StringBuilder Source, [MarshalAs(UnmanagedType.LPTStr)] StringBuilder Target,
+            [MarshalAs(UnmanagedType.LPTStr)] StringBuilder ExeName);
 
         /// Return Type: BOOL->int
         ///hFile: HANDLE->void*
@@ -3816,23 +2699,10 @@ namespace Win32Interop.Methods
         ///wLanguage: WORD->unsigned short
         ///lpData: LPVOID->void*
         ///cb: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "UpdateResourceW")]
+        [DllImport("kernel32.dll", EntryPoint = "UpdateResource")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool UpdateResourceW(
-            [In] IntPtr hUpdate, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpType, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName, ushort wLanguage,
-            [In] IntPtr lpData, uint cb);
-
-        /// Return Type: BOOL->int
-        ///hUpdate: HANDLE->void*
-        ///lpType: LPCSTR->CHAR*
-        ///lpName: LPCSTR->CHAR*
-        ///wLanguage: WORD->unsigned short
-        ///lpData: LPVOID->void*
-        ///cb: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "UpdateResourceA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool UpdateResourceA(
-            [In] IntPtr hUpdate, [In] [MarshalAs(UnmanagedType.LPStr)] string lpType, [In] [MarshalAs(UnmanagedType.LPStr)] string lpName, ushort wLanguage,
+        public static extern bool UpdateResource(
+            [In] IntPtr hUpdate, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpType, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName, ushort wLanguage,
             [In] IntPtr lpData, uint cb);
 
         /// Return Type: BOOL->int
@@ -3851,18 +2721,10 @@ namespace Win32Interop.Methods
         /// Return Type: BOOL->int
         ///lpRootPathName: LPCWSTR->WCHAR*
         ///lpVolumeName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetVolumeLabelW")]
+        [DllImport("kernel32.dll", EntryPoint = "SetVolumeLabel")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetVolumeLabelW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpRootPathName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpVolumeName);
-
-        /// Return Type: BOOL->int
-        ///lpRootPathName: LPCSTR->CHAR*
-        ///lpVolumeName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetVolumeLabelA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetVolumeLabelA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpRootPathName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpVolumeName);
+        public static extern bool SetVolumeLabel(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpRootPathName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpVolumeName);
 
         /// Return Type: BOOL->int
         ///Locale: LCID->DWORD->unsigned int
@@ -3916,17 +2778,9 @@ namespace Win32Interop.Methods
         ///lpDeviceName: LPCWSTR->WCHAR*
         ///lpTargetPath: LPWSTR->WCHAR*
         ///ucchMax: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "QueryDosDeviceW")]
-        public static extern uint QueryDosDeviceW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpDeviceName, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpTargetPath, uint ucchMax);
-
-        /// Return Type: DWORD->unsigned int
-        ///lpDeviceName: LPCSTR->CHAR*
-        ///lpTargetPath: LPSTR->CHAR*
-        ///ucchMax: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "QueryDosDeviceA")]
-        public static extern uint QueryDosDeviceA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpDeviceName, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpTargetPath, uint ucchMax);
+        [DllImport("kernel32.dll", EntryPoint = "QueryDosDevice")]
+        public static extern uint QueryDosDevice(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpDeviceName, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpTargetPath, uint ucchMax);
 
         /// Return Type: USHORT->unsigned short
         ///ListHead: PSLIST_HEADER->_SLIST_HEADER*
@@ -3954,26 +2808,14 @@ namespace Win32Interop.Methods
         /// Return Type: BOOL->int
         ///lpsz: LPCWSTR->WCHAR*
         ///ucchMax: UINT_PTR->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "IsBadStringPtrW")]
+        [DllImport("kernel32.dll", EntryPoint = "IsBadStringPtr")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool IsBadStringPtrW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpsz, [MarshalAs(UnmanagedType.SysUInt)] uint ucchMax);
-
-        /// Return Type: BOOL->int
-        ///lpsz: LPCSTR->CHAR*
-        ///ucchMax: UINT_PTR->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "IsBadStringPtrA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool IsBadStringPtrA([In] [MarshalAs(UnmanagedType.LPStr)] string lpsz, [MarshalAs(UnmanagedType.SysUInt)] uint ucchMax);
+        public static extern bool IsBadStringPtr([In] [MarshalAs(UnmanagedType.LPTStr)] string lpsz, [MarshalAs(UnmanagedType.SysUInt)] uint ucchMax);
 
         /// Return Type: ATOM->WORD->unsigned short
         ///lpString: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GlobalFindAtomW")]
-        public static extern ushort GlobalFindAtomW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpString);
-
-        /// Return Type: ATOM->WORD->unsigned short
-        ///lpString: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GlobalFindAtomA")]
-        public static extern ushort GlobalFindAtomA([In] [MarshalAs(UnmanagedType.LPStr)] string lpString);
+        [DllImport("kernel32.dll", EntryPoint = "GlobalFindAtom")]
+        public static extern ushort GlobalFindAtom([In] [MarshalAs(UnmanagedType.LPTStr)] string lpString);
 
         /// Return Type: LCID->DWORD->unsigned int
         [DllImport("kernel32.dll", EntryPoint = "GetThreadLocale")]
@@ -3991,13 +2833,8 @@ namespace Win32Interop.Methods
 
         /// Return Type: void
         ///lpStartupInfo: LPSTARTUPINFOW->_STARTUPINFOW*
-        [DllImport("kernel32.dll", EntryPoint = "GetStartupInfoW")]
-        public static extern void GetStartupInfoW([Out] out STARTUPINFOW lpStartupInfo);
-
-        /// Return Type: void
-        ///lpStartupInfo: LPSTARTUPINFOA->_STARTUPINFOA*
-        [DllImport("kernel32.dll", EntryPoint = "GetStartupInfoA")]
-        public static extern void GetStartupInfoA([Out] out STARTUPINFOA lpStartupInfo);
+        [DllImport("kernel32.dll", EntryPoint = "GetStartupInfo")]
+        public static extern void GetStartupInfo([Out] out STARTUPINFO lpStartupInfo);
 
         /// Return Type: BOOL->int
         ///hProcess: HANDLE->void*
@@ -4036,12 +2873,8 @@ namespace Win32Interop.Methods
         public static extern bool GetCommTimeouts([In] IntPtr hFile, [Out] out COMMTIMEOUTS lpCommTimeouts);
 
         /// Return Type: LPWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetCommandLineW")]
-        public static extern IntPtr GetCommandLineW();
-
-        /// Return Type: LPSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetCommandLineA")]
-        public static extern IntPtr GetCommandLineA();
+        [DllImport("kernel32.dll", EntryPoint = "GetCommandLine")]
+        public static extern IntPtr GetCommandLine();
 
         /// Return Type: BOOL->int
         ///lpBaseAddress: LPCVOID->void*
@@ -4061,35 +2894,18 @@ namespace Win32Interop.Methods
         ///lpType: LPCWSTR->WCHAR*
         ///lpName: LPCWSTR->WCHAR*
         ///wLanguage: WORD->unsigned short
-        [DllImport("kernel32.dll", EntryPoint = "FindResourceExW")]
-        public static extern IntPtr FindResourceExW(
-            [In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpType, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName, ushort wLanguage);
-
-        /// Return Type: HRSRC->HRSRC__*
-        ///hModule: HMODULE->HINSTANCE->HINSTANCE__*
-        ///lpType: LPCSTR->CHAR*
-        ///lpName: LPCSTR->CHAR*
-        ///wLanguage: WORD->unsigned short
-        [DllImport("kernel32.dll", EntryPoint = "FindResourceExA")]
-        public static extern IntPtr FindResourceExA(
-            [In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPStr)] string lpType, [In] [MarshalAs(UnmanagedType.LPStr)] string lpName, ushort wLanguage);
+        [DllImport("kernel32.dll", EntryPoint = "FindResourceEx")]
+        public static extern IntPtr FindResourceEx(
+            [In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpType, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName, ushort wLanguage);
 
         /// Return Type: BOOL->int
         ///hFindVolume: HANDLE->void*
         ///lpszVolumeName: LPWSTR->WCHAR*
         ///cchBufferLength: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "FindNextVolumeW")]
+        [DllImport("kernel32.dll", EntryPoint = "FindNextVolume")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool FindNextVolumeW(
-            IntPtr hFindVolume, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpszVolumeName, uint cchBufferLength);
-
-        /// Return Type: BOOL->int
-        ///hFindVolume: HANDLE->void*
-        ///lpszVolumeName: LPSTR->CHAR*
-        ///cchBufferLength: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "FindNextVolumeA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool FindNextVolumeA(IntPtr hFindVolume, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpszVolumeName, uint cchBufferLength);
+        public static extern bool FindNextVolume(
+            IntPtr hFindVolume, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpszVolumeName, uint cchBufferLength);
 
         /// Return Type: BOOL->int
         ///GeoClass: GEOCLASS->DWORD->unsigned int
@@ -4133,37 +2949,18 @@ namespace Win32Interop.Methods
         ///nMaxMessageSize: DWORD->unsigned int
         ///lReadTimeout: DWORD->unsigned int
         ///lpSecurityAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
-        [DllImport("kernel32.dll", EntryPoint = "CreateMailslotW")]
-        public static extern IntPtr CreateMailslotW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName, uint nMaxMessageSize, uint lReadTimeout, [In] IntPtr lpSecurityAttributes);
-
-        /// Return Type: HANDLE->void*
-        ///lpName: LPCSTR->CHAR*
-        ///nMaxMessageSize: DWORD->unsigned int
-        ///lReadTimeout: DWORD->unsigned int
-        ///lpSecurityAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
-        [DllImport("kernel32.dll", EntryPoint = "CreateMailslotA")]
-        public static extern IntPtr CreateMailslotA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpName, uint nMaxMessageSize, uint lReadTimeout, [In] IntPtr lpSecurityAttributes);
+        [DllImport("kernel32.dll", EntryPoint = "CreateMailslot")]
+        public static extern IntPtr CreateMailslot(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName, uint nMaxMessageSize, uint lReadTimeout, [In] IntPtr lpSecurityAttributes);
 
         /// Return Type: BOOL->int
         ///lpFileName: LPCWSTR->WCHAR*
         ///lpExistingFileName: LPCWSTR->WCHAR*
         ///lpSecurityAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
-        [DllImport("kernel32.dll", EntryPoint = "CreateHardLinkW")]
+        [DllImport("kernel32.dll", EntryPoint = "CreateHardLink")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CreateHardLinkW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpFileName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpExistingFileName,
-            IntPtr lpSecurityAttributes);
-
-        /// Return Type: BOOL->int
-        ///lpFileName: LPCSTR->CHAR*
-        ///lpExistingFileName: LPCSTR->CHAR*
-        ///lpSecurityAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
-        [DllImport("kernel32.dll", EntryPoint = "CreateHardLinkA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CreateHardLinkA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpFileName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpExistingFileName,
+        public static extern bool CreateHardLink(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpFileName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpExistingFileName,
             IntPtr lpSecurityAttributes);
 
         /// Return Type: LONG->int
@@ -4180,16 +2977,9 @@ namespace Win32Interop.Methods
         /// Return Type: BOOL->int
         ///lpNamedPipeName: LPCWSTR->WCHAR*
         ///nTimeOut: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "WaitNamedPipeW")]
+        [DllImport("kernel32.dll", EntryPoint = "WaitNamedPipe")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WaitNamedPipeW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpNamedPipeName, uint nTimeOut);
-
-        /// Return Type: BOOL->int
-        ///lpNamedPipeName: LPCSTR->CHAR*
-        ///nTimeOut: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "WaitNamedPipeA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WaitNamedPipeA([In] [MarshalAs(UnmanagedType.LPStr)] string lpNamedPipeName, uint nTimeOut);
+        public static extern bool WaitNamedPipe([In] [MarshalAs(UnmanagedType.LPTStr)] string lpNamedPipeName, uint nTimeOut);
 
         /// Return Type: SIZE_T->ULONG_PTR->unsigned int
         ///hProcess: HANDLE->void*
@@ -4238,17 +3028,9 @@ namespace Win32Interop.Methods
         ///Locale: LCID->DWORD->unsigned int
         ///LCType: LCTYPE->DWORD->unsigned int
         ///lpLCData: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetLocaleInfoW")]
+        [DllImport("kernel32.dll", EntryPoint = "SetLocaleInfo")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetLocaleInfoW(uint Locale, uint LCType, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpLCData);
-
-        /// Return Type: BOOL->int
-        ///Locale: LCID->DWORD->unsigned int
-        ///LCType: LCTYPE->DWORD->unsigned int
-        ///lpLCData: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "SetLocaleInfoA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetLocaleInfoA(uint Locale, uint LCType, [In] [MarshalAs(UnmanagedType.LPStr)] string lpLCData);
+        public static extern bool SetLocaleInfo(uint Locale, uint LCType, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpLCData);
 
         /// Return Type: UINT->unsigned int
         ///uNumber: UINT->unsigned int
@@ -4282,47 +3064,24 @@ namespace Win32Interop.Methods
         ///dwDesiredAccess: DWORD->unsigned int
         ///bInheritHandle: BOOL->int
         ///lpName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "OpenSemaphoreW")]
-        public static extern IntPtr OpenSemaphoreW(
-            uint dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName);
-
-        /// Return Type: HANDLE->void*
-        ///dwDesiredAccess: DWORD->unsigned int
-        ///bInheritHandle: BOOL->int
-        ///lpName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "OpenSemaphoreA")]
-        public static extern IntPtr OpenSemaphoreA(
-            uint dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, [In] [MarshalAs(UnmanagedType.LPStr)] string lpName);
+        [DllImport("kernel32.dll", EntryPoint = "OpenSemaphore")]
+        public static extern IntPtr OpenSemaphore(
+            uint dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName);
 
         /// Return Type: HANDLE->void*
         ///dwDesiredAccess: DWORD->unsigned int
         ///bInheritHandle: BOOL->int
         ///lpName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "OpenJobObjectW")]
-        public static extern IntPtr OpenJobObjectW(
-            uint dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName);
-
-        /// Return Type: HANDLE->void*
-        ///dwDesiredAccess: DWORD->unsigned int
-        ///bInheritHandle: BOOL->int
-        ///lpName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "OpenJobObjectA")]
-        public static extern IntPtr OpenJobObjectA(
-            uint dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, [In] [MarshalAs(UnmanagedType.LPStr)] string lpName);
+        [DllImport("kernel32.dll", EntryPoint = "OpenJobObject")]
+        public static extern IntPtr OpenJobObject(
+            uint dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName);
 
         /// Return Type: HMODULE->HINSTANCE->HINSTANCE__*
         ///lpLibFileName: LPCWSTR->WCHAR*
         ///hFile: HANDLE->void*
         ///dwFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "LoadLibraryExW")]
-        public static extern IntPtr LoadLibraryExW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpLibFileName, IntPtr hFile, uint dwFlags);
-
-        /// Return Type: HMODULE->HINSTANCE->HINSTANCE__*
-        ///lpLibFileName: LPCSTR->CHAR*
-        ///hFile: HANDLE->void*
-        ///dwFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "LoadLibraryExA")]
-        public static extern IntPtr LoadLibraryExA([In] [MarshalAs(UnmanagedType.LPStr)] string lpLibFileName, IntPtr hFile, uint dwFlags);
+        [DllImport("kernel32.dll", EntryPoint = "LoadLibraryEx")]
+        public static extern IntPtr LoadLibraryEx([In] [MarshalAs(UnmanagedType.LPTStr)] string lpLibFileName, IntPtr hFile, uint dwFlags);
 
         /// Return Type: BOOL->int
         ///hProcess: HANDLE->void*
@@ -4347,13 +3106,8 @@ namespace Win32Interop.Methods
 
         /// Return Type: ATOM->WORD->unsigned short
         ///lpString: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GlobalAddAtomW")]
-        public static extern ushort GlobalAddAtomW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpString);
-
-        /// Return Type: ATOM->WORD->unsigned short
-        ///lpString: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GlobalAddAtomA")]
-        public static extern ushort GlobalAddAtomA([In] [MarshalAs(UnmanagedType.LPStr)] string lpString);
+        [DllImport("kernel32.dll", EntryPoint = "GlobalAddAtom")]
+        public static extern ushort GlobalAddAtom([In] [MarshalAs(UnmanagedType.LPTStr)] string lpString);
 
         /// Return Type: int
         ///Locale: LCID->DWORD->unsigned int
@@ -4362,22 +3116,10 @@ namespace Win32Interop.Methods
         ///lpFormat: LPCWSTR->WCHAR*
         ///lpTimeStr: LPWSTR->WCHAR*
         ///cchTime: int
-        [DllImport("kernel32.dll", EntryPoint = "GetTimeFormatW")]
-        public static extern int GetTimeFormatW(
-            uint Locale, uint dwFlags, [In] IntPtr lpTime, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpFormat,
-            [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpTimeStr, int cchTime);
-
-        /// Return Type: int
-        ///Locale: LCID->DWORD->unsigned int
-        ///dwFlags: DWORD->unsigned int
-        ///lpTime: SYSTEMTIME*
-        ///lpFormat: LPCSTR->CHAR*
-        ///lpTimeStr: LPSTR->CHAR*
-        ///cchTime: int
-        [DllImport("kernel32.dll", EntryPoint = "GetTimeFormatA")]
-        public static extern int GetTimeFormatA(
-            uint Locale, uint dwFlags, [In] IntPtr lpTime, [In] [MarshalAs(UnmanagedType.LPStr)] string lpFormat,
-            [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpTimeStr, int cchTime);
+        [DllImport("kernel32.dll", EntryPoint = "GetTimeFormat")]
+        public static extern int GetTimeFormat(
+            uint Locale, uint dwFlags, [In] IntPtr lpTime, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpFormat,
+            [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpTimeStr, int cchTime);
 
         /// Return Type: BOOL->int
         ///hThread: HANDLE->void*
@@ -4404,37 +3146,18 @@ namespace Win32Interop.Methods
         ///lpSrcStr: LPCWSTR->WCHAR*
         ///cchSrc: int
         ///lpCharType: LPWORD->WORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetStringTypeW")]
+        [DllImport("kernel32.dll", EntryPoint = "GetStringType")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetStringTypeW(
-            uint dwInfoType, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpSrcStr, int cchSrc, [Out] out ushort lpCharType);
-
-        /// Return Type: BOOL->int
-        ///Locale: LCID->DWORD->unsigned int
-        ///dwInfoType: DWORD->unsigned int
-        ///lpSrcStr: LPCSTR->CHAR*
-        ///cchSrc: int
-        ///lpCharType: LPWORD->WORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetStringTypeA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetStringTypeA(
-            uint Locale, uint dwInfoType, [In] [MarshalAs(UnmanagedType.LPStr)] string lpSrcStr, int cchSrc, [Out] out ushort lpCharType);
+        public static extern bool GetStringType(
+            uint dwInfoType, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpSrcStr, int cchSrc, [Out] out ushort lpCharType);
 
         /// Return Type: UINT->unsigned int
         ///lpAppName: LPCWSTR->WCHAR*
         ///lpKeyName: LPCWSTR->WCHAR*
         ///nDefault: INT->int
-        [DllImport("kernel32.dll", EntryPoint = "GetProfileIntW")]
-        public static extern uint GetProfileIntW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpKeyName, int nDefault);
-
-        /// Return Type: UINT->unsigned int
-        ///lpAppName: LPCSTR->CHAR*
-        ///lpKeyName: LPCSTR->CHAR*
-        ///nDefault: INT->int
-        [DllImport("kernel32.dll", EntryPoint = "GetProfileIntA")]
-        public static extern uint GetProfileIntA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpKeyName, int nDefault);
+        [DllImport("kernel32.dll", EntryPoint = "GetProfileInt")]
+        public static extern uint GetProfileInt(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpAppName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpKeyName, int nDefault);
 
         /// Return Type: HANDLE->void*
         [DllImport("kernel32.dll", EntryPoint = "GetProcessHeap")]
@@ -4451,16 +3174,8 @@ namespace Win32Interop.Methods
         ///LCType: LCTYPE->DWORD->unsigned int
         ///lpLCData: LPWSTR->WCHAR*
         ///cchData: int
-        [DllImport("kernel32.dll", EntryPoint = "GetLocaleInfoW")]
-        public static extern int GetLocaleInfoW(uint Locale, uint LCType, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpLCData, int cchData);
-
-        /// Return Type: int
-        ///Locale: LCID->DWORD->unsigned int
-        ///LCType: LCTYPE->DWORD->unsigned int
-        ///lpLCData: LPSTR->CHAR*
-        ///cchData: int
-        [DllImport("kernel32.dll", EntryPoint = "GetLocaleInfoA")]
-        public static extern int GetLocaleInfoA(uint Locale, uint LCType, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpLCData, int cchData);
+        [DllImport("kernel32.dll", EntryPoint = "GetLocaleInfo")]
+        public static extern int GetLocaleInfo(uint Locale, uint LCType, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpLCData, int cchData);
 
         /// Return Type: int
         ///Locale: LCID->DWORD->unsigned int
@@ -4469,22 +3184,10 @@ namespace Win32Interop.Methods
         ///lpFormat: LPCWSTR->WCHAR*
         ///lpDateStr: LPWSTR->WCHAR*
         ///cchDate: int
-        [DllImport("kernel32.dll", EntryPoint = "GetDateFormatW")]
-        public static extern int GetDateFormatW(
-            uint Locale, uint dwFlags, [In] IntPtr lpDate, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpFormat,
-            [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpDateStr, int cchDate);
-
-        /// Return Type: int
-        ///Locale: LCID->DWORD->unsigned int
-        ///dwFlags: DWORD->unsigned int
-        ///lpDate: SYSTEMTIME*
-        ///lpFormat: LPCSTR->CHAR*
-        ///lpDateStr: LPSTR->CHAR*
-        ///cchDate: int
-        [DllImport("kernel32.dll", EntryPoint = "GetDateFormatA")]
-        public static extern int GetDateFormatA(
-            uint Locale, uint dwFlags, [In] IntPtr lpDate, [In] [MarshalAs(UnmanagedType.LPStr)] string lpFormat,
-            [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpDateStr, int cchDate);
+        [DllImport("kernel32.dll", EntryPoint = "GetDateFormat")]
+        public static extern int GetDateFormat(
+            uint Locale, uint dwFlags, [In] IntPtr lpDate, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpFormat,
+            [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpDateStr, int cchDate);
 
         /// Return Type: BOOL->int
         ///hConsoleHandle: HANDLE->void*
@@ -4496,16 +3199,9 @@ namespace Win32Interop.Methods
         /// Return Type: BOOL->int
         ///lpApplicationName: LPCWSTR->WCHAR*
         ///lpBinaryType: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetBinaryTypeW")]
+        [DllImport("kernel32.dll", EntryPoint = "GetBinaryType")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetBinaryTypeW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpApplicationName, [Out] out uint lpBinaryType);
-
-        /// Return Type: BOOL->int
-        ///lpApplicationName: LPCSTR->CHAR*
-        ///lpBinaryType: LPDWORD->DWORD*
-        [DllImport("kernel32.dll", EntryPoint = "GetBinaryTypeA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetBinaryTypeA([In] [MarshalAs(UnmanagedType.LPStr)] string lpApplicationName, [Out] out uint lpBinaryType);
+        public static extern bool GetBinaryType([In] [MarshalAs(UnmanagedType.LPTStr)] string lpApplicationName, [Out] out uint lpBinaryType);
 
         /// Return Type: DWORD->unsigned int
         ///dwFlags: DWORD->unsigned int
@@ -4515,35 +3211,16 @@ namespace Win32Interop.Methods
         ///lpBuffer: LPWSTR->WCHAR*
         ///nSize: DWORD->unsigned int
         ///Arguments: va_list*
-        [DllImport("kernel32.dll", EntryPoint = "FormatMessageW")]
-        public static extern uint FormatMessageW(
-            uint dwFlags, IntPtr lpSource, uint dwMessageId, uint dwLanguageId, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpBuffer, uint nSize,
-            ref IntPtr Arguments);
-
-        /// Return Type: DWORD->unsigned int
-        ///dwFlags: DWORD->unsigned int
-        ///lpSource: LPCVOID->void*
-        ///dwMessageId: DWORD->unsigned int
-        ///dwLanguageId: DWORD->unsigned int
-        ///lpBuffer: LPSTR->CHAR*
-        ///nSize: DWORD->unsigned int
-        ///Arguments: va_list*
-        [DllImport("kernel32.dll", EntryPoint = "FormatMessageA")]
-        public static extern uint FormatMessageA(
-            uint dwFlags, IntPtr lpSource, uint dwMessageId, uint dwLanguageId, [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpBuffer, uint nSize,
+        [DllImport("kernel32.dll", EntryPoint = "FormatMessage")]
+        public static extern uint FormatMessage(
+            uint dwFlags, IntPtr lpSource, uint dwMessageId, uint dwLanguageId, [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpBuffer, uint nSize,
             ref IntPtr Arguments);
 
         /// Return Type: HANDLE->void*
         ///lpFileName: LPCWSTR->WCHAR*
         ///lpFindFileData: LPWIN32_FIND_DATAW->_WIN32_FIND_DATAW*
-        [DllImport("kernel32.dll", EntryPoint = "FindFirstFileW")]
-        public static extern IntPtr FindFirstFileW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpFileName, [Out] out WIN32_FIND_DATAW lpFindFileData);
-
-        /// Return Type: HANDLE->void*
-        ///lpFileName: LPCSTR->CHAR*
-        ///lpFindFileData: LPWIN32_FIND_DATAA->_WIN32_FIND_DATAA*
-        [DllImport("kernel32.dll", EntryPoint = "FindFirstFileA")]
-        public static extern IntPtr FindFirstFileA([In] [MarshalAs(UnmanagedType.LPStr)] string lpFileName, [Out] out WIN32_FIND_DATAA lpFindFileData);
+        [DllImport("kernel32.dll", EntryPoint = "FindFirstFile")]
+        public static extern IntPtr FindFirstFile([In] [MarshalAs(UnmanagedType.LPTStr)] string lpFileName, [Out] out WIN32_FIND_DATA lpFindFileData);
 
         /// Return Type: BOOL->int
         ///lpApplicationName: LPCWSTR->WCHAR*
@@ -4556,31 +3233,12 @@ namespace Win32Interop.Methods
         ///lpCurrentDirectory: LPCWSTR->WCHAR*
         ///lpStartupInfo: LPSTARTUPINFOW->_STARTUPINFOW*
         ///lpProcessInformation: LPPROCESS_INFORMATION->_PROCESS_INFORMATION*
-        [DllImport("kernel32.dll", EntryPoint = "CreateProcessW")]
+        [DllImport("kernel32.dll", EntryPoint = "CreateProcess")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CreateProcessW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpApplicationName, IntPtr lpCommandLine, [In] IntPtr lpProcessAttributes,
+        public static extern bool CreateProcess(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpApplicationName, IntPtr lpCommandLine, [In] IntPtr lpProcessAttributes,
             [In] IntPtr lpThreadAttributes, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandles, uint dwCreationFlags, [In] IntPtr lpEnvironment,
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpCurrentDirectory, [In] ref STARTUPINFOW lpStartupInfo,
-            [Out] out PROCESS_INFORMATION lpProcessInformation);
-
-        /// Return Type: BOOL->int
-        ///lpApplicationName: LPCSTR->CHAR*
-        ///lpCommandLine: LPSTR->CHAR*
-        ///lpProcessAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
-        ///lpThreadAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
-        ///bInheritHandles: BOOL->int
-        ///dwCreationFlags: DWORD->unsigned int
-        ///lpEnvironment: LPVOID->void*
-        ///lpCurrentDirectory: LPCSTR->CHAR*
-        ///lpStartupInfo: LPSTARTUPINFOA->_STARTUPINFOA*
-        ///lpProcessInformation: LPPROCESS_INFORMATION->_PROCESS_INFORMATION*
-        [DllImport("kernel32.dll", EntryPoint = "CreateProcessA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CreateProcessA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpApplicationName, IntPtr lpCommandLine, [In] IntPtr lpProcessAttributes,
-            [In] IntPtr lpThreadAttributes, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandles, uint dwCreationFlags, [In] IntPtr lpEnvironment,
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpCurrentDirectory, [In] ref STARTUPINFOA lpStartupInfo,
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpCurrentDirectory, [In] ref STARTUPINFO lpStartupInfo,
             [Out] out PROCESS_INFORMATION lpProcessInformation);
 
         /// Return Type: int
@@ -4590,22 +3248,10 @@ namespace Win32Interop.Methods
         ///cchCount1: int
         ///lpString2: LPCWSTR->WCHAR*
         ///cchCount2: int
-        [DllImport("kernel32.dll", EntryPoint = "CompareStringW")]
-        public static extern int CompareStringW(
-            uint Locale, uint dwCmpFlags, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpString1, int cchCount1,
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpString2, int cchCount2);
-
-        /// Return Type: int
-        ///Locale: LCID->DWORD->unsigned int
-        ///dwCmpFlags: DWORD->unsigned int
-        ///lpString1: LPCSTR->CHAR*
-        ///cchCount1: int
-        ///lpString2: LPCSTR->CHAR*
-        ///cchCount2: int
-        [DllImport("kernel32.dll", EntryPoint = "CompareStringA")]
-        public static extern int CompareStringA(
-            uint Locale, uint dwCmpFlags, [In] [MarshalAs(UnmanagedType.LPStr)] string lpString1, int cchCount1,
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpString2, int cchCount2);
+        [DllImport("kernel32.dll", EntryPoint = "CompareString")]
+        public static extern int CompareString(
+            uint Locale, uint dwCmpFlags, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpString1, int cchCount1,
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpString2, int cchCount2);
 
         /// Return Type: BOOL->int
         ///hFile: HANDLE->void*
@@ -4629,24 +3275,10 @@ namespace Win32Interop.Methods
         ///nOutBufferSize: DWORD->unsigned int
         ///lpBytesRead: LPDWORD->DWORD*
         ///nTimeOut: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "CallNamedPipeW")]
+        [DllImport("kernel32.dll", EntryPoint = "CallNamedPipe")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CallNamedPipeW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpNamedPipeName, [In] IntPtr lpInBuffer, uint nInBufferSize, IntPtr lpOutBuffer, uint nOutBufferSize,
-            [Out] out uint lpBytesRead, uint nTimeOut);
-
-        /// Return Type: BOOL->int
-        ///lpNamedPipeName: LPCSTR->CHAR*
-        ///lpInBuffer: LPVOID->void*
-        ///nInBufferSize: DWORD->unsigned int
-        ///lpOutBuffer: LPVOID->void*
-        ///nOutBufferSize: DWORD->unsigned int
-        ///lpBytesRead: LPDWORD->DWORD*
-        ///nTimeOut: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "CallNamedPipeA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CallNamedPipeA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpNamedPipeName, [In] IntPtr lpInBuffer, uint nInBufferSize, IntPtr lpOutBuffer, uint nOutBufferSize,
+        public static extern bool CallNamedPipe(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpNamedPipeName, [In] IntPtr lpInBuffer, uint nInBufferSize, IntPtr lpOutBuffer, uint nOutBufferSize,
             [Out] out uint lpBytesRead, uint nTimeOut);
 
         /// Return Type: BOOL->int
@@ -4676,20 +3308,9 @@ namespace Win32Interop.Methods
         ///nNumberOfCharsToWrite: DWORD->unsigned int
         ///lpNumberOfCharsWritten: LPDWORD->DWORD*
         ///lpReserved: LPVOID->void*
-        [DllImport("kernel32.dll", EntryPoint = "WriteConsoleW")]
+        [DllImport("kernel32.dll", EntryPoint = "WriteConsole")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WriteConsoleW(
-            IntPtr hConsoleOutput, IntPtr lpBuffer, uint nNumberOfCharsToWrite, ref uint lpNumberOfCharsWritten, IntPtr lpReserved);
-
-        /// Return Type: BOOL->int
-        ///hConsoleOutput: HANDLE->void*
-        ///lpBuffer: void*
-        ///nNumberOfCharsToWrite: DWORD->unsigned int
-        ///lpNumberOfCharsWritten: LPDWORD->DWORD*
-        ///lpReserved: LPVOID->void*
-        [DllImport("kernel32.dll", EntryPoint = "WriteConsoleA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool WriteConsoleA(
+        public static extern bool WriteConsole(
             IntPtr hConsoleOutput, IntPtr lpBuffer, uint nNumberOfCharsToWrite, ref uint lpNumberOfCharsWritten, IntPtr lpReserved);
 
         /// Return Type: BOOL->int
@@ -4812,15 +3433,9 @@ namespace Win32Interop.Methods
 
         /// Return Type: BOOL->int
         ///lpVersionInformation: LPOSVERSIONINFOW->_OSVERSIONINFOW*
-        [DllImport("kernel32.dll", EntryPoint = "GetVersionExW")]
+        [DllImport("kernel32.dll", EntryPoint = "GetVersionEx")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetVersionExW(ref RTL_OSVERSIONINFOW lpVersionInformation);
-
-        /// Return Type: BOOL->int
-        ///lpVersionInformation: LPOSVERSIONINFOA->_OSVERSIONINFOA*
-        [DllImport("kernel32.dll", EntryPoint = "GetVersionExA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetVersionExA(ref OSVERSIONINFOA lpVersionInformation);
+        public static extern bool GetVersionEx(ref RTL_OSVERSIONINFO lpVersionInformation);
 
         /// Return Type: DWORD->unsigned int
         ///hDevice: HANDLE->void*
@@ -4846,13 +3461,8 @@ namespace Win32Interop.Methods
 
         /// Return Type: UINT->unsigned int
         ///lpRootPathName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetDriveTypeW")]
-        public static extern uint GetDriveTypeW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpRootPathName);
-
-        /// Return Type: UINT->unsigned int
-        ///lpRootPathName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetDriveTypeA")]
-        public static extern uint GetDriveTypeA([In] [MarshalAs(UnmanagedType.LPStr)] string lpRootPathName);
+        [DllImport("kernel32.dll", EntryPoint = "GetDriveType")]
+        public static extern uint GetDriveType([In] [MarshalAs(UnmanagedType.LPTStr)] string lpRootPathName);
 
         /// Return Type: BOOL->int
         ///hCommDev: HANDLE->void*
@@ -4866,43 +3476,22 @@ namespace Win32Interop.Methods
         ///hModule: HMODULE->HINSTANCE->HINSTANCE__*
         ///lpName: LPCWSTR->WCHAR*
         ///lpType: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "FindResourceW")]
-        public static extern IntPtr FindResourceW(
-            [In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpType);
-
-        /// Return Type: HRSRC->HRSRC__*
-        ///hModule: HMODULE->HINSTANCE->HINSTANCE__*
-        ///lpName: LPCSTR->CHAR*
-        ///lpType: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "FindResourceA")]
-        public static extern IntPtr FindResourceA(
-            [In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPStr)] string lpName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpType);
+        [DllImport("kernel32.dll", EntryPoint = "FindResource")]
+        public static extern IntPtr FindResource(
+            [In] IntPtr hModule, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpType);
 
         /// Return Type: BOOL->int
         ///hFindFile: HANDLE->void*
         ///lpFindFileData: LPWIN32_FIND_DATAW->_WIN32_FIND_DATAW*
-        [DllImport("kernel32.dll", EntryPoint = "FindNextFileW")]
+        [DllImport("kernel32.dll", EntryPoint = "FindNextFile")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool FindNextFileW([In] IntPtr hFindFile, [Out] out WIN32_FIND_DATAW lpFindFileData);
-
-        /// Return Type: BOOL->int
-        ///hFindFile: HANDLE->void*
-        ///lpFindFileData: LPWIN32_FIND_DATAA->_WIN32_FIND_DATAA*
-        [DllImport("kernel32.dll", EntryPoint = "FindNextFileA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool FindNextFileA([In] IntPtr hFindFile, [Out] out WIN32_FIND_DATAA lpFindFileData);
+        public static extern bool FindNextFile([In] IntPtr hFindFile, [Out] out WIN32_FIND_DATA lpFindFileData);
 
         /// Return Type: void
         ///uAction: UINT->unsigned int
         ///lpMessageText: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "FatalAppExitW")]
-        public static extern void FatalAppExitW(uint uAction, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpMessageText);
-
-        /// Return Type: void
-        ///uAction: UINT->unsigned int
-        ///lpMessageText: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "FatalAppExitA")]
-        public static extern void FatalAppExitA(uint uAction, [In] [MarshalAs(UnmanagedType.LPStr)] string lpMessageText);
+        [DllImport("kernel32.dll", EntryPoint = "FatalAppExit")]
+        public static extern void FatalAppExit(uint uAction, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpMessageText);
 
         /// Return Type: PVOID->void*
         ///Ptr: PVOID->void*
@@ -4926,27 +3515,15 @@ namespace Win32Interop.Methods
 
         /// Return Type: HANDLE->void*
         ///pActCtx: PCACTCTXW->ACTCTXW*
-        [DllImport("kernel32.dll", EntryPoint = "CreateActCtxW")]
-        public static extern IntPtr CreateActCtxW([In] ref tagACTCTXW pActCtx);
-
-        /// Return Type: HANDLE->void*
-        ///pActCtx: PCACTCTXA->ACTCTXA*
-        [DllImport("kernel32.dll", EntryPoint = "CreateActCtxA")]
-        public static extern IntPtr CreateActCtxA([In] ref tagACTCTXA pActCtx);
+        [DllImport("kernel32.dll", EntryPoint = "CreateActCtx")]
+        public static extern IntPtr CreateActCtx([In] ref tagACTCTX pActCtx);
 
         /// Return Type: BOOL->int
         ///lpDef: LPCWSTR->WCHAR*
         ///lpDCB: LPDCB->_DCB*
-        [DllImport("kernel32.dll", EntryPoint = "BuildCommDCBW")]
+        [DllImport("kernel32.dll", EntryPoint = "BuildCommDCB")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool BuildCommDCBW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpDef, [Out] out DCB lpDCB);
-
-        /// Return Type: BOOL->int
-        ///lpDef: LPCSTR->CHAR*
-        ///lpDCB: LPDCB->_DCB*
-        [DllImport("kernel32.dll", EntryPoint = "BuildCommDCBA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool BuildCommDCBA([In] [MarshalAs(UnmanagedType.LPStr)] string lpDef, [Out] out DCB lpDCB);
+        public static extern bool BuildCommDCB([In] [MarshalAs(UnmanagedType.LPTStr)] string lpDef, [Out] out DCB lpDCB);
 
         /// Return Type: BOOL->int
         ///dwProcessId: DWORD->unsigned int
@@ -5046,24 +3623,11 @@ namespace Win32Interop.Methods
         ///dwReplaceFlags: DWORD->unsigned int
         ///lpExclude: LPVOID->void*
         ///lpReserved: LPVOID->void*
-        [DllImport("kernel32.dll", EntryPoint = "ReplaceFileW")]
+        [DllImport("kernel32.dll", EntryPoint = "ReplaceFile")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool ReplaceFileW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpReplacedFileName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpReplacementFileName,
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpBackupFileName, uint dwReplaceFlags, IntPtr lpExclude, IntPtr lpReserved);
-
-        /// Return Type: BOOL->int
-        ///lpReplacedFileName: LPCSTR->CHAR*
-        ///lpReplacementFileName: LPCSTR->CHAR*
-        ///lpBackupFileName: LPCSTR->CHAR*
-        ///dwReplaceFlags: DWORD->unsigned int
-        ///lpExclude: LPVOID->void*
-        ///lpReserved: LPVOID->void*
-        [DllImport("kernel32.dll", EntryPoint = "ReplaceFileA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool ReplaceFileA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpReplacedFileName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpReplacementFileName,
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpBackupFileName, uint dwReplaceFlags, IntPtr lpExclude, IntPtr lpReserved);
+        public static extern bool ReplaceFile(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpReplacedFileName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpReplacementFileName,
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpBackupFileName, uint dwReplaceFlags, IntPtr lpExclude, IntPtr lpReserved);
 
         /// Return Type: BOOL->int
         ///hMutex: HANDLE->void*
@@ -5077,21 +3641,10 @@ namespace Win32Interop.Methods
         ///nNumberOfCharsToRead: DWORD->unsigned int
         ///lpNumberOfCharsRead: LPDWORD->DWORD*
         ///lpReserved: LPVOID->void*
-        [DllImport("kernel32.dll", EntryPoint = "ReadConsoleW")]
+        [DllImport("kernel32.dll", EntryPoint = "ReadConsole")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool ReadConsoleW(
-            IntPtr hConsoleInput, IntPtr lpBuffer, uint nNumberOfCharsToRead, ref uint lpNumberOfCharsRead, IntPtr lpReserved);
-
-        /// Return Type: BOOL->int
-        ///hConsoleInput: HANDLE->void*
-        ///lpBuffer: LPVOID->void*
-        ///nNumberOfCharsToRead: DWORD->unsigned int
-        ///lpNumberOfCharsRead: LPDWORD->DWORD*
-        ///lpReserved: LPVOID->void*
-        [DllImport("kernel32.dll", EntryPoint = "ReadConsoleA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool ReadConsoleA(
-            IntPtr hConsoleInput, IntPtr lpBuffer, uint nNumberOfCharsToRead, ref uint lpNumberOfCharsRead, IntPtr lpReserved);
+        public static extern bool ReadConsole(
+            IntPtr hConsoleInput, [MarshalAs(UnmanagedType.LPTStr)] out StringBuilder lpBuffer, uint nNumberOfCharsToRead, ref uint lpNumberOfCharsRead, IntPtr lpReserved);
 
         /// Return Type: DWORD->unsigned int
         ///pfnAPC: PAPCFUNC
@@ -5108,9 +3661,9 @@ namespace Win32Interop.Methods
         ///pvBuffer: PVOID->void*
         ///cbBuffer: SIZE_T->ULONG_PTR->unsigned int
         ///pcbWrittenOrRequired: SIZE_T*
-        [DllImport("kernel32.dll", EntryPoint = "QueryActCtxW")]
+        [DllImport("kernel32.dll", EntryPoint = "QueryActCtx")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool QueryActCtxW(
+        public static extern bool QueryActCtx(
             uint dwFlags, [In] IntPtr hActCtx, [In] IntPtr pvSubInstance, uint ulInfoClass, IntPtr pvBuffer, uint cbBuffer, IntPtr pcbWrittenOrRequired);
 
         /// Return Type: LPVOID->void*
@@ -5138,13 +3691,8 @@ namespace Win32Interop.Methods
 
         /// Return Type: HMODULE->HINSTANCE->HINSTANCE__*
         ///lpLibFileName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "LoadLibraryW")]
-        public static extern IntPtr LoadLibraryW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpLibFileName);
-
-        /// Return Type: HMODULE->HINSTANCE->HINSTANCE__*
-        ///lpLibFileName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "LoadLibraryA")]
-        public static extern IntPtr LoadLibraryA([In] [MarshalAs(UnmanagedType.LPStr)] string lpLibFileName);
+        [DllImport("kernel32.dll", EntryPoint = "LoadLibrary")]
+        public static extern IntPtr LoadLibrary([In] [MarshalAs(UnmanagedType.LPTStr)] string lpLibFileName);
 
         /// Return Type: int
         ///Locale: LCID->DWORD->unsigned int
@@ -5153,22 +3701,10 @@ namespace Win32Interop.Methods
         ///cchSrc: int
         ///lpDestStr: LPWSTR->WCHAR*
         ///cchDest: int
-        [DllImport("kernel32.dll", EntryPoint = "LCMapStringW")]
-        public static extern int LCMapStringW(
-            uint Locale, uint dwMapFlags, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpSrcStr, int cchSrc,
-            [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpDestStr, int cchDest);
-
-        /// Return Type: int
-        ///Locale: LCID->DWORD->unsigned int
-        ///dwMapFlags: DWORD->unsigned int
-        ///lpSrcStr: LPCSTR->CHAR*
-        ///cchSrc: int
-        ///lpDestStr: LPSTR->CHAR*
-        ///cchDest: int
-        [DllImport("kernel32.dll", EntryPoint = "LCMapStringA")]
-        public static extern int LCMapStringA(
-            uint Locale, uint dwMapFlags, [In] [MarshalAs(UnmanagedType.LPStr)] string lpSrcStr, int cchSrc,
-            [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpDestStr, int cchDest);
+        [DllImport("kernel32.dll", EntryPoint = "LCMapString")]
+        public static extern int LCMapString(
+            uint Locale, uint dwMapFlags, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpSrcStr, int cchSrc,
+            [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpDestStr, int cchDest);
 
         /// Return Type: BOOL->int
         ///lp: void*
@@ -5220,14 +3756,8 @@ namespace Win32Interop.Methods
         /// Return Type: DWORD->unsigned int
         ///nBufferLength: DWORD->unsigned int
         ///lpBuffer: LPWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetTempPathW")]
-        public static extern uint GetTempPathW(uint nBufferLength, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpBuffer);
-
-        /// Return Type: DWORD->unsigned int
-        ///nBufferLength: DWORD->unsigned int
-        ///lpBuffer: LPSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "GetTempPathA")]
-        public static extern uint GetTempPathA(uint nBufferLength, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpBuffer);
+        [DllImport("kernel32.dll", EntryPoint = "GetTempPath")]
+        public static extern uint GetTempPath(uint nBufferLength, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpBuffer);
 
         /// Return Type: HANDLE->void*
         ///nStdHandle: DWORD->unsigned int
@@ -5252,17 +3782,9 @@ namespace Win32Interop.Methods
         ///CodePage: UINT->unsigned int
         ///dwFlags: DWORD->unsigned int
         ///lpCPInfoEx: LPCPINFOEXW->_cpinfoexW*
-        [DllImport("kernel32.dll", EntryPoint = "GetCPInfoExW")]
+        [DllImport("kernel32.dll", EntryPoint = "GetCPInfoEx")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetCPInfoExW(uint CodePage, uint dwFlags, [Out] out CPINFOEXW lpCPInfoEx);
-
-        /// Return Type: BOOL->int
-        ///CodePage: UINT->unsigned int
-        ///dwFlags: DWORD->unsigned int
-        ///lpCPInfoEx: LPCPINFOEXA->_cpinfoexA*
-        [DllImport("kernel32.dll", EntryPoint = "GetCPInfoExA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetCPInfoExA(uint CodePage, uint dwFlags, [Out] out CPINFOEXA lpCPInfoEx);
+        public static extern bool GetCPInfoEx(uint CodePage, uint dwFlags, [Out] out CPINFOEX lpCPInfoEx);
 
         /// Return Type: UINT->unsigned int
         [DllImport("kernel32.dll", EntryPoint = "GetConsoleCP")]
@@ -5279,15 +3801,8 @@ namespace Win32Interop.Methods
         ///nAtom: ATOM->WORD->unsigned short
         ///lpBuffer: LPWSTR->WCHAR*
         ///nSize: int
-        [DllImport("kernel32.dll", EntryPoint = "GetAtomNameW")]
-        public static extern uint GetAtomNameW(ushort nAtom, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpBuffer, int nSize);
-
-        /// Return Type: UINT->unsigned int
-        ///nAtom: ATOM->WORD->unsigned short
-        ///lpBuffer: LPSTR->CHAR*
-        ///nSize: int
-        [DllImport("kernel32.dll", EntryPoint = "GetAtomNameA")]
-        public static extern uint GetAtomNameA(ushort nAtom, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpBuffer, int nSize);
+        [DllImport("kernel32.dll", EntryPoint = "GetAtomName")]
+        public static extern uint GetAtomName(ushort nAtom, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpBuffer, int nSize);
 
         /// Return Type: BOOL->int
         ///hResData: HGLOBAL->HANDLE->void*
@@ -5311,17 +3826,9 @@ namespace Win32Interop.Methods
         ///lpMutexAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
         ///bInitialOwner: BOOL->int
         ///lpName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "CreateMutexW")]
-        public static extern IntPtr CreateMutexW(
-            [In] IntPtr lpMutexAttributes, [MarshalAs(UnmanagedType.Bool)] bool bInitialOwner, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName);
-
-        /// Return Type: HANDLE->void*
-        ///lpMutexAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
-        ///bInitialOwner: BOOL->int
-        ///lpName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "CreateMutexA")]
-        public static extern IntPtr CreateMutexA(
-            [In] IntPtr lpMutexAttributes, [MarshalAs(UnmanagedType.Bool)] bool bInitialOwner, [In] [MarshalAs(UnmanagedType.LPStr)] string lpName);
+        [DllImport("kernel32.dll", EntryPoint = "CreateMutex")]
+        public static extern IntPtr CreateMutex(
+            [In] IntPtr lpMutexAttributes, [MarshalAs(UnmanagedType.Bool)] bool bInitialOwner, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName);
 
         /// Return Type: BOOL->int
         ///NumJob: ULONG->unsigned int
@@ -5337,20 +3844,10 @@ namespace Win32Interop.Methods
         ///bManualReset: BOOL->int
         ///bInitialState: BOOL->int
         ///lpName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "CreateEventW")]
-        public static extern IntPtr CreateEventW(
+        [DllImport("kernel32.dll", EntryPoint = "CreateEvent")]
+        public static extern IntPtr CreateEvent(
             [In] IntPtr lpEventAttributes, [MarshalAs(UnmanagedType.Bool)] bool bManualReset, [MarshalAs(UnmanagedType.Bool)] bool bInitialState,
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName);
-
-        /// Return Type: HANDLE->void*
-        ///lpEventAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
-        ///bManualReset: BOOL->int
-        ///bInitialState: BOOL->int
-        ///lpName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "CreateEventA")]
-        public static extern IntPtr CreateEventA(
-            [In] IntPtr lpEventAttributes, [MarshalAs(UnmanagedType.Bool)] bool bManualReset, [MarshalAs(UnmanagedType.Bool)] bool bInitialState,
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpName);
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName);
 
         /// Return Type: BOOL->int
         [DllImport("kernel32.dll", EntryPoint = "AllocConsole")]
@@ -5424,23 +3921,10 @@ namespace Win32Interop.Methods
         ///nBufferLength: DWORD->unsigned int
         ///lpBuffer: LPWSTR->WCHAR*
         ///lpFilePart: LPWSTR*
-        [DllImport("kernel32.dll", EntryPoint = "SearchPathW")]
-        public static extern uint SearchPathW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpPath, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpFileName,
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpExtension, uint nBufferLength, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpBuffer,
-            ref IntPtr lpFilePart);
-
-        /// Return Type: DWORD->unsigned int
-        ///lpPath: LPCSTR->CHAR*
-        ///lpFileName: LPCSTR->CHAR*
-        ///lpExtension: LPCSTR->CHAR*
-        ///nBufferLength: DWORD->unsigned int
-        ///lpBuffer: LPSTR->CHAR*
-        ///lpFilePart: LPSTR*
-        [DllImport("kernel32.dll", EntryPoint = "SearchPathA")]
-        public static extern uint SearchPathA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpPath, [In] [MarshalAs(UnmanagedType.LPStr)] string lpFileName,
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpExtension, uint nBufferLength, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpBuffer,
+        [DllImport("kernel32.dll", EntryPoint = "SearchPath")]
+        public static extern uint SearchPath(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpPath, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpFileName,
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpExtension, uint nBufferLength, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpBuffer,
             ref IntPtr lpFilePart);
 
         /// Return Type: DWORD->unsigned int
@@ -5461,33 +3945,17 @@ namespace Win32Interop.Methods
         ///lpExistingFileName: LPCWSTR->WCHAR*
         ///lpNewFileName: LPCWSTR->WCHAR*
         ///dwFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "MoveFileExW")]
+        [DllImport("kernel32.dll", EntryPoint = "MoveFileEx")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool MoveFileExW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpExistingFileName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpNewFileName, uint dwFlags);
-
-        /// Return Type: BOOL->int
-        ///lpExistingFileName: LPCSTR->CHAR*
-        ///lpNewFileName: LPCSTR->CHAR*
-        ///dwFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "MoveFileExA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool MoveFileExA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpExistingFileName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpNewFileName, uint dwFlags);
+        public static extern bool MoveFileEx(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpExistingFileName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpNewFileName, uint dwFlags);
 
         /// Return Type: INT->int
         ///param0: LPWSTR->WCHAR*
         ///param1: LPOFSTRUCT->_OFSTRUCT*
         ///param2: WORD->unsigned short
-        [DllImport("kernel32.dll", EntryPoint = "LZOpenFileW")]
-        public static extern int LZOpenFileW([MarshalAs(UnmanagedType.LPWStr)] StringBuilder param0, ref OFSTRUCT param1, ushort param2);
-
-        /// Return Type: INT->int
-        ///param0: LPSTR->CHAR*
-        ///param1: LPOFSTRUCT->_OFSTRUCT*
-        ///param2: WORD->unsigned short
-        [DllImport("kernel32.dll", EntryPoint = "LZOpenFileA")]
-        public static extern int LZOpenFileA([MarshalAs(UnmanagedType.LPStr)] StringBuilder param0, ref OFSTRUCT param1, ushort param2);
+        [DllImport("kernel32.dll", EntryPoint = "LZOpenFile")]
+        public static extern int LZOpenFile([MarshalAs(UnmanagedType.LPTStr)] StringBuilder param0, ref OFSTRUCT param1, ushort param2);
 
         /// Return Type: BOOL->int
         ///hMem: HLOCAL->HANDLE->void*
@@ -5548,19 +4016,9 @@ namespace Win32Interop.Methods
         ///lpGeoData: LPWSTR->WCHAR*
         ///cchData: int
         ///LangId: LANGID->WORD->unsigned short
-        [DllImport("kernel32.dll", EntryPoint = "GetGeoInfoW")]
-        public static extern int GetGeoInfoW(
-            int Location, uint GeoType, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpGeoData, int cchData, ushort LangId);
-
-        /// Return Type: int
-        ///Location: GEOID->LONG->int
-        ///GeoType: GEOTYPE->DWORD->unsigned int
-        ///lpGeoData: LPSTR->CHAR*
-        ///cchData: int
-        ///LangId: LANGID->WORD->unsigned short
-        [DllImport("kernel32.dll", EntryPoint = "GetGeoInfoA")]
-        public static extern int GetGeoInfoA(
-            int Location, uint GeoType, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpGeoData, int cchData, ushort LangId);
+        [DllImport("kernel32.dll", EntryPoint = "GetGeoInfo")]
+        public static extern int GetGeoInfo(
+            int Location, uint GeoType, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpGeoData, int cchData, ushort LangId);
 
         /// Return Type: DWORD->unsigned int
         ///hFile: HANDLE->void*
@@ -5606,20 +4064,9 @@ namespace Win32Interop.Methods
         ///cchSrc: int
         ///lpDestStr: LPWSTR->WCHAR*
         ///cchDest: int
-        [DllImport("kernel32.dll", EntryPoint = "FoldStringW")]
-        public static extern int FoldStringW(
-            uint dwMapFlags, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpSrcStr, int cchSrc, [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpDestStr,
-            int cchDest);
-
-        /// Return Type: int
-        ///dwMapFlags: DWORD->unsigned int
-        ///lpSrcStr: LPCSTR->CHAR*
-        ///cchSrc: int
-        ///lpDestStr: LPSTR->CHAR*
-        ///cchDest: int
-        [DllImport("kernel32.dll", EntryPoint = "FoldStringA")]
-        public static extern int FoldStringA(
-            uint dwMapFlags, [In] [MarshalAs(UnmanagedType.LPStr)] string lpSrcStr, int cchSrc, [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpDestStr,
+        [DllImport("kernel32.dll", EntryPoint = "FoldString")]
+        public static extern int FoldString(
+            uint dwMapFlags, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpSrcStr, int cchSrc, [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpDestStr,
             int cchDest);
 
         /// Return Type: void
@@ -5629,15 +4076,9 @@ namespace Win32Interop.Methods
 
         /// Return Type: BOOL->int
         ///lpFileName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "DeleteFileW")]
+        [DllImport("kernel32.dll", EntryPoint = "DeleteFile")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DeleteFileW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpFileName);
-
-        /// Return Type: BOOL->int
-        ///lpFileName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "DeleteFileA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DeleteFileA([In] [MarshalAs(UnmanagedType.LPStr)] string lpFileName);
+        public static extern bool DeleteFile([In] [MarshalAs(UnmanagedType.LPTStr)] string lpFileName);
 
         /// Return Type: void
         ///lpFiber: LPVOID->void*
@@ -5652,22 +4093,9 @@ namespace Win32Interop.Methods
         ///dwCreationDisposition: DWORD->unsigned int
         ///dwFlagsAndAttributes: DWORD->unsigned int
         ///hTemplateFile: HANDLE->void*
-        [DllImport("kernel32.dll", EntryPoint = "CreateFileW")]
-        public static extern IntPtr CreateFileW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpFileName, uint dwDesiredAccess, uint dwShareMode, [In] IntPtr lpSecurityAttributes,
-            uint dwCreationDisposition, uint dwFlagsAndAttributes, [In] IntPtr hTemplateFile);
-
-        /// Return Type: HANDLE->void*
-        ///lpFileName: LPCSTR->CHAR*
-        ///dwDesiredAccess: DWORD->unsigned int
-        ///dwShareMode: DWORD->unsigned int
-        ///lpSecurityAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
-        ///dwCreationDisposition: DWORD->unsigned int
-        ///dwFlagsAndAttributes: DWORD->unsigned int
-        ///hTemplateFile: HANDLE->void*
-        [DllImport("kernel32.dll", EntryPoint = "CreateFileA")]
-        public static extern IntPtr CreateFileA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpFileName, uint dwDesiredAccess, uint dwShareMode, [In] IntPtr lpSecurityAttributes,
+        [DllImport("kernel32.dll", EntryPoint = "CreateFile")]
+        public static extern IntPtr CreateFile(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpFileName, uint dwDesiredAccess, uint dwShareMode, [In] IntPtr lpSecurityAttributes,
             uint dwCreationDisposition, uint dwFlagsAndAttributes, [In] IntPtr hTemplateFile);
 
         /// Return Type: LPVOID->void*
@@ -5684,23 +4112,10 @@ namespace Win32Interop.Methods
         ///lpData: LPVOID->void*
         ///pbCancel: LPBOOL->BOOL*
         ///dwCopyFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "CopyFileExW")]
+        [DllImport("kernel32.dll", EntryPoint = "CopyFileEx")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CopyFileExW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpExistingFileName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpNewFileName,
-            LPPROGRESS_ROUTINE lpProgressRoutine, [In] IntPtr lpData, [In] IntPtr pbCancel, uint dwCopyFlags);
-
-        /// Return Type: BOOL->int
-        ///lpExistingFileName: LPCSTR->CHAR*
-        ///lpNewFileName: LPCSTR->CHAR*
-        ///lpProgressRoutine: LPPROGRESS_ROUTINE
-        ///lpData: LPVOID->void*
-        ///pbCancel: LPBOOL->BOOL*
-        ///dwCopyFlags: DWORD->unsigned int
-        [DllImport("kernel32.dll", EntryPoint = "CopyFileExA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CopyFileExA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpExistingFileName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpNewFileName,
+        public static extern bool CopyFileEx(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpExistingFileName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpNewFileName,
             LPPROGRESS_ROUTINE lpProgressRoutine, [In] IntPtr lpData, [In] IntPtr pbCancel, uint dwCopyFlags);
 
         /// Return Type: BOOL->int
@@ -5768,33 +4183,17 @@ namespace Win32Interop.Methods
         ///dwDesiredAccess: DWORD->unsigned int
         ///bInheritHandle: BOOL->int
         ///lpName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "OpenMutexW")]
-        public static extern IntPtr OpenMutexW(
-            uint dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName);
-
-        /// Return Type: HANDLE->void*
-        ///dwDesiredAccess: DWORD->unsigned int
-        ///bInheritHandle: BOOL->int
-        ///lpName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "OpenMutexA")]
-        public static extern IntPtr OpenMutexA(
-            uint dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, [In] [MarshalAs(UnmanagedType.LPStr)] string lpName);
+        [DllImport("kernel32.dll", EntryPoint = "OpenMutex")]
+        public static extern IntPtr OpenMutex(
+            uint dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName);
 
         /// Return Type: HANDLE->void*
         ///dwDesiredAccess: DWORD->unsigned int
         ///bInheritHandle: BOOL->int
         ///lpName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "OpenEventW")]
-        public static extern IntPtr OpenEventW(
-            uint dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName);
-
-        /// Return Type: HANDLE->void*
-        ///dwDesiredAccess: DWORD->unsigned int
-        ///bInheritHandle: BOOL->int
-        ///lpName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "OpenEventA")]
-        public static extern IntPtr OpenEventA(
-            uint dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, [In] [MarshalAs(UnmanagedType.LPStr)] string lpName);
+        [DllImport("kernel32.dll", EntryPoint = "OpenEvent")]
+        public static extern IntPtr OpenEvent(
+            uint dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpName);
 
         /// Return Type: BOOL->int
         ///hFile: HANDLE->void*
@@ -5947,46 +4346,24 @@ namespace Win32Interop.Methods
         /// Return Type: BOOL->int
         ///lpExistingFileName: LPCWSTR->WCHAR*
         ///lpNewFileName: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "MoveFileW")]
+        [DllImport("kernel32.dll", EntryPoint = "MoveFile")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool MoveFileW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpExistingFileName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpNewFileName);
-
-        /// Return Type: BOOL->int
-        ///lpExistingFileName: LPCSTR->CHAR*
-        ///lpNewFileName: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "MoveFileA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool MoveFileA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpExistingFileName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpNewFileName);
+        public static extern bool MoveFile(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpExistingFileName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpNewFileName);
 
         /// Return Type: LPWSTR->WCHAR*
         ///lpString1: LPWSTR->WCHAR*
         ///lpString2: LPCWSTR->WCHAR*
         ///iMaxLength: int
-        [DllImport("kernel32.dll", EntryPoint = "lstrcpynW")]
-        public static extern IntPtr lstrcpynW(
-            [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpString1, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpString2, int iMaxLength);
-
-        /// Return Type: LPSTR->CHAR*
-        ///lpString1: LPSTR->CHAR*
-        ///lpString2: LPCSTR->CHAR*
-        ///iMaxLength: int
-        [DllImport("kernel32.dll", EntryPoint = "lstrcpynA")]
-        public static extern IntPtr lstrcpynA(
-            [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpString1, [In] [MarshalAs(UnmanagedType.LPStr)] string lpString2, int iMaxLength);
+        [DllImport("kernel32.dll", EntryPoint = "lstrcpyn")]
+        public static extern IntPtr lstrcpyn(
+            [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpString1, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpString2, int iMaxLength);
 
         /// Return Type: int
         ///lpString1: LPCWSTR->WCHAR*
         ///lpString2: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "lstrcmpiW")]
-        public static extern int lstrcmpiW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpString1, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpString2);
-
-        /// Return Type: int
-        ///lpString1: LPCSTR->CHAR*
-        ///lpString2: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "lstrcmpiA")]
-        public static extern int lstrcmpiA([In] [MarshalAs(UnmanagedType.LPStr)] string lpString1, [In] [MarshalAs(UnmanagedType.LPStr)] string lpString2);
+        [DllImport("kernel32.dll", EntryPoint = "lstrcmpi")]
+        public static extern int lstrcmpi([In] [MarshalAs(UnmanagedType.LPTStr)] string lpString1, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpString2);
 
         /// Return Type: SIZE_T->ULONG_PTR->unsigned int
         ///hMem: HLOCAL->HANDLE->void*
@@ -6030,13 +4407,8 @@ namespace Win32Interop.Methods
 
         /// Return Type: ATOM->WORD->unsigned short
         ///lpString: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "FindAtomW")]
-        public static extern ushort FindAtomW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpString);
-
-        /// Return Type: ATOM->WORD->unsigned short
-        ///lpString: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "FindAtomA")]
-        public static extern ushort FindAtomA([In] [MarshalAs(UnmanagedType.LPStr)] string lpString);
+        [DllImport("kernel32.dll", EntryPoint = "FindAtom")]
+        public static extern ushort FindAtom([In] [MarshalAs(UnmanagedType.LPTStr)] string lpString);
 
         /// Return Type: void
         ///ExitCode: int
@@ -6054,20 +4426,10 @@ namespace Win32Interop.Methods
         ///lpExistingFileName: LPCWSTR->WCHAR*
         ///lpNewFileName: LPCWSTR->WCHAR*
         ///bFailIfExists: BOOL->int
-        [DllImport("kernel32.dll", EntryPoint = "CopyFileW")]
+        [DllImport("kernel32.dll", EntryPoint = "CopyFile")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CopyFileW(
-            [In] [MarshalAs(UnmanagedType.LPWStr)] string lpExistingFileName, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpNewFileName,
-            [MarshalAs(UnmanagedType.Bool)] bool bFailIfExists);
-
-        /// Return Type: BOOL->int
-        ///lpExistingFileName: LPCSTR->CHAR*
-        ///lpNewFileName: LPCSTR->CHAR*
-        ///bFailIfExists: BOOL->int
-        [DllImport("kernel32.dll", EntryPoint = "CopyFileA")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CopyFileA(
-            [In] [MarshalAs(UnmanagedType.LPStr)] string lpExistingFileName, [In] [MarshalAs(UnmanagedType.LPStr)] string lpNewFileName,
+        public static extern bool CopyFile(
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpExistingFileName, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpNewFileName,
             [MarshalAs(UnmanagedType.Bool)] bool bFailIfExists);
 
         /// Return Type: DWORD->unsigned int
@@ -6099,51 +4461,27 @@ namespace Win32Interop.Methods
 
         /// Return Type: int
         ///lpString: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "lstrlenW")]
-        public static extern int lstrlenW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpString);
-
-        /// Return Type: int
-        ///lpString: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "lstrlenA")]
-        public static extern int lstrlenA([In] [MarshalAs(UnmanagedType.LPStr)] string lpString);
+        [DllImport("kernel32.dll", EntryPoint = "lstrlen")]
+        public static extern int lstrlen([In] [MarshalAs(UnmanagedType.LPTStr)] string lpString);
 
         /// Return Type: LPWSTR->WCHAR*
         ///lpString1: LPWSTR->WCHAR*
         ///lpString2: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "lstrcpyW")]
-        public static extern IntPtr lstrcpyW(
-            [Out] [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpString1, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpString2);
-
-        /// Return Type: LPSTR->CHAR*
-        ///lpString1: LPSTR->CHAR*
-        ///lpString2: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "lstrcpyA")]
-        public static extern IntPtr lstrcpyA(
-            [Out] [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpString1, [In] [MarshalAs(UnmanagedType.LPStr)] string lpString2);
+        [DllImport("kernel32.dll", EntryPoint = "lstrcpy")]
+        public static extern IntPtr lstrcpy(
+            [Out] [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpString1, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpString2);
 
         /// Return Type: int
         ///lpString1: LPCWSTR->WCHAR*
         ///lpString2: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "lstrcmpW")]
-        public static extern int lstrcmpW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpString1, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpString2);
-
-        /// Return Type: int
-        ///lpString1: LPCSTR->CHAR*
-        ///lpString2: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "lstrcmpA")]
-        public static extern int lstrcmpA([In] [MarshalAs(UnmanagedType.LPStr)] string lpString1, [In] [MarshalAs(UnmanagedType.LPStr)] string lpString2);
+        [DllImport("kernel32.dll", EntryPoint = "lstrcmp")]
+        public static extern int lstrcmp([In] [MarshalAs(UnmanagedType.LPTStr)] string lpString1, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpString2);
 
         /// Return Type: LPWSTR->WCHAR*
         ///lpString1: LPWSTR->WCHAR*
         ///lpString2: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "lstrcatW")]
-        public static extern IntPtr lstrcatW(IntPtr lpString1, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpString2);
-
-        /// Return Type: LPSTR->CHAR*
-        ///lpString1: LPSTR->CHAR*
-        ///lpString2: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "lstrcatA")]
-        public static extern IntPtr lstrcatA(IntPtr lpString1, [In] [MarshalAs(UnmanagedType.LPStr)] string lpString2);
+        [DllImport("kernel32.dll", EntryPoint = "lstrcat")]
+        public static extern IntPtr lstrcat(IntPtr lpString1, [In] [MarshalAs(UnmanagedType.LPTStr)] string lpString2);
 
         /// Return Type: BOOL->int
         ///hFile: HANDLE->void*
@@ -6196,13 +4534,8 @@ namespace Win32Interop.Methods
 
         /// Return Type: ATOM->WORD->unsigned short
         ///lpString: LPCWSTR->WCHAR*
-        [DllImport("kernel32.dll", EntryPoint = "AddAtomW")]
-        public static extern ushort AddAtomW([In] [MarshalAs(UnmanagedType.LPWStr)] string lpString);
-
-        /// Return Type: ATOM->WORD->unsigned short
-        ///lpString: LPCSTR->CHAR*
-        [DllImport("kernel32.dll", EntryPoint = "AddAtomA")]
-        public static extern ushort AddAtomA([In] [MarshalAs(UnmanagedType.LPStr)] string lpString);
+        [DllImport("kernel32.dll", EntryPoint = "AddAtom")]
+        public static extern ushort AddAtom([In] [MarshalAs(UnmanagedType.LPTStr)] string lpString);
 
         /// Return Type: UINT->unsigned int
         ///hFile: HFILE->int

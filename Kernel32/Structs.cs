@@ -928,7 +928,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-    public struct RTL_OSVERSIONINFOEXW
+    public struct RTL_OSVERSIONINFOEX
     {
         /// DWORD->unsigned int
         public uint dwOSVersionInfoSize;
@@ -946,44 +946,6 @@ namespace Win32Interop.Structs
         public uint dwPlatformId;
 
         /// WCHAR[128]
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-        public string szCSDVersion;
-
-        /// WORD->unsigned short
-        public ushort wServicePackMajor;
-
-        /// WORD->unsigned short
-        public ushort wServicePackMinor;
-
-        /// WORD->unsigned short
-        public ushort wSuiteMask;
-
-        /// BYTE->unsigned char
-        public byte wProductType;
-
-        /// BYTE->unsigned char
-        public byte wReserved;
-    }
-
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct OSVERSIONINFOEXA
-    {
-        /// DWORD->unsigned int
-        public uint dwOSVersionInfoSize;
-
-        /// DWORD->unsigned int
-        public uint dwMajorVersion;
-
-        /// DWORD->unsigned int
-        public uint dwMinorVersion;
-
-        /// DWORD->unsigned int
-        public uint dwBuildNumber;
-
-        /// DWORD->unsigned int
-        public uint dwPlatformId;
-
-        /// CHAR[128]
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
         public string szCSDVersion;
 
@@ -1107,21 +1069,21 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct STARTUPINFOW
+    public struct STARTUPINFO
     {
         /// DWORD->unsigned int
         public uint cb;
 
         /// LPWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
+        [MarshalAs(UnmanagedType.LPTStr)]
         public string lpReserved;
 
         /// LPWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
+        [MarshalAs(UnmanagedType.LPTStr)]
         public string lpDesktop;
 
         /// LPWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
+        [MarshalAs(UnmanagedType.LPTStr)]
         public string lpTitle;
 
         /// DWORD->unsigned int
@@ -1254,7 +1216,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-    public struct WIN32_FIND_DATAW
+    public struct WIN32_FIND_DATA
     {
         /// DWORD->unsigned int
         public uint dwFileAttributes;
@@ -1285,42 +1247,6 @@ namespace Win32Interop.Structs
         public string cFileName;
 
         /// WCHAR[14]
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 14)]
-        public string cAlternateFileName;
-    }
-
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct WIN32_FIND_DATAA
-    {
-        /// DWORD->unsigned int
-        public uint dwFileAttributes;
-
-        /// FILETIME->_FILETIME
-        public FILETIME ftCreationTime;
-
-        /// FILETIME->_FILETIME
-        public FILETIME ftLastAccessTime;
-
-        /// FILETIME->_FILETIME
-        public FILETIME ftLastWriteTime;
-
-        /// DWORD->unsigned int
-        public uint nFileSizeHigh;
-
-        /// DWORD->unsigned int
-        public uint nFileSizeLow;
-
-        /// DWORD->unsigned int
-        public uint dwReserved0;
-
-        /// DWORD->unsigned int
-        public uint dwReserved1;
-
-        /// CHAR[260]
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
-        public string cFileName;
-
-        /// CHAR[14]
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 14)]
         public string cAlternateFileName;
     }
@@ -1472,7 +1398,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-    public struct RTL_OSVERSIONINFOW
+    public struct RTL_OSVERSIONINFO
     {
         /// DWORD->unsigned int
         public uint dwOSVersionInfoSize;
@@ -1494,31 +1420,8 @@ namespace Win32Interop.Structs
         public string szCSDVersion;
     }
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct OSVERSIONINFOA
-    {
-        /// DWORD->unsigned int
-        public uint dwOSVersionInfoSize;
-
-        /// DWORD->unsigned int
-        public uint dwMajorVersion;
-
-        /// DWORD->unsigned int
-        public uint dwMinorVersion;
-
-        /// DWORD->unsigned int
-        public uint dwBuildNumber;
-
-        /// DWORD->unsigned int
-        public uint dwPlatformId;
-
-        /// CHAR[128]
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-        public string szCSDVersion;
-    }
-
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-    public struct CPINFOEXW
+    public struct CPINFOEX
     {
         /// UINT->unsigned int
         public uint MaxCharSize;
@@ -1538,31 +1441,6 @@ namespace Win32Interop.Structs
         public uint CodePage;
 
         /// WCHAR[260]
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
-        public string CodePageName;
-    }
-
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    public struct CPINFOEXA
-    {
-        /// UINT->unsigned int
-        public uint MaxCharSize;
-
-        /// BYTE[2]
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I1)]
-        public byte[] DefaultChar;
-
-        /// BYTE[12]
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 12, ArraySubType = UnmanagedType.I1)]
-        public byte[] LeadByte;
-
-        /// WCHAR->wchar_t->unsigned short
-        public ushort UnicodeDefaultChar;
-
-        /// UINT->unsigned int
-        public uint CodePage;
-
-        /// CHAR[260]
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
         public string CodePageName;
     }
@@ -1679,7 +1557,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagACTCTXW
+    public struct tagACTCTX
     {
         /// ULONG->unsigned int
         public uint cbSize;
@@ -1688,7 +1566,7 @@ namespace Win32Interop.Structs
         public uint dwFlags;
 
         /// LPCWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
+        [MarshalAs(UnmanagedType.LPTStr)]
         public string lpSource;
 
         /// USHORT->unsigned short
@@ -1698,50 +1576,15 @@ namespace Win32Interop.Structs
         public ushort wLangId;
 
         /// LPCWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
+        [MarshalAs(UnmanagedType.LPTStr)]
         public string lpAssemblyDirectory;
 
         /// LPCWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
+        [MarshalAs(UnmanagedType.LPTStr)]
         public string lpResourceName;
 
         /// LPCWSTR->WCHAR*
-        [MarshalAs(UnmanagedType.LPWStr)]
-        public string lpApplicationName;
-
-        /// HMODULE->HINSTANCE->HINSTANCE__*
-        public IntPtr hModule;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct tagACTCTXA
-    {
-        /// ULONG->unsigned int
-        public uint cbSize;
-
-        /// DWORD->unsigned int
-        public uint dwFlags;
-
-        /// LPCSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string lpSource;
-
-        /// USHORT->unsigned short
-        public ushort wProcessorArchitecture;
-
-        /// LANGID->WORD->unsigned short
-        public ushort wLangId;
-
-        /// LPCSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string lpAssemblyDirectory;
-
-        /// LPCSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string lpResourceName;
-
-        /// LPCSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
+        [MarshalAs(UnmanagedType.LPTStr)]
         public string lpApplicationName;
 
         /// HMODULE->HINSTANCE->HINSTANCE__*
