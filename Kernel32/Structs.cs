@@ -2234,4 +2234,38 @@ namespace Win32Interop.Structs
         /// _LIST_ENTRY*
         public IntPtr Blink;
     }
+
+	public struct CONSOLE_SCREEN_BUFFER_INFOEX
+	{
+
+		/// ULONG->unsigned int
+		public uint cbSize;
+
+		/// COORD->_COORD
+		public COORD dwSize;
+
+		/// COORD->_COORD
+		public COORD dwCursorPosition;
+
+		/// WORD->unsigned short
+		public ushort wAttributes;
+
+		/// SMALL_RECT->_SMALL_RECT
+		public SMALL_RECT srWindow;
+
+		/// COORD->_COORD
+		public COORD dwMaximumWindowSize;
+
+		/// WORD->unsigned short
+		public ushort wPopupAttributes;
+
+		/// BOOL->int
+		[MarshalAsAttribute(UnmanagedType.Bool)]
+		public bool bFullscreenSupported;
+
+		/// COLORREF[16]
+		[MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 16, ArraySubType = UnmanagedType.U4)]
+		public uint[] ColorTable;
+	}
+
 }

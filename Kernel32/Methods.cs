@@ -521,6 +521,10 @@ namespace Win32Interop.Methods
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetConsoleScreenBufferInfo(IntPtr hConsoleOutput, ref CONSOLE_SCREEN_BUFFER_INFO lpConsoleScreenBufferInfo);
 
+		[DllImport("kernel32.dll", EntryPoint = "GetConsoleScreenBufferInfoEx")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		public static extern bool GetConsoleScreenBufferInfoEx(IntPtr hConsoleOutput, ref CONSOLE_SCREEN_BUFFER_INFOEX lpConsoleScreenBufferInfoEx);
+
         /// Return Type: DWORD->unsigned int
         [DllImport("kernel32.dll", EntryPoint = "GetConsoleAliasExesLength")]
         public static extern uint GetConsoleAliasExesLength();
