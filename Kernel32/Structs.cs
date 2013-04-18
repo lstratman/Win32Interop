@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using Win32Interop.Enums;
 using Win32Interop.Methods;
 
 namespace Win32Interop.Structs
@@ -63,7 +64,7 @@ namespace Win32Interop.Structs
         public ENCODING_INFO Char;
 
         /// WORD->unsigned short
-        public ushort Attributes;
+        public CHARACTER_ATTRIBUTE Attributes;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -412,7 +413,7 @@ namespace Win32Interop.Structs
     public struct BY_HANDLE_FILE_INFORMATION
     {
         /// DWORD->unsigned int
-        public uint dwFileAttributes;
+        public FILE_ATTRIBUTE dwFileAttributes;
 
         /// FILETIME->_FILETIME
         public FILETIME ftCreationTime;
@@ -452,7 +453,7 @@ namespace Win32Interop.Structs
         public COORD dwCursorPosition;
 
         /// WORD->unsigned short
-        public ushort wAttributes;
+        public CHARACTER_ATTRIBUTE wAttributes;
 
         /// SMALL_RECT->_SMALL_RECT
         public SMALL_RECT srWindow;
@@ -474,7 +475,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagACTCTX_SECTION_KEYED_DATA
+    public struct ACTCTX_SECTION_KEYED_DATA
     {
         /// ULONG->unsigned int
         public uint cbSize;
@@ -510,7 +511,7 @@ namespace Win32Interop.Structs
         public uint ulFlags;
 
         /// ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA->tagACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA
-        public tagACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA AssemblyMetadata;
+        public ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA AssemblyMetadata;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -792,7 +793,7 @@ namespace Win32Interop.Structs
     public struct CONSOLE_SELECTION_INFO
     {
         /// DWORD->unsigned int
-        public uint dwFlags;
+        public CONSOLE_SELECTION dwFlags;
 
         /// COORD->_COORD
         public COORD dwSelectionAnchor;
@@ -875,10 +876,10 @@ namespace Win32Interop.Structs
     public struct SYSTEM_POWER_STATUS
     {
         /// BYTE->unsigned char
-        public byte ACLineStatus;
+        public AC_STATUS ACLineStatus;
 
         /// BYTE->unsigned char
-        public byte BatteryFlag;
+        public BATTERY_STATUS BatteryFlag;
 
         /// BYTE->unsigned char
         public byte BatteryLifePercent;
@@ -1105,71 +1106,10 @@ namespace Win32Interop.Structs
         public uint dwYCountChars;
 
         /// DWORD->unsigned int
-        public uint dwFillAttribute;
+        public CHARACTER_ATTRIBUTE dwFillAttribute;
 
         /// DWORD->unsigned int
-        public uint dwFlags;
-
-        /// WORD->unsigned short
-        public ushort wShowWindow;
-
-        /// WORD->unsigned short
-        public ushort cbReserved2;
-
-        /// LPBYTE->BYTE*
-        public IntPtr lpReserved2;
-
-        /// HANDLE->void*
-        public IntPtr hStdInput;
-
-        /// HANDLE->void*
-        public IntPtr hStdOutput;
-
-        /// HANDLE->void*
-        public IntPtr hStdError;
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct STARTUPINFOA
-    {
-        /// DWORD->unsigned int
-        public uint cb;
-
-        /// LPSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string lpReserved;
-
-        /// LPSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string lpDesktop;
-
-        /// LPSTR->CHAR*
-        [MarshalAs(UnmanagedType.LPStr)]
-        public string lpTitle;
-
-        /// DWORD->unsigned int
-        public uint dwX;
-
-        /// DWORD->unsigned int
-        public uint dwY;
-
-        /// DWORD->unsigned int
-        public uint dwXSize;
-
-        /// DWORD->unsigned int
-        public uint dwYSize;
-
-        /// DWORD->unsigned int
-        public uint dwXCountChars;
-
-        /// DWORD->unsigned int
-        public uint dwYCountChars;
-
-        /// DWORD->unsigned int
-        public uint dwFillAttribute;
-
-        /// DWORD->unsigned int
-        public uint dwFlags;
+        public STARTF dwFlags;
 
         /// WORD->unsigned short
         public ushort wShowWindow;
@@ -1219,7 +1159,7 @@ namespace Win32Interop.Structs
     public struct WIN32_FIND_DATA
     {
         /// DWORD->unsigned int
-        public uint dwFileAttributes;
+        public FILE_ATTRIBUTE dwFileAttributes;
 
         /// FILETIME->_FILETIME
         public FILETIME ftCreationTime;
@@ -1512,7 +1452,7 @@ namespace Win32Interop.Structs
         public byte iRegionIndex;
 
         /// WORD->unsigned short
-        public ushort wFlags;
+        public PROCESS_HEAP wFlags;
 
         /// Anonymous_53c79322_6506_4260_871f_234e2af0cacb
         public BLOCK_REGION BlockRegion;
@@ -1557,13 +1497,13 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagACTCTX
+    public struct ACTCTX
     {
         /// ULONG->unsigned int
         public uint cbSize;
 
         /// DWORD->unsigned int
-        public uint dwFlags;
+        public ACTCTX_FLAG dwFlags;
 
         /// LPCWSTR->WCHAR*
         [MarshalAs(UnmanagedType.LPTStr)]
@@ -1784,7 +1724,7 @@ namespace Win32Interop.Structs
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA
+    public struct ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA
     {
         /// PVOID->void*
         public IntPtr lpInformation;
@@ -1809,7 +1749,7 @@ namespace Win32Interop.Structs
         public uint ExceptionCode;
 
         /// DWORD->unsigned int
-        public uint ExceptionFlags;
+        public EXCEPTION ExceptionFlags;
 
         /// _EXCEPTION_RECORD*
         public IntPtr ExceptionRecord;
@@ -1924,13 +1864,13 @@ namespace Win32Interop.Structs
         public COORD dwMousePosition;
 
         /// DWORD->unsigned int
-        public uint dwButtonState;
+        public BUTTON_STATE dwButtonState;
 
         /// DWORD->unsigned int
-        public uint dwControlKeyState;
+        public CONTROL_KEY_STATE dwControlKeyState;
 
         /// DWORD->unsigned int
-        public uint dwEventFlags;
+		public MOUSE_EVENT_FLAG dwEventFlags;
     }
 
     [StructLayout(LayoutKind.Sequential)]
