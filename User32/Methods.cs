@@ -512,7 +512,7 @@ namespace Win32Interop.Methods
 		///     To receive raw input from a device, an application must register it by using <see cref="RegisterRawInputDevices" />.
 		/// </remarks>
 		[DllImport("user32.dll", EntryPoint = "GetRegisteredRawInputDevices")]
-		public static extern uint GetRegisteredRawInputDevices(IntPtr pRawInputDevices, ref uint puiNumDevices, uint cbSize);
+		public static extern uint GetRegisteredRawInputDevices(ref RAWINPUTDEVICE[] pRawInputDevices, ref uint puiNumDevices, uint cbSize);
 
 		/// <summary>Registers the device or type of device for which a window will receive notifications.</summary>
 		/// <param name="hRecipient">
@@ -1033,7 +1033,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[DllImport("user32.dll", EntryPoint = "GetLayeredWindowAttributes")]
 		[return: MarshalAs(UnmanagedType.Bool)]
-		public static extern bool GetLayeredWindowAttributes([In] IntPtr hwnd, IntPtr pcrKey, IntPtr pbAlpha, out LWA pdwFlags);
+		public static extern bool GetLayeredWindowAttributes([In] IntPtr hwnd, ref COLORREF pcrKey, IntPtr pbAlpha, out LWA pdwFlags);
 
 		/// <summary>Retrieves the clipboard sequence number for the current window station.</summary>
 		/// <returns>
@@ -1965,7 +1965,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[DllImport("user32.dll", EntryPoint = "ChangeDisplaySettingsEx")]
 		public static extern int ChangeDisplaySettingsEx(
-			[In] string lpszDeviceName, [In] IntPtr lpDevMode, IntPtr hwnd, CDS dwFlags, [In] IntPtr lParam);
+			[In] string lpszDeviceName, [In] ref DEVMODE lpDevMode, IntPtr hwnd, CDS dwFlags, [In] IntPtr lParam);
 
 		/// <summary>
 		///     Enables the specified process to set the foreground window using the <see cref="SetForegroundWindow" /> function. The calling process must
@@ -3047,7 +3047,7 @@ namespace Win32Interop.Methods
 		///     </para>
 		/// </remarks>
 		[DllImport("user32.dll", EntryPoint = "ChangeDisplaySettings")]
-		public static extern int ChangeDisplaySettings([In] IntPtr lpDevMode, CDS dwflags);
+		public static extern int ChangeDisplaySettings(ref DEVMODE lpDevMode, CDS dwflags);
 
 		/// <summary>
 		///     Sets the input locale identifier (formerly called the keyboard layout handle) for the calling thread or the current process. The input locale
@@ -5394,7 +5394,7 @@ namespace Win32Interop.Methods
 		///     A pointer to a SECURITY_INFORMATION value that specifies the security information being requested.
 		/// </param>
 		/// <param name="pSD">
-		///     A pointer to a SECURITY_DESCRIPTOR structure in self-relative format that contains the requested information when
+		///     A pointer to a <see cref="SECURITY_DESCRIPTOR"/> structure in self-relative format that contains the requested information when
 		///     the function returns. This buffer must be aligned on a 4-byte boundary.
 		/// </param>
 		/// <param name="nLength">
@@ -5422,7 +5422,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("user32.dll", EntryPoint = "GetUserObjectSecurity")]
-		public static extern bool GetUserObjectSecurity([In] IntPtr hObj, [In] ref uint pSIRequested, IntPtr pSD, uint nLength, [Out] out uint lpnLengthNeeded);
+		public static extern bool GetUserObjectSecurity([In] IntPtr hObj, [In] ref uint pSIRequested, ref SECURITY_DESCRIPTOR pSD, uint nLength, [Out] out uint lpnLengthNeeded);
 
 		/// <summary>Enumerates the raw input devices attached to the system.</summary>
 		/// <param name="pRawInputDeviceList">
@@ -5453,7 +5453,7 @@ namespace Win32Interop.Methods
 		///     </para>
 		/// </remarks>
 		[DllImport("user32.dll", EntryPoint = "GetRawInputDeviceList")]
-		public static extern uint GetRawInputDeviceList(IntPtr pRawInputDeviceList, ref uint puiNumDevices, uint cbSize);
+		public static extern uint GetRawInputDeviceList(ref RAWINPUTDEVICELIST[] pRawInputDeviceList, ref uint puiNumDevices, uint cbSize);
 
 		/// <summary>
 		///     Retrieves the input locale identifiers (formerly called keyboard layout handles) corresponding to the current set of input locales in the system.
@@ -7883,7 +7883,7 @@ namespace Win32Interop.Methods
 		///     </para>
 		/// </remarks>
 		[DllImport("user32.dll", EntryPoint = "GetRawInputBuffer")]
-		public static extern uint GetRawInputBuffer(IntPtr pData, ref uint pcbSize, uint cbSizeHeader);
+		public static extern uint GetRawInputBuffer(ref RAWINPUT[] pData, ref uint pcbSize, uint cbSizeHeader);
 
 		/// <summary>
 		///     Retrieves a handle to the first control that has the <see cref="WS.WS_TABSTOP" /> style that precedes (or follows) the specified control.
@@ -8464,7 +8464,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("user32.dll", EntryPoint = "TrackPopupMenuEx")]
-		public static extern bool TrackPopupMenuEx([In] IntPtr hmenu, uint fuFlags, int x, int y, [In] IntPtr hwnd, [In] IntPtr lptpm);
+		public static extern bool TrackPopupMenuEx([In] IntPtr hmenu, uint fuFlags, int x, int y, [In] IntPtr hwnd, [In] ref TPMPARAMS lptpm);
 
 		/// <summary>Assigns the specified desktop to the calling thread. All subsequent operations on the desktop use the access rights granted to the desktop.</summary>
 		/// <param name="hDesktop">
@@ -10938,7 +10938,7 @@ namespace Win32Interop.Methods
 		///     example:
 		/// </remarks>
 		[DllImport("user32.dll", EntryPoint = "MapWindowPoints")]
-		public static extern int MapWindowPoints([In] IntPtr hWndFrom, [In] IntPtr hWndTo, IntPtr lpPoints, uint cPoints);
+		public static extern int MapWindowPoints([In] IntPtr hWndFrom, [In] IntPtr hWndTo, ref POINT[] lpPoints, uint cPoints);
 
 		/// <summary>Locks the workstation's display. Locking a workstation protects it from unauthorized use.</summary>
 		/// <returns>
@@ -11756,8 +11756,7 @@ namespace Win32Interop.Methods
 		/// </returns>
 		[return: MarshalAs(UnmanagedType.SysInt)]
 		[DllImport("user32.dll", EntryPoint = "DefRawInputProc")]
-		public static extern int DefRawInputProc(
-			[MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.SysInt, SizeParamIndex = 1)] IntPtr[] paRawInput, int nInput, uint cbSizeHeader);
+		public static extern int DefRawInputProc(ref RAWINPUT[] paRawInput, int nInput, uint cbSizeHeader);
 
 		/// <summary>Frees all Dynamic Data Exchange Management Library (DDEML) resources associated with the calling application.</summary>
 		/// <param name="idInst">
@@ -12601,7 +12600,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[DllImport("user32.dll", EntryPoint = "ScrollWindowEx")]
 		public static extern int ScrollWindowEx(
-			[In] IntPtr hWnd, int dx, int dy, [In] IntPtr prcScroll, [In] IntPtr prcClip, [In] IntPtr hrgnUpdate, IntPtr prcUpdate, SW flags);
+			[In] IntPtr hWnd, int dx, int dy, [In] ref RECT prcScroll, [In] ref RECT prcClip, [In] IntPtr hrgnUpdate, ref RECT prcUpdate, SW flags);
 
 		/// <summary>
 		///     The <see cref="ScreenToClient" /> function converts the screen coordinates of a specified point on the screen to client-area coordinates.
@@ -12963,7 +12962,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("user32.dll", EntryPoint = "InvalidateRect")]
-		public static extern bool InvalidateRect([In] IntPtr hWnd, [In] IntPtr lpRect, [MarshalAs(UnmanagedType.Bool)] bool bErase);
+		public static extern bool InvalidateRect([In] IntPtr hWnd, [In] ref RECT lpRect, [MarshalAs(UnmanagedType.Bool)] bool bErase);
 
 		/// <summary>Adds or removes highlighting from an item in a menu bar.</summary>
 		/// <param name="hwnd">A handle to the window that contains the menu.</param>
@@ -14128,7 +14127,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[DllImport("user32.dll", EntryPoint = "CreateDesktop")]
 		public static extern IntPtr CreateDesktop(
-			[In] string lpszDesktop, [In] string lpszDevice, IntPtr pDevmode, DF dwFlags, uint dwDesiredAccess, [In] IntPtr lpsa);
+			[In] string lpszDesktop, [In] string lpszDevice, IntPtr pDevmode, DF dwFlags, uint dwDesiredAccess, [In] ref SECURITY_ATTRIBUTES lpsa);
 
 		/// <summary>Closes the clipboard.</summary>
 		/// <returns>
@@ -14325,7 +14324,7 @@ namespace Win32Interop.Methods
 		///     </para>
 		/// </remarks>
 		[DllImport("user32.dll", EntryPoint = "CascadeWindows")]
-		public static extern ushort CascadeWindows([In] IntPtr hwndParent, uint wHow, [In] IntPtr lpRect, uint cKids, ref IntPtr lpKids);
+		public static extern ushort CascadeWindows([In] IntPtr hwndParent, uint wHow, [In] ref RECT lpRect, uint cKids, ref IntPtr lpKids);
 
 		/// <summary>
 		///     Passes the hook information to the next hook procedure in the current hook chain. A hook procedure can call this function either before or after
@@ -15145,7 +15144,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("user32.dll", EntryPoint = "GetUpdateRect")]
-		public static extern bool GetUpdateRect([In] IntPtr hWnd, IntPtr lpRect, [MarshalAs(UnmanagedType.Bool)] bool bErase);
+		public static extern bool GetUpdateRect([In] IntPtr hWnd, ref RECT lpRect, [MarshalAs(UnmanagedType.Bool)] bool bErase);
 
 		/// <summary>Enables the application to access the window menu (also known as the system menu or the control menu) for copying and modifying.</summary>
 		/// <param name="hWnd">A handle to the window that will own a copy of the window menu.</param>
@@ -16279,7 +16278,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("user32.dll", EntryPoint = "ValidateRect")]
-		public static extern bool ValidateRect([In] IntPtr hWnd, [In] IntPtr lpRect);
+		public static extern bool ValidateRect([In] IntPtr hWnd, [In] ref RECT lpRect);
 
 		/// <summary>
 		///     The <see cref="UpdateWindow" /> function updates the client area of the specified window by sending a <see cref="WM.WM_PAINT" /> message to the
@@ -16839,7 +16838,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("user32.dll", EntryPoint = "ScrollWindow")]
-		public static extern bool ScrollWindow([In] IntPtr hWnd, int XAmount, int YAmount, [In] IntPtr lpRect, [In] IntPtr lpClipRect);
+		public static extern bool ScrollWindow([In] IntPtr hWnd, int XAmount, int YAmount, [In] ref RECT lpRect, [In] ref RECT lpClipRect);
 
 		/// <summary>
 		///     Replies to a message sent through the <see cref="SendMessage" /> function without returning control to the function that called
@@ -16991,7 +16990,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("user32.dll", EntryPoint = "RedrawWindow")]
-		public static extern bool RedrawWindow([In] IntPtr hWnd, [In] IntPtr lprcUpdate, [In] IntPtr hrgnUpdate, RDW flags);
+		public static extern bool RedrawWindow([In] IntPtr hWnd, [In] ref RECT lprcUpdate, [In] IntPtr hrgnUpdate, RDW flags);
 
 		/// <summary>
 		///     <para>
@@ -17653,7 +17652,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[DllImport("user32.dll", EntryPoint = "CreateCursor")]
 		public static extern IntPtr CreateCursor(
-			[In] IntPtr hInst, int xHotSpot, int yHotSpot, int nWidth, int nHeight, [In] IntPtr pvANDPlane, [In] IntPtr pvXORPlane);
+			[In] IntPtr hInst, int xHotSpot, int yHotSpot, int nWidth, int nHeight, [In] ref byte[] pvANDPlane, [In] ref byte[] pvXORPlane);
 
 		/// <summary>Closes an open handle to a desktop object.</summary>
 		/// <param name="hDesktop">
@@ -17800,7 +17799,7 @@ namespace Win32Interop.Methods
 		///     Calling <see cref="TileWindows" /> causes all maximized windows to be restored to their previous size.
 		/// </remarks>
 		[DllImport("user32.dll", EntryPoint = "TileWindows")]
-		public static extern ushort TileWindows([In] IntPtr hwndParent, MDITILE wHow, [In] IntPtr lpRect, uint cKids, ref IntPtr lpKids);
+		public static extern ushort TileWindows([In] IntPtr hwndParent, MDITILE wHow, [In] ref RECT lpRect, uint cKids, ref IntPtr lpKids);
 
 		/// <summary>Sets information for a specified menu.</summary>
 		/// <param name="hmenu">A handle to a menu.</param>
@@ -19366,7 +19365,7 @@ namespace Win32Interop.Methods
 		/// </returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("user32.dll", EntryPoint = "GetMenuInfo")]
-		public static extern bool GetMenuInfo([In] IntPtr param0, ref MENUINFO param1);
+		public static extern bool GetMenuInfo([In] IntPtr hmenu, ref MENUINFO lpcmi);
 
 		/// <summary>
 		///     Retrieves the status of the specified virtual key. The status specifies whether the key is up, down, or toggled (on, off—alternating each time
@@ -21463,7 +21462,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("user32.dll", EntryPoint = "ClipCursor")]
-		public static extern bool ClipCursor([In] IntPtr lpRect);
+		public static extern bool ClipCursor([In] ref RECT lpRect);
 
 		/// <summary>
 		///     Converts a character string or a single character to uppercase. If the operand is a character string, the function converts the characters
@@ -21495,7 +21494,7 @@ namespace Win32Interop.Methods
 		///     <para>Conversion to Unicode in the ANSI version of the function is done with the system default locale in all cases.</para>
 		/// </remarks>
 		[DllImport("user32.dll", EntryPoint = "CharUpper")]
-		public static extern string CharUpper(IntPtr lpsz);
+		public static extern string CharUpper(string lpsz);
 
 		/// <summary>
 		///     <para>Translates a string into the OEM-defined character set.</para>
@@ -22790,7 +22789,7 @@ namespace Win32Interop.Methods
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("user32.dll", EntryPoint = "ScrollDC")]
 		public static extern bool ScrollDC(
-			[In] IntPtr hDC, int dx, int dy, [In] IntPtr lprcScroll, [In] IntPtr lprcClip, [In] IntPtr hrgnUpdate, IntPtr lprcUpdate);
+			[In] IntPtr hDC, int dx, int dy, [In] ref RECT lprcScroll, [In] ref RECT lprcClip, [In] IntPtr hrgnUpdate, ref RECT lprcUpdate);
 
 		/// <summary>
 		///     The <see cref="PtInRect" /> function determines whether the specified point lies within the specified rectangle. A point is within a rectangle if
