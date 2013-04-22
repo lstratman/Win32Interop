@@ -1608,7 +1608,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[DllImport("user32.dll", EntryPoint = "BroadcastSystemMessageEx")]
 		public static extern int BroadcastSystemMessageEx(
-			BSF dwFlags, IntPtr lpdwRecipients, uint uiMessage, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam, IntPtr pBSMInfo);
+			BSF dwFlags, IntPtr lpdwRecipients, uint uiMessage, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam, ref BSMINFO pBSMInfo);
 
 		/// <summary>Registers a new clipboard format. This format can then be used as a valid clipboard format.</summary>
 		/// <param name="lpszFormat">The name of the new format.</param>

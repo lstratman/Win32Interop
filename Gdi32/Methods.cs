@@ -43,7 +43,7 @@ namespace Win32Interop.Methods
 	///     An application must register the callback function by passing its address to the <see cref="Gdi32.EnumEnhMetaFile" /> function.
 	/// </remarks>
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	public delegate int EnhMetaFileProc([In] IntPtr hDC, [In] IntPtr lpHTable, [In] ref ENHMETARECORD lpEMFR, int nObj, [In] IntPtr lpData);
+	public delegate int EnhMetaFileProc([In] IntPtr hDC, [In] ref HANDLETABLE lpHTable, [In] ref ENHMETARECORD lpEMFR, int nObj, [In] IntPtr lpData);
 
 	/// <summary>
 	///     The <see cref="AbortProc" /> function is an application-defined callback function used with the <see cref="Gdi32.SetAbortProc" /> function. It is
@@ -103,7 +103,7 @@ namespace Win32Interop.Methods
 	///     </para>
 	/// </remarks>
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	public delegate int EnumMetaFileProc([In] IntPtr hDC, [In] IntPtr lpHTable, [In] ref METARECORD lpMFR, int nObj, [In] IntPtr lpClientData);
+	public delegate int EnumMetaFileProc([In] IntPtr hDC, [In] ref HANDLETABLE lpHTable, [In] ref METARECORD lpMFR, int nObj, [In] IntPtr lpClientData);
 
 	/// <summary>
 	///     The <see cref="EnumObjectsProc" /> function is an application-defined callback function used with the <see cref="Gdi32.EnumObjects" /> function.
@@ -187,7 +187,7 @@ namespace Win32Interop.Methods
 	///     </para>
 	/// </remarks>
 	[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-	public delegate int EnumFontFamExProc(ref LOGFONT lpelfe, ref TEXTMETRIC lpntme, uint FontType, IntPtr lParam);
+	public delegate int EnumFontFamExProc(ref LOGFONT lpelfe, IntPtr lpntme, uint FontType, IntPtr lParam);
 
 	/// <summary>Collection of native methods in gdi32.dll.</summary>
 	public class Gdi32
@@ -223,7 +223,7 @@ namespace Win32Interop.Methods
 		///     </para>
 		/// </remarks>
 		[DllImport("gdi32.dll", EntryPoint = "GetEnhMetaFilePaletteEntries")]
-		public static extern uint GetEnhMetaFilePaletteEntries([In] IntPtr hemf, uint cEntries, IntPtr lppe);
+		public static extern uint GetEnhMetaFilePaletteEntries([In] IntPtr hemf, uint cEntries, ref PALETTEENTRY[] lppe);
 
 		/// <summary>
 		///     <para>
@@ -395,7 +395,7 @@ namespace Win32Interop.Methods
 		///     RASTERCAPS constant.
 		/// </remarks>
 		[DllImport("gdi32.dll", EntryPoint = "GetSystemPaletteEntries")]
-		public static extern uint GetSystemPaletteEntries([In] IntPtr hdc, uint iStartIndex, uint nEntries, IntPtr lppe);
+		public static extern uint GetSystemPaletteEntries([In] IntPtr hdc, uint iStartIndex, uint nEntries, ref PALETTEENTRY[] lppe);
 
 		/// <summary>
 		///     <para>
@@ -489,7 +489,7 @@ namespace Win32Interop.Methods
 		///     mapping mode.
 		/// </remarks>
 		[DllImport("gdi32.dll", EntryPoint = "GetOutlineTextMetrics")]
-		public static extern uint GetOutlineTextMetrics([In] IntPtr hdc, uint cbData, IntPtr lpOTM);
+		public static extern uint GetOutlineTextMetrics([In] IntPtr hdc, uint cbData, ref OUTLINETEXTMETRIC lpOTM);
 
 		/// <summary>
 		///     The <see cref="GetNearestPaletteIndex" /> function retrieves the index for the entry in the specified logical palette most closely matching a
@@ -1451,7 +1451,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("gdi32.dll", EntryPoint = "ModifyWorldTransform")]
-		public static extern bool ModifyWorldTransform([In] IntPtr hdc, [In] IntPtr lpXform, uint iMode);
+		public static extern bool ModifyWorldTransform([In] IntPtr hdc, [In] ref XFORM lpXform, uint iMode);
 
 		/// <summary>
 		///     The <see cref="GetFontUnicodeRanges" /> function returns information about which Unicode characters are supported by a font. The information is
@@ -1494,7 +1494,7 @@ namespace Win32Interop.Methods
 		///     <para>The record that contains the enhanced-metafile header is always the first record in the metafile.</para>
 		/// </remarks>
 		[DllImport("gdi32.dll", EntryPoint = "GetEnhMetaFileHeader")]
-		public static extern uint GetEnhMetaFileHeader([In] IntPtr hemf, uint cbBuffer, IntPtr lpemh);
+		public static extern uint GetEnhMetaFileHeader([In] IntPtr hemf, uint cbBuffer, ref ENHMETAHEADER lpemh);
 
 		/// <summary>
 		///     The <see cref="GetCurrentPositionEx" /> function retrieves the current position in logical coordinates.
@@ -1943,7 +1943,7 @@ namespace Win32Interop.Methods
 		///     <para>If the function fails, the return value is zero. To get extended error information, call GetLastError.</para>
 		/// </returns>
 		[DllImport("gdi32.dll", EntryPoint = "DescribePixelFormat")]
-		public static extern int DescribePixelFormat([In] IntPtr hdc, int iPixelFormat, uint nBytes, IntPtr ppfd);
+		public static extern int DescribePixelFormat([In] IntPtr hdc, int iPixelFormat, uint nBytes, ref PIXELFORMATDESCRIPTOR ppfd);
 
 		/// <summary>
 		///     The <see cref="CreateFontIndirect" /> function creates a logical font that has the specified characteristics. The font can subsequently be
@@ -2065,7 +2065,7 @@ namespace Win32Interop.Methods
 		///     </para>
 		/// </remarks>
 		[DllImport("gdi32.dll", EntryPoint = "SetWinMetaFileBits")]
-		public static extern IntPtr SetWinMetaFileBits(uint cbBuffer, [In] IntPtr lpbBuffer, [In] IntPtr hdcRef, [In] IntPtr lpmfp);
+		public static extern IntPtr SetWinMetaFileBits(uint cbBuffer, [In] IntPtr lpbBuffer, [In] IntPtr hdcRef, [In] ref METAFILEPICT lpmfp);
 
 		/// <summary>
 		///     The <see cref="SetEnhMetaFileBits" /> function creates a memory-based enhanced-format metafile from the specified data.
@@ -2258,7 +2258,7 @@ namespace Win32Interop.Methods
 		///     character set identifiers are defined:
 		/// </returns>
 		[DllImport("gdi32.dll", EntryPoint = "GetTextCharsetInfo")]
-		public static extern int GetTextCharsetInfo([In] IntPtr hdc, IntPtr lpSig, uint dwFlags);
+		public static extern int GetTextCharsetInfo([In] IntPtr hdc, ref FONTSIGNATURE lpSig, uint dwFlags);
 
 		/// <summary>
 		///     The <see cref="GetEnhMetaFileBits" /> function retrieves the contents of the specified enhanced-format metafile and copies them into a buffer.
@@ -2462,7 +2462,7 @@ namespace Win32Interop.Methods
 		///     <para>The file name for the enhanced metafile should use the .emf extension.</para>
 		/// </remarks>
 		[DllImport("gdi32.dll", EntryPoint = "CreateEnhMetaFile")]
-		public static extern IntPtr CreateEnhMetaFile([In] IntPtr hdcRef, [In] string lpFilename, [In] IntPtr lpRect, [In] string lpDescription);
+		public static extern IntPtr CreateEnhMetaFile([In] IntPtr hdcRef, [In] string lpFilename, [In] ref RECT lpRect, [In] string lpDescription);
 
 		/// <summary>
 		///     The <see cref="CreateCompatibleDC" /> function creates a memory device context (DC) compatible with the specified device.
@@ -3022,7 +3022,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("gdi32.dll", EntryPoint = "GetRasterizerCaps")]
-		public static extern bool GetRasterizerCaps(IntPtr lprs, uint cb);
+		public static extern bool GetRasterizerCaps(ref RASTERIZER_STATUS lprs, uint cb);
 
 		/// <summary>
 		///     The <see cref="GetPaletteEntries" /> function retrieves a specified range of palette entries from the given logical palette.
@@ -3053,7 +3053,7 @@ namespace Win32Interop.Methods
 		///     </para>
 		/// </remarks>
 		[DllImport("gdi32.dll", EntryPoint = "GetPaletteEntries")]
-		public static extern uint GetPaletteEntries([In] IntPtr hpal, uint iStartIndex, uint nEntries, IntPtr lppe);
+		public static extern uint GetPaletteEntries([In] IntPtr hpal, uint iStartIndex, uint nEntries, ref PALETTEENTRY[] lppe);
 
 		/// <summary>
 		///     <para>
@@ -3192,7 +3192,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("gdi32.dll", EntryPoint = "GetCharABCWidthsI")]
-		public static extern bool GetCharABCWidthsI([In] IntPtr hdc, uint giFirst, uint cgi, [In] IntPtr pgi, IntPtr lpabc);
+		public static extern bool GetCharABCWidthsI([In] IntPtr hdc, uint giFirst, uint cgi, [In] IntPtr pgi, ref ABC[] lpabc);
 
 		/// <summary>
 		///     <para>
@@ -3856,7 +3856,7 @@ namespace Win32Interop.Methods
 		///     they do have associated color masks. Call the <see cref="GetObject" /> function to retrieve those color masks.
 		/// </remarks>
 		[DllImport("gdi32.dll", EntryPoint = "GetDIBColorTable")]
-		public static extern uint GetDIBColorTable([In] IntPtr hdc, uint uStartIndex, uint cEntries, IntPtr pColors);
+		public static extern uint GetDIBColorTable([In] IntPtr hdc, uint uStartIndex, uint cEntries, ref RGBQUAD[] pColors);
 
 		/// <summary>
 		///     The <see cref="GetCurrentObject" /> function retrieves a handle to an object of the specified type that has been selected into the specified
@@ -4775,7 +4775,7 @@ namespace Win32Interop.Methods
 		///     </para>
 		/// </remarks>
 		[DllImport("gdi32.dll", EntryPoint = "ExtCreateRegion")]
-		public static extern IntPtr ExtCreateRegion([In] IntPtr lpXform, uint nCount, [In] IntPtr lpRgnData);
+		public static extern IntPtr ExtCreateRegion([In] ref XFORM lpXform, uint nCount, [In] ref RGNDATA lpRgnData);
 
 		/// <summary>
 		///     The <see cref="ExcludeClipRect" /> function creates a new clipping region that consists of the existing clipping region minus the specified
@@ -4826,7 +4826,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("gdi32.dll", EntryPoint = "EnumEnhMetaFile")]
-		public static extern bool EnumEnhMetaFile([In] IntPtr hdc, [In] IntPtr hemf, EnhMetaFileProc lpEnhMetaFunc, [In] IntPtr lpData, [In] IntPtr lpRect);
+		public static extern bool EnumEnhMetaFile([In] IntPtr hdc, [In] IntPtr hemf, EnhMetaFileProc lpEnhMetaFunc, [In] IntPtr lpData, [In] ref RECT lpRect);
 
 		/// <summary>
 		///     <para>
@@ -5357,7 +5357,7 @@ namespace Win32Interop.Methods
 		/// </summary>
 		/// <param name="hdc">A handle to a device context.</param>
 		/// <param name="lpbmih">
-		///     <para>A pointer to a bitmap information header structure, BITMAPV5HEADER.</para>
+		///     <para>A pointer to a bitmap information header structure, <see cref="BITMAPV5HEADER"/>.</para>
 		///     <para>
 		///         If <paramref name="fdwInit" /> is CBM_INIT, the function uses the bitmap information header structure to obtain the desired width and height
 		///         of the bitmap as well as other information. Note that a positive value for the height indicates a bottom-up DIB while a negative value for
@@ -5436,7 +5436,7 @@ namespace Win32Interop.Methods
 		///     <para>ICM: No color management is performed. The contents of the resulting bitmap are not color matched after the bitmap has been created.</para>
 		/// </remarks>
 		[DllImport("gdi32.dll", EntryPoint = "CreateDIBitmap")]
-		public static extern IntPtr CreateDIBitmap([In] IntPtr hdc, [In] IntPtr lpbmih, uint fdwInit, [In] IntPtr lpbInit, [In] IntPtr lpbmi, uint fuUsage);
+		public static extern IntPtr CreateDIBitmap([In] IntPtr hdc, [In] BITMAPINFOHEADER lpbmih, uint fdwInit, [In] IntPtr lpbInit, [In] ref BITMAPINFO lpbmi, uint fuUsage);
 
 		/// <summary>
 		///     The <see cref="AnimatePalette" /> function replaces entries in the specified logical palette.
@@ -5640,7 +5640,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("gdi32.dll", EntryPoint = "SetBrushOrgEx")]
-		public static extern bool SetBrushOrgEx([In] IntPtr hdc, int nXOrg, int nYOrg, IntPtr lppt);
+		public static extern bool SetBrushOrgEx([In] IntPtr hdc, int nXOrg, int nYOrg, ref POINT lppt);
 
 		/// <summary>
 		///     The <see cref="SetBoundsRect" /> function controls the accumulation of bounding rectangle information for the specified device context. The
@@ -10077,7 +10077,7 @@ namespace Win32Interop.Methods
 		///     </para>
 		/// </remarks>
 		[DllImport("gdi32.dll", EntryPoint = "GetPath")]
-		public static extern int GetPath([In] IntPtr hdc, IntPtr lpPoints, IntPtr lpTypes, int nSize);
+		public static extern int GetPath([In] IntPtr hdc, ref POINT[] lpPoints, ref byte[] lpTypes, int nSize);
 
 		/// <summary>
 		///     The <see cref="FillRgn" /> function fills a region by using the specified brush.
@@ -10329,7 +10329,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("gdi32.dll", EntryPoint = "LPtoDP")]
-		public static extern bool LPtoDP([In] IntPtr hdc, IntPtr lpPoints, int nCount);
+		public static extern bool LPtoDP([In] IntPtr hdc, ref POINT[] lpPoints, int nCount);
 
 		/// <summary>
 		///     The <see cref="LineTo" /> function draws a line from the current position up to, but not including, the specified point.
@@ -10393,7 +10393,7 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("gdi32.dll", EntryPoint = "DPtoLP")]
-		public static extern bool DPtoLP([In] IntPtr hdc, IntPtr lpPoints, int nCount);
+		public static extern bool DPtoLP([In] IntPtr hdc, ref POINT[] lpPoints, int nCount);
 
 		/// <summary>
 		///     The <see cref="BitBlt" /> function performs a bit-block transfer of the color data corresponding to a rectangle of pixels from the specified
@@ -10716,7 +10716,7 @@ namespace Win32Interop.Methods
 		///     <para>For information on metafile recording and other operations, see Enhanced Metafile Operations.</para>
 		/// </remarks>
 		[DllImport("gdi32.dll", EntryPoint = "GetEnhMetaFilePixelFormat")]
-		public static extern uint GetEnhMetaFilePixelFormat([In] IntPtr hemf, uint cbBuffer, IntPtr ppfd);
+		public static extern uint GetEnhMetaFilePixelFormat([In] IntPtr hemf, uint cbBuffer, ref PIXELFORMATDESCRIPTOR ppfd);
 	}
 	// ReSharper restore InconsistentNaming
 }

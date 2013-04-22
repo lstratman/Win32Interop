@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using Win32Interop.Enums;
 using Win32Interop.Methods;
 
 // ReSharper disable CheckNamespace
