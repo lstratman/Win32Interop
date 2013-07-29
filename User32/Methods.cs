@@ -5920,7 +5920,7 @@ namespace Win32Interop.Methods
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("user32.dll", EntryPoint = "EnumDisplaySettings")]
 		public static extern bool EnumDisplaySettings(
-			[In] [MarshalAs(UnmanagedType.LPWStr)] string lpszDeviceName, uint iModeNum, [Out] out DEVMODE lpDevMode);
+			[In] [MarshalAs(UnmanagedType.LPWStr)] string lpszDeviceName, int iModeNum, ref DEVMODE lpDevMode);
 
 		/// <summary>
 		///     <para>Enumerates the data formats currently available on the clipboard.</para>
@@ -16773,14 +16773,71 @@ namespace Win32Interop.Methods
 		///         Nonqueued Messages.
 		///     </para>
 		///     <para>
-		///         An accessibility application can use <see cref="SendMessage" /> to send <see cref="WM.WM_APPCOMMAND" /> messages to the shell to launch
-		///         applications. This functionality is not guaranteed to work for other types of applications.
+		///         An accessibility application can use <see cref="SendMessage(IntPtr, uint, IntPtr, IntPtr)" /> to send <see cref="WM.WM_APPCOMMAND" /> 
+		///         messages to the shell to launch applications. This functionality is not guaranteed to work for other types of applications.
 		///     </para>
 		/// </remarks>
-		[return: MarshalAs(UnmanagedType.SysInt)]
 		[DllImport("user32.dll", EntryPoint = "SendMessage")]
-		public static extern int SendMessage(
-			[In] IntPtr hWnd, uint Msg, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam);
+		public static extern IntPtr SendMessage([In] IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+
+		/// <summary>
+		///     <para>
+		///         Sends the specified message to a window or windows. The <see cref="SendMessage" /> function calls the window procedure for the specified
+		///         window and does not return until the window procedure has processed the message.
+		///     </para>
+		///     <para>
+		///         To send a message and return immediately, use the <see cref="SendMessageCallback" /> or <see cref="SendNotifyMessage" /> function. To post a
+		///         message to a thread's message queue and return immediately, use the <see cref="PostMessage" /> or <see cref="PostThreadMessage" /> function.
+		///     </para>
+		/// </summary>
+		/// <param name="hWnd">
+		///     <para>
+		///         A handle to the window whose window procedure will receive the message. If this parameter is HWND_BROADCAST ((HWND)0xffff),
+		///         the message is sent to all top-level windows in the system, including disabled or invisible unowned windows, overlapped windows, and pop-up
+		///         windows; but the message is not sent to child windows.
+		///     </para>
+		///     <para>
+		///         Message sending is subject to UIPI. The thread of a process can send messages only to message queues of threads in processes of lesser or
+		///         equal integrity level.
+		///     </para>
+		/// </param>
+		/// <param name="Msg">
+		///     <para>The message to be sent.</para>
+		///     <para>For lists of the system-provided messages, see System-Defined Messages.</para>
+		/// </param>
+		/// <param name="wParam">Additional message-specific information.</param>
+		/// <param name="lParam">Additional message-specific information.</param>
+		/// <returns>
+		///     <para>The return value specifies the result of the message processing; it depends on the message sent.</para>
+		/// </returns>
+		/// <remarks>
+		///     <para>When a message is blocked by UIPI the last error, retrieved with GetLastError, is set to 5 (access denied).</para>
+		///     <para>
+		///         Applications that need to communicate using HWND_BROADCAST should use the <see cref="RegisterWindowMessage" /> function to
+		///         obtain a unique message for inter-application communication.
+		///     </para>
+		///     <para>
+		///         The system only does marshalling for system messages (those in the range 0 to (<see cref="WM.WM_USER" />-1)). To send other messages (those
+		///         >=
+		///         <see cref="WM.WM_USER" />) to another process, you must do custom marshalling.
+		///     </para>
+		///     <para>
+		///         If the specified window was created by the calling thread, the window procedure is called immediately as a subroutine. If the specified
+		///         window was created by a different thread, the system switches to that thread and calls the appropriate window procedure. Messages sent
+		///         between threads are processed only when the receiving thread executes message retrieval code. The sending thread is blocked until the
+		///         receiving thread processes the message. However, the sending thread will process incoming nonqueued messages while waiting for its message to
+		///         be processed. To prevent this, use <see cref="SendMessageTimeout" /> with SMTO_BLOCK set. For more information on nonqueued messages, see
+		///         Nonqueued Messages.
+		///     </para>
+		///     <para>
+		///         An accessibility application can use <see cref="SendMessage(IntPtr, uint, IntPtr, IntPtr)" /> to send <see cref="WM.WM_APPCOMMAND" /> 
+		///         messages to the shell to launch applications. This functionality is not guaranteed to work for other types of applications.
+		///     </para>
+		/// </remarks>
+		public static IntPtr SendMessage([In] IntPtr hWnd, WM Msg, IntPtr wParam, IntPtr lParam)
+		{
+			return SendMessage(hWnd, (uint) Msg, lParam, wParam);
+		}
 
 		/// <summary>
 		///     <para>
@@ -17071,8 +17128,89 @@ namespace Win32Interop.Methods
 		/// </remarks>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("user32.dll", EntryPoint = "PostMessage")]
-		public static extern bool PostMessage(
-			[In] IntPtr hWnd, uint Msg, [MarshalAs(UnmanagedType.SysUInt)] uint wParam, [MarshalAs(UnmanagedType.SysInt)] int lParam);
+		public static extern bool PostMessage([In] IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+
+		/// <summary>
+		///     <para>
+		///         Places (posts) a message in the message queue associated with the thread that created the specified window and returns without waiting for
+		///         the thread to process the message.
+		///     </para>
+		///     <para>
+		///         To post a message in the message queue associated with a thread, use the <see cref="PostThreadMessage" /> function.
+		///     </para>
+		/// </summary>
+		/// <param name="hWnd">
+		///     <para>A handle to the window whose window procedure is to receive the message. The following values have special meanings.</para>
+		///     <list type="table">
+		///         <item>
+		///             <term>HWND_BROADCAST ((HWND)0xffff)</term>
+		///             <description>
+		///                 The message is posted to all top-level windows in the system, including disabled or invisible unowned windows, overlapped windows,
+		///                 and pop-up windows. The message is not posted to child windows.
+		///             </description>
+		///         </item>
+		///         <item>
+		///             <term>NULL</term>
+		///             <description>
+		///                 The function behaves like a call to <see cref="PostThreadMessage" /> with the <paramref name="dwThreadId" /> parameter set to the
+		///                 identifier of the current thread.
+		///             </description>
+		///         </item>
+		///     </list>
+		///     <para>
+		///         Starting with Windows Vista, message posting is subject to UIPI. The thread of a process can post messages only to message queues of threads
+		///         in processes of lesser or equal integrity level.
+		///     </para>
+		/// </param>
+		/// <param name="Msg">
+		///     <para>The message to be posted.</para>
+		///     <para>For lists of the system-provided messages, see System-Defined Messages.</para>
+		/// </param>
+		/// <param name="wParam">Additional message-specific information.</param>
+		/// <param name="lParam">Additional message-specific information.</param>
+		/// <returns>
+		///     <para>If the function succeeds, the return value is nonzero.</para>
+		///     <para>
+		///         If the function fails, the return value is zero. To get extended error information, call GetLastError. GetLastError returns
+		///         <see cref="ERROR_NOT_ENOUGH_QUOTA" /> when the limit is hit.
+		///     </para>
+		/// </returns>
+		/// <remarks>
+		///     <para>When a message is blocked by UIPI the last error, retrieved with GetLastError, is set to 5 (access denied).</para>
+		///     <para>
+		///         Messages in a message queue are retrieved by calls to the <see cref="GetMessage" /> or <see cref="PeekMessage" /> function.
+		///     </para>
+		///     <para>
+		///         Applications that need to communicate using HWND_BROADCAST should use the <see cref="RegisterWindowMessage" /> function to
+		///         obtain a unique message for inter-application communication.
+		///     </para>
+		///     <para>
+		///         The system only does marshalling for system messages (those in the range 0 to (<see cref="WM.WM_USER" />-1)). To send other messages (those
+		///         >=
+		///         <see cref="WM.WM_USER" />) to another process, you must do custom marshalling.
+		///     </para>
+		///     <para>
+		///         If you send a message in the range below <see cref="WM.WM_USER" /> to the asynchronous message functions (<see cref="PostMessage" />,
+		///         <see cref="SendNotifyMessage" />, and <see cref="SendMessageCallback" />), its message parameters cannot include pointers. Otherwise, the
+		///         operation will fail. The functions will return before the receiving thread has had a chance to process the message and the sender will free
+		///         the memory before it is used.
+		///     </para>
+		///     <para>
+		///         Do not post the <see cref="WM.WM_QUIT" /> message using <see cref="PostMessage" />; use the <see cref="PostQuitMessage" /> function.
+		///     </para>
+		///     <para>
+		///         An accessibility application can use <see cref="PostMessage" /> to post <see cref="WM.WM_APPCOMMAND" /> messages to the shell to launch
+		///         applications. This functionality is not guaranteed to work for other types of applications.
+		///     </para>
+		///     <para>
+		///         There is a limit of 10,000 posted messages per message queue. This limit should be sufficiently large. If your application exceeds the limit,
+		///         it should be redesigned to avoid consuming so many system resources. To adjust this limit, modify the following registry key.
+		///     </para>
+		/// </remarks>
+		public static bool PostMessage([In] IntPtr hWnd, WM Msg, IntPtr wParam, IntPtr lParam)
+		{
+			return PostMessage(hWnd, (uint) Msg, wParam, lParam);
+		}
 
 		/// <summary>Dispatches incoming sent messages, checks the thread message queue for a posted message, and retrieves the message (if any exist).</summary>
 		/// <param name="lpMsg">

@@ -295,91 +295,77 @@ namespace Win32Interop.Structs
 		public LUID luid;
 	}
 
-	[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+	[StructLayout(LayoutKind.Explicit, CharSet = CharSet.Ansi)]
 	public struct DEVMODE
 	{
-		/// WCHAR[32]
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+		public const int CCHDEVICENAME = 32;
+		public const int CCHFORMNAME = 32;
+
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst = CCHDEVICENAME)]
+		[FieldOffset(0)]
 		public string dmDeviceName;
+		[FieldOffset(32)]
+		public Int16 dmSpecVersion;
+		[FieldOffset(34)]
+		public Int16 dmDriverVersion;
+		[FieldOffset(36)]
+		public Int16 dmSize;
+		[FieldOffset(38)]
+		public Int16 dmDriverExtra;
+		[FieldOffset(40)]
+		public Int32 dmFields;
 
-		/// WORD->unsigned short
-		public ushort dmSpecVersion;
+		[FieldOffset(44)]
+		Int16 dmOrientation;
+		[FieldOffset(46)]
+		Int16 dmPaperSize;
+		[FieldOffset(48)]
+		Int16 dmPaperLength;
+		[FieldOffset(50)]
+		Int16 dmPaperWidth;
+		[FieldOffset(52)]
+		Int16 dmScale;
+		[FieldOffset(54)]
+		Int16 dmCopies;
+		[FieldOffset(56)]
+		Int16 dmDefaultSource;
+		[FieldOffset(58)]
+		Int16 dmPrintQuality;
 
-		/// WORD->unsigned short
-		public ushort dmDriverVersion;
+		[FieldOffset(44)]
+		public POINTL dmPosition;
+		[FieldOffset(52)]
+		public Int32 dmDisplayOrientation;
+		[FieldOffset(56)]
+		public Int32 dmDisplayFixedOutput;
 
-		/// WORD->unsigned short
-		public ushort dmSize;
-
-		/// WORD->unsigned short
-		public ushort dmDriverExtra;
-
-		/// DWORD->unsigned int
-		public uint dmFields;
-
-		/// Anonymous_7a7460d9_d99f_4e9a_9ebb_cdd10c08463d
-		public PAGE_DATA pageData;
-
-		/// short
+		[FieldOffset(60)]
 		public short dmColor;
-
-		/// short
+		[FieldOffset(62)]
 		public short dmDuplex;
-
-		/// short
+		[FieldOffset(64)]
 		public short dmYResolution;
-
-		/// short
+		[FieldOffset(66)]
 		public short dmTTOption;
-
-		/// short
+		[FieldOffset(68)]
 		public short dmCollate;
-
-		/// WCHAR[32]
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+		[FieldOffset(72)]
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst = CCHFORMNAME)]
 		public string dmFormName;
-
-		/// WORD->unsigned short
-		public ushort dmLogPixels;
-
-		/// DWORD->unsigned int
-		public uint dmBitsPerPel;
-
-		/// DWORD->unsigned int
-		public uint dmPelsWidth;
-
-		/// DWORD->unsigned int
-		public uint dmPelsHeight;
-
-		/// Anonymous_084dbe97_5806_4c28_a299_ed6037f61d90
-		public DISPLAY_DATA displayData;
-
-		/// DWORD->unsigned int
-		public uint dmDisplayFrequency;
-
-		/// DWORD->unsigned int
-		public uint dmICMMethod;
-
-		/// DWORD->unsigned int
-		public uint dmICMIntent;
-
-		/// DWORD->unsigned int
-		public uint dmMediaType;
-
-		/// DWORD->unsigned int
-		public uint dmDitherType;
-
-		/// DWORD->unsigned int
-		public uint dmReserved1;
-
-		/// DWORD->unsigned int
-		public uint dmReserved2;
-
-		/// DWORD->unsigned int
-		public uint dmPanningWidth;
-
-		/// DWORD->unsigned int
-		public uint dmPanningHeight;
+		[FieldOffset(102)]
+		public Int16 dmLogPixels;
+		[FieldOffset(104)]
+		public Int32 dmBitsPerPel;
+		[FieldOffset(108)]
+		public Int32 dmPelsWidth;
+		[FieldOffset(112)]
+		public Int32 dmPelsHeight;
+		[FieldOffset(116)]
+		public Int32 dmDisplayFlags;
+		[FieldOffset(116)]
+		public Int32 dmNup;
+		[FieldOffset(120)]
+		public Int32 dmDisplayFrequency;
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
