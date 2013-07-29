@@ -64,7 +64,7 @@ namespace Win32Interop.Structs
         public ENCODING_INFO Char;
 
         /// WORD->unsigned short
-        public CHARACTER_ATTRIBUTE Attributes;
+        public UInt16 Attributes;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -2266,6 +2266,23 @@ namespace Win32Interop.Structs
 		/// COLORREF[16]
 		[MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 16, ArraySubType = UnmanagedType.U4)]
 		public uint[] ColorTable;
+	}
+
+	[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+	public class CONSOLE_FONT_INFOEX
+	{
+		private int cbSize;
+		public CONSOLE_FONT_INFOEX()
+		{
+			cbSize = Marshal.SizeOf(typeof(CONSOLE_FONT_INFOEX));
+		}
+		public int FontIndex;
+		public short FontWidth;
+		public short FontHeight;
+		public int FontFamily;
+		public int FontWeight;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+		public string FaceName;
 	}
 
 }

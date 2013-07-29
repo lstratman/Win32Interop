@@ -2141,7 +2141,7 @@ namespace Win32Interop.Methods
         ///lpNumberOfEventsRead: LPDWORD->DWORD*
         [DllImport("kernel32.dll", EntryPoint = "ReadConsoleInput")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool ReadConsoleInput(IntPtr hConsoleInput, ref INPUT_RECORD lpBuffer, uint nLength, ref uint lpNumberOfEventsRead);
+        public static extern bool ReadConsoleInput(IntPtr hConsoleInput, ref INPUT_RECORD[] lpBuffer, uint nLength, ref uint lpNumberOfEventsRead);
 
         /// Return Type: BOOL->int
         ///Function: LPTHREAD_START_ROUTINE->PTHREAD_START_ROUTINE
@@ -3054,7 +3054,7 @@ namespace Win32Interop.Methods
         ///dwMode: DWORD->unsigned int
         [DllImport("kernel32.dll", EntryPoint = "SetConsoleMode")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetConsoleMode(IntPtr hConsoleHandle, uint dwMode);
+        public static extern bool SetConsoleMode(IntPtr hConsoleHandle, CONSOLE_MODE dwMode);
 
         /// Return Type: void
         ///dwExceptionCode: DWORD->unsigned int
@@ -3198,7 +3198,7 @@ namespace Win32Interop.Methods
         ///lpMode: LPDWORD->DWORD*
         [DllImport("kernel32.dll", EntryPoint = "GetConsoleMode")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetConsoleMode(IntPtr hConsoleHandle, ref uint lpMode);
+        public static extern bool GetConsoleMode(IntPtr hConsoleHandle, ref CONSOLE_MODE lpMode);
 
         /// Return Type: BOOL->int
         ///lpApplicationName: LPCWSTR->WCHAR*
@@ -4099,7 +4099,7 @@ namespace Win32Interop.Methods
         ///hTemplateFile: HANDLE->void*
         [DllImport("kernel32.dll", EntryPoint = "CreateFile")]
         public static extern IntPtr CreateFile(
-            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpFileName, uint dwDesiredAccess, FILE_SHARE dwShareMode, [In] ref SECURITY_ATTRIBUTES lpSecurityAttributes,
+            [In] [MarshalAs(UnmanagedType.LPTStr)] string lpFileName, uint dwDesiredAccess, FILE_SHARE dwShareMode, [In] IntPtr lpSecurityAttributes,
             uint dwCreationDisposition, FILE_CREATE dwFlagsAndAttributes, [In] IntPtr hTemplateFile);
 
         /// Return Type: LPVOID->void*
@@ -4671,6 +4671,15 @@ namespace Win32Interop.Methods
         [DllImport("kernel32.dll", EntryPoint = "Beep")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool Beep(uint dwFreq, uint dwDuration);
+
+		[DllImport("kernel32.dll", EntryPoint = "SetConsoleScreenBufferInfoEx")]
+		public static extern bool SetConsoleScreenBufferInfoEx(IntPtr ConsoleOutput, CONSOLE_SCREEN_BUFFER_INFOEX ConsoleScreenBufferInfoEx);
+
+		[DllImport("kernel32.dll", CharSet = CharSet.Unicode, EntryPoint = "GetCurrentConsoleFontEx")]
+		public static extern bool GetCurrentConsoleFontEx(IntPtr hConsoleOutput, bool bMaximumWindow, [In, Out] CONSOLE_FONT_INFOEX lpConsoleCurrentFont);
+
+		[DllImport("kernel32.dll", EntryPoint = "SetCurrentConsoleFontEx")]
+		public static extern bool SetCurrentConsoleFontEx(IntPtr ConsoleOutput, bool MaximumWindow, CONSOLE_FONT_INFOEX ConsoleCurrentFontEx);
     }
 
     // ReSharper restore InconsistentNaming
