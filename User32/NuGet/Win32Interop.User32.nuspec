@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Win32Interop.User32</id>
+        <version>1.0.1</version>
+        <authors>Luke Stratman</authors>
+        <projectUrl>https://github.com/lstratman/Win32Interop</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Provides interop methods, structs, and enums for user32.dll.</description>
+        <releaseNotes>- Converted many Int32 method parameters to concrete types.
+- Removed unicode/ANSI-specific method signatures.
+- Fixed the signature for EnumDisplaySettings</releaseNotes>
+    </metadata>
+    <files>
+        <file src="..\bin\Release\Win32Interop.User32.dll" target="lib\Win32Interop.User32.dll" />
+        <file src="..\bin\Release\Win32Interop.User32.pdb" target="lib\Win32Interop.User32.pdb" />
+    </files>
+</package>
